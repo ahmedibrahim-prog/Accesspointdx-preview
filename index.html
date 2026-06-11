@@ -4,21 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AccessPoint Dx // Diagnostics Without Barriers</title>
-    <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom Font Configuration (Inter-like clean sans-serif) -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
         
-        /* Utility class to hide the scrollbar but keep horizontal scrolling functional on mobile */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Sleek custom mobile horizontal scrollbar */
+        .mobile-scroll::-webkit-scrollbar { 
+            height: 6px; 
+        }
+        .mobile-scroll::-webkit-scrollbar-track { 
+            background: #f1f5f9; 
+            border-radius: 8px; 
+            margin: 0 24px; /* Aligns perfectly with the container padding */
+        }
+        .mobile-scroll::-webkit-scrollbar-thumb { 
+            background: #059669; 
+            border-radius: 8px; 
+        }
+        /* Hide the scrollbar entirely on desktop sizes since it switches to a grid */
+        @media (min-width: 768px) {
+            .mobile-scroll::-webkit-scrollbar { display: none; }
+        }
     </style>
 </head>
 <body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10">
 
-    <!-- TOP GLOBAL UTILITY ANNOUNCEMENT BAR -->
     <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
         <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
             <div class="flex items-center space-x-6">
@@ -41,11 +52,9 @@
         </div>
     </div>
 
-    <!-- MAIN APP NAVIGATION HEADER -->
     <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
             
-            <!-- BRAND LOGO KEYSPACE -->
             <div class="flex items-center space-x-3">
                 <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
@@ -66,7 +75,6 @@
                 </div>
             </div>
 
-            <!-- DESKTOP TOP NAV LINKS -->
             <nav class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-wide text-slate-700">
                 <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Who We Serve</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Integrations</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
@@ -75,7 +83,6 @@
                 <a href="#" class="hover:text-[#059669] transition">Contact</a>
             </nav>
 
-            <!-- MOBILE NAV BUTTON & CLIENT PORTAL -->
             <div class="flex items-center space-x-4">
                 <button class="lg:hidden text-[#0A192F] p-1 focus:outline-none">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -88,7 +95,6 @@
         </div>
     </header>
 
-    <!-- CINEMATIC HERO SECTION -->
     <section class="max-w-7xl mx-auto px-6 pt-12 sm:pt-16 pb-16 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
             <h1 class="text-[42px] sm:text-[52px] lg:text-[68px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
@@ -107,9 +113,8 @@
             </div>
         </div>
         
-        <!-- VISUAL SPLIT GRAPHIC HERO -->
         <div class="lg:col-span-6 relative h-[520px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/70 sm:from-[#0A192F]/60 via-transparent to-transparent"></div>
             
             <div class="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -135,7 +140,6 @@
         </div>
     </section>
 
-    <!-- MICRO SCANNING RIBBON: BUILT FOR DIRECTORY -->
     <section class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-100 mb-10 sm:mb-16">
         <div class="text-center mb-8">
             <span class="text-[11px] font-black tracking-widest text-[#0A192F] uppercase">Built For</span>
@@ -180,14 +184,15 @@
         </div>
     </section>
 
-    <!-- LOCAL ADVANTAGE MAP BLOCK -->
     <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
         <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-80 sm:h-96">
             <svg class="w-full h-full drop-shadow-md" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M 120 20 L 140 25 L 145 10 L 160 30 L 175 35 L 180 50 L 195 55 L 210 50 L 220 55 L 245 75 L 255 100 L 245 130 L 250 160 L 235 190 L 245 220 L 255 240 L 250 270 L 260 290 L 265 315 L 255 330 L 95 330 L 90 280 L 85 240 L 80 200 L 75 160 L 70 120 L 65 80 L 120 80 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
+                
                 <circle cx="190" cy="220" r="40" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" opacity="0.3"/>
                 <circle cx="190" cy="220" r="25" fill="#059669" opacity="0.1"/>
                 <circle cx="190" cy="220" r="6" fill="#059669"/>
+                
                 <path d="M 184 220 L 140 220" stroke="#059669" stroke-width="1.5" />
                 <g transform="translate(15, 200)">
                     <text x="120" y="14" fill="#0A192F" font-size="12" font-weight="800" text-anchor="end">Twin Cities</text>
@@ -238,7 +243,6 @@
         </div>
     </section>
 
-    <!-- THE ACCESSPOINT ADVANTAGE -->
     <section class="bg-slate-50 border-y border-slate-100 py-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-12">
@@ -285,27 +289,24 @@
         </div>
     </section>
 
-    <!-- COMPREHENSIVE RE-ALIGNED GRID FOR WHO WE SERVE -->
-    <section class="max-w-7xl mx-auto py-20 space-y-8 relative">
-        <div class="text-center space-y-1 px-6">
+    <section class="max-w-7xl mx-auto py-20 space-y-4 sm:space-y-8 relative">
+        <div class="text-center px-6">
             <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
         </div>
 
-        <!-- Mobile Scroll affordance text -->
-        <div class="md:hidden flex justify-end px-6 mb-[-1rem]">
-            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest flex items-center space-x-1 animate-pulse">
-                <span>Swipe</span>
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-            </span>
+        <div class="md:hidden flex justify-center pb-2">
+            <div class="bg-emerald-50 text-[#059669] px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center space-x-2 animate-pulse shadow-sm border border-emerald-100">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span>Swipe to explore</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
         </div>
         
-        <!-- Guaranteed Horizontal Scroll on Mobile -->
-        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 px-6 scroll-smooth">
+        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory mobile-scroll pb-6 px-6 scroll-smooth">
             
-            <!-- Box 1 (Fixed mobile width: 260px to force a peek of Box 2) -->
             <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.318a4.5 4.5 0 016.364 0l2.818 2.818a4.5 4.5 0 010 6.364l-2.818 2.818m-6.364-6.364l6.364 6.364"/></svg>
                     </div>
@@ -317,10 +318,9 @@
                 <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
             </div>
             
-            <!-- Box 2 -->
             <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=500" alt="Long-Term Care">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Long-Term Care">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
                     </div>
@@ -332,10 +332,9 @@
                 <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#0A192F] hover:text-[#059669] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
             </div>
             
-            <!-- Box 3 -->
             <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=500" alt="Occupational Health">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Occupational Health">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
@@ -347,10 +346,9 @@
                 <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
             </div>
             
-            <!-- Box 4 -->
             <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=500" alt="Public Sector">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Public Sector">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
                     </div>
@@ -362,12 +360,10 @@
                 <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#0A192F] hover:text-[#059669] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
             </div>
             
-            <!-- Hidden spacer div to ensure the last card has padding on the right when fully scrolled -->
             <div class="w-1 shrink-0 md:hidden"></div>
         </div>
     </section>
 
-    <!-- PREMIUM INTEGRATION SEVEN-COLUMN GRID RIBBON -->
     <section class="bg-white py-16 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-3 space-y-3 text-center sm:text-left">
@@ -428,11 +424,9 @@
         </div>
     </section>
 
-    <!-- TWIN CITIES CORRIDOR SUB-METRIC SECTOR (GUARANTEED MODERN CLINICAL LABORATORY HUB IMAGE) -->
     <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
         <div class="lg:col-span-5 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-lg">
-            <!-- Unbreakable link to an undeniable, high-tech clinical laboratory with test tubes -->
-            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Professional Laboratory Technician Hub">
+            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Professional Laboratory Technician Hub">
         </div>
         
         <div class="lg:col-span-7 space-y-6">
@@ -474,11 +468,9 @@
         </div>
     </section>
 
-    <!-- ROBUST SYSTEM ENTERPRISE CONVERSION FOOTER BLOCK -->
     <footer class="bg-[#0A192F] text-white pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6 space-y-12">
             
-            <!-- Conversion Row Banner -->
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-12 border-b border-slate-800">
                 <div class="space-y-4 sm:space-y-1.5 text-center lg:text-left flex flex-col md:flex-row items-center space-x-0 md:space-x-6">
                     <div class="w-16 h-16 shrink-0 rounded-full bg-[#059669] flex items-center justify-center text-white mb-2 md:mb-0">
@@ -499,28 +491,19 @@
                 </div>
             </div>
 
-            <!-- Deep Corporate Directory Link Columns -->
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-[11px]">
                 
-                <!-- Logo Footer Insert -->
                 <div class="col-span-2 lg:col-span-1 space-y-4">
                     <div class="flex items-center space-x-2.5">
                         <svg class="w-10 h-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Door Frame -->
                             <polyline points="45,85 15,85 15,15 55,15 55,30" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"/>
                             <circle cx="25" cy="50" r="4" fill="#FFFFFF"/>
-                            <!-- Microscope Base -->
                             <path d="M 40 85 L 85 85 C 88.3 85 91 82.3 91 79 L 91 74 C 91 70.7 88.3 68 85 68 L 78 68 L 70 52 L 56 52 L 48 68 L 40 68 C 36.7 68 34 70.7 34 74 L 34 79 C 34 82.3 36.7 85 40 85 Z" fill="#059669"/>
-                            <!-- Microscope Arm -->
                             <path d="M 63 52 C 85 52 95 35 78 22 L 72 28 C 82 38 78 45 68 48 Z" fill="#059669"/>
-                            <!-- Joint Circle -->
                             <circle cx="73" cy="36" r="9" fill="#059669"/>
                             <circle cx="73" cy="36" r="4" fill="#0A192F"/>
-                            <!-- Tube -->
                             <rect x="52" y="16" width="14" height="34" rx="2" transform="rotate(40 59 33)" fill="#059669"/>
-                            <!-- Eyepiece -->
                             <rect x="50" y="10" width="10" height="8" rx="1.5" transform="rotate(40 55 14)" fill="#059669"/>
-                            <!-- Stage -->
                             <rect x="36" y="48" width="24" height="6" rx="2" transform="rotate(40 48 51)" fill="#059669"/>
                         </svg>
                         <div class="font-montserrat pt-0.5">
@@ -588,7 +571,6 @@
                 </div>
             </div>
 
-            <!-- Global Footer Meta Rights Strip -->
             <div class="pt-8 border-t border-slate-800 text-[10px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider">
                 <div>© 2026 AccessPoint Dx. All rights reserved.</div>
                 <div class="flex space-x-6">
