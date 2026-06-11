@@ -12,8 +12,8 @@
         body { font-family: 'Inter', sans-serif; }
         
         /* Utility class to hide the scrollbar but keep horizontal scrolling functional on mobile */
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10">
@@ -35,7 +35,7 @@
                     <span>Fast Turnaround Times</span>
                 </span>
             </div>
-            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase">
+            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase whitespace-nowrap">
                 <span>Request Assessment</span> <span class="text-xs ml-1">➔</span>
             </a>
         </div>
@@ -47,22 +47,20 @@
             
             <!-- BRAND LOGO KEYSPACE -->
             <div class="flex items-center space-x-3">
-                <svg class="w-11 h-11" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Blue Door Left Side -->
+                <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
                     <circle cx="26" cy="52" r="4" fill="#0A192F"/>
-                    <!-- Green Microscope -->
-                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/> <!-- Base -->
-                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/> <!-- Arm -->
-                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/> <!-- Tube -->
-                    <circle cx="74" cy="27" r="4" fill="#059669" /> <!-- Eyepiece -->
-                    <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/> <!-- Stage -->
+                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                    <circle cx="74" cy="27" r="4" fill="#059669" />
+                    <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/>
                 </svg>
                 <div class="flex flex-col justify-center">
-                    <div class="text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                    <div class="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
                         AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
                     </div>
-                    <span class="text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">
+                    <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">
                         Diagnostics Without Barriers
                     </span>
                 </div>
@@ -77,23 +75,30 @@
                 <a href="#" class="hover:text-[#059669] transition">Contact</a>
             </nav>
 
-            <!-- PRIMARY CLIENT SECURE PORTAL BUTTON -->
-            <a href="#" class="border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition flex items-center space-x-2">
-                <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-                <span>Client Portal</span>
-            </a>
+            <!-- MOBILE NAV BUTTON & CLIENT PORTAL -->
+            <div class="flex items-center space-x-4">
+                <button class="lg:hidden text-[#0A192F] p-1 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <a href="#" class="hidden sm:flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition items-center space-x-2">
+                    <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                    <span>Client Portal</span>
+                </a>
+            </div>
         </div>
     </header>
 
     <!-- CINEMATIC HERO SECTION -->
-    <section class="max-w-7xl mx-auto px-6 pt-16 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section class="max-w-7xl mx-auto px-6 pt-12 sm:pt-16 pb-16 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
-            <h1 class="text-[52px] lg:text-[68px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
+            <!-- Scaled for Mobile -->
+            <h1 class="text-[42px] sm:text-[52px] lg:text-[68px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
                 Diagnostics <br><span class="text-[#0A192F]">Without Barriers.</span>
             </h1>
-            <p class="text-base text-slate-600 max-w-xl leading-relaxed font-medium">
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed font-medium">
                 Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
             </p>
+            <!-- Buttons stack on mobile -->
             <div class="pt-2 flex flex-col sm:flex-row gap-4">
                 <button class="w-full sm:w-auto bg-[#059669] text-white px-6 py-4 sm:py-3.5 rounded font-bold text-xs hover:bg-emerald-700 transition tracking-wide flex items-center justify-center space-x-2 uppercase">
                     <span>Request a Laboratory Assessment</span> <span class="text-xs ml-1">➔</span>
@@ -105,19 +110,19 @@
         </div>
         
         <!-- VISUAL SPLIT GRAPHIC HERO -->
-        <div class="lg:col-span-6 relative h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+        <div class="lg:col-span-6 relative h-[520px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
             <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/70 sm:from-[#0A192F]/60 via-transparent to-transparent"></div>
             
-            <!-- FLOATING OVERLAP METRICS CONTAINER -->
-            <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-auto sm:right-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <!-- FLOATING OVERLAP METRICS CONTAINER (Mobile optimized) -->
+            <div class="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl flex-1 sm:min-w-[200px]">
                     <div class="p-2 border border-white/20 rounded-full text-white shrink-0">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <div>
                         <h4 class="font-bold text-[13px] tracking-tight">24 HOUR</h4>
-                        <p class="text-[10px] text-slate-300 font-medium">Qualifying Local Accounts</p>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Qualifying Local Accounts</p>
                     </div>
                 </div>
                 <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl flex-1 sm:min-w-[200px]">
@@ -126,7 +131,7 @@
                     </div>
                     <div>
                         <h4 class="font-bold text-[13px] tracking-tight">48 HOUR</h4>
-                        <p class="text-[10px] text-slate-300 font-medium">Statewide Target Workflow</p>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Statewide Target Workflow</p>
                     </div>
                 </div>
             </div>
@@ -134,11 +139,11 @@
     </section>
 
     <!-- MICRO SCANNING RIBBON: BUILT FOR DIRECTORY -->
-    <section class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-100 mb-16">
+    <section class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-100 mb-10 sm:mb-16">
         <div class="text-center mb-8">
             <span class="text-[11px] font-black tracking-widest text-[#0A192F] uppercase">Built For</span>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-6 text-center">
             <div class="flex flex-col items-center group cursor-pointer">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
@@ -181,7 +186,7 @@
     <!-- LOCAL ADVANTAGE MAP BLOCK -->
     <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
         <!-- SVG Realistic Mapping Plane -->
-        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-96">
+        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-80 sm:h-96">
             <svg class="w-full h-full drop-shadow-md" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <!-- Accurate Minnesota State Outline -->
                 <path d="M 120 20 L 140 25 L 145 10 L 160 30 L 175 35 L 180 50 L 195 55 L 210 50 L 220 55 L 245 75 L 255 100 L 245 130 L 250 160 L 235 190 L 245 220 L 255 240 L 250 270 L 260 290 L 265 315 L 255 330 L 95 330 L 90 280 L 85 240 L 80 200 L 75 160 L 70 120 L 65 80 L 120 80 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
@@ -203,7 +208,7 @@
 
         <div class="lg:col-span-7 space-y-5">
             <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Why Local Processing Matters</span>
-            <h2 class="text-3xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
             <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
                 By processing specimens in Minnesota, we reduce transit complexity, improve visibility, and provide direct access to the laboratory team responsible for your testing program.
             </p>
@@ -293,17 +298,18 @@
         </div>
     </section>
 
-    <!-- COMPREHENSIVE RE-ALIGNED GRID FOR WHO WE SERVE (MOBILE HORIZONTAL SNAP SCROLL) -->
+    <!-- COMPREHENSIVE RE-ALIGNED GRID FOR WHO WE SERVE (GUARANTEED MOBILE HORIZONTAL SCROLL) -->
     <section class="max-w-7xl mx-auto px-6 py-20 space-y-8">
         <div class="text-center space-y-1">
             <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
         </div>
         
         <!-- Horizontally scrolling container on mobile, Grid on desktop -->
-        <div class="flex flex-row overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-6 -mx-6 px-6 sm:pb-0 sm:mx-0 sm:px-0 snap-x snap-mandatory hide-scrollbar">
+        <!-- Fixed Breakpoint: 'md:grid' ensures scrolling on all mobile sizes, 'no-scrollbar' keeps it clean -->
+        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 -mx-6 px-6 md:mx-0 md:px-0 md:pb-0 scroll-smooth">
             
             <!-- Box 1 -->
-            <div class="w-[85vw] sm:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
                     <!-- Floating Round Badges -->
@@ -319,7 +325,7 @@
             </div>
             
             <!-- Box 2 -->
-            <div class="w-[85vw] sm:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=500" alt="Long-Term Care">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
@@ -334,7 +340,7 @@
             </div>
             
             <!-- Box 3: Updated bright, professional occupational image -->
-            <div class="w-[85vw] sm:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=500" alt="Occupational Health">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
@@ -349,7 +355,7 @@
             </div>
             
             <!-- Box 4 -->
-            <div class="w-[85vw] sm:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+            <div class="w-[85vw] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
                     <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=500" alt="Public Sector">
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
@@ -426,10 +432,11 @@
         </div>
     </section>
 
-    <!-- TWIN CITIES CORRIDOR SUB-METRIC SECTOR (MEDICAL COURIER PPE IMAGE) -->
+    <!-- TWIN CITIES CORRIDOR SUB-METRIC SECTOR (GUARANTEED MODERN CLINICAL LABORATORY HUB IMAGE) -->
     <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
         <div class="lg:col-span-5 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-lg">
-            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1584308666744-24d5e533bc4e?auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Local Specimen Processing Transit">
+            <!-- Unbreakable link to a high-quality, professional, modern laboratory technician -->
+            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Professional Laboratory Technician Hub">
         </div>
         
         <div class="lg:col-span-7 space-y-6">
