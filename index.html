@@ -41,17 +41,18 @@
     <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
             
-            <!-- BRAND LOGO KEYSPACE (UPDATED TO MATCH MOCKUP IMAGE) -->
+            <!-- BRAND LOGO KEYSPACE (IMPROVED MICROSCOPE & DOOR SVG) -->
             <div class="flex items-center space-x-3">
-                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Door Frame Left Side (Blue) -->
-                    <path d="M48 15 H15 V85 H48" stroke="#0A192F" stroke-width="6" stroke-linecap="square" fill="none"/>
-                    <!-- Door Inner Hinge/Knob -->
-                    <circle cx="24" cy="50" r="3.5" fill="#0A192F"/>
-                    <!-- Microscope Right Side (Green) -->
-                    <path d="M85 85 L65 85 C62 85 58 80 58 75 V68 C58 58 64 50 72 50 H75 C82 50 85 45 85 35 C85 25 78 18 68 18 H65" stroke="#059669" stroke-width="8" stroke-linecap="round" fill="none"/>
-                    <rect x="52" y="38" width="16" height="12" rx="2" transform="rotate(25 60 44)" fill="#059669"/>
-                    <rect x="44" y="60" width="20" height="6" rx="2" transform="rotate(-15 54 63)" fill="#059669"/>
+                <svg class="w-11 h-11" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Blue Door Left Side -->
+                    <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
+                    <circle cx="26" cy="52" r="4" fill="#0A192F"/>
+                    <!-- Green Microscope -->
+                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/> <!-- Base -->
+                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/> <!-- Arm -->
+                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/> <!-- Tube -->
+                    <circle cx="74" cy="27" r="4" fill="#059669" /> <!-- Eyepiece -->
+                    <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/> <!-- Stage -->
                 </svg>
                 <div class="flex flex-col justify-center">
                     <div class="text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center uppercase">
@@ -101,7 +102,6 @@
         
         <!-- VISUAL SPLIT GRAPHIC HERO -->
         <div class="lg:col-span-6 relative h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
-            <!-- Updated Image: Professional Lab Technicians in modern setting -->
             <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent"></div>
             
@@ -296,10 +296,10 @@
             <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Box 1 -->
+            <!-- Box 1 (Fixed Broken Image) -->
             <div class="border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
                 <div class="h-44 relative">
-                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1612349317150-e410f624c427?auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
                     <!-- Floating Round Badges Added per mockup -->
                     <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.318a4.5 4.5 0 016.364 0l2.818 2.818a4.5 4.5 0 010 6.364l-2.818 2.818m-6.364-6.364l6.364 6.364"/></svg>
@@ -418,10 +418,11 @@
         </div>
     </section>
 
-    <!-- TWIN CITIES CORRIDOR SUB-METRIC SECTOR (UPDATED IMAGE & ALIGNMENT) -->
+    <!-- TWIN CITIES CORRIDOR SUB-METRIC SECTOR (UPDATED LOCAL MEDICAL CLINIC IMAGE) -->
     <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
         <div class="lg:col-span-5 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-lg">
-            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" alt="Minneapolis Medical Corridor Infrastructure">
+            <!-- Modern, local, low-rise medical clinic replacement -->
+            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Modern Medical Facility">
         </div>
         
         <div class="lg:col-span-7 space-y-6">
@@ -491,15 +492,17 @@
             <!-- Deep Corporate Directory Link Columns -->
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-[11px]">
                 
-                <!-- Logo Footer Insert -->
+                <!-- Logo Footer Insert (UPDATED SVG LOGO) -->
                 <div class="col-span-2 lg:col-span-1 space-y-4">
                     <div class="flex items-center space-x-2">
-                        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M48 15 H15 V85 H48" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square" fill="none"/>
-                            <circle cx="24" cy="50" r="3.5" fill="#FFFFFF"/>
-                            <path d="M85 85 L65 85 C62 85 58 80 58 75 V68 C58 58 64 50 72 50 H75 C82 50 85 45 85 35 C85 25 78 18 68 18 H65" stroke="#059669" stroke-width="8" stroke-linecap="round" fill="none"/>
-                            <rect x="52" y="38" width="16" height="12" rx="2" transform="rotate(25 60 44)" fill="#059669"/>
-                            <rect x="44" y="60" width="20" height="6" rx="2" transform="rotate(-15 54 63)" fill="#059669"/>
+                        <svg class="w-10 h-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"/>
+                            <circle cx="26" cy="52" r="4" fill="#FFFFFF"/>
+                            <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                            <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                            <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                            <circle cx="74" cy="27" r="4" fill="#059669" />
+                            <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/>
                         </svg>
                         <div class="font-black text-base uppercase leading-none tracking-wide">AccessPoint<br><span class="text-[#059669]">Dx</span></div>
                     </div>
