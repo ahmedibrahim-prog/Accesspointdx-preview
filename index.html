@@ -7,318 +7,408 @@
     <!-- Tailwind CSS Engine -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#FFFFFF] text-[#0F172A] font-sans antialiased selection:bg-[#059669]/10">
+<body class="bg-[#FFFFFF] text-[#0A192F] font-sans antialiased selection:bg-[#059669]/10">
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50">
+    <!-- TOP GLOBAL UTILITY ANNOUNCEMENT BAR -->
+    <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
+        <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center space-x-2 text-slate-300">
+                    <span class="text-[#059669]">📍</span> <span>Minnesota-Based Processing</span>
+                </span>
+                <span class="hidden sm:flex items-center space-x-2 text-slate-300">
+                    <span class="text-[#059669]">🎧</span> <span>Direct Laboratory Support</span>
+                </span>
+                <span class="hidden md:flex items-center space-x-2 text-slate-300">
+                    <span class="text-[#059669]">⏱️</span> <span>Fast Turnaround Times</span>
+                </span>
+            </div>
+            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase">
+                <span>Request Assessment</span> <span class="text-xs">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN APP NAVIGATION HEADER -->
+    <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-xs">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
-            <!-- BRAND IDENTITY LOGO (VECTORS INCORPORATED) -->
+            <!-- BRAND LOGO KEYSPACE -->
             <div class="flex items-center space-x-3">
-                <!-- Direct Vector Medical Shield/Flask Logo Asset -->
                 <svg class="w-8 h-9 text-[#059669]" viewBox="0 0 32 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M28 8.5V23C28 27.5 25.5 31.5 21 33.5L16 35.5L11 33.5C6.5 31.5 4 27.5 4 23V8.5L16 2L28 8.5Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-                    <path d="M11 15H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M13 20H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M16 11V25" stroke="#0A192F" stroke-width="2" stroke-linecap="round"/>
-                    <circle cx="16" cy="25" r="2" fill="#0A192F"/>
+                    <path d="M26 2H6C3.79086 2 2 3.79086 2 6V30C2 32.2091 3.79086 34 6 34H26C28.2091 34 30 32.2091 30 30V6C30 3.79086 28.2091 2 26 2Z" fill="#0A192F"/>
+                    <path d="M10 10H22M10 16H22M10 22H18" stroke="#059669" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M22 22L26 26" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
                 <div class="flex flex-col">
-                    <div class="text-xl font-black tracking-tight text-[#0A192F] leading-none">
-                        ACCESS POINT <span class="text-[#059669] font-bold">Dx</span>
+                    <div class="text-xl font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                        AccessPoint&nbsp;<span class="text-[#059669] font-bold">Dx</span>
                     </div>
-                    <span class="text-[9px] font-bold tracking-widest text-[#059669] uppercase mt-1">
+                    <span class="text-[9px] font-bold tracking-widest text-slate-400 uppercase mt-1">
                         Diagnostics Without Barriers
                     </span>
                 </div>
             </div>
 
-            <!-- Main Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-semibold text-xs tracking-wide text-slate-600 uppercase">
-                <a href="#" class="hover:text-[#0F172A] transition flex items-center space-x-1"><span>Solutions</span> <span class="text-[9px] text-slate-400">▼</span></a>
-                <a href="#" class="hover:text-[#0F172A] transition">Integrations</a>
-                <a href="#" class="hover:text-[#0F172A] transition flex items-center space-x-1"><span>Resources</span> <span class="text-[9px] text-slate-400">▼</span></a>
-                <a href="#" class="hover:text-[#0F172A] transition">About Us</a>
-                <a href="#" class="hover:text-[#0F172A] transition">Contact</a>
+            <!-- DESKTOP TOP NAV LINKS -->
+            <nav class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-wide text-slate-600 uppercase">
+                <a href="#" class="hover:text-[#0A192F] transition flex items-center space-x-1"><span>Who We Serve</span> <span class="text-[9px] text-slate-400">▼</span></a>
+                <a href="#" class="hover:text-[#0A192F] transition flex items-center space-x-1"><span>Integrations</span> <span class="text-[9px] text-slate-400">▼</span></a>
+                <a href="#" class="hover:text-[#0A192F] transition flex items-center space-x-1"><span>Resources</span> <span class="text-[9px] text-slate-400">▼</span></a>
+                <a href="#" class="hover:text-[#0A192F] transition">About Us</a>
+                <a href="#" class="hover:text-[#0A192F] transition">Contact</a>
             </nav>
 
-            <!-- Secure Client Portal Access Button -->
-            <a href="#" class="bg-[#0A192F] text-white px-5 py-2.5 rounded text-xs font-bold hover:bg-slate-800 transition flex items-center space-x-2 shadow-sm">
+            <!-- PRIMARY CLIENT SECURE PORTAL BUTTON -->
+            <a href="#" class="border-2 border-[#0A192F] text-[#0A192F] hover:bg-[#0A192F] hover:text-white px-5 py-2 rounded text-xs font-bold transition flex items-center space-x-2 shadow-xs">
                 <span>👤</span>
                 <span>Client Portal</span>
             </a>
         </div>
     </header>
 
-    <!-- HERO SECTION WITH INTEGRATED ISOMETRIC LOGISTICS DIAGRAM -->
-    <section class="max-w-7xl mx-auto px-6 pt-16 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- CINEMATIC HERO SECTION WITH FLOATING METRIC CARD OVERLAYS -->
+    <section class="max-w-7xl mx-auto px-6 pt-12 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
-            <h1 class="text-[46px] lg:text-[58px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
+            <h1 class="text-[48px] lg:text-[62px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
                 Diagnostics <br><span class="text-[#059669]">Without Barriers.</span>
             </h1>
-            <p class="text-base text-slate-600 max-w-xl leading-relaxed">
-                Fast, accurate laboratory services for healthcare providers, long-term care communities, employers, and public organizations—delivered through local expertise, seamless integrations, and accountable support.
+            <p class="text-base text-slate-600 max-w-xl leading-relaxed font-medium">
+                Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
             </p>
             <div class="pt-2 flex flex-wrap gap-4">
-                <button class="bg-[#059669] text-white px-6 py-3.5 rounded text-xs font-bold hover:bg-emerald-700 transition tracking-wide shadow-sm">
-                    Request a Laboratory Assessment
+                <button class="bg-[#059669] text-white px-6 py-3.5 rounded font-bold text-xs hover:bg-emerald-700 transition tracking-wide shadow-md flex items-center space-x-2">
+                    <span>Request a Laboratory Assessment</span> <span class="text-sm">➔</span>
                 </button>
-                <button class="border border-slate-300 text-[#0A192F] px-5 py-3.5 rounded text-xs font-bold hover:bg-slate-50 transition tracking-wide flex items-center space-x-2">
-                    <span class="text-[10px]">▶</span> <span>See How It Works</span>
+                <button class="border border-slate-300 text-[#0A192F] px-6 py-3.5 rounded font-bold text-xs hover:bg-slate-50 transition tracking-wide flex items-center space-x-2 shadow-xs">
+                    <span>Explore Solutions</span> <span class="text-sm">➔</span>
                 </button>
             </div>
-            <p class="text-[11px] text-slate-400 italic">Compare turnaround times, logistics, integration options, and support models with no obligation.</p>
         </div>
         
-        <!-- ISOMETRIC NETWORK LOGISTICS GRAPHIC (LIVE EMBEDDED CODE) -->
-        <div class="lg:col-span-6 bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200/60 rounded-xl p-6 relative overflow-hidden h-96 flex flex-col justify-between shadow-xs">
-            <div class="w-full h-full absolute inset-0">
-                <svg class="w-full h-full" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Grid Background Lines -->
-                    <path d="M0 100 L500 350 M0 200 L500 450 M0 0 L500 250" stroke="#E2E8F0" stroke-width="1"/>
-                    <path d="M0 350 L500 100 M0 250 L500 0 M0 450 L500 200" stroke="#E2E8F0" stroke-width="1"/>
-                    
-                    <!-- Highway Arteries (I-35W & I-94 Transit Grid Layout) -->
-                    <path d="M50 380 L450 120" stroke="#94A3B8" stroke-width="12" stroke-linecap="round"/>
-                    <path d="M50 380 L450 120" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
-                    <path d="M50 380 L450 120" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="4 6"/>
-
-                    <path d="M50 100 L420 370" stroke="#94A3B8" stroke-width="12" stroke-linecap="round"/>
-                    <path d="M50 100 L420 370" stroke="#CBD5E1" stroke-width="8" stroke-linecap="round"/>
-                    <path d="M50 100 L420 370" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="4 6"/>
-
-                    <!-- Highway Badge Node 1 (I35W) -->
-                    <g transform="translate(240, 160)">
-                        <rect x="-24" y="-12" width="48" height="22" rx="6" fill="#0A192F"/>
-                        <text x="0" y="3" fill="#FFFFFF" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">I35W</text>
-                    </g>
-
-                    <!-- Highway Badge Node 2 (I94) -->
-                    <g transform="translate(210, 290)">
-                        <rect x="-20" y="-12" width="40" height="22" rx="6" fill="#0A192F"/>
-                        <text x="0" y="3" fill="#FFFFFF" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">I94</text>
-                    </g>
-
-                    <!-- Central Laboratory Hub Node Building Frame -->
-                    <g transform="translate(320, 150)">
-                        <!-- Building Shadows -->
-                        <polygon points="0,0 60,-30 120,0 60,30" fill="#0A192F" opacity="0.1"/>
-                        <!-- Base Structure Blocks -->
-                        <polygon points="10,0 60,-25 110,0 110,35 60,60 10,35" fill="#FFFFFF" stroke="#0A192F" stroke-width="2"/>
-                        <polygon points="60,-25 110,0 110,35 60,60" fill="#F1F5F9"/>
-                        <!-- Isometric Roof Plane -->
-                        <polygon points="10,0 60,-25 110,0 60,25" fill="#E2E8F0"/>
-                        <!-- Lab Windows -->
-                        <line x1="25" y1="12" x2="50" y2="25" stroke="#059669" stroke-width="3"/>
-                        <line x1="25" y1="22" x2="50" y2="35" stroke="#059669" stroke-width="3"/>
-                        <line x1="70" y1="20" x2="100" y2="2" stroke="#94A3B8" stroke-width="3"/>
-                        <line x1="70" y1="30" x2="100" y2="12" stroke="#94A3B8" stroke-width="3"/>
-                    </g>
-
-                    <!-- Hub Pin / 401 E Lake St Callout -->
-                    <g transform="translate(330, 210)">
-                        <!-- Pulsing Network Rings -->
-                        <circle cx="0" cy="0" r="16" fill="#059669" opacity="0.15"/>
-                        <circle cx="0" cy="0" r="8" fill="#059669" opacity="0.3"/>
-                        <circle cx="0" cy="0" r="4" fill="#059669"/>
-                    </g>
-
-                    <!-- Interactive Data Synchronization Nodes -->
-                    <circle cx="120" cy="180" r="14" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 2"/>
-                    <text x="120" y="24" fill="#059669" font-size="12" text-anchor="middle" transform="translate(0, 160)">🦠</text>
-                    
-                    <circle cx="180" cy="110" r="14" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 2"/>
-                    <text x="180" y="24" fill="#059669" font-size="12" text-anchor="middle" transform="translate(0, 90)">🧪</text>
-
-                    <circle cx="390" cy="260" r="14" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 2"/>
-                    <text x="390" y="264" fill="#059669" font-size="12" text-anchor="middle">🔬</text>
-                </svg>
-            </div>
+        <!-- VISUAL SPLIT GRAPHIC HERO WITH MULTIPLE FLOATING METRICS -->
+        <div class="lg:col-span-6 relative h-[420px] rounded-2xl overflow-hidden shadow-xl border border-slate-100">
+            <!-- Full Bleed Clinical Machine Backdrop Image -->
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Automated Infrastructure">
             
-            <!-- Context Callout Coordinates Block -->
-            <div class="relative z-10 mt-auto ml-auto bg-white/95 border border-slate-200/80 p-3.5 rounded-lg shadow-xl max-w-[240px] backdrop-blur-xs">
-                <div class="flex items-center space-x-2">
-                    <span class="text-emerald-600 font-bold">📍</span>
-                    <h4 class="font-bold text-[11px] text-[#0A192F] tracking-tight">401 E Lake St, Minneapolis</h4>
+            <!-- Dark Gradient Backdrop Overlay Screen -->
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent"></div>
+            
+            <!-- FLOATING WIDGET ELEMENT BLOCKS -->
+            <div class="absolute bottom-6 left-6 right-6 grid grid-cols-2 gap-4">
+                <!-- Floating Card 1 -->
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl">
+                    <span class="text-2xl text-[#059669]">🕒</span>
+                    <div>
+                        <h4 class="font-black text-sm tracking-tight">24 HOUR</h4>
+                        <p class="text-[10px] text-slate-400 font-medium">Qualifying Local Accounts</p>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-500 mt-1 leading-normal font-medium">Specimens route instantly through regional highway junctions directly to central nodes.</p>
+                <!-- Floating Card 2 -->
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl">
+                    <span class="text-2xl text-[#059669]">🗺️</span>
+                    <div>
+                        <h4 class="font-black text-sm tracking-tight">48 HOUR</h4>
+                        <p class="text-[10px] text-slate-400 font-medium">Statewide Target Workflow</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- METRIC FOUR-PILLAR ROW OVERVIEW -->
-    <section class="max-w-7xl mx-auto px-6 py-6 border-y border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-6 bg-slate-50/20">
-        <div class="flex items-center space-x-3 p-1">
-            <span class="text-lg bg-emerald-50 w-9 h-9 rounded-full flex items-center justify-center text-[#059669] font-bold">🗺️</span>
-            <div>
-                <h4 class="font-bold text-xs text-[#0A192F]">Minnesota Based</h4>
-                <p class="text-[10px] text-slate-400 font-medium">Processing Core</p>
-            </div>
+    <!-- MICRO SCANNING RIBBON: BUILT FOR LIST DIRECTORY -->
+    <section class="max-w-7xl mx-auto px-6 py-8 border-t border-slate-100 bg-slate-50/40 rounded-xl mb-12">
+        <div class="text-center mb-6">
+            <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Built For</span>
         </div>
-        <div class="flex items-center space-x-3 p-1">
-            <span class="text-lg bg-emerald-50 w-9 h-9 rounded-full flex items-center justify-center text-[#059669] font-bold">⏱️</span>
-            <div>
-                <h4 class="font-bold text-xs text-[#0A192F]">48 Hour Maximum</h4>
-                <p class="text-[10px] text-slate-400 font-medium">Turnaround Guarantee</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">🩺</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Physician Practices</span>
             </div>
-        </div>
-        <div class="flex items-center space-x-3 p-1">
-            <span class="text-lg bg-emerald-50 w-9 h-9 rounded-full flex items-center justify-center text-[#059669] font-bold">🛡️</span>
-            <div>
-                <h4 class="font-bold text-xs text-[#0A192F]">CLIA-Certified</h4>
-                <p class="text-[10px] text-slate-400 font-medium">Clinical Laboratory</p>
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">🏥</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Specialty Clinics</span>
             </div>
-        </div>
-        <div class="flex items-center space-x-3 p-1">
-            <span class="text-lg bg-emerald-50 w-9 h-9 rounded-full flex items-center justify-center text-[#059669] font-bold">👥</span>
-            <div>
-                <h4 class="font-bold text-xs text-[#0A192F]">Direct Support</h4>
-                <p class="text-[10px] text-slate-400 font-medium">Human Response Team</p>
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">🏡</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Long-Term Care</span>
+            </div>
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">🕊️</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Hospice Providers</span>
+            </div>
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">💼</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Occupational Health</span>
+            </div>
+            <div class="bg-white border border-slate-100 p-3 rounded-lg shadow-2xs flex flex-col items-center justify-center">
+                <span class="text-xl mb-1">🏛️</span>
+                <span class="font-bold text-[11px] text-[#0A192F]">Public Sector Agencies</span>
             </div>
         </div>
     </section>
 
-    <!-- AUDIENCE TARGET MATRIX GRID -->
-    <section class="max-w-7xl mx-auto px-6 py-16 space-y-10">
-        <div class="text-center space-y-2">
-            <h2 class="text-xl font-bold tracking-tight text-[#0A192F]">Built Around the Organizations We Serve</h2>
-            <div class="w-12 h-0.5 bg-[#059669] mx-auto"></div>
+    <!-- LOCAL ADVANTAGE MAP BLOCK (MINNESOTA ISOMETRIC BASE INTERACTION) -->
+    <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
+        <!-- SVG Vector Mapping Plane -->
+        <div class="lg:col-span-5 bg-slate-50 border border-slate-200/60 rounded-2xl p-4 h-80 flex items-center justify-center relative shadow-inner">
+            <svg class="w-full h-full text-slate-300" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Minnesota State Graphic Wireframe Model -->
+                <path d="M50 20 L150 20 L160 80 L180 110 L165 170 L140 200 L95 200 L80 180 L40 120 L45 60 Z" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
+                <!-- Metro Core Radiating Waves -->
+                <circle cx="110" cy="110" r="30" stroke="#059669" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
+                <circle cx="110" cy="110" r="15" fill="#059669" opacity="0.15"/>
+                <!-- Core Lab Center Target Pin -->
+                <circle cx="110" cy="110" r="5" fill="#059669"/>
+                <!-- Callout Descriptor Anchor Tag -->
+                <g transform="translate(115, 105)">
+                    <rect x="0" y="0" width="70" height="26" rx="4" fill="#0A192F"/>
+                    <text x="35" y="16" fill="#FFFFFF" font-size="7" font-weight="bold" text-anchor="middle">Twin Cities Hub</text>
+                </g>
+            </svg>
+        </div>
+
+        <div class="lg:col-span-7 space-y-5">
+            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase bg-emerald-50 px-2 py-0.5 rounded">Why Local Processing Matters</span>
+            <h2 class="text-3xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
+            <p class="text-slate-600 text-sm leading-relaxed font-medium">
+                By processing specimens inside Minnesota, we eliminate regional transit bottlenecks, minimize operational fragmentation, and offer immediate human connection to the laboratory staff overseeing your platform testing profile.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 pt-2 text-[11px] font-bold text-slate-700">
+                <div class="flex items-center space-x-2"><span class="text-[#059669]">✓</span> <span>Local MN Processing</span></div>
+                <div class="flex items-center space-x-2"><span class="text-[#059669]">✓</span> <span>Direct Accountability</span></div>
+                <div class="flex items-center space-x-2"><span class="text-[#059669]">✓</span> <span>Reduced Cargo Risk</span></div>
+                <div class="flex items-center space-x-2"><span class="text-[#059669]">✓</span> <span>Accelerated Delivery</span></div>
+                <div class="flex items-center space-x-2"><span class="text-[#059669]">✓</span> <span>Regional Operations</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE ATTRIBUTE CONTEXT BLOCKS -->
+    <section class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 border-t border-slate-100">
+        <div class="border border-slate-100 rounded-xl p-5 bg-white space-y-2 shadow-xs">
+            <span class="text-2xl">⚡</span>
+            <h4 class="font-bold text-xs text-[#0A192F]">Accelerated Turnaround</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Qualifying local accounts may receive comprehensive system reporting within 24 hours of specimen lab induction.</p>
+        </div>
+        <div class="border border-slate-100 rounded-xl p-5 bg-white space-y-2 shadow-xs">
+            <span class="text-2xl">🔒</span>
+            <h4 class="font-bold text-xs text-[#0A192F]">Secure Interoperability</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Seamless end-to-end telemetry architecture links diagnostic feeds directly into your active enterprise EHR arrays securely.</p>
+        </div>
+        <div class="border border-slate-100 rounded-xl p-5 bg-white space-y-2 shadow-xs">
+            <span class="text-2xl">🩺</span>
+            <h4 class="font-bold text-xs text-[#0A192F]">Healthcare Support</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Connect instantly with clinical support specialists stationed natively within the metro core whenever triage events trigger.</p>
+        </div>
+        <div class="border border-slate-100 rounded-xl p-5 bg-white space-y-2 shadow-xs">
+            <span class="text-2xl">🛡️</span>
+            <h4 class="font-bold text-xs text-[#0A192F]">Local Accountability</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Specimens never board out-of-state cargo lines. Your samples remain structured under local chain-of-custody protocols.</p>
+        </div>
+    </section>
+
+    <!-- COMPREHENSIVE RE-ALIGNED GRID FOR WHO WE SERVE -->
+    <section class="max-w-7xl mx-auto px-6 py-16 space-y-8 border-t border-slate-100">
+        <div class="text-center space-y-1">
+            <span class="text-[10px] font-black tracking-widest text-slate-400 uppercase">Who We Serve</span>
+            <h2 class="text-2xl font-black text-[#0A192F]">Tailored Solutions for Specialized Networks</h2>
+            <div class="w-8 h-0.5 bg-[#059669] mx-auto pt-0.5"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card 1 -->
-            <div class="border border-slate-100 rounded-xl p-6 space-y-4 hover:shadow-md transition bg-white flex flex-col justify-between border-t-4 border-t-blue-500">
-                <div class="space-y-3">
-                    <span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-sm font-bold">🩺</span>
+            <!-- Box 1 -->
+            <div class="border border-slate-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition bg-white flex flex-col justify-between">
+                <div class="h-40 bg-slate-200">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=400" alt="Healthcare Providers">
+                </div>
+                <div class="p-5 space-y-2 flex-grow">
                     <h3 class="font-bold text-sm text-[#0A192F]">Healthcare Providers</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Supporting physician groups, clinics, urgent care centers, specialty practices, and outpatient networks with dependable diagnostics and streamlined reporting.</p>
+                    <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Diagnostic reporting models built for outpatient hubs, primary clinics, and multi-specialty physician practices.</p>
                 </div>
-                <a href="#" class="text-xs font-bold text-blue-600 flex items-center space-x-1 hover:underline pt-2"><span>Learn More</span> <span>➔</span></a>
+                <div class="p-5 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:underline">Learn More ➔</a></div>
             </div>
-            <!-- Card 2 -->
-            <div class="border border-slate-100 rounded-xl p-6 space-y-4 hover:shadow-md transition bg-white flex flex-col justify-between border-t-4 border-t-emerald-500">
-                <div class="space-y-3">
-                    <span class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm font-bold">🏡</span>
+            <!-- Box 2 -->
+            <div class="border border-slate-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition bg-white flex flex-col justify-between">
+                <div class="h-40 bg-slate-200">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=400" alt="Long-Term Care">
+                </div>
+                <div class="p-5 space-y-2 flex-grow">
                     <h3 class="font-bold text-sm text-[#0A192F]">Long-Term Care & Hospice</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Helping skilled nursing facilities, assisted living communities, hospice organizations, and rehabilitation centers access rapid, reliable testing without operational disruption.</p>
+                    <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Mobile draw coordination, point-of-care system interfaces, and dedicated skilled nursing workflows.</p>
                 </div>
-                <a href="#" class="text-xs font-bold text-emerald-600 flex items-center space-x-1 hover:underline pt-2"><span>Learn More</span> <span>➔</span></a>
+                <div class="p-5 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:underline">Learn More ➔</a></div>
             </div>
-            <!-- Card 3 -->
-            <div class="border border-slate-100 rounded-xl p-6 space-y-4 hover:shadow-md transition bg-white flex flex-col justify-between border-t-4 border-t-indigo-500">
-                <div class="space-y-3">
-                    <span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm font-bold">💼</span>
+            <!-- Box 3 -->
+            <div class="border border-slate-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition bg-white flex flex-col justify-between">
+                <div class="h-40 bg-slate-200">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=400" alt="Occupational Health">
+                </div>
+                <div class="p-5 space-y-2 flex-grow">
                     <h3 class="font-bold text-sm text-[#0A192F]">Occupational Health</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Supporting workforce safety initiatives, employer testing programs, and return-to-duty protocols with fast turnaround and defensible reporting.</p>
+                    <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Custom corporate wellness tracking panels, rapid safety screening vectors, and defense onboarding analytics.</p>
                 </div>
-                <a href="#" class="text-xs font-bold text-indigo-600 flex items-center space-x-1 hover:underline pt-2"><span>Learn More</span> <span>➔</span></a>
+                <div class="p-5 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:underline">Learn More ➔</a></div>
             </div>
-            <!-- Card 4 -->
-            <div class="border border-slate-100 rounded-xl p-6 space-y-4 hover:shadow-md transition bg-white flex flex-col justify-between border-t-4 border-t-purple-500">
-                <div class="space-y-3">
-                    <span class="w-9 h-9 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-sm font-bold">🏛️</span>
+            <!-- Box 4 -->
+            <div class="border border-slate-100 rounded-xl overflow-hidden shadow-xs hover:shadow-md transition bg-white flex flex-col justify-between">
+                <div class="h-40 bg-slate-200">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=400" alt="Public Sector">
+                </div>
+                <div class="p-5 space-y-2 flex-grow">
                     <h3 class="font-bold text-sm text-[#0A192F]">Public Sector Programs</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Providing specialized support for municipalities, public safety agencies, and government programs requiring enhanced chain-of-custody procedures.</p>
+                    <p class="text-[11px] text-slate-500 leading-relaxed font-medium">Chain-of-custody management panels for state entities, government programs, and municipal departments.</p>
                 </div>
-                <a href="#" class="text-xs font-bold text-purple-600 flex items-center space-x-1 hover:underline pt-2"><span>Learn More</span> <span>➔</span></a>
+                <div class="p-5 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:underline">Learn More ➔</a></div>
             </div>
         </div>
     </section>
 
-    <!-- TRUST INFRASTRUCTURE DEEP DIVES -->
-    <section class="bg-slate-50/60 border-y border-slate-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <!-- Col 1 -->
-            <div class="space-y-6">
-                <h3 class="font-bold text-xs text-[#0A192F] uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center space-x-2"><span>📊</span> <span>Why Choose AccessPoint Dx</span></h3>
-                <div class="space-y-4">
-                    <div class="space-y-1">
-                        <h4 class="font-bold text-xs text-[#0A192F]">Local Processing. Greater Visibility.</h4>
-                        <p class="text-[11px] text-slate-500 leading-normal">Specimens remain within Minnesota, reducing transport delays while providing true accountability throughout the testing process.</p>
-                    </div>
-                    <div class="space-y-1">
-                        <h4 class="font-bold text-xs text-[#0A192F]">Guaranteed Turnaround Times.</h4>
-                        <p class="text-[11px] text-slate-500 leading-normal">Our regional engine operates under a strict 48-hour maximum baseline reporting guarantee to enable prompt action lines.</p>
-                    </div>
-                </div>
+    <!-- PREMIUM HIGH-TECH CONNECTIVITY RIBBON -->
+    <section class="bg-slate-50 py-12 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-4 space-y-2">
+                <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase">Connectivity Without Complexity</span>
+                <h3 class="text-xl font-black text-[#0A192F]">Your data should move as efficiently as your specimens.</h3>
+                <a href="#" class="inline-block border border-slate-300 text-slate-700 bg-white font-bold text-[10px] px-3 py-1.5 rounded uppercase hover:bg-slate-50 transition shadow-2xs">View Integration Options ➔</a>
             </div>
-            <!-- Col 2 -->
-            <div class="space-y-6">
-                <h3 class="font-bold text-xs text-[#0A192F] uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center space-x-2"><span>⚙️</span> <span>Designed Around Your Workflow</span></h3>
-                <div class="grid grid-cols-2 gap-4 text-[11px]">
-                    <div class="space-y-2">
-                        <h4 class="font-bold text-[10px] text-slate-400 uppercase tracking-wider">Integrations</h4>
-                        <ul class="text-slate-600 space-y-1 font-semibold">
-                            <li class="text-emerald-600">✓ Epic</li>
-                            <li class="text-emerald-600">✓ Oracle Health</li>
-                            <li class="text-emerald-600">✓ Athenahealth</li>
-                            <li class="text-emerald-600">✓ PointClickCare</li>
-                        </ul>
-                    </div>
-                    <div class="space-y-2">
-                        <h4 class="font-bold text-[10px] text-slate-400 uppercase tracking-wider">Client Portal</h4>
-                        <ul class="text-slate-600 space-y-1 font-medium">
-                            <li>📦 Track Specimens</li>
-                            <li>🏷️ Print Container Labels</li>
-                            <li>📊 Retrieve Results</li>
-                            <li>🔒 Access Anywhere</li>
-                        </ul>
-                    </div>
+            <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                <div class="bg-white border border-slate-200/40 p-4 rounded-xl shadow-2xs">
+                    <span class="text-xl block mb-1">💻</span>
+                    <span class="font-bold text-[11px] text-slate-700 block">EHR Connectivity</span>
                 </div>
-            </div>
-            <!-- Col 3 -->
-            <div class="space-y-6">
-                <h3 class="font-bold text-xs text-[#0A192F] uppercase tracking-wider border-b border-slate-200 pb-2 flex items-center space-x-2"><span>🛡️</span> <span>Laboratory Infrastructure</span></h3>
-                <ul class="text-[11px] space-y-2 text-slate-600 font-medium">
-                    <li class="flex items-center space-x-2"><span>✓</span> <span><strong>CLIA Certified</strong> — High-complexity clearance operations.</span></li>
-                    <li class="flex items-center space-x-2"><span>✓</span> <span><strong>HIPAA Compliant</strong> — Fully protected electronic health systems.</span></li>
-                    <li class="flex items-center space-x-2"><span>✓</span> <span><strong>Secure Chain of Custody</strong> — End-to-end trace logging documentation.</span></li>
-                </ul>
+                <div class="bg-white border border-slate-200/40 p-4 rounded-xl shadow-2xs">
+                    <span class="text-xl block mb-1">📟</span>
+                    <span class="font-bold text-[11px] text-slate-700 block">HL7 Messaging</span>
+                </div>
+                <div class="bg-white border border-slate-200/40 p-4 rounded-xl shadow-2xs">
+                    <span class="text-xl block mb-1">🔥</span>
+                    <span class="font-bold text-[11px] text-slate-700 block">FHIR APIs</span>
+                </div>
+                <div class="bg-white border border-slate-200/40 p-4 rounded-xl shadow-2xs">
+                    <span class="text-xl block mb-1">🔒</span>
+                    <span class="font-bold text-[11px] text-slate-700 block">Automated Results</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- GEOGRAPHIC INFRASTRUCTURE WITH PHOTO ASSET STREAM -->
+    <!-- REGIONAL RESPONSIVE CENTRAL DISPATCH FRAME -->
     <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-7 space-y-5">
-            <span class="text-[10px] font-bold tracking-widest text-[#059669] uppercase bg-emerald-50 px-2 py-0.5 rounded">Regional Logistics Hub</span>
-            <h2 class="text-2xl lg:text-3xl font-black tracking-tight text-[#0A192F]">Centralized Twin Cities Lab Hub</h2>
-            <p class="text-sm font-bold text-[#059669]">401 E Lake St, Minneapolis, MN</p>
-            <p class="text-slate-600 text-xs leading-relaxed">Positioned at the geographic core of the metro area with immediate access to I-35W and I-94 corridors, our high-velocity clinical facility is engineered for rapid regional response.</p>
-            <p class="text-slate-600 text-xs leading-relaxed">Operating directly within the city's transit and healthcare hub allows our specimen dispatch to eliminate cross-country shipping delays, weather disruptions, and lost-sample liabilities. Your data is processed exactly where your operations are rooted—100% locally.</p>
-            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-bold text-slate-700 pt-2">
-                <li><span class="text-[#059669]">✓</span> Strategically located metro core axis</li>
-                <li><span class="text-[#059669]">✓</span> Direct access to critical travel links</li>
-                <li><span class="text-[#059669]">✓</span> Rapid, secure courier dispatch</li>
-                <li><span class="text-[#059669]">✓</span> Zero out-of-state cargo lag</li>
-            </ul>
+        <div class="lg:col-span-5 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-lg">
+            <img class="w-full h-56 object-cover" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=500" alt="Minneapolis Medical Corridor Infrastructure">
+            <div class="p-6 bg-slate-50/50 border-t border-slate-100 space-y-1">
+                <div class="flex items-center space-x-2">
+                    <span class="text-emerald-600 font-bold">📍</span>
+                    <h4 class="font-bold text-sm text-[#0A192F]">Centralized Twin Cities Lab Hub</h4>
+                </div>
+                <p class="text-[11px] text-slate-500 font-semibold pl-5">401 E Lake St, Minneapolis, MN</p>
+            </div>
         </div>
         
-        <!-- DIRECT IMAGE ASSET PIPELINE VIA IMAGE HOST ROUTER -->
-        <div class="lg:col-span-5 grid grid-cols-1 gap-4">
-            <div class="bg-white p-2 border border-slate-100 rounded-xl shadow-md">
-                <!-- Serves an authentic laboratory specimen tube selection picture matching panel layout -->
-                <img class="w-full h-56 object-cover rounded-lg" src="https://images.unsplash.com/photo-1579154204601-01588f351167?auto=format&fit=crop&q=80&w=600" alt="AccessPoint Dx Laboratory Infrastructure">
-            </div>
-            <div class="bg-emerald-50/40 border border-emerald-100/50 p-4 rounded-xl flex items-center justify-between">
-                <div>
-                    <h4 class="font-bold text-xs text-[#0A192F]">Accelerated Processing Available</h4>
-                    <p class="text-[10px] text-slate-500 mt-0.5">For qualified Twin Cities high-volume commercial accounts.</p>
+        <div class="lg:col-span-7 space-y-4">
+            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Centralized Twin Cities Laboratory Hub</span>
+            <h2 class="text-2xl lg:text-3xl font-black tracking-tight text-[#0A192F]">Strategically positioned for regional response.</h2>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">Located at the geographic center of the Twin Cities with immediate access to I-35W and I-94 corridors, enabling faster specimen movement and responsive regional support.</p>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+                <div class="border border-slate-100 rounded-lg p-3 text-center bg-white shadow-2xs">
+                    <span class="block text-lg mb-1">⏱️</span>
+                    <span class="block font-black text-xs text-[#0A192F]">24 HOUR</span>
+                    <span class="block text-[9px] text-slate-400 font-medium">Local Processing</span>
                 </div>
-                <button class="bg-white border border-emerald-200 text-[#059669] font-bold text-[10px] px-3 py-2 rounded shadow-xs whitespace-nowrap">Determine Eligibility</button>
+                <div class="border border-slate-100 rounded-lg p-3 text-center bg-white shadow-2xs">
+                    <span class="block text-lg mb-1">🗺️</span>
+                    <span class="block font-black text-xs text-[#0A192F]">48 HOUR</span>
+                    <span class="block text-[9px] text-slate-400 font-medium">Statewide Targets</span>
+                </div>
+                <div class="border border-slate-100 rounded-lg p-3 text-center bg-white shadow-2xs">
+                    <span class="block text-lg mb-1">🌲</span>
+                    <span class="block font-black text-xs text-[#0A192F]">100%</span>
+                    <span class="block text-[9px] text-slate-400 font-medium">Minnesota-Based</span>
+                </div>
+                <div class="border border-slate-100 rounded-lg p-3 text-center bg-white shadow-2xs">
+                    <span class="block text-lg mb-1">👥</span>
+                    <span class="block font-black text-xs text-[#0A192F]">DIRECT</span>
+                    <span class="block text-[9px] text-slate-400 font-medium">Lab Staff Access</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER CTA -->
-    <footer class="bg-[#0A192F] text-white py-12 border-t-4 border-[#059669]">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div class="space-y-1.5 text-center lg:text-left">
-                <h3 class="text-lg font-bold tracking-tight">Let's Improve Your Laboratory Experience.</h3>
-                <p class="text-xs text-slate-400 max-w-xl">Request an structural optimization assessment to compare diagnostic turnaround times and pipeline compliance models.</p>
+    <!-- ROBUST SYSTEM ENTERPRISE CONVERSION FOOTER BLOCK -->
+    <footer class="bg-[#0A192F] text-white pt-16 pb-8 border-t-4 border-[#059669]">
+        <div class="max-w-7xl mx-auto px-6 space-y-12">
+            
+            <!-- Conversion Row Banner -->
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-12 border-b border-slate-800">
+                <div class="space-y-1.5 text-center lg:text-left">
+                    <h3 class="text-2xl font-black tracking-tight">Evaluate Your Current Laboratory Model.</h3>
+                    <p class="text-xs text-slate-400 max-w-xl font-medium">Compare diagnostic turnaround times, logistics workflows, interoperability options, and support structures with no obligation.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                    <button class="bg-[#059669] hover:bg-emerald-700 text-white px-5 py-3.5 rounded text-xs font-bold tracking-wide transition shadow-md whitespace-nowrap uppercase">Request a Laboratory Assessment →</button>
+                    <button class="border border-slate-700 hover:bg-slate-800 text-white px-5 py-3.5 rounded text-xs font-bold tracking-wide transition whitespace-nowrap uppercase">Speak With Our Team →</button>
+                </div>
             </div>
-            <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-                <button class="bg-[#059669] hover:bg-emerald-700 text-white px-5 py-3 rounded text-xs font-bold tracking-wide transition shadow-sm whitespace-nowrap">Request an Assessment</button>
-                <button class="border border-slate-700 hover:bg-slate-800 text-white px-5 py-3 rounded text-xs font-bold tracking-wide transition whitespace-nowrap">Contact Our Team</button>
+
+            <!-- Deep Corporate Directory Link Columns -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 text-xs">
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-wider text-slate-400 uppercase text-[10px]">Who We Serve</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">Healthcare Providers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Long-Term Care & Hospice</a></li>
+                        <li><a href="#" class="hover:text-white transition">Occupational Health</a></li>
+                        <li><a href="#" class="hover:text-white transition">Public Sector Programs</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-wider text-slate-400 uppercase text-[10px]">Integrations</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">EHR Connectivity</a></li>
+                        <li><a href="#" class="hover:text-white transition">HL7 / FHIR</a></li>
+                        <li><a href="#" class="hover:text-white transition">Client Portal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Automated Reporting</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-wider text-slate-400 uppercase text-[10px]">Resources</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">Test Directory</a></li>
+                        <li><a href="#" class="hover:text-white transition">Collection Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition">Forms</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-wider text-slate-400 uppercase text-[10px]">Company</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">News & Updates</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-3 border-t border-slate-800 lg:border-t-0 pt-6 lg:pt-0">
+                    <h4 class="font-black tracking-wider text-slate-400 uppercase text-[10px]">Corporate Office</h4>
+                    <p class="text-slate-400 leading-normal font-medium">
+                        📞 612-345-0160<br>
+                        ✉️ info@accesspointdx.com<br>
+                        📍 401 E Lake Street<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Minneapolis, MN 55408
+                    </p>
+                </div>
+            </div>
+
+            <!-- Global Footer Meta Rights Strip -->
+            <div class="pt-8 border-t border-slate-800 text-[10px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider">
+                <div>© 2026 AccessPoint Dx. All rights reserved.</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-300 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-300 transition">Terms of Use</a>
+                    <a href="#" class="hover:text-slate-300 transition">HIPAA Notice</a>
+                </div>
             </div>
         </div>
     </footer>
