@@ -1,10 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AccessPointDX Preview</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessPoint Dx // Diagnostics Without Barriers</title>
+    <!-- Tailwind CSS CDN for pristine styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <h1>AccessPointDX</h1>
-    <p>Welcome to my website.</p>
+<body class="bg-[#FFFFFF] text-[#0F172A] font-sans antialiased">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="border-b border-slate-100 bg-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand Identity -->
+            <div class="flex items-center space-x-3">
+                <div class="text-2xl font-bold tracking-tight text-[#0F172A]">
+                    AccessPoint <span class="text-[#059669]">Dx</span>
+                </div>
+                <span class="text-xs font-semibold tracking-widest text-[#059669] uppercase border-l border-slate-200 pl-3 hidden sm:inline">
+                    Diagnostics Without Barriers
+                </span>
+            </div>
+            <!-- Main Nav Elements -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                <a href="#" class="hover:text-[#0F172A] transition">Solutions</a>
+                <a href="#" class="hover:text-[#0F172A] transition">Integrations</a>
+                <a href="#" class="hover:text-[#0F172A] transition">Resources</a>
+                <a href="#" class="hover:text-[#0F172A] transition">About Us</a>
+                <a href="#" class="hover:text-[#0F172A] transition">Contact</a>
+            </nav>
+            <!-- CTA Button -->
+            <a href="#" class="bg-[#0F172A] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-slate-800 transition">
+                Client Portal
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+            <h1 class="text-5xl lg:text-6xl font-extrabold tracking-tight text-[#0F172A] leading-tight">
+                Diagnostics <br><span class="text-[#059669]">Without Barriers.</span>
+            </h1>
+            <p class="text-lg text-slate-600 max-w-xl leading-relaxed">
+                Fast, accurate laboratory services for healthcare providers, long-term care communities, employers, and public organizations—delivered through local expertise, seamless integrations, and accountable support.
+            </p>
+            <div class="pt-4 flex flex-wrap gap-4">
+                <button class="bg-[#059669] text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-emerald-700 transition shadow-sm">
+                    Request a Laboratory Assessment
+                </button>
+                <button class="border border-slate-200 text-[#0F172A] px-6 py-3.5 rounded-lg font-semibold hover:bg-slate-50 transition">
+                    See How It Works
+                </button>
+            </div>
+        </div>
+        <!-- Geographic Authority Element -->
+        <div class="lg:col-span-5 bg-[#F8FAFC] border border-slate-100 rounded-2xl p-8 text-center space-y-4">
+            <div class="w-full h-48 bg-slate-200 rounded-xl flex items-center justify-center text-slate-400 font-medium text-sm border border-dashed border-slate-300">
+                [ Interactive Minnesota Network Map Graphic ]
+            </div>
+            <div class="text-left">
+                <h3 class="font-bold text-lg text-[#0F172A]">Minnesota-Based. Local to You.</h3>
+                <p class="text-sm text-slate-600 mt-1">Specimens stay in Minnesota for faster turnaround times, greater visibility, and direct accountability.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CENTRALIZED LAB HUB REGIONAL INFRASTRUCTURE SECTION -->
+    <section class="border-t border-slate-100 bg-[#F8FAFC] py-20">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Map Pin / Visual Side -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="w-72 h-72 rounded-full border-4 border-white shadow-md bg-white flex flex-col items-center justify-center p-6 text-center space-y-2">
+                    <span class="text-4xl">📍</span>
+                    <div class="font-bold text-slate-800 text-lg">Central Transit Node</div>
+                    <div class="text-xs text-slate-400 max-w-[180px]">Instant access to I-35W and I-94 corridors</div>
+                </div>
+            </div>
+            <!-- Streamlined Logistics Copy Block -->
+            <div class="lg:col-span-7 space-y-6">
+                <div class="space-y-2">
+                    <h2 class="text-3xl font-bold tracking-tight text-[#0F172A]">
+                        Centralized Twin Cities Lab Hub
+                    </h2>
+                    <p class="text-lg font-semibold text-[#059669]">
+                        401 E Lake St, Minneapolis, MN
+                    </p>
+                </div>
+                <p class="text-slate-600 leading-relaxed">
+                    Positioned at the geographic core of the metro area with immediate access to I-35W and I-94 corridors, our high-velocity clinical facility is engineered for rapid regional response.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    Operating directly within the city's transit and healthcare hub allows our specimen dispatch to eliminate the cross-country shipping delays, weather disruptions, and lost-sample liabilities of out-of-state monopolies. Your data is processed exactly where your operations are rooted—100% locally.
+                </p>
+                <!-- Scannable Checkmarks -->
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-medium text-sm text-slate-700">
+                    <li class="flex items-center space-x-2.5">
+                        <span class="text-[#059669] font-bold">✓</span>
+                        <span>Strategically located metro core</span>
+                    </li>
+                    <li class="flex items-center space-x-2.5">
+                        <span class="text-[#059669] font-bold">✓</span>
+                        <span>Direct access to major highways</span>
+                    </li>
+                    <li class="flex items-center space-x-2.5">
+                        <span class="text-[#059669] font-bold">✓</span>
+                        <span>Rapid, trackable courier routing</span>
+                    </li>
+                    <li class="flex items-center space-x-2.5">
+                        <span class="text-[#059669] font-bold">✓</span>
+                        <span>Zero out-of-state airport delays</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
