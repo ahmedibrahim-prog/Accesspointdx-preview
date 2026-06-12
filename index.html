@@ -1,222 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AccessPoint Dx | Diagnostics Without Barriers</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          colors: {
-            brand: {
-              green: '#00875a',       /* Exact professional teal-green from mockup */
-              greenHover: '#006c48',
-              blue: '#002855',        /* Deep corporate blue */
-              darkBlue: '#001c3d',    /* Utility bar blue */
-              lightBg: '#f8f9fa',     /* Section light gray */
-            }
-          },
-          letterSpacing: { tightest: '-0.025em' }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccessPoint Dx // Diagnostics Without Barriers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Sleek custom mobile horizontal scrollbar */
+        .mobile-scroll::-webkit-scrollbar { 
+            height: 6px; 
         }
-      }
-    }
-  </script>
-
-  <style>
-    body { -webkit-font-smoothing: antialiased; }
-    .custom-shadow { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); }
-    .radar-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .3; transform: scale(1.1); } }
-  </style>
+        .mobile-scroll::-webkit-scrollbar-track { 
+            background: #f1f5f9; 
+            border-radius: 8px; 
+            margin: 0 24px; /* Aligns perfectly with the container padding */
+        }
+        .mobile-scroll::-webkit-scrollbar-thumb { 
+            background: #059669; 
+            border-radius: 8px; 
+        }
+        /* Hide the scrollbar entirely on desktop sizes since it switches to a grid */
+        @media (min-width: 768px) {
+            .mobile-scroll::-webkit-scrollbar { display: none; }
+        }
+    </style>
 </head>
-<body class="bg-white font-sans text-gray-800 antialiased">
+<body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10">
 
-  <div class="w-full bg-brand-darkBlue text-white text-[11px] font-medium py-2 px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 border-b border-white/10">
-    <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-white/90">
-      <span class="flex items-center gap-1.5"><span class="text-brand-green">📍</span> Minnesota-Based Processing</span>
-      <span class="flex items-center gap-1.5"><span class="text-brand-green">🎧</span> Direct Laboratory Support</span>
-      <span class="flex items-center gap-1.5"><span class="text-brand-green">⏱️</span> Fast Turnaround Times</span>
-    </div>
-    <a href="#" class="bg-brand-green hover:bg-brand-greenHover px-3 py-1 rounded text-[10px] font-bold tracking-wider transition-colors uppercase whitespace-nowrap">
-      Request Assessment →
-    </a>
-  </div>
-
-  <header class="w-full bg-white border-b border-gray-100 py-4 px-4 md:px-8 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="#" class="flex items-center gap-2.5">
-        <div class="w-7 h-7 bg-brand-green rounded flex items-center justify-center text-white font-extrabold text-base">A</div>
-        <div class="flex flex-col">
-          <span class="text-lg font-extrabold tracking-tight text-brand-blue leading-none">AccessPoint <span class="text-brand-green">Dx</span></span>
-          <span class="text-[9px] font-bold tracking-widest text-brand-blue/50 uppercase">Diagnostics Without Barriers</span>
-        </div>
-      </a>
-      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold text-brand-blue/90 uppercase tracking-wider">
-        <a href="#" class="hover:text-brand-green transition-colors">Who We Serve ▾</a>
-        <a href="#" class="hover:text-brand-green transition-colors">Integrations ▾</a>
-        <a href="#" class="hover:text-brand-green transition-colors">Resources ▾</a>
-        <a href="#" class="hover:text-brand-green transition-colors">About Us</a>
-        <a href="#" class="hover:text-brand-green transition-colors">Contact</a>
-      </nav>
-      <a href="#" class="border-2 border-brand-blue/20 text-brand-blue hover:bg-brand-blue hover:text-white px-4 py-1.5 rounded text-xs font-bold tracking-wider transition-all inline-flex items-center gap-2">
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        CLIENT PORTAL
-      </a>
-    </div>
-  </header>
-
-  <section class="relative bg-white pt-16 pb-20 px-4 md:px-8 overflow-hidden">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-7">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-blue leading-[1.1] tracking-tightest mb-6">
-          Diagnostics<br>Without Barriers<span class="text-brand-green">.</span>
-        </h1>
-        <p class="text-base sm:text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">
-          Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
-        </p>
-        <div class="flex flex-wrap gap-4 mb-6">
-          <a href="#" class="bg-brand-green hover:bg-brand-greenHover text-white font-bold px-6 py-3.5 rounded text-xs tracking-wider transition-all uppercase whitespace-nowrap">
-            Request A Laboratory Assessment →
-          </a>
-          <a href="#" class="border border-brand-blue/30 text-brand-blue hover:bg-gray-50 font-bold px-6 py-3.5 rounded text-xs tracking-wider transition-all uppercase whitespace-nowrap">
-            Explore Solutions →
-          </a>
-        </div>
-      </div>
-      <div class="lg:col-span-5 flex justify-center lg:justify-end">
-        <div class="bg-brand-blue text-white p-6 rounded-xl w-full max-w-sm custom-shadow flex flex-col gap-5">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-green text-lg">🕒</div>
-            <div>
-              <h4 class="font-extrabold text-base tracking-wide uppercase">24 HOUR</h4>
-              <p class="text-xs text-white/70 mt-0.5">Qualifying Local Accounts</p>
+    <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
+        <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center space-x-2 text-slate-300">
+                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <span>Minnesota-Based Processing</span>
+                </span>
+                <span class="hidden sm:flex items-center space-x-2 text-slate-300">
+                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.164l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <span>Direct Laboratory Support</span>
+                </span>
+                <span class="hidden md:flex items-center space-x-2 text-slate-300">
+                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Fast Turnaround Times</span>
+                </span>
             </div>
-          </div>
-          <hr class="border-white/10">
-          <div class="flex items-start gap-4">
-            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-green text-lg">🕒</div>
-            <div>
-              <h4 class="font-extrabold text-base tracking-wide uppercase">48 HOUR</h4>
-              <p class="text-xs text-white/70 mt-0.5">Statewide Target Workflow</p>
+            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase whitespace-nowrap">
+                <span>Request Assessment</span> <span class="text-xs ml-1">➔</span>
+            </a>
+        </div>
+    </div>
+
+    <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            
+            <div class="flex items-center space-x-3">
+                <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
+                    <circle cx="26" cy="52" r="4" fill="#0A192F"/>
+                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                    <circle cx="74" cy="27" r="4" fill="#059669" />
+                    <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/>
+                </svg>
+                <div class="flex flex-col justify-center">
+                    <div class="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                        AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
+                    </div>
+                    <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">
+                        Diagnostics Without Barriers
+                    </span>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="bg-white border-t border-b border-gray-100 py-10 px-4">
-    <div class="max-w-7xl mx-auto">
-      <p class="text-center text-[11px] font-extrabold tracking-widest text-brand-blue/40 uppercase mb-8">BUILT FOR</p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 items-center text-center">
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">🩺</span><span class="text-xs font-bold text-brand-blue/80">Physician Practices</span></div>
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">🏥</span><span class="text-xs font-bold text-brand-blue/80">Specialty Clinics</span></div>
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">🏢</span><span class="text-xs font-bold text-brand-blue/80">Long-Term Care Communities</span></div>
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">🤍</span><span class="text-xs font-bold text-brand-blue/80">Hospice Providers</span></div>
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">👷</span><span class="text-xs font-bold text-brand-blue/80">Occupational Health</span></div>
-        <div class="flex flex-col items-center gap-2"><span class="text-xl text-brand-green">🏛️</span><span class="text-xs font-bold text-brand-blue/80">Public Sector Agencies</span></div>
-      </div>
-    </div>
-  </section>
+            <nav class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-wide text-slate-700">
+                <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Who We Serve</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
+                <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Integrations</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
+                <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Resources</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
+                <a href="#" class="hover:text-[#059669] transition">About Us</a>
+                <a href="#" class="hover:text-[#059669] transition">Contact</a>
+            </nav>
 
-  <section class="bg-brand-lightBg py-16 px-4 md:px-8">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      <div class="lg:col-span-5 flex justify-center relative py-8">
-        <div class="w-48 h-48 rounded-full border border-brand-green/20 flex items-center justify-center relative">
-          <div class="w-32 h-32 rounded-full border border-brand-green/40 flex items-center justify-center radar-pulse">
-            <div class="w-4 h-4 bg-brand-green rounded-full"></div>
-          </div>
-          <div class="absolute bottom-[-10px] text-center">
-            <h5 class="text-xs font-extrabold text-brand-blue">Twin Cities Laboratory Hub</h5>
-            <p class="text-[10px] text-gray-500 font-medium">Minneapolis, MN</p>
-          </div>
+            <div class="flex items-center space-x-4">
+                <button class="lg:hidden text-[#0A192F] p-1 focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <a href="#" class="hidden sm:flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition items-center space-x-2">
+                    <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                    <span>Client Portal</span>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="lg:col-span-7">
-        <span class="text-[11px] font-extrabold tracking-widest text-brand-green uppercase block mb-2">WHY LOCAL PROCESSING MATTERS</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-blue tracking-tightest mb-4">Faster results start closer to the source.</h2>
-        <p class="text-sm text-gray-600 leading-relaxed mb-6">
-          By processing specimens right here in Minnesota, we completely reduce transit complexity, improve overall chain visibility, and provide direct access to the laboratory technical team responsible for your program.
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bold text-brand-blue/90">
-          <div class="flex items-center gap-2">✓ Local Minnesota Processing</div>
-          <div class="flex items-center gap-2">✓ Direct Laboratory Accountability</div>
-          <div class="flex items-center gap-2">✓ Reduced Transportation Risk</div>
-          <div class="flex items-center gap-2">✓ Faster Result Availability</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="bg-white py-16 px-4 md:px-8">
-    <div class="max-w-7xl mx-auto">
-      <p class="text-center text-[11px] font-extrabold tracking-widest text-brand-blue/40 uppercase mb-12">THE ACCESSPOINT ADVANTAGE</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="p-4 border-l-2 border-brand-green">
-          <h4 class="font-extrabold text-brand-blue text-sm uppercase mb-1">Accelerated Turnaround</h4>
-          <p class="text-xs text-gray-600 leading-relaxed">Qualifying local accounts may receive results within 24 hours of specimen arrival.</p>
+    <section class="max-w-7xl mx-auto px-6 pt-12 sm:pt-16 pb-16 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+            <h1 class="text-[42px] sm:text-[52px] lg:text-[68px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
+                Diagnostics <br><span class="text-[#0A192F]">Without Barriers.</span>
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed font-medium">
+                Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
+            </p>
+            <div class="pt-2 flex flex-col sm:flex-row gap-4">
+                <button class="w-full sm:w-auto bg-[#059669] text-white px-6 py-4 sm:py-3.5 rounded font-bold text-xs hover:bg-emerald-700 transition tracking-wide flex items-center justify-center space-x-2 uppercase">
+                    <span>Request a Laboratory Assessment</span> <span class="text-xs ml-1">➔</span>
+                </button>
+                <button class="w-full sm:w-auto border border-slate-300 text-[#0A192F] px-6 py-4 sm:py-3.5 rounded font-bold text-xs hover:bg-slate-50 transition tracking-wide flex items-center justify-center space-x-2 uppercase">
+                    <span>Explore Solutions</span> <span class="text-xs ml-1">➔</span>
+                </button>
+            </div>
         </div>
-        <div class="p-4 border-l-2 border-brand-green">
-          <h4 class="font-extrabold text-brand-blue text-sm uppercase mb-1">Secure Interoperability</h4>
-          <p class="text-xs text-gray-600 leading-relaxed">Seamlessly connect results directly to your systems through modern secure data exchange.</p>
+        
+        <div class="lg:col-span-6 relative h-[520px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/70 sm:from-[#0A192F]/60 via-transparent to-transparent"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl flex-1 sm:min-w-[200px]">
+                    <div class="p-2 border border-white/20 rounded-full text-white shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[13px] tracking-tight">24 HOUR</h4>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Qualifying Local Accounts</p>
+                    </div>
+                </div>
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-xl p-4 text-white flex items-center space-x-3 shadow-2xl flex-1 sm:min-w-[200px]">
+                    <div class="p-2 border border-white/20 rounded-full text-white shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[13px] tracking-tight">48 HOUR</h4>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Statewide Target Workflow</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-4 border-l-2 border-brand-green">
-          <h4 class="font-extrabold text-brand-blue text-sm uppercase mb-1">Healthcare-Focused Support</h4>
-          <p class="text-xs text-gray-600 leading-relaxed">Responsive support from experienced professionals who understand operational urgency.</p>
-        </div>
-        <div class="p-4 border-l-2 border-brand-green">
-          <h4 class="font-extrabold text-brand-blue text-sm uppercase mb-1">Local Accountability</h4>
-          <p class="text-xs text-gray-600 leading-relaxed">Your specimens stay in Minnesota with transparent direct access to your laboratory team.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="bg-brand-lightBg py-20 px-4 md:px-8 border-t border-b border-gray-100">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center max-w-xl mx-auto mb-14">
-        <span class="text-[11px] font-extrabold tracking-widest text-brand-blue/40 uppercase block mb-2">WHO WE SERVE</span>
-        <h2 class="text-3xl font-extrabold text-brand-blue tracking-tightest">Infrastructure built for speed.</h2>
-      </div>
+    <section class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-100 mb-10 sm:mb-16">
+        <div class="text-center mb-8">
+            <span class="text-[11px] font-black tracking-widest text-[#0A192F] uppercase">Built For</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-6 text-center">
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Physician Practices</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M10 11l2 2 4-4"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Specialty Clinics</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Long-Term Care Communities</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Hospice Providers</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Occupational Health</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer">
+                <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                </div>
+                <span class="font-bold text-[11px] text-[#0A192F]">Public Sector Agencies</span>
+            </div>
+        </div>
+    </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-md custom-shadow">
-          <div class="p-6">
-            <div class="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center mb-5 text-brand-green">🩺</div>
-            <h3 class="text-base font-extrabold mb-2 text-brand-blue">Healthcare Providers</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">Comprehensive diagnostic services for physician practices, specialty clinics, and outpatient care organizations.</p>
-          </div>
-          <div class="px-6 pb-6"><a href="#" class="text-brand-blue hover:text-brand-green text-[10px] font-bold tracking-wider inline-flex items-center gap-1 transition-colors uppercase">Learn More →</a></div>
+    <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
+        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-80 sm:h-96">
+            <svg class="w-full h-full drop-shadow-md" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 120 20 L 140 25 L 145 10 L 160 30 L 175 35 L 180 50 L 195 55 L 210 50 L 220 55 L 245 75 L 255 100 L 245 130 L 250 160 L 235 190 L 245 220 L 255 240 L 250 270 L 260 290 L 265 315 L 255 330 L 95 330 L 90 280 L 85 240 L 80 200 L 75 160 L 70 120 L 65 80 L 120 80 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
+                
+                <circle cx="190" cy="220" r="40" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" opacity="0.3"/>
+                <circle cx="190" cy="220" r="25" fill="#059669" opacity="0.1"/>
+                <circle cx="190" cy="220" r="6" fill="#059669"/>
+                
+                <path d="M 184 220 L 140 220" stroke="#059669" stroke-width="1.5" />
+                <g transform="translate(15, 200)">
+                    <text x="120" y="14" fill="#0A192F" font-size="12" font-weight="800" text-anchor="end">Twin Cities</text>
+                    <text x="120" y="28" fill="#059669" font-size="10" font-weight="700" text-anchor="end">Laboratory Hub</text>
+                    <text x="120" y="42" fill="#64748B" font-size="10" font-weight="500" text-anchor="end">Minneapolis, MN</text>
+                </g>
+            </svg>
         </div>
-        <div class="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-md custom-shadow">
-          <div class="p-6">
-            <div class="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center mb-5 text-brand-green">🏢</div>
-            <h3 class="text-base font-extrabold mb-2 text-brand-blue">Long-Term Care & Hospice</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">Reliable testing workflows supporting nursing communities, assisted living providers, and hospice programs.</p>
-          </div>
-          <div class="px-6 pb-6"><a href="#" class="text-brand-blue hover:text-brand-green text-[10px] font-bold tracking-wider inline-flex items-center gap-1 transition-colors uppercase">Learn More →</a></div>
+
+        <div class="lg:col-span-7 space-y-5">
+            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Why Local Processing Matters</span>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
+            <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
+                By processing specimens in Minnesota, we reduce transit complexity, improve visibility, and provide direct access to the laboratory team responsible for your testing program.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-xs font-bold text-slate-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 rounded-full border border-[#059669] flex items-center justify-center text-[#059669] shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    </div>
+                    <span>Local Minnesota Processing</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 rounded-full border border-[#059669] flex items-center justify-center text-[#059669] shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    </div>
+                    <span>Direct Laboratory Accountability</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 rounded-full border border-slate-400 flex items-center justify-center text-slate-500 shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </div>
+                    <span class="text-slate-500">Reduced Transportation Risk</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 rounded-full border border-[#059669] flex items-center justify-center text-[#059669] shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    </div>
+                    <span>Faster Result Availability</span>
+                </div>
+                <div class="flex items-center space-x-3 sm:col-span-2">
+                    <div class="w-6 h-6 rounded-full border border-[#059669] flex items-center justify-center text-[#059669] shrink-0">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    </div>
+                    <span>Regional Operational Support</span>
+                </div>
+            </div>
         </div>
-        <div class="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-md custom-shadow">
-          <div class="p-6">
-            <div class="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center mb-5 text-brand-green">👷</div>
-            <h3 class="text-base font-extrabold mb-2 text-brand-blue">Occupational Health</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">Testing programs engineered for employers, safety-sensitive industries, and workforce compliance initiatives.</p>
-          </div>
-          <div class="px-6 pb-6"><a href="#" class="text-brand-blue hover:text-brand-green text-[10px] font-bold tracking-wider inline-flex items-center gap-1 transition-colors uppercase">Learn More →</a></div>
+    </section>
+
+    <section class="bg-slate-50 border-y border-slate-100 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">The AccessPoint Advantage</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="space-y-4 text-left flex gap-4">
+                    <div class="w-14 h-14 shrink-0 rounded-full bg-[#059669] flex items-center justify-center text-white shadow-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-[15px] text-[#0A192F] mb-1">Accelerated<br>Turnaround</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-medium pr-2">Qualifying local accounts may receive results within 24 hours of specimen arrival at our laboratory.</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-left flex gap-4">
+                    <div class="w-14 h-14 shrink-0 rounded-full bg-[#0A192F] flex items-center justify-center text-white shadow-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-[15px] text-[#0A192F] mb-1">Secure<br>Interoperability</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-medium pr-2">Seamlessly connect results to your systems through modern integration and secure data exchange.</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-left flex gap-4">
+                    <div class="w-14 h-14 shrink-0 rounded-full bg-[#059669] flex items-center justify-center text-white shadow-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-[15px] text-[#0A192F] mb-1">Healthcare-Focused<br>Support</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-medium pr-2">Responsive support from professionals who understand clinical workflows and operational urgency.</p>
+                    </div>
+                </div>
+                <div class="space-y-4 text-left flex gap-4">
+                    <div class="w-14 h-14 shrink-0 rounded-full bg-[#0A192F] flex items-center justify-center text-white shadow-md">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-[15px] text-[#0A192F] mb-1">Local<br>Accountability</h4>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-medium pr-2">Your specimens stay in Minnesota with direct access to the laboratory team responsible for your care.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-md custom-shadow">
-          <div class="p-6">
-            <div class="w-10 h-10 bg-brand-green/10 rounded-full flex items-center justify-center mb-5 text-brand-green">🏛️</div>
-            <h3 class="text-base font-extrabold mb-2 text-brand-blue">Public Sector Programs</h3>
-            <p class="text-xs text-gray-600 leading-relaxed">Forensic-grade chain-of-custody and defensible testing workflows for municipal and government agencies.</p>
-          </div>
-          <div class="px-6 pb-6"><a href="#" class="text-brand-blue hover:text-brand-green text-[10px] font-bold tracking-wider inline-flex items-center gap-1 transition-colors uppercase">
+    </section>
+
+    <section class="max-w-7xl mx-auto py-20 space-y-4 sm:space-y-8 relative">
+        <div class="text-center px-6">
+            <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
+        </div>
+
+        <div class="md:hidden flex justify-center pb-2">
+            <div class="bg-emerald-50 text-[#059669] px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center space-x-2 animate-pulse shadow-sm border border-emerald-100">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span>Swipe to explore</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </div>
+        </div>
+        
+        <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory mobile-scroll pb-6 px-6 scroll-smooth">
+            
+            <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+                <div class="h-44 relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.318a4.5 4.5 0 016.364 0l2.818 2.818a4.5 4.5 0 010 6.364l-2.818 2.818m-6.364-6.364l6.364 6.364"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Healthcare Providers</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Comprehensive diagnostic services for physician practices, specialty clinics, and outpatient care organizations.</p>
+                </div>
+                <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
+            </div>
+            
+            <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+                <div class="h-44 relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Long-Term Care">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Long-Term Care<br>& Hospice</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Reliable testing workflows supporting nursing communities, assisted living providers, and hospice programs.</p>
+                </div>
+                <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#0A192F] hover:text-[#059669] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
+            </div>
+            
+            <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+                <div class="h-44 relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Occupational Health">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Occupational<br>Health</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Testing programs engineered for employers, safety-sensitive industries, and workforce compliance initiatives.</p>
+                </div>
+                <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
+            </div>
+            
+            <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative">
+                <div class="h-44 relative">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500" alt="Public Sector">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Public Sector<br>Programs</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Forensic-grade chain-of-custody and defensible testing workflows for municipal and government agencies.</p>
+                </div>
+                <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#0A192F] hover:text-[#059669] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
+            </div>
+            
+            <div class="w-1 shrink-0 md:hidden"></div>
+        </div>
+    </section>
+
+    <section class="bg-white py-16 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-3 space-y-3 text-center sm:text-left">
+                <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block mb-1">Connectivity Without Complexity</span>
+                <h3 class="text-xl sm:text-2xl font-black text-[#0A192F] leading-tight">Your data should move as efficiently as your specimens.</h3>
+                <p class="text-xs text-slate-500 font-medium max-w-sm mx-auto sm:mx-0">We adapt to your operational reality with flexible integration options that fit your systems and workflows.</p>
+                <div class="pt-2">
+                    <a href="#" class="inline-flex items-center border border-slate-300 text-[#0A192F] bg-white font-bold text-[10px] px-4 py-2.5 rounded uppercase hover:bg-slate-50 transition shadow-sm tracking-widest">
+                        View Integration Options <span class="ml-1 text-sm">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-9 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">EHR<br>Connectivity</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">HL7<br>Messaging</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">FHIR<br>APIs</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">PointClickCare<br>Integration</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">Athenahealth<br>Integration</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">Client<br>Portal</span>
+                </div>
+                <div class="flex flex-col items-center group cursor-pointer">
+                    <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+                    </div>
+                    <span class="font-bold text-[11px] text-[#0A192F] block">Automated<br>Results</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
+        <div class="lg:col-span-5 bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-lg">
+            <img class="w-full h-72 object-cover" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=800" alt="AccessPoint Dx Professional Laboratory Technician Hub">
+        </div>
+        
+        <div class="lg:col-span-7 space-y-6">
+            <div class="text-center sm:text-left">
+                <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Centralized Twin Cities Laboratory Hub</span>
+                <h2 class="text-3xl lg:text-4xl font-black tracking-tight text-[#0A192F] mt-1">Strategically positioned for regional response.</h2>
+            </div>
+            
+            <div class="text-[13px] text-slate-600 space-y-3 font-medium">
+                <div class="flex items-start space-x-2 text-[#0A192F] font-bold">
+                    <svg class="w-5 h-5 text-[#0A192F] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                    <span>401 East Lake Street<br>Minneapolis, Minnesota</span>
+                </div>
+                <p class="pt-1">Located at the geographic center of the Twin Cities with immediate access to I-35W and I-94 corridors, enabling faster specimen movement and responsive regional support.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+                <div class="text-center flex flex-col items-center">
+                    <div class="text-[#059669] mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                    <span class="block font-black text-sm text-[#0A192F]">24 HOUR</span>
+                    <span class="block text-[10px] text-slate-500 font-medium">Qualifying Local<br>Accounts</span>
+                </div>
+                <div class="text-center flex flex-col items-center">
+                    <div class="text-[#059669] mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L16 4m0 13V4m0 0L9 7"/></svg></div>
+                    <span class="block font-black text-sm text-[#0A192F]">48 HOUR</span>
+                    <span class="block text-[10px] text-slate-500 font-medium">Statewide Target<br>Workflow</span>
+                </div>
+                <div class="text-center flex flex-col items-center">
+                    <div class="text-[#059669] mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg></div>
+                    <span class="block font-black text-sm text-[#0A192F]">100%</span>
+                    <span class="block text-[10px] text-slate-500 font-medium">Minnesota-Based<br>Processing</span>
+                </div>
+                <div class="text-center flex flex-col items-center">
+                    <div class="text-[#059669] mb-3"><svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg></div>
+                    <span class="block font-black text-sm text-[#0A192F]">DIRECT</span>
+                    <span class="block text-[10px] text-slate-500 font-medium">Laboratory<br>Access</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0A192F] text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 space-y-12">
+            
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-12 border-b border-slate-800">
+                <div class="space-y-4 sm:space-y-1.5 text-center lg:text-left flex flex-col md:flex-row items-center space-x-0 md:space-x-6">
+                    <div class="w-16 h-16 shrink-0 rounded-full bg-[#059669] flex items-center justify-center text-white mb-2 md:mb-0">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl sm:text-[28px] font-black tracking-tight mb-2">Evaluate Your Current<br>Laboratory Model.</h3>
+                        <p class="text-[13px] text-slate-400 max-w-xl font-medium">Compare turnaround times, logistics workflows, interoperability options, and support structures with no obligation.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                    <button class="w-full sm:w-auto bg-[#059669] hover:bg-emerald-700 text-white px-6 py-4 rounded text-xs font-bold tracking-wider transition shadow-md uppercase flex items-center justify-center sm:justify-between">
+                        <span>Request Assessment</span> <span class="ml-4">➔</span>
+                    </button>
+                    <button class="w-full sm:w-auto border border-slate-700 hover:bg-slate-800 text-white px-6 py-4 rounded text-xs font-bold tracking-wider transition uppercase flex items-center justify-center sm:justify-between">
+                        <span>Speak With Our Team</span> <span class="ml-4">➔</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-[11px]">
+                
+                <div class="col-span-2 lg:col-span-1 space-y-4">
+                    <div class="flex items-center space-x-2.5">
+                        <svg class="w-10 h-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="45,85 15,85 15,15 55,15 55,30" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="square"/>
+                            <circle cx="25" cy="50" r="4" fill="#FFFFFF"/>
+                            <path d="M 40 85 L 85 85 C 88.3 85 91 82.3 91 79 L 91 74 C 91 70.7 88.3 68 85 68 L 78 68 L 70 52 L 56 52 L 48 68 L 40 68 C 36.7 68 34 70.7 34 74 L 34 79 C 34 82.3 36.7 85 40 85 Z" fill="#059669"/>
+                            <path d="M 63 52 C 85 52 95 35 78 22 L 72 28 C 82 38 78 45 68 48 Z" fill="#059669"/>
+                            <circle cx="73" cy="36" r="9" fill="#059669"/>
+                            <circle cx="73" cy="36" r="4" fill="#0A192F"/>
+                            <rect x="52" y="16" width="14" height="34" rx="2" transform="rotate(40 59 33)" fill="#059669"/>
+                            <rect x="50" y="10" width="10" height="8" rx="1.5" transform="rotate(40 55 14)" fill="#059669"/>
+                            <rect x="36" y="48" width="24" height="6" rx="2" transform="rotate(40 48 51)" fill="#059669"/>
+                        </svg>
+                        <div class="font-montserrat pt-0.5">
+                            <div class="text-[17px] font-black tracking-tight leading-none flex items-center">
+                                <span class="text-white">ACCESS POINT</span>&nbsp;<span class="text-[#059669]">Dx</span>
+                            </div>
+                            <span class="text-[6px] font-bold tracking-[0.2em] text-[#00A651] uppercase mt-1 block">
+                                Diagnostics Without Barriers
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-widest text-white uppercase text-[10px]">Who We Serve</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">Healthcare Providers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Long-Term Care & Hospice</a></li>
+                        <li><a href="#" class="hover:text-white transition">Occupational Health</a></li>
+                        <li><a href="#" class="hover:text-white transition">Public Sector Programs</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-widest text-white uppercase text-[10px]">Integrations</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">EHR Connectivity</a></li>
+                        <li><a href="#" class="hover:text-white transition">HL7 / FHIR</a></li>
+                        <li><a href="#" class="hover:text-white transition">Client Portal</a></li>
+                        <li><a href="#" class="hover:text-white transition">Automated Reporting</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-widest text-white uppercase text-[10px]">Resources</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">Test Directory</a></li>
+                        <li><a href="#" class="hover:text-white transition">Collection Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition">Forms</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-3">
+                    <h4 class="font-black tracking-widest text-white uppercase text-[10px]">Company</h4>
+                    <ul class="space-y-2 text-slate-400 font-medium">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">News & Updates</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-3 lg:border-t-0 pt-6 lg:pt-0">
+                    <ul class="space-y-3 text-slate-400 font-medium">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.051l-3.215-.536c-.538-.09-1.076.22-1.256.733l-.16.455a7.48 7.48 0 01-5.91-5.91l.455-.16c.513-.18.823-.718.733-1.256l-.536-3.215C11.716 2.601 11.266 2.25 10.75 2.25H4.5a2.25 2.25 0 00-2.25 2.25v2.25z"/></svg>
+                            <span>612-345-0160</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                            <span>info@accesspointdx.com</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <svg class="w-4 h-4 text-[#059669] mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                            <span>401 East Lake Street<br>Minneapolis, MN 55408</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-[10px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider">
+                <div>© 2026 AccessPoint Dx. All rights reserved.</div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-300 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-300 transition">Terms of Use</a>
+                    <a href="#" class="hover:text-slate-300 transition">HIPAA Notice</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
