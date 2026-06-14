@@ -39,7 +39,7 @@
         }
     </style>
 </head>
-<body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden">
+<body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10">
 
     <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
         <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
@@ -57,17 +57,17 @@
                     <span>Fast Turnaround Times</span>
                 </span>
             </div>
-            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase whitespace-nowrap">
+            <a href="#" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded text-[10px] tracking-wide transition flex items-center space-x-1 uppercase">
                 <span>Request Assessment</span> <span class="text-xs ml-1">➔</span>
             </a>
         </div>
     </div>
 
     <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between relative">
             
             <div class="flex items-center space-x-3">
-                <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-11 h-11" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                     <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
                     <circle cx="26" cy="52" r="4" fill="#0A192F"/>
                     <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
@@ -77,36 +77,41 @@
                     <line x1="45" y1="62" x2="62" y2="62" stroke="#059669" stroke-width="6" stroke-linecap="round" transform="rotate(15 53 62)"/>
                 </svg>
                 <div class="flex flex-col justify-center">
-                    <div class="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                    <div class="text-[22px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
                         AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
                     </div>
-                    <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">
+                    <span class="text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">
                         Diagnostics Without Barriers
                     </span>
                 </div>
             </div>
 
-            <nav class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-wide text-slate-700">
+            <nav id="navLinks" class="hidden lg:flex flex-col lg:flex-row absolute lg:relative top-24 lg:top-0 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-xl lg:shadow-none py-8 lg:py-0 items-center space-y-6 lg:space-y-0 lg:space-x-8 font-bold text-xs tracking-wide text-slate-700 z-40 border-b lg:border-none border-slate-100">
                 <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Who We Serve</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Integrations</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Resources</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="#" class="hover:text-[#059669] transition">About Us</a>
                 <a href="#" class="hover:text-[#059669] transition">Contact</a>
+                
+                <a href="#" class="lg:hidden bg-[#059669] text-white px-8 py-3 rounded text-xs font-bold uppercase tracking-wider transition flex items-center space-x-2 mt-4">
+                    <span>Client Portal</span>
+                </a>
             </nav>
 
             <div class="flex items-center space-x-4">
-                <button class="lg:hidden text-[#0A192F] p-1 focus:outline-none">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-                <a href="#" class="hidden sm:flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition items-center space-x-2">
+                <a href="#" class="hidden lg:flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider transition items-center space-x-2">
                     <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
                     <span>Client Portal</span>
                 </a>
+
+                <button id="mobileBtn" class="lg:hidden text-[#0A192F] p-1 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 pt-10 lg:pt-16 pb-12 lg:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <section class="max-w-7xl mx-auto px-6 pt-16 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
             <h1 class="text-[52px] lg:text-[68px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
                 Diagnostics <br><span class="text-[#0A192F]">Without Barriers.</span>
@@ -124,7 +129,7 @@
             </div>
         </div>
         
-        <div class="lg:col-span-6 relative h-[360px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+        <div class="lg:col-span-6 relative h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
             <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
             <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/60 via-transparent to-transparent"></div>
             
@@ -151,61 +156,52 @@
         </div>
     </section>
 
-    <section class="max-w-7xl mx-auto py-10 border-t border-slate-100 mb-16">
-        <div class="text-center mb-8 px-6">
+    <section class="max-w-7xl mx-auto px-6 py-10 border-t border-slate-100 mb-16">
+        <div class="text-center mb-8">
             <span class="text-[11px] font-black tracking-widest text-[#0A192F] uppercase">Built For</span>
         </div>
-        
-        <div class="md:hidden flex justify-center pb-4">
-            <div class="bg-slate-50 text-slate-500 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center space-x-2">
-                <span>Swipe to explore</span>
-                <svg class="w-3 h-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </div>
-        </div>
-        
-        <div class="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-6 text-center overflow-x-auto mobile-scroll pb-4 px-6 md:px-6 lg:px-6 snap-x snap-mandatory scroll-smooth">
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+        <div class="flex overflow-x-auto lg:grid lg:grid-cols-6 gap-6 lg:gap-12 text-center mobile-scroll pb-4 snap-x snap-mandatory">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Physician Practices</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M10 11l2 2 4-4"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Specialty Clinics</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Long-Term Care Communities</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Hospice Providers</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Occupational Health</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[120px] md:w-auto snap-center">
+            <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[140px] lg:w-auto snap-center">
                 <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                     <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
                 </div>
                 <span class="font-bold text-[11px] text-[#0A192F]">Public Sector Agencies</span>
             </div>
-            <div class="w-1 shrink-0 md:hidden"></div>
         </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
-        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-96">
+        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-80 sm:h-96 hover-lift">
             <svg class="w-full h-full drop-shadow-md" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M 120 20 L 140 25 L 145 10 L 160 30 L 175 35 L 180 50 L 195 55 L 210 50 L 220 55 L 245 75 L 255 100 L 245 130 L 250 160 L 235 190 L 245 220 L 255 240 L 250 270 L 260 290 L 265 315 L 255 330 L 95 330 L 90 280 L 85 240 L 80 200 L 75 160 L 70 120 L 65 80 L 120 80 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
                 
@@ -224,7 +220,7 @@
 
         <div class="lg:col-span-7 space-y-5">
             <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Why Local Processing Matters</span>
-            <h2 class="text-3xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
             <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
                 By processing specimens in Minnesota, we reduce transit complexity, improve visibility, and provide direct access to the laboratory team responsible for your testing program.
             </p>
@@ -309,11 +305,11 @@
         </div>
     </section>
 
-    <section class="max-w-7xl mx-auto py-20 space-y-8">
-        <div class="text-center space-y-1 px-6">
+    <section class="max-w-7xl mx-auto py-20 space-y-8 relative">
+        <div class="text-center px-6 space-y-1">
             <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
         </div>
-        
+
         <div class="md:hidden flex justify-center pb-2">
             <div class="bg-emerald-50 text-[#059669] px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center space-x-2 shadow-sm border border-emerald-100">
                 <svg class="w-3 h-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -321,7 +317,7 @@
                 <svg class="w-3 h-3 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </div>
         </div>
-
+        
         <div class="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory mobile-scroll pb-6 px-6 scroll-smooth">
             <div class="w-[260px] md:w-auto shrink-0 snap-center border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative hover-lift">
                 <div class="h-44 relative">
@@ -375,6 +371,7 @@
                 </div>
                 <div class="p-6 pt-0"><a href="#" class="text-[11px] font-bold text-[#0A192F] hover:text-[#059669] transition uppercase tracking-widest flex items-center">Learn More <span class="ml-1 text-sm">→</span></a></div>
             </div>
+            
             <div class="w-1 shrink-0 md:hidden"></div>
         </div>
     </section>
@@ -383,8 +380,8 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div class="lg:col-span-3 space-y-3 text-center sm:text-left">
                 <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block mb-1">Connectivity Without Complexity</span>
-                <h3 class="text-xl sm:text-2xl font-black text-[#0A192F] leading-tight">Your data should move as efficiently as your specimens.</h3>
-                <p class="text-xs text-slate-500 font-medium max-w-sm mx-auto sm:mx-0">We adapt to your operational reality with flexible integration options that fit your systems and workflows.</p>
+                <h3 class="text-xl font-black text-[#0A192F] leading-tight">Your data should move as efficiently as your specimens.</h3>
+                <p class="text-xs text-slate-500 font-medium">We adapt to your operational reality with flexible integration options that fit your systems and workflows.</p>
                 <div class="pt-2">
                     <a href="#" class="inline-flex items-center border border-slate-300 text-[#0A192F] bg-white font-bold text-[10px] px-4 py-2.5 rounded uppercase hover:bg-slate-50 transition shadow-sm tracking-widest">
                         View Integration Options <span class="ml-1 text-sm">→</span>
@@ -392,50 +389,50 @@
                 </div>
             </div>
             
-            <div class="lg:col-span-9 flex sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-6 text-center overflow-x-auto mobile-scroll pb-4 px-6 sm:px-0 snap-x snap-mandatory scroll-smooth mt-6 lg:mt-0">
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+            <div class="lg:col-span-9 flex overflow-x-auto lg:grid lg:grid-cols-7 gap-8 lg:gap-6 text-center mobile-scroll pb-4 px-6 lg:px-0 snap-x snap-mandatory scroll-smooth">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">EHR<br>Connectivity</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">HL7<br>Messaging</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">FHIR<br>APIs</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">PointClickCare<br>Integration</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">Athenahealth<br>Integration</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">Client<br>Portal</span>
                 </div>
-                <div class="flex flex-col items-center group cursor-pointer shrink-0 w-[100px] sm:w-auto snap-center hover-lift">
+                <div class="flex flex-col items-center group cursor-pointer hover-lift shrink-0 w-[100px] lg:w-auto snap-center">
                     <div class="text-[#059669] mb-3 transition-transform group-hover:scale-110">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
                     </div>
                     <span class="font-bold text-[11px] text-[#0A192F] block">Automated<br>Results</span>
                 </div>
-                <div class="w-1 shrink-0 sm:hidden"></div>
+                <div class="w-1 shrink-0 lg:hidden"></div>
             </div>
         </div>
     </section>
@@ -598,5 +595,29 @@
         </div>
     </footer>
 
+    <script>
+        // Smooth Scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle Logic
+        const mobileBtn = document.getElementById('mobileBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileBtn.addEventListener('click', () => {
+            // Tailwind handles the formatting natively via lg: classes; 
+            // Javascript only needs to handle the display toggle!
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+        });
+    </script>
 </body>
 </html>
