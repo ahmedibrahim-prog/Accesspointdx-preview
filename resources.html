@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources & Insights // AccessPoint Dx</title>
+    <title>Resources // AccessPoint Dx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -16,6 +16,7 @@
 </head>
 <body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden">
 
+    <!-- MASTER TOP BAR -->
     <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
         <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
             <div class="flex items-center space-x-6">
@@ -38,6 +39,7 @@
         </div>
     </div>
 
+    <!-- MASTER HEADER -->
     <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between relative">
             <div class="flex items-center space-x-3">
@@ -63,12 +65,12 @@
             </div>
 
             <nav id="navLinks" class="hidden lg:flex flex-col lg:flex-row absolute lg:relative top-24 lg:top-0 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-xl lg:shadow-none py-8 lg:py-0 items-center space-y-6 lg:space-y-0 lg:space-x-8 font-bold text-xs tracking-wide text-slate-700 z-40 border-b lg:border-none border-slate-100">
-                <a href="index.html" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Home</span></a>
-                <a href="#" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Who We Serve</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
+                <a href="index.html" class="hover:text-[#059669] transition">Home</a>
+                <a href="healthcare-providers.html" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Who We Serve</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="integrations.html" class="hover:text-[#059669] transition flex items-center space-x-1"><span>Integrations</span> <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="resources.html" class="text-[#059669] transition flex items-center space-x-1"><span>Resources</span> <svg class="w-3 h-3 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
                 <a href="about-us.html" class="hover:text-[#059669] transition">About Us</a>
-                <a href="contact.html" class="hover:text-[#059669] transition">Contact</a>
+                <a href="#" class="hover:text-[#059669] transition">Contact</a>
                 <a href="#" class="lg:hidden bg-[#059669] text-white px-8 py-3 rounded text-xs font-bold uppercase tracking-wider transition flex items-center space-x-2 mt-4">
                     <span>Client Portal</span>
                 </a>
@@ -86,147 +88,267 @@
         </div>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 pt-12 lg:pt-20 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-6">
-            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Knowledge Base // Expert Insights</span>
-            <h1 class="text-[42px] sm:text-[52px] lg:text-[60px] font-black tracking-tight text-[#0A192F] leading-[1.05]">
-                Knowledge That Drives Better Results.
+    <!-- PERFECTLY UNIFIED STACKED HERO GRID -->
+    <section class="max-w-7xl mx-auto px-6 pt-12 lg:pt-20 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase tracking-[0.15em]">Laboratory Resources // Operational Support</span>
+            <!-- TYPOGRAPHICALLY SCALE OPTIMIZED HEADLINE -->
+            <h1 class="text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tight text-[#0A192F] leading-[1.1]">
+                Order,<br>
+                Collect, and<br>
+                Report With Confidence.
             </h1>
-            <p class="text-base text-slate-600 max-w-lg leading-relaxed font-medium">
-                Expert insights, guides, and practical updates to help your healthcare organization stay informed, efficient, and operationally compliant.
+            <p class="text-base text-slate-500 max-w-xl leading-relaxed font-normal">
+                Access verified collection instructions, testing frameworks, requisition sheets, and strict compliance files engineered to keep your team running smoothly.
             </p>
         </div>
         
-        <div class="relative h-[320px] lg:h-[400px] rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 p-8 flex items-center justify-center">
-            <div class="relative w-full max-w-xs h-48">
-                <div class="absolute inset-0 bg-white border border-slate-300 rounded-lg shadow-md transform translate-x-4 translate-y-4"></div>
-                <div class="absolute inset-0 bg-white border border-slate-300 rounded-lg shadow-lg transform translate-x-2 translate-y-2"></div>
-                <div class="absolute inset-0 bg-white border border-slate-300 rounded-lg shadow-xl p-6 flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <div class="h-3 w-16 bg-[#059669]/20 rounded"></div>
-                        <div class="h-4 w-32 bg-[#0A192F] rounded"></div>
-                        <div class="h-2 w-full bg-slate-200 rounded"></div>
-                        <div class="h-2 w-5/6 bg-slate-200 rounded"></div>
+        <!-- VISUAL BLUEPRINT CONTAINER -->
+        <div class="lg:col-span-6 flex flex-col gap-4">
+            <!-- TOP CARD FRAME: Premium Specimen Collection Logistics Image -->
+            <div class="h-52 sm:h-64 w-full rounded-2xl overflow-hidden shadow-md border border-slate-100 relative bg-slate-900">
+                <img class="w-full h-full object-cover object-center opacity-85" src="https://images.unsplash.com/photo-1576086476234-1103be98f096?auto=format&fit=crop&q=80&w=800" alt="B2B clinical specimen collection tubes and laboratory logistics transport management setup">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/40 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- BOTTOM GRID ROW -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- HIGH-VISIBILITY LOUD DATA METRIC BLOCK -->
+                <div class="bg-[#0A192F] rounded-2xl p-6 text-white flex flex-col justify-center space-y-4 shadow-md border border-slate-800">
+                    <div class="space-y-0.5">
+                        <span class="text-[#059669] font-black text-2xl lg:text-3xl tracking-tight leading-none">48 Hour</span>
+                        <p class="text-xs font-semibold text-slate-300">Statewide guaranteed delivery</p>
                     </div>
-                    <div class="h-6 w-6 rounded-full bg-[#0A192F] self-end flex items-center justify-center text-white text-[10px]">➔</div>
+                    <div class="border-t border-slate-800/60"></div>
+                    <div class="space-y-0.5">
+                        <span class="text-[#059669] font-black text-2xl lg:text-3xl tracking-tight leading-none">24 Hour</span>
+                        <p class="text-xs font-semibold text-slate-300">Turnaround for qualifying accounts</p>
+                    </div>
+                    <div class="border-t border-slate-800/60"></div>
+                    <div class="space-y-0.5">
+                        <span class="text-[#059669] font-black text-2xl lg:text-3xl tracking-tight leading-none">100%</span>
+                        <p class="text-xs font-semibold text-slate-300">Minnesota-based processing</p>
+                    </div>
+                </div>
+
+                <!-- BOTTOM RIGHT CARD: Premium Order, Collect, Report SVG Array -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-3 flex items-center justify-center shadow-md relative min-h-[140px]">
+                    <svg class="w-full h-full max-w-[155px]" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- ORDER -->
+                        <g transform="translate(15, 25)">
+                            <rect x="0" y="0" width="75" height="100" rx="5" fill="#FFFFFF" stroke="#0A192F" stroke-width="1.5"/>
+                            <rect x="8" y="12" width="30" height="6" rx="1.5" fill="#059669" opacity="0.8"/>
+                            <circle cx="12" cy="34" r="3" stroke="#0A192F" stroke-width="1"/>
+                            <rect x="22" y="32" width="45" height="4" rx="1" fill="#E2E8F0"/>
+                            <circle cx="12" cy="48" r="3" stroke="#0A192F" stroke-width="1"/>
+                            <path d="M10 48 l1.5 1.5 l2.5 -3" stroke="#059669" stroke-width="1" fill="none"/>
+                            <rect x="22" y="46" width="35" height="4" rx="1" fill="#0A192F" opacity="0.8"/>
+                            <rect x="8" y="75" width="59" height="14" rx="3" fill="#0A192F" opacity="0.05"/>
+                            <rect x="14" y="80" width="30" height="4" rx="1" fill="#94A3B8"/>
+                        </g>
+                        <!-- COLLECT -->
+                        <g transform="translate(105, 15)">
+                            <rect x="0" y="0" width="100" height="50" rx="5" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="2 2"/>
+                            <rect x="12" y="15" width="22" height="20" rx="2" fill="#FFFFFF" stroke="#64748B" stroke-width="1"/>
+                            <line x1="17" y1="19" x2="17" y2="31" stroke="#0A192F" stroke-width="1.5"/>
+                            <line x1="21" y1="19" x2="21" y2="31" stroke="#0A192F" stroke-width="0.75"/>
+                            <line x1="25" y1="19" x2="25" y2="31" stroke="#0A192F" stroke-width="1.5"/>
+                            <line x1="29" y1="19" x2="29" y2="31" stroke="#0A192F" stroke-width="0.75"/>
+                            <path d="M 45 25 L 88 25" stroke="#059669" stroke-width="1.5" stroke-dasharray="3 1.5"/>
+                            <circle cx="88" cy="25" r="3" fill="#059669"/>
+                        </g>
+                        <!-- REPORT -->
+                        <g transform="translate(105, 80)">
+                            <rect x="0" y="0" width="100" height="95" rx="6" fill="#0A192F"/>
+                            <rect x="10" y="12" width="45" height="6" rx="1.5" fill="#FFFFFF" opacity="0.2"/>
+                            <path d="M 15 70 L 35 55 L 55 62 L 85 35" stroke="#059669" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="85" cy="35" r="3.5" fill="#059669"/>
+                            <circle cx="85" cy="35" r="7" stroke="#059669" stroke-width="1" opacity="0.5"/>
+                            <circle cx="82" cy="72" r="9" fill="#059669"/>
+                            <path d="M 78 72 l2.5 2.5 l4.5 -5" stroke="#FFFFFF" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-slate-50 py-16 border-y border-slate-200">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl font-black tracking-tight text-[#0A192F]">Resource Categories</h2>
+    <!-- SUB-HERO CONFIDENCE TRUST STRIP -->
+    <div class="max-w-7xl mx-auto px-6 pb-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 py-4 px-6 bg-slate-50 border border-slate-100 rounded-xl text-[11px] font-black text-slate-700 tracking-wide uppercase">
+            <span class="flex items-center space-x-2"><svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>✓ CLIA Certified</span></span>
+            <span class="flex items-center space-x-2"><svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>✓ HIPAA Compliant</span></span>
+            <span class="flex items-center space-x-2"><svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>✓ Direct Laboratory Support</span></span>
+            <span class="flex items-center space-x-2"><svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg><span>✓ Minnesota-Based Processing</span></span>
+        </div>
+    </div>
+
+    <!-- PROMINENCE CENTERPIECE SEARCH GATEWAY -->
+    <section class="max-w-7xl mx-auto px-6 pb-12">
+        <div class="bg-[#0A192F] rounded-2xl p-6 sm:p-10 border border-slate-800 shadow-xl space-y-6">
+            <div class="space-y-1.5 text-center sm:text-left">
+                <h3 class="font-black text-lg tracking-tight text-white">Instant Document Gateway</h3>
+                <p class="text-xs text-slate-400 font-medium">Think Google for clinical laboratory operations. Locate collection indices or paperwork immediately.</p>
             </div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4 hover-lift flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-lg bg-[#059669]/10 flex items-center justify-center text-[#059669]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
-                        </div>
-                        <h3 class="font-black text-sm text-[#0A192F]">Laboratory Insights</h3>
-                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed">Industry trends, clinical test advancements, and operational best practices.</p>
-                    </div>
-                    <a href="#" class="text-[10px] font-bold text-[#059669] uppercase tracking-wider flex items-center block pt-2">Explore <span class="ml-1 text-xs">→</span></a>
+            <div class="w-full relative">
+                <input type="text" id="resourceSearch" placeholder="Find a Test, Form, or Collection Guide..." class="w-full bg-white border border-transparent focus:border-[#059669] focus:ring-2 focus:ring-[#059669]/20 rounded-xl px-5 py-4 text-sm font-semibold text-[#0A192F] outline-none transition placeholder-slate-400 shadow-md">
+                <div class="absolute right-4 top-4.5 text-slate-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4 hover-lift flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-lg bg-[#0A192F]/10 flex items-center justify-center text-[#0A192F]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                        </div>
-                        <h3 class="font-black text-sm text-[#0A192F]">Healthcare Operations</h3>
-                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed">Improve diagnostics tracking workflows, cost structures, and clinical efficiency metrics.</p>
-                    </div>
-                    <a href="#" class="text-[10px] font-bold text-[#059669] uppercase tracking-wider flex items-center block pt-2">Explore <span class="ml-1 text-xs">→</span></a>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4 hover-lift flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-lg bg-[#059669]/10 flex items-center justify-center text-[#059669]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
-                        </div>
-                        <h3 class="font-black text-sm text-[#0A192F]">Long-Term Care Resources</h3>
-                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed">Specimen routing optimization guides built specifically for residential communities.</p>
-                    </div>
-                    <a href="#" class="text-[10px] font-bold text-[#059669] uppercase tracking-wider flex items-center block pt-2">Explore <span class="ml-1 text-xs">→</span></a>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-4 hover-lift flex flex-col justify-between">
-                    <div class="space-y-3">
-                        <div class="w-10 h-10 rounded-lg bg-[#0A192F]/10 flex items-center justify-center text-[#0A192F]">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                        </div>
-                        <h3 class="font-black text-sm text-[#0A192F]">Occupational Health</h3>
-                        <p class="text-[11px] text-slate-500 font-medium leading-relaxed">Workforce testing protocols, corporate compliance regulatory updates, and safety insights.</p>
-                    </div>
-                    <a href="#" class="text-[10px] font-bold text-[#059669] uppercase tracking-wider flex items-center block pt-2">Explore <span class="ml-1 text-xs">→</span></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-        <div class="lg:col-span-7 space-y-10">
-            <div class="space-y-3">
-                <div class="flex items-center space-x-2 text-[#059669]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    <h3 class="font-black text-base">Regulatory Updates</h3>
-                </div>
-                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Stay current on state requirements.</p>
-                <p class="text-sm text-slate-600 font-medium leading-relaxed">A breakdown of recent billing codes, laboratory reporting standards, and compliance structures across regional frameworks.</p>
-                <a href="#" class="text-xs font-bold text-[#059669] uppercase tracking-wider block">Read Article →</a>
             </div>
             
-            <div class="w-full h-px bg-slate-200"></div>
-
-            <div class="space-y-3">
-                <div class="flex items-center space-x-2 text-[#0A192F]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9 0h7.5"/></svg>
-                    <h3 class="font-black text-base">Integration Guides</h3>
-                </div>
-                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Technical resources and how-tos.</p>
-                <p class="text-sm text-slate-600 font-medium leading-relaxed">Step-by-step developer references mapping out automated bi-directional HL7 data flows and FHIR pipeline implementations.</p>
-                <a href="#" class="text-xs font-bold text-[#059669] uppercase tracking-wider block">Download Manual →</a>
+            <!-- QUICK-SEARCH CHIPS ROW -->
+            <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-400">
+                <span class="mr-1 text-slate-500 uppercase text-[10px] tracking-wider">Popular Terms:</span>
+                <button onclick="applyQuickSearch('CBC')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">CBC</button>
+                <button onclick="applyQuickSearch('CMP')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">CMP</button>
+                <button onclick="applyQuickSearch('Respiratory')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">Respiratory Panel</button>
+                <button onclick="applyQuickSearch('Urine Drug')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">Urine Drug Screen</button>
+                <button onclick="applyQuickSearch('CLIA')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">CLIA Certificate</button>
+                <button onclick="applyQuickSearch('Supply Request')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">Supply Request Form</button>
+                <button onclick="applyQuickSearch('Chain of Custody')" class="bg-slate-800 border border-slate-700 hover:border-[#059669] hover:text-white px-3 py-1.5 rounded-lg transition text-slate-300">Chain of Custody Form</button>
             </div>
         </div>
+    </section>
 
-        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm space-y-6">
-            <div class="flex items-center space-x-2 text-[#0A192F] pb-2 border-b border-slate-100">
-                <svg class="w-5 h-5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
-                <h3 class="font-black text-sm tracking-tight">White Papers & Downloads</h3>
-            </div>
+    <!-- ACTIONABLE UTILITY RESOURCE CARDS -->
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="resourcesGrid">
             
-            <div class="space-y-4 text-xs font-medium text-slate-700">
-                <div class="p-3 bg-slate-50 rounded border border-slate-200 flex justify-between items-center hover:bg-white transition group cursor-pointer">
-                    <span class="font-bold group-hover:text-[#059669] transition">2026 Turnaround Time Efficiency Audit</span>
-                    <span class="text-[10px] text-slate-400 font-bold uppercase shrink-0 ml-4">PDF [1.2MB]</span>
+            <!-- Card 1: Test Directory -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover-lift text-card" data-name="test directory lookup assays turnaround times cbc cmp respiratory panel stability profiles cpt codes requirements">
+                <div class="space-y-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#059669]/10 text-[#059669] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <div class="space-y-0.5">
+                        <h4 class="font-black text-base text-[#0A192F]">Test Directory</h4>
+                        <p class="text-[9px] text-[#059669] font-black tracking-wider uppercase">Assays &amp; CPT Codes</p>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium leading-relaxed">Instantly reference comprehensive laboratory assay parameters, billing indices, and verified specimen stability configurations.</p>
                 </div>
-                <div class="p-3 bg-slate-50 rounded border border-slate-200 flex justify-between items-center hover:bg-white transition group cursor-pointer">
-                    <span class="font-bold group-hover:text-[#059669] transition">PointClickCare Onboarding & Pipeline Setup</span>
-                    <span class="text-[10px] text-slate-400 font-bold uppercase shrink-0 ml-4">PDF [840KB]</span>
+                <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs font-bold text-[#059669] uppercase tracking-wide">
+                    <span>Launch Lookup</span> ➔
                 </div>
-                <div class="p-3 bg-slate-50 rounded border border-slate-200 flex justify-between items-center hover:bg-white transition group cursor-pointer">
-                    <span class="font-bold group-hover:text-[#059669] transition">Forensic Chain-of-Custody Testing Guide</span>
-                    <span class="text-[10px] text-slate-400 font-bold uppercase shrink-0 ml-4">PDF [2.1MB]</span>
+            </div>
+
+            <!-- Card 2: Collection Guides -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover-lift text-card" data-name="collection guides tube requirements storage instructions shipping guidelines draw protocols stability rules centrifuge">
+                <div class="space-y-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#0A192F]/10 text-[#0A192F] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <div class="space-y-0.5">
+                        <h4 class="font-black text-base text-[#0A192F]">Collection Guides</h4>
+                        <p class="text-[9px] text-[#059669] font-black tracking-wider uppercase">Tube &amp; Draw Specs</p>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium leading-relaxed">Ensure sample protection using our step-by-step draw order indices, container requirements, centrifuge speeds, and transport conditions.</p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs font-bold text-[#059669] uppercase tracking-wide">
+                    <span>Download PDF</span> ➔
+                </div>
+            </div>
+
+            <!-- Card 3: Certifications -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover-lift text-card" data-name="certifications clia certificate documentation licensing information cap credentials verification pack portfolio compliance">
+                <div class="space-y-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#059669]/10 text-[#059669] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div class="space-y-0.5">
+                        <h4 class="font-black text-base text-[#0A192F]">Certifications</h4>
+                        <p class="text-[9px] text-[#059669] font-black tracking-wider uppercase">CLIA &amp; Quality Licensure</p>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium leading-relaxed">Pull current federal high-complexity CLIA licensing validations, quality control policies, and credentials folders.</p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs font-bold text-[#059669] uppercase tracking-wide">
+                    <span>View Licensure</span> ➔
+                </div>
+            </div>
+
+            <!-- Card 4: Forms & Requisitions -->
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between hover-lift text-card" data-name="forms requisitions supply requests supply request form patient forms chain of custody paperwork administrative document ordering urine drug">
+                <div class="space-y-3">
+                    <div class="w-9 h-9 rounded-lg bg-[#0A192F]/10 text-[#0A192F] flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 11.518 1.411l-.041-.02a.75.75 0 01-.518-1.411z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6a.75.75 0 001.5 0V6z"/></svg>
+                    </div>
+                    <div class="space-y-0.5">
+                        <h4 class="font-black text-base text-[#0A192F]">Forms &amp; Requisitions</h4>
+                        <p class="text-[9px] text-[#059669] font-black tracking-wider uppercase">Ordering &amp; Supply Sheets</p>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium leading-relaxed">Instantly obtain diagnostic requisition links, clinical restocking logs, patient portal waivers, and chain-of-custody charts.</p>
+                </div>
+                <div class="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs font-bold text-[#059669] uppercase tracking-wide">
+                    <span>Access Repository</span> ➔
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COMPLIANCE QUALITY PACKETS + DIRECT HUMAN ACCESSIBILITY SUPPORT LINK -->
+    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Column: Compliance & Quality -->
+        <div class="lg:col-span-6 space-y-6">
+            <h3 class="text-xl font-black tracking-tight text-[#0A192F]">Compliance & Quality</h3>
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <ul class="space-y-4 text-xs font-semibold text-slate-700">
+                    <li class="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <span class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                            <span>CLIA High-Complexity Validation Certificate</span>
+                        </span>
+                        <a href="#" class="text-[#059669] font-bold uppercase tracking-wider text-[10px] hover:underline">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <span class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                            <span>Minnesota State Facility Laboratory Licensure</span>
+                        </span>
+                        <a href="#" class="text-[#059669] font-bold uppercase tracking-wider text-[10px] hover:underline">Download</a>
+                    </li>
+                    <li class="flex items-center justify-between pb-3 border-b border-slate-100">
+                        <span class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                            <span>HIPAA Data Compliance Security Document</span>
+                        </span>
+                        <a href="#" class="text-[#059669] font-bold uppercase tracking-wider text-[10px] hover:underline">View File</a>
+                    </li>
+                    <li class="flex items-center justify-between">
+                        <span class="flex items-center space-x-3">
+                            <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                            <span>Complete Regulatory Onboarding Credentials Packet</span>
+                        </span>
+                        <a href="#" class="bg-[#0A192F] text-white px-3 py-1 rounded font-bold uppercase tracking-wider text-[9px] hover:bg-slate-800 transition">Get All</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column: Real-World Personal Accessibility Card -->
+        <div class="lg:col-span-6 space-y-6">
+            <h3 class="text-xl font-black tracking-tight text-[#0A192F]">Need help finding a file?</h3>
+            <div class="bg-[#0A192F] text-white rounded-2xl p-6 shadow-md border border-slate-800 flex flex-col justify-between min-h-[195px]">
+                <p class="text-xs text-slate-300 font-medium leading-relaxed max-w-md">
+                    Most laboratories hide behind convoluted portals and ticket queues. Speak directly with our laboratory administration support team in Minneapolis for prompt assistance with custom requisitions or orders.
+                </p>
+                <div class="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-bold text-slate-300">
+                    <span class="flex items-center space-x-2">
+                        <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25a2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.864-1.051l-3.215-.536c-.538-.09-1.076.22-1.256.733l-.16.455a7.48 7.48 0 01-5.91-5.91l.455-.16c.513-.18.823-.718.733-1.256l-.536-3.215C11.716 2.601 11.266 2.25 10.75 2.25H4.5a2.25 2.25 0 00-2.25 2.25v2.25z"/></svg>
+                        <span class="text-white">612-345-0160</span>
+                    </span>
+                    <span class="flex items-center space-x-2">
+                        <svg class="w-4 h-4 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                        <span class="text-slate-400">resources@accesspointdx.com</span>
+                    </span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-[#0A192F] py-14">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div class="text-center lg:text-left space-y-2">
-                <h2 class="text-2xl sm:text-3xl font-black text-white">Stay Informed. Stay Ahead.</h2>
-                <p class="text-sm text-slate-300 font-medium">Explore our full library of medical articles, operational manuals, and software updates.</p>
-            </div>
-            <div class="shrink-0">
-                <button class="bg-[#059669] hover:bg-emerald-700 text-white px-8 py-4 rounded text-xs font-bold tracking-wider transition shadow-lg uppercase flex items-center space-x-2">
-                    <span>View All Resources</span> <span class="text-xs ml-1">➔</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
+    <!-- MASTER FOOTER -->
     <footer class="bg-[#0A192F] text-white pt-16 pb-8 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-6 space-y-12">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 text-[11px]">
@@ -273,10 +395,10 @@
                 <div class="space-y-3">
                     <h4 class="font-black tracking-widest text-white uppercase text-[10px]">Resources</h4>
                     <ul class="space-y-2 text-slate-400 font-medium">
-                        <li><a href="#" class="hover:text-white transition">Test Directory</a></li>
-                        <li><a href="#" class="hover:text-white transition">Collection Guides</a></li>
-                        <li><a href="#" class="hover:text-white transition">Forms</a></li>
-                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="text-white font-bold pointer-events-none">Test Directory</a></li>
+                        <li><a href="#" class="text-white font-bold pointer-events-none">Collection Guides</a></li>
+                        <li><a href="#" class="text-white font-bold pointer-events-none">Forms</a></li>
+                        <li><a href="#" class="text-white font-bold pointer-events-none">FAQs</a></li>
                     </ul>
                 </div>
                 <div class="space-y-3">
@@ -285,7 +407,7 @@
                         <li><a href="about-us.html" class="hover:text-white transition">About Us</a></li>
                         <li><a href="#" class="hover:text-white transition">Careers</a></li>
                         <li><a href="#" class="hover:text-white transition">News & Updates</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-span-2 md:col-span-4 lg:col-span-1 space-y-3 lg:border-t-0 pt-6 lg:pt-0">
@@ -317,22 +439,39 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE SEARCH ENGINE + QUICK ACTIONS FILTER -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if(this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
         const mobileBtn = document.getElementById('mobileBtn');
         const navLinks = document.getElementById('navLinks');
         mobileBtn.addEventListener('click', () => {
             navLinks.classList.toggle('hidden');
             navLinks.classList.toggle('flex');
         });
+
+        const searchInput = document.getElementById('resourceSearch');
+        const resourceCards = document.querySelectorAll('.text-card');
+
+        function runSearchFilter(searchTerm) {
+            resourceCards.forEach(card => {
+                const dataset = card.getAttribute('data-name');
+                if (dataset.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            runSearchFilter(query);
+        });
+
+        function applyQuickSearch(term) {
+            searchInput.value = term;
+            runSearchFilter(term.toLowerCase().trim());
+            document.getElementById('resourcesGrid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     </script>
 </body>
 </html>
