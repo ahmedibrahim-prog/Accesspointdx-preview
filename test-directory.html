@@ -10,7 +10,7 @@
         body { font-family: 'Inter', sans-serif; }  
         .skip-link:focus { transform: translateY(0); }
         
-        /* TRANSITION LAYERS */
+        /* TRANSITION AND STATE LIFECYCLES */
         .page-entry-anim {
             animation: appReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -68,7 +68,7 @@
             </div>  
         </a>  
 
-        <!-- DESKTOP NAV -->
+        <!-- DESKTOP AUTOMATED NAVIGATION -->
         <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
             <a href="index.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Home</a>
             <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Test Directory</a>  
@@ -125,7 +125,7 @@
         </div>
     </nav>
 
-    <!-- HISTORICAL USER RUNTIME MATRIX (RECENTLY VISITED LIST) -->
+    <!-- HISTORICAL USER RUNTIME MATRIX -->
     <section id="historicalTelemetryBlock" class="hidden max-w-7xl mx-auto px-6 pt-3" aria-label="Recently Accessed Workspace Links">
         <div class="bg-slate-100/80 border border-slate-200 rounded-xl px-4 py-2 flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-500">
             <span class="uppercase tracking-wider text-slate-400 font-black">Recently Visited:</span>
@@ -133,26 +133,15 @@
         </div>
     </section>
 
-    <!-- SESSION RETAINED ACTIVE LINK BAR -->
-    <div id="telemetryRecentBar" class="hidden max-w-7xl mx-auto px-6 pt-3">
-        <div class="bg-emerald-50/60 border border-[#059669]/20 rounded-xl px-4 py-2 flex items-center justify-between text-[10px] font-bold text-emerald-800">
-            <div class="flex items-center space-x-2">
-                <span>🔄</span>
-                <span>Continue working where you left off last time:</span>
-            </div>
-            <a id="telemetryRecentLink" href="#" class="underline font-black uppercase tracking-wider text-[#059669] hover:text-[#0A192F] transition">Resume Session ➔</a>
-        </div>
-    </div>
-
     <!-- MAIN SEARCH INTERFACE AND META HEADERS -->
     <section class="max-w-7xl mx-auto px-6 pt-6 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-6" aria-labelledby="directory-heading">
         <div class="max-w-xl space-y-1.5">
             <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Assay Database & Clinical Compendium</span>
             <h1 id="directory-heading" class="text-[28px] sm:text-[38px] font-black tracking-tight text-[#0A192F] uppercase leading-[0.95]">
-                Test Directory Explorer
+                Test Directory Matrix
             </h1>
             <p class="text-xs font-bold text-slate-400 leading-relaxed">
-                Query clinical methodologies, CPT codes, and specimen parameters. Expand target fields to review testing specifications down to exact clinical reference limits.
+                Query clinical subspecialties, CPT codes, and collection parameters. Use the cross-reference filters to narrow down by specialty or clinical objective.
             </p>
         </div>
         
@@ -163,7 +152,7 @@
         </div>  
     </section>
 
-    <!-- RELATIONAL CROSS-REFERENCE DESK -->
+    <!-- LEVEL 2: PREMIUM CROSS-REFERENCE DESK -->
     <section class="max-w-7xl mx-auto px-6 py-2" aria-label="Relational Directory Filters">
         <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-[10px] font-black uppercase tracking-wider">
@@ -179,7 +168,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-[10px] font-black uppercase tracking-wider border-t border-slate-100 pt-3">
                 <span class="text-slate-400 w-28 shrink-0">By Clinical Goal:</span>
                 <div class="flex flex-wrap gap-1">
-                    <button onclick="injectSearchTerm('Metabolic')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Metabolic Profile</button>
+                    <button onclick="injectSearchTerm('Metabolic')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Metabolic Health</button>
                     <button onclick="injectSearchTerm('Hormone')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Hormone Balance</button>
                     <button onclick="injectSearchTerm('Inflammation')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Inflammatory Biomarkers</button>
                     <button onclick="injectSearchTerm('Aging')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Healthy Aging</button>
@@ -197,247 +186,339 @@
         </div>
     </section>
 
-    <!-- SYMMETRICAL 7-TIER INTERACTIVE EXPLORER CORE -->
-    <section class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="ecosystemGrid" aria-label="Assay Panels">
+    <!-- LEVEL 1: HIGH-COMPLEXITY ACCORDION CATEGORY SHIELDS -->
+    <section class="max-w-7xl mx-auto px-6 py-4 space-y-4" id="ecosystemGrid" aria-label="Assay Master Directory">
         
-        <!-- TIER 1: CLINICAL DIAGNOSTICS -->
-        <div data-search="clinical diagnostics chemistry hematology microbiology core cbc cmp lipid panel 80053 85025 80061 routine processing" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">🧪</span>
+        <!-- BLOCK 1: CLINICAL DIAGNOSTICS -->
+        <details data-search="clinical diagnostics chemistry hematology coagulation assays core menu cbc cmp lipid pt inr aptt panels routine processing 80053 85025 80061 85610 148 assays" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20" open>
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🧪</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Clinical Diagnostics</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Automated Chemistry • Hematology • Coagulation Core</p>
                     </div>
-                    <span class="text-[9px] font-black bg-slate-100 text-slate-600 px-2 py-0.5 rounded-md uppercase">Core Menu</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">High-volume automated reference lines for metabolic baseline evaluation and cell counts.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Comprehensive Metabolic Panel (CMP)</span> <span class="font-mono text-[9px] text-[#059669]">80053 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Automated Spectrophotometry / Ion-Selective Electrode</div>
-                            <div><strong class="text-slate-700">Container:</strong> Serum Separator Tube (SST Gold Top)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Refrigerated: 7 Days // Ambient: 48 Hours</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 24 Hours</span>
-                                <button onclick="copyToClipboard('80053', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">148 assays available</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <!-- LEVEL 2: SUBSPECIALTY GROUPS -->
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Chemistry</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <!-- LEVEL 3 & 4 NESTED TESTING TARGET -->
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Comprehensive Metabolic Panel (CMP)</span> <span class="font-mono text-[9px] text-[#059669]">80053 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Automated Spectrophotometry / Ion-Selective Electrode</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Serum Separator Tube (SST Gold Top) - Spin 10m at 1300g</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated: 7 Days // Ambient: 48 Hours</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('80053', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Complete Blood Count (CBC) with Diff</span> <span class="font-mono text-[9px] text-[#059669]">85025 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Automated Flow Cytometry / Hydrodynamic Focusing</div>
-                            <div><strong class="text-slate-700">Container:</strong> Whole Blood (EDTA Lavender Top) - Do Not Spin</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Ambient: 24 Hours // Refrigerated: 48 Hours</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 24 Hours</span>
-                                <button onclick="copyToClipboard('85025', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                        </details>
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Lipid Profile Matrix</span> <span class="font-mono text-[9px] text-[#059669]">80061 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Enzymatic Colorimetric Assay Array</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Serum Separator Tube (SST Gold Top) - 12hr fasting required</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated: 7 Days // Frozen: 30 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('80061', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Hematology & Coagulation</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Complete Blood Count (CBC) with Differential</span> <span class="font-mono text-[9px] text-[#059669]">85025 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Automated Laser Flow Cytometry / Electronic Impedance</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Whole Blood (EDTA Lavender Top) - Invert 8 times gently, do NOT spin</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Ambient: 24 Hours // Refrigerated: 48 Hours</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('85025', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
+                            </div>
+                        </details>
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Coagulation Prothrombin Time (PT/INR)</span> <span class="font-mono text-[9px] text-[#059669]">85610 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Mechanical Optical Clot Detection System</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Plasma (Sodium Citrate Light Blue Top) - Critical fill parameter (9:1 blood to anticoagulant ratio)</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Unspun Whole Blood Ambient: 24 Hours // Spun Plasma Frozen: 14 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('85610', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-slate-400 uppercase tracking-widest">Ambient / Refrigerated Transportation</div>
-        </div>
+        </details>
 
-        <!-- TIER 2: INFECTIOUS DISEASE & MOLECULAR DIAGNOSTICS -->
-        <div data-search="infectious disease molecular diagnostics respiratory pathogens sti panels gi panels hpv hepatitis pcr assays naat syndromic 87635 87801 87624 multipathogen" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none"> 🦠</span>
+        <!-- BLOCK 2: INFECTIOUS DISEASE & MOLECULAR DIAGNOSTICS -->
+        <details data-search="infectious disease molecular diagnostics respiratory pathogens sti panels gi panels hpv hepatitis pcr assays naat syndromic multiplex viral load 87635 87801 42 assays" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🦠</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Infectious Disease & Molecular</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Multiplex PCR Syndromic Arrays & Quantitative Viral Loads</p>
                     </div>
-                    <span class="text-[9px] font-black bg-red-50 text-red-700 px-2 py-0.5 rounded-md uppercase">Pathogen PCR</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">Targeted nucleic acid amplification testing (NAAT) arrays providing real-time multiplex evaluation.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Multiplex Respiratory Pathogen Panel</span> <span class="font-mono text-[9px] text-[#059669]">87635 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Multiplex Real-Time Polymerase Chain Reaction (PCR)</div>
-                            <div><strong class="text-slate-700">Container:</strong> Synthetic Nasopharyngeal Swab in Viral Transport Medium (VTM)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Refrigerated: 72 Hours // Frozen: 30 Days</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 24-48 Hours</span>
-                                <button onclick="copyToClipboard('87635', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-red-50 text-red-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">42 assays available</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Respiratory & Gastrointestinal</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Multiplex Respiratory Pathogen PCR Panel</span> <span class="font-mono text-[9px] text-[#059669]">87635 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Multiplex Real-Time Polymerase Chain Reaction (PCR)</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Synthetic Nasopharyngeal Swab in Viral Transport Medium (VTM) - Plastic shaft required</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated (2-8°C): 72 Hours // Frozen: 30 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('87635', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-red-600 uppercase tracking-widest">Requires Synthetic Tip Shaft Materials</div>
-        </div>
+        </details>
 
-        <!-- TIER 3: TOXICOLOGY & ADHERENCE MONITORING -->
-        <div data-search="toxicology monitoring medication compliance pain management substance monitoring occupational drug screening urine lc-ms/ms mass spectrometry definitive 80307 g0482" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">💊</span>
+        <!-- BLOCK 3: TOXICOLOGY & ADHERENCE MONITORING -->
+        <details data-search="toxicology monitoring medication compliance pain management substance monitoring occupational drug screening urine lc-ms/ms mass spectrometry definitive quantitative screen 80307 1200 analytes" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">💊</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Toxicology & Monitoring</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Definitive LC-MS/MS Quantitative Adherence Networks</p>
                     </div>
-                    <span class="text-[9px] font-black bg-amber-50 text-amber-700 px-2 py-0.5 rounded-md uppercase">LC-MS/MS Tier</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">Definitive quantitative analytics via liquid chromatography tandem mass spectrometry.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Medication Adherence Panel</span> <span class="font-mono text-[9px] text-[#059669]">80307 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Liquid Chromatography Tandem Mass Spectrometry (LC-MS/MS)</div>
-                            <div><strong class="text-slate-700">Container:</strong> Clean Urine Specimen Collection Cup (No Preservatives)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Ambient: 7 Days // Refrigerated: 14 Days</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 48 Hours</span>
-                                <button onclick="copyToClipboard('80307', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-amber-50 text-amber-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">1,200 analytes monitored</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Compliance & Confirmation</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Medication Compliance Confirmation Panel</span> <span class="font-mono text-[9px] text-[#059669]">80307 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Liquid Chromatography Tandem Mass Spectrometry (LC-MS/MS)</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Random Urine Specimen Collection Cup (Minimum 5.0 mL)</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Ambient: 7 Days // Refrigerated: 14 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 48 Hours</span>
+                                    <button onclick="copyToClipboard('80307', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-amber-600 uppercase tracking-widest">Chain of Custody Protocol Ready</div>
-        </div>
+        </details>
 
-        <!-- TIER 4: GENETICS & PRECISION MEDICINE -->
-        <div data-search="genetics precision medicine pharmacogenomics pgx carrier screening hereditary cancer snp genotyping sequencing mutations dna molecular next-gen ngs 81401 81432" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">🧬</span>
+        <!-- BLOCK 4: GENETICS & PRECISION MEDICINE -->
+        <details data-search="genetics precision medicine pharmacogenomics pgx carrier screening hereditary cancer snp genotyping sequencing ngs next-gen targeted profiles 81401 25 panels" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🧬</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Genetics & Precision Medicine</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">High-Complexity Variant Genotyping & Hereditary Screens</p>
                     </div>
-                    <span class="text-[9px] font-black bg-purple-50 text-purple-700 px-2 py-0.5 rounded-md uppercase">Esoteric NGS</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">High-complexity variant analysis and mutation tracking for targeted personalized therapeutic response mapping.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Pharmacogenomic (PGx) Therapy Panel</span> <span class="font-mono text-[9px] text-[#059669]">81401 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Next-Generation Sequencing (NGS) / Targeted Variant Call</div>
-                            <div><strong class="text-slate-700">Container:</strong> Whole Blood (EDTA Lavender Top) OR Buccal Swab Kit</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Ambient: 8 Days (Buccal) // Refrigerated: 6 Days (Blood)</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 5-7 Business Days</span>
-                                <button onclick="copyToClipboard('81401', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-purple-50 text-purple-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">25 targeted panels</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Pharmacogenomics</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Pharmacogenomic (PGx) Therapy Panel</span> <span class="font-mono text-[9px] text-[#059669]">81401 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Next-Generation Sequencing (NGS) with Targeted Variant Interrogation</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Whole Blood (EDTA Lavender Top) OR Sterile Buccal Swab Kit</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated Blood: 6 Days // Ambient Swab: 8 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 5-7 Days</span>
+                                    <button onclick="copyToClipboard('81401', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-purple-600 uppercase tracking-widest">Requires Attending Physician Sign-Off</div>
-        </div>
+        </details>
 
-        <!-- TIER 5: ALLERGY & IMMUNOLOGY (RESTORED SYMMETRY) -->
-        <div data-search="allergy immunology environmental panels food sensitivity evaluation autoimmune screening inflammatory biomarkers ige immunoassay RAST 86003 86225 antinuclear antibodies ana crp rheumatoid" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">🌸</span>
+        <!-- BLOCK 5: ALLERGY & IMMUNOLOGY -->
+        <details data-search="allergy immunology environmental panels food sensitivity evaluation autoimmune screening inflammatory biomarkers ige feia antibody antinuclear ana 86003" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🌸</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Allergy & Immunology</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Quantitative IgE Specific Responses & Autoimmune Cascades</p>
                     </div>
-                    <span class="text-[9px] font-black bg-pink-50 text-pink-700 px-2 py-0.5 rounded-md uppercase">Antibody Core</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">Quantitative IgE immunoassay panels and antinuclear antibody cascades to detect hypersensitivities and systemic autoimmune activity.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Regional Environmental Allergy Panel</span> <span class="font-mono text-[9px] text-[#059669]">86003 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Quantitative Chemiluminescent Immunoassay (FEIA)</div>
-                            <div><strong class="text-slate-700">Container:</strong> Serum Separator Tube (SST Gold Top)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Refrigerated: 7 Days // Frozen: 30 Days</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 48 Hours</span>
-                                <button onclick="copyToClipboard('86003', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-pink-50 text-pink-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">84 targets profiled</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Immunoassay IgE Response</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Regional Environmental Allergy Panel</span> <span class="font-mono text-[9px] text-[#059669]">86003 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Enzyme-Linked Fluorescence Immunoassay (FEIA)</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Serum Separator Tube (SST Gold Top) - Spin down within 2 hours</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated: 7 Days // Frozen: 30 Days</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 48 Hours</span>
+                                    <button onclick="copyToClipboard('86003', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-pink-600 uppercase tracking-widest">Covers Specific IgE Allergen Inclusions</div>
-        </div>
+        </details>
 
-        <!-- TIER 6: METABOLIC & PREVENTIVE HEALTH -->
-        <div data-search="metabolic preventive health fasting insulin hba1c d3 b12 apob hs-crp healthy aging inflammatory biomarkers cardiovascular risk profile longevity preventive biomarker profiles nutritional assessment risk profile optimization" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">🌿</span>
+        <!-- BLOCK 6: METABOLIC & PREVENTIVE HEALTH -->
+        <details data-search="metabolic preventive health profile insulin hba1c nutritional assessment d3 b12 cardiovascular risk biomarkers apob hs-crp healthy aging inflammatory longevity" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🌿</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Metabolic & Preventive Health</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Biomarker Profiles for Advanced Proactive Clinical Evaluation</p>
                     </div>
-                    <span class="text-[9px] font-black bg-emerald-50 text-[#059669] px-2 py-0.5 rounded-md uppercase">Optimization</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">Provider-directed biomarkers designed specifically for proactive metabolic profiling, nutritional assessment, and healthy aging monitoring.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Metabolic Health Profile (Insulin/HbA1c)</span> <span class="font-mono text-[9px] text-[#059669]">83525 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Chemiluminescent Immunoassay / Liquid Chromatography</div>
-                            <div><strong class="text-slate-700">Container:</strong> Serum (SST Gold Top) AND Whole Blood (EDTA Lavender)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Refrigerated: 5 Days // Ambient: 24 Hours</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 24 Hours</span>
-                                <button onclick="copyToClipboard('83525', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-emerald-50 text-[#059669] px-2.5 py-1 rounded-md uppercase whitespace-nowrap">Optimization Core</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Preventive Biomarkers</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Metabolic Health Profile (Fasting Insulin / HbA1c)</span> <span class="font-mono text-[9px] text-[#059669]">83525 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Chemiluminescent Immunoassay / Solid-Phase Immunoturbidimetry</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Serum SST Gold AND Whole Blood EDTA Lavender Tube - 12hr fast required</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Refrigerated: 5 Days // Ambient: 24 Hours</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24 Hours</span>
+                                    <button onclick="copyToClipboard('83525', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-[#059669] uppercase tracking-widest">Requires Strict 12-Hour Fasting Parameter</div>
-        </div>
+        </details>
 
-        <!-- TIER 7: EXECUTIVE HEALTH ASSESSMENT SUITE -->
-        <div data-search="executive health programs assessment suite longitudinal biomarkers baseline evaluation health check physical validation panels profiles custom enterprise concierge multi biomarker evaluation" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5">
-            <div class="space-y-4 w-full">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-sm select-none">🏢</span>
+        <!-- BLOCK 7: EXECUTIVE HEALTH ASSESSMENT SUITE -->
+        <details data-search="executive health programs assessment suite longitudinal biomarkers baseline evaluation physical validation panels corporate wellness apdx-e01" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
+            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
+                <div class="flex items-center space-x-3">
+                    <span class="text-lg select-none">🏢</span>
+                    <div>
                         <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Executive Health Assessment Suite</h2>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Comprehensive Multi-Biomarker Suites Engineered for Longitudinal Evaluation</p>
                     </div>
-                    <span class="text-[9px] font-black bg-slate-900 text-white px-2 py-0.5 rounded-md uppercase">Premium Suite</span>
                 </div>
-                <p class="text-[11px] text-slate-400 font-semibold leading-normal">High-end multi-biomarker matrices designed for comprehensive physical evaluations and longitudinal health tracking.</p>
-                <div class="space-y-2 w-full pt-1 text-[11px] font-bold text-slate-700">
-                    <details class="group border border-slate-100 rounded-xl bg-slate-50/50 overflow-hidden">
-                        <summary class="w-full px-3 py-2 cursor-pointer flex justify-between items-center select-none list-none focus:outline-none">
-                            <span>Executive Baseline Assessment Suite (Tier I)</span> <span class="font-mono text-[9px] text-[#059669]">APDX-E01 ➔</span>
-                        </summary>
-                        <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1">
-                            <div><strong class="text-slate-700">Methodology:</strong> Multi-Instrument Panel Arrays (CMP, CBC, Lipids, Thyroid, hsCRP)</div>
-                            <div><strong class="text-slate-700">Container:</strong> Multi-Vial Draw Box (Gold SST, Lavender EDTA, Na-Citrate Blue)</div>
-                            <div><strong class="text-slate-700">Stability:</strong> Keep Cold // Courier Route Protocol Priority 1</div>
-                            <div class="flex items-center justify-between pt-1 border-t border-slate-50 mt-1">
-                                <span><strong class="text-slate-700">TAT:</strong> 24-48 Hours</span>
-                                <button onclick="copyToClipboard('APDX-E01', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
+                    <span class="text-[9px] font-black bg-slate-900 text-white px-2.5 py-1 rounded-md uppercase whitespace-nowrap">Enterprise Premium</span>
+                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
+                </div>
+            </summary>
+            
+            <div class="px-5 pb-5 pt-2 border-t border-slate-100 space-y-5">
+                <div class="space-y-2">
+                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest">Subspecialty // Program Assemblies</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <details class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
+                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
+                                <span>Executive Baseline Assessment Suite (Tier I)</span> <span class="font-mono text-[9px] text-[#059669]">APDX-E01 ➔</span>
+                            </summary>
+                            <div class="p-3 bg-white border-t border-slate-100 text-[10px] font-medium text-slate-500 space-y-1.5">
+                                <div><strong class="text-slate-700">Methodology:</strong> Multi-Instrument Automated Panel Configuration Matrix</div>
+                                <div><strong class="text-slate-700">Container / Collection:</strong> Multi-Vial Collection Kit Enclave (Includes Gold SST, Lavender Whole Blood, Blue Plasma)</div>
+                                <div><strong class="text-slate-700">Stability Thresholds:</strong> Store Refrigerated (2-8°C) // Logistics Transit Routing Code: Priority 1</div>
+                                <div class="flex items-center justify-between pt-1.5 border-t border-slate-50 mt-1">
+                                    <span><strong class="text-slate-700">Turnaround:</strong> 24-48 Hours</span>
+                                    <button onclick="copyToClipboard('APDX-E01', this)" class="text-[#059669] font-black text-[9px] uppercase tracking-wider">📋 Copy Code</button>
+                                </div>
                             </div>
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 </div>
             </div>
-            <div class="pt-5 text-[9px] font-black text-slate-900 uppercase tracking-widest">Multi-Vial Draw Allocation Box // Priority Dispatch</div>
-        </div>
+        </details>
 
     </section>
 
-    <!-- NO MATCH RESULTS VIEW -->
+    <!-- SYSTEM ALERTS FOR EMPTY QUERIES -->
     <div id="globalSearchEmptyFrame" class="hidden max-w-7xl mx-auto px-6 py-12 text-center space-y-3">  
         <span class="text-2xl select-none block">⚠️</span>  
-        <h4 class="text-xs font-black text-[#0A192F] uppercase tracking-wide">No Matched Assays or Panels Found</h4>  
-        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Modify keywords. Search terms like 'cpt', 'toxicology', 'apob', or 'insulin'.</p>  
+        <h4 class="text-xs font-black text-[#0A192F] uppercase tracking-wide">No Matched Assays Found</h4>  
+        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Refine text tokens. Query strings map to names, subspecialties, CPT codes, or tube color attributes.</p>  
         <button onclick="clearGlobalWorkspaceSearch()" class="mt-2 bg-slate-900 text-white font-black text-[10px] tracking-wider uppercase px-4 py-2 rounded-xl hover:bg-[#059669] transition focus:outline-none">
             Reset Search Filter
         </button>
@@ -445,14 +526,14 @@
 
 </main>
 
-<!-- COLLAPSIBLE FLOATING DOCK NAV ARRAY -->
+<!-- COLLAPSIBLE PLATFORM NAV DOCK CONTROLLER -->
 <div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs" role="toolbar" aria-label="Application Dock">
     <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="index.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Node [Alt+H]">🏠</a>
-        <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Back Page">←</button>
-        <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Forward Page">→</button>
-        <button onclick="focusGlobalSearchField()" class="text-slate-500 hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Focus Search Field [/]">🔍</button>
-        <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Ceiling Anchor">↑</button>
+        <a href="index.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
+        <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Backward">←</button>
+        <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Forward">→</button>
+        <button onclick="focusGlobalSearchField()" class="text-slate-500 hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Focus Filter Field [/]">🔍</button>
+        <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Scroll To Ceiling">↑</button>
     </div>
     <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
         <a href="index.html" class="text-[#059669] text-xs">🏠</a>
@@ -477,7 +558,7 @@
     let drawerTimeout;
 
     document.addEventListener('DOMContentLoaded', () => {
-        // A. NATIVE HARDWARE PROGRESS BAR LIFE CYCLES
+        // A. NATIVE PROGRESS LIFE CYCLES
         const bar = document.getElementById('topProgress');
         document.onreadystatechange = function() {
             if (document.readyState === 'interactive') { bar.style.width = '65%'; }
@@ -491,7 +572,7 @@
             setTimeout(() => { bar.style.opacity = '0'; }, 300);
         }
 
-        // B. SPA INTERACTION TRAFFIC HIGHLIGHT LOADERS
+        // B. SPA INTERACTION LINKS
         document.querySelectorAll('a[href]').forEach(link => {
             if (
                 link.hostname === window.location.hostname && 
@@ -507,17 +588,17 @@
             }
         });
 
-        // C. SCOPED AUTO-NAV ACTIVE DESIGNATION HIGHLIGHTS
-        document.querySelectorAll('#desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
+        // C. SCOPED NAV HIGHLIGHTS
+        document.querySelectorAll('header id, #desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
             if (link.href === window.location.href || (window.location.pathname.includes('test-directory') && link.href.includes('test-directory'))) {
                 link.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'bg-emerald-50/10');
             }
         });
 
-        // D. TELEMETRY WRITER
+        // D. WORKSPACE TELEMETRY ARCHIVE METRICS
         localStorage.setItem('apdx_target_retained_page', window.location.pathname);
         
-        // E. HISTORY STREAM STORAGE AGGREGATION
+        // E. HISTORY STREAM MANAGER
         let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
         const totalPagesMap = {
             'test-directory.html': 'Test Directory',
@@ -548,7 +629,7 @@
             historyBlock.classList.remove('hidden');
         }
 
-        // F. ROUTE-ISOLATED SESSION STORAGE SCROLL RESTORATION CONTROLS
+        // F. ROUTE SCROLL RESTORATION CONTROLS
         window.addEventListener('beforeunload', () => {
             sessionStorage.setItem(`scroll-${window.location.pathname}`, window.scrollY);
         });
@@ -558,7 +639,7 @@
             if (preservedScrollY) { window.scrollTo({ top: parseInt(preservedScrollY, 10), behavior: 'smooth' }); }
         }
 
-        // G. HIGH-INTELLIGENCE MULTI-TERM MATRIX SEARCH ALGORITHM
+        // G. HIGH-INTELLIGENCE MULTI-TERM FRACTIONAL LOOKUP
         const searchInput = document.getElementById('platformGlobalSearch');  
         const searchEmptyFrame = document.getElementById('globalSearchEmptyFrame');  
         const systemSearchItems = [...document.querySelectorAll('[data-search]')].map(item => {  
@@ -575,6 +656,7 @@
                 if (isMatch) {  
                     item.element.classList.remove('hidden');  
                     criteriaMatches++;  
+                    if(inputQuery.length > 0) item.element.open = true;  
                 } else {  
                     item.element.classList.add('hidden');  
                 }  
@@ -597,11 +679,12 @@
         window.addEventListener('resize', initResponsiveDockLayout);
     });  
 
-    // I. ADAPTIVE PLATFORM VIEW DOCK MANAGER
+    // I. RESPONSIVE NAVIGATION DOCK STATE ENGINE
     function initResponsiveDockLayout() {
         const targetGroup = document.getElementById('dockExpandedGroup');
         const fallbackGroup = document.getElementById('dockMobileFallbackGroup');
         const btn = document.getElementById('dockToggleBtn');
+        
         if (window.innerWidth >= 768) {
             targetGroup.classList.remove('hidden');
             targetGroup.classList.add('flex');
@@ -614,7 +697,7 @@
         }
     }
 
-    // J. ACCESSIBLE DRAWER LOGIC CONTROLLERS
+    // J. DRAWER MECHANICAL CORES
     function toggleMobileDrawer(open) {
         const drawer = document.getElementById('mobileDrawer');
         const trigger = document.getElementById('mobileDrawerTrigger');
@@ -656,15 +739,19 @@
         }
     }
 
-    // K. DOCK REGISTRATION INTERFACES
+    // K. RECOVERY DESK RELATIONAL QUICK FILTERS
     function injectSearchTerm(term) {
         const searchBox = document.getElementById('platformGlobalSearch');
         searchBox.value = term;
         searchBox.dispatchEvent(new Event('input'));
-        // Automatically find and open all matching detail tabs under active filter categories
+        
+        // Auto-expand child listings matching specialty filters
         setTimeout(() => {
-            const visibleAccordions = document.querySelectorAll('#ecosystemGrid > div:not(.hidden) details');
-            visibleAccordions.forEach(acc => acc.open = true);
+            const shields = document.querySelectorAll('#ecosystemGrid > details:not(.hidden)');
+            shields.forEach(shield => {
+                shield.open = true;
+                shield.querySelectorAll('details').forEach(subAcc => subAcc.open = true);
+            });
         }, 50);
         focusGlobalSearchField();
     }
@@ -673,6 +760,10 @@
         const searchBox = document.getElementById('platformGlobalSearch');
         searchBox.value = '';
         searchBox.dispatchEvent(new Event('input'));
+        document.querySelectorAll('#ecosystemGrid > details').forEach(shield => {
+            shield.open = (shield.hasAttribute('open')); // retain structural defaults
+            shield.querySelectorAll('details').forEach(subAcc => subAcc.open = false);
+        });
         searchBox.focus();
     }
 
@@ -691,7 +782,7 @@
             setTimeout(() => {
                 btnElement.innerText = originalText;
                 btnElement.classList.remove('text-emerald-600');
-            }, 2000);
+            }, 1800);
         });
     }
 
