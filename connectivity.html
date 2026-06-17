@@ -3,209 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connectivity & System Health // AccessPoint Dx</title>
+    <title>EHR Connectivity Console // AccessPoint Dx</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden">
+<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-blue-600/10 overflow-x-hidden">
 
-    <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
-        <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
-            <div class="flex items-center space-x-6">
-                <span class="flex items-center space-x-2 text-slate-300">
-                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
-                    <span>Minnesota Processing Hub & Dedicated Courier Network</span>
-                </span>
-            </div>
-            <div class="hidden sm:flex items-center space-x-4 text-slate-400 font-bold uppercase tracking-wider text-[9px]">
-                <span>✓ CLIA #24D2264811</span>
-                <span>✓ HIPAA Secure Architecture Node</span>
-            </div>
+<div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
+    <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
+        <div class="flex items-center space-x-6">
+            <span class="flex items-center space-x-2 text-slate-300">
+                <svg class="w-3.5 h-3.5 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>Health Data Interoperability Network</span>
+            </span>
         </div>
     </div>
+</div>
 
-    <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1">
-                <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6"/>
-                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
-                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9"/>
-                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10"/>
-                </svg>
-                <div class="flex flex-col justify-center">
-                    <div class="text-[19px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">
-                        AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
-                    </div>
-                    <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>
-                </div>
-            </a>
-            
-            <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600">
-                <a href="index.html" class="hover:text-[#059669] transition px-1 py-1">Home</a>
-                <a href="provider-hub.html" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</a>
-                <a href="test-directory.html" class="hover:text-[#059669] transition px-1 py-1">Test Directory</a>
-                <a href="connectivity.html" class="text-[#059669] transition px-1 py-1">Connectivity</a>
-                <a href="resources.html" class="hover:text-[#059669] transition px-1 py-1">Resources</a>
-                <a href="about.html" class="hover:text-[#059669] transition px-1 py-1">About</a>
-                <a href="contact.html" class="hover:text-[#059669] transition px-1 py-1">Contact</a>
-            </nav>
-
-            <div class="hidden sm:inline-flex">
-                <a href="#portal-login" class="bg-[#0A192F] text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl hover:bg-[#059669] transition duration-150 shadow-sm">
-                    Secure Provider Login ➔
-                </a>
+<header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1">
+            <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
+                <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+            <div class="flex flex-col justify-center">
+                <div class="text-[19px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>
+                <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>
             </div>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600">
+            <a href="index.html" class="hover:text-[#059669] transition px-1 py-1">Home</a>
+            <a href="test-directory.html" class="hover:text-[#059669] transition px-1 py-1">Test Directory</a>
+            <a href="provider-hub-v2.html" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</a>
+            <a href="resources-v2.html" class="hover:text-[#059669] transition px-1 py-1">Laboratory Resources</a>
+            <a href="connectivity.html" class="text-blue-600 transition px-1 py-1">Connectivity</a>
+        </nav>
+    </div>
+</header>
+
+<main class="max-w-7xl mx-auto px-6 pt-16 pb-8 text-center space-y-4">
+    <span class="text-[10px] font-black tracking-widest text-blue-600 uppercase block">EHR & Integration Infrastructure</span>
+    <h1 class="text-[36px] sm:text-[48px] font-black tracking-tight text-[#0A192F] uppercase leading-none max-w-4xl mx-auto">Connectivity Console</h1>
+    <p class="text-xs sm:text-sm font-semibold text-slate-400 max-w-2xl mx-auto leading-relaxed">Deploy programmatic HL7 feeds, configure custom clinical data channels, and review interface telemetry.</p>
+</main>
+
+<section class="max-w-4xl mx-auto px-6 py-6">
+    <div class="bg-white rounded-3xl p-6 border-2 border-blue-500/10 shadow-sm space-y-4">
+        <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-xs font-black uppercase text-blue-600 tracking-wide">Supported EMR / EHR Integrations</h2>
+            <p class="text-[11px] text-slate-400">Native bidirectionality for orders and diagnostic observations mapping.</p>
         </div>
-    </header>
-
-    <section class="max-w-7xl mx-auto px-6 pt-12 pb-6 space-y-2">
-        <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">Connectivity & System Health</span>
-        <h1 class="text-[28px] sm:text-[36px] font-black tracking-tight text-[#0A192F] uppercase leading-none">Provider Connectivity Center</h1>
-        <p class="text-xs font-semibold text-slate-400 max-w-xl leading-relaxed">
-            View system status, result delivery methods, and laboratory connectivity updates across the AccessPoint Dx network.
-        </p>
-    </section>
-
-    <main class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        <section class="lg:col-span-8 space-y-6">
-            
-            <div id="portal-login" class="bg-gradient-to-br from-slate-900 to-[#0A192F] text-white rounded-3xl p-6 border border-slate-800 shadow-md space-y-4">
-                <div class="space-y-1">
-                    <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Protected Health Information (PHI) Layer</span>
-                    <h3 class="text-base font-black uppercase tracking-wide">Provider Results & Tracking Portal</h3>
-                    <p class="text-[11px] font-medium text-slate-400 leading-normal max-w-xl">
-                        To strictly adhere to federal HIPAA privacy mandates and CAP guidelines, active tracking of specimen accessions, clinical report downloads, and critical data sheets requires authenticated credentialing logs.
-                    </p>
-                </div>
-                
-                <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
-                    <button class="w-full sm:w-auto bg-[#059669] text-white text-xs font-black uppercase tracking-wider px-5 py-3 rounded-xl hover:bg-emerald-700 transition duration-150 shadow-md">
-                        Authenticate via Provider Portal 🔒
-                    </button>
-                    <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">
-                        Need an EMR connection or API integration? <a href="contact.html" class="text-[#059669] hover:underline">Contact our interface team</a>.
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/70 shadow-sm space-y-4">
-                <div class="border-b border-slate-100 pb-3">
-                    <h2 class="text-xs font-black tracking-widest text-[#0A192F] uppercase">1. Interactive Sample Workflow Demonstration</h2>
-                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Visual staging sequence representing typical LIS transit metrics:</p>
-                </div>
-
-                <div class="border border-slate-200 rounded-2xl p-4 space-y-4 bg-slate-50/40">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-                        <div class="space-y-0.5">
-                            <span class="text-[9px] bg-slate-200 text-slate-700 font-black px-1.5 py-0.5 rounded uppercase tracking-wider">Example Simulation State</span>
-                            <h4 class="text-xs font-black text-slate-500 mt-1">SIMULATED TRACKER ID: <span class="text-[#0A192F] font-mono">#SAMPLE-TRACK-MN</span></h4>
-                        </div>
-                        <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
-                            <div>Target Turnaround: ~24 Hours</div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-4 text-center text-[9px] font-black uppercase tracking-wider text-slate-400 relative">
-                        <div class="space-y-2 text-[#059669]">
-                            <span class="w-5 h-5 rounded-full bg-[#059669]/10 border border-[#059669] text-[#059669] flex items-center justify-center mx-auto shadow-sm">✓</span>
-                            <span class="block">1. Specimen Collected</span>
-                        </div>
-                        <div class="space-y-2 text-[#059669]">
-                            <span class="w-5 h-5 rounded-full bg-[#059669]/10 border border-[#059669] text-[#059669] flex items-center justify-center mx-auto shadow-sm">✓</span>
-                            <span class="block">2. In Transit</span>
-                        </div>
-                        <div class="space-y-2 text-[#0A192F]">
-                            <span class="w-5 h-5 rounded-full bg-[#0A192F] text-white flex items-center justify-center mx-auto animate-pulse">3</span>
-                            <span class="block font-black">3. Laboratory Processing</span>
-                        </div>
-                        <div class="space-y-2 text-slate-300">
-                            <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center mx-auto">4</span>
-                            <span class="block">4. Results Released</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="lg:col-span-4 space-y-6">
-            
-            <div class="bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm space-y-4">
-                <div class="border-b border-slate-100 pb-2 flex items-center justify-between">
-                    <h2 class="text-xs font-black tracking-widest text-[#0A192F] uppercase">2. System Health</h2>
-                    <span class="text-[10px] bg-emerald-100 text-[#059669] font-black uppercase tracking-wider px-2 py-0.5 rounded-md flex items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#059669] mr-1.5 inline-block animate-pulse"></span>All Systems Operational
-                    </span>
-                </div>
-                
-                <div class="divide-y divide-slate-100 text-[11px] font-bold text-slate-600">
-                    <div class="py-2.5 flex items-center justify-between">
-                        <span class="text-[#0A192F]">LIS Platform</span>
-                        <span class="text-[#059669] uppercase text-[10px] tracking-wide">Operational</span>
-                    </div>
-                    <div class="py-2.5 flex items-center justify-between">
-                        <span class="text-[#0A192F]">HL7 Interfaces</span>
-                        <span class="text-[#059669] uppercase text-[10px] tracking-wide">Operational</span>
-                    </div>
-                    <div class="py-2.5 flex items-center justify-between">
-                        <span class="text-[#0A192F]">Fax Delivery Engine</span>
-                        <span class="text-[#059669] uppercase text-[10px] tracking-wide">Operational</span>
-                    </div>
-                    <div class="py-2.5 flex items-center justify-between">
-                        <span class="text-[#0A192F]">Provider Portal</span>
-                        <span class="text-[#059669] uppercase text-[10px] tracking-wide">Operational</span>
-                    </div>
-                    <div class="py-2.5 flex items-center justify-between">
-                        <span class="text-[#0A192F]">Courier Network</span>
-                        <span class="text-[#059669] uppercase text-[10px] tracking-wide">Operational</span>
-                    </div>
-                </div>
-
-                <div id="telemetry-timestamp" class="text-[9px] font-bold text-slate-400 uppercase tracking-wider text-right">
-                    Checking operational link...
-                </div>
-
-                <div class="bg-amber-50/60 border border-amber-200 rounded-xl p-3 text-[10px] font-semibold text-amber-900 leading-normal flex items-start space-x-2">
-                    <span class="mt-0.5">⚠️</span>
-                    <p>
-                        <span class="font-black uppercase tracking-wider block text-[9px] text-amber-800">Scheduled Network Maintenance:</span>
-                        Bi-directional HL7 endpoint data pipeline updates will cycle on Sunday, June 21, 2026, between 02:00 AM and 04:00 AM CST. Live accession transfers will queue automatically during this window.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm space-y-3 text-[11px] font-semibold text-slate-500 leading-normal">
-                <h3 class="text-xs font-black uppercase tracking-widest text-[#0A192F] border-b border-slate-100 pb-2">Result Delivery Channels</h3>
-                <div class="space-y-2 pl-0.5">
-                    <p><strong class="text-[#0A192F]">EMR Integration:</strong> Released charts stream immediately down verified HL7 mappings into active patient files.</p>
-                    <p><strong class="text-[#0A192F]">Provider Portal:</strong> Secure browser access points permit manual diagnostic chart downloads 24/7.</p>
-                    <p><strong class="text-[#0A192F]">Secure Fax Routing:</strong> Fallback automated telecom arrays deliver immediate sheets to practices lacking digital interfaces.</p>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <footer class="bg-[#0A192F] text-white pt-12 pb-8 text-[11px] border-t border-slate-800 mt-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">
-            <div>© 2026 AccessPoint Dx. All Rights Reserved.</div>
-            <div class="text-slate-400">Framework Control Identifier: APDX-LIS-CONN-V3.0</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs font-black text-slate-700">
+            <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">Epic Systems</div>
+            <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">Oracle Cerner</div>
+            <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">eClinicalWorks</div>
+            <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl">Athenahealth</div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const timeTarget = document.getElementById('telemetry-timestamp');
-            if (timeTarget) {
-                const now = new Date();
-                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                timeTarget.innerText = `System Matrix Active // Verified: ${timeString} Local`;
-            }
-        });
-    </script>
+<footer class="bg-[#0A192F] text-white pt-12 pb-8 text-[11px] border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">
+        <div>© 2026 AccessPoint Dx. All Rights Reserved.</div>
+        <div class="text-slate-400 font-mono text-[10px]">Router System Stack ID: APDX-CONNECTIVITY-V2-FINAL</div>
+    </div>
+</footer>
+
 </body>
 </html>
