@@ -8,12 +8,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden">
 
+<!-- UTILITY REGULATORY SHIELD -->
 <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
     <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
         <div class="flex items-center space-x-6">
@@ -29,9 +28,10 @@
     </div>
 </div>
 
+<!-- MAIN GLOBAL HEADER -->
 <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <a href="index-v2.html" class="flex items-center space-x-3 group rounded-xl p-1">
+        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1">
             <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
                 <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
@@ -46,7 +46,7 @@
             </div>
         </a>
         <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600">
-            <a href="index-v2.html" class="text-[#059669] transition px-1 py-1">Home</a>
+            <a href="index.html" class="text-[#059669] transition px-1 py-1">Home</a>
             <a href="test-directory.html" class="hover:text-[#059669] transition px-1 py-1">Test Directory</a>
             <a href="provider-hub-v2.html" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</a>
             <a href="resources-v2.html" class="hover:text-[#059669] transition px-1 py-1">Laboratory Resources</a>
@@ -55,52 +55,73 @@
     </div>
 </header>
 
+<!-- HERO ACTION BRAND SPACE -->
 <main class="max-w-7xl mx-auto px-6 pt-16 pb-12 text-center space-y-4">
-    <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">Intelligent Traffic Router</span>
+    <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">Intelligent Platform Router</span>
     <h1 class="text-[36px] sm:text-[54px] font-black tracking-tight text-[#0A192F] uppercase leading-none max-w-4xl mx-auto">
-        Clinical Diagnostic Infrastructure, Unified.
+        Diagnostics Without Barriers.
     </h1>
     <p class="text-xs sm:text-sm font-semibold text-slate-400 max-w-2xl mx-auto leading-relaxed">
-        Select your operational sector below to access specific specimen handling directories, requisition forms, system telemetry channels, and data integrations.
+        Clinical testing, provider logistics, and enterprise integrations optimized through one connected diagnostic network.
     </p>
 </main>
 
+<!-- RESTORED 3-WAY MULTI-PAGE ROUTER GRIDS -->
 <section class="max-w-7xl mx-auto px-6 py-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
+        <!-- CARD 1: TEST DIRECTORY -->
+        <a href="test-directory.html" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:border-slate-300 group transition flex flex-col justify-between space-y-12">
+            <div class="space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xl">🧬</div>
+                <div class="space-y-1.5">
+                    <h2 class="text-sm font-black uppercase text-[#0A192F] group-hover:text-[#059669] transition tracking-tight">Order Laboratory Services</h2>
+                    <p class="text-[11.5px] font-medium text-slate-400 leading-relaxed">
+                        Explore our comprehensive clinical test compendium, search specimen rules, and check stability specifications.
+                    </p>
+                </div>
+            </div>
+            <div class="text-[10px] font-black uppercase tracking-wider text-[#059669] flex items-center space-x-1.5">
+                <span>Find clinical tests</span><span>➔</span>
+            </div>
+        </a>
+
+        <!-- CARD 2: PROVIDER OPERATIONS HUB -->
         <a href="provider-hub-v2.html" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:border-slate-300 group transition flex flex-col justify-between space-y-12">
             <div class="space-y-4">
                 <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xl">⚕️</div>
                 <div class="space-y-1.5">
-                    <h2 class="text-sm font-black uppercase text-[#0A192F] group-hover:text-[#059669] transition tracking-tight">Clinical Staff & Providers</h2>
+                    <h2 class="text-sm font-black uppercase text-[#0A192F] group-hover:text-[#059669] transition tracking-tight">Manage Provider Operations</h2>
                     <p class="text-[11.5px] font-medium text-slate-400 leading-relaxed">
-                        Dispatch local diagnostic couriers, request operational kit restocks, look up processing rules, and view stability specs.
+                        Schedule medical couriers on-demand, request custom collection kit restocks, and pull compliance documentation.
                     </p>
                 </div>
             </div>
             <div class="text-[10px] font-black uppercase tracking-wider text-[#059669] flex items-center space-x-1.5">
-                <span>Enter Provider Hub</span><span>➔</span>
+                <span>Manage operations</span><span>➔</span>
             </div>
         </a>
 
+        <!-- CARD 3: EHR CONNECTIVITY CONSOLE -->
         <a href="connectivity.html" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:border-slate-300 group transition flex flex-col justify-between space-y-12">
             <div class="space-y-4">
                 <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-xl">🖥️</div>
                 <div class="space-y-1.5">
-                    <h2 class="text-sm font-black uppercase text-[#0A192F] group-hover:text-[#059669] transition tracking-tight">IT Directors & Health Systems</h2>
+                    <h2 class="text-sm font-black uppercase text-[#0A192F] group-hover:text-[#059669] transition tracking-tight">Connect Your Systems</h2>
                     <p class="text-[11.5px] font-medium text-slate-400 leading-relaxed">
-                        Monitor HL7/FHIR interface endpoint logs, review custom webhooks mappings, and execute technical EMR vendor onboarding setups.
+                        Monitor active HL7/FHIR health data channels, map programmatic webhooks, and launch interface deployments.
                     </p>
                 </div>
             </div>
             <div class="text-[10px] font-black uppercase tracking-wider text-[#059669] flex items-center space-x-1.5">
-                <span>Open Connectivity Console</span><span>➔</span>
+                <span>Integrate interfaces</span><span>➔</span>
             </div>
         </a>
 
     </div>
 </section>
 
+<!-- THE TRUST MATRIX METRIC HIGHLIGHTS -->
 <section class="max-w-7xl mx-auto px-6 py-8">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="bg-white border border-slate-150 p-5 rounded-2xl text-center shadow-sm">
@@ -122,6 +143,7 @@
     </div>
 </section>
 
+<!-- SECURE CORE DISCONNECT LINK BREAKOUT -->
 <section class="max-w-7xl mx-auto px-6 py-4">
     <div class="bg-slate-900 text-white rounded-3xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border border-slate-800 shadow-lg">
         <div class="space-y-1">
@@ -139,6 +161,7 @@
     </div>
 </section>
 
+<!-- COMPLIANCE AND ARCHITECTURE INFO BANNER -->
 <section class="max-w-7xl mx-auto px-6 py-2">
     <div class="bg-white rounded-2xl p-4 border border-slate-200/60 text-[10px] font-medium text-slate-400 leading-normal max-w-3xl">
         <span class="font-bold text-[#0A192F] block uppercase tracking-wide text-[8.5px] mb-0.5">🔒 Data Integrity Guardrail:</span>
@@ -146,10 +169,11 @@
     </div>
 </section>
 
+<!-- SYSTEM FOOTER -->
 <footer class="bg-[#0A192F] text-white pt-12 pb-8 text-[11px] border-t border-slate-800 mt-12">
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">
         <div>© 2026 AccessPoint Dx. All Rights Reserved.</div>
-        <div class="text-slate-400 font-mono text-[10px]">Router System Stack ID: APDX-CORE-V2</div>
+        <div class="text-slate-400 font-mono text-[10px]">Router System Stack ID: APDX-CORE-V3</div>
     </div>
 </footer>
 
