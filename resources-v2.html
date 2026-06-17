@@ -1,113 +1,348 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratory Resources // AccessPoint Dx</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-    </style>
-</head>
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-amber-500/10 overflow-x-hidden">
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Laboratory Resource Center // AccessPoint Dx</title>  
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <style>  
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
+        body { font-family: 'Inter', sans-serif; }  
+    </style>  
+</head>  
+<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden">  
 
-<div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
-    <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
-        <div class="flex items-center space-x-6">
-            <span class="flex items-center space-x-2 text-slate-300">
-                <svg class="w-3.5 h-3.5 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                <span>Minnesota-Based Processing Laboratory Network</span>
-            </span>
+<!-- UTILITY REGULATORY SHIELD -->
+<div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">  
+    <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">  
+        <div class="flex items-center space-x-6">  
+            <span class="flex items-center space-x-2 text-slate-300">  
+                <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>  
+                <span>Minnesota-Based Processing Laboratory Network</span>  
+            </span>  
+        </div>  
+        <div class="hidden sm:flex items-center space-x-4 text-slate-400 font-bold uppercase tracking-wider text-[9px]">
+            <span>✓ CLIA #24D2264811</span>
+            <span>✓ HIPAA-Aligned Provider Integrations</span>
         </div>
-    </div>
-</div>
+    </div>  
+</div>  
 
-<header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1">
-            <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
-                <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
-                <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
-                <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
-            </svg>
-            <div class="flex flex-col justify-center">
-                <div class="text-[19px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>
-                <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>
-            </div>
-        </a>
-        <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600">
+<!-- MAIN APP HEADER (SYNCED LOOP) -->
+<header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">  
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">  
+        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1">  
+            <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">  
+                <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
+                <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
+                <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>  
+                <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>  
+            </svg>  
+            <div class="flex flex-col justify-center">  
+                <div class="text-[19px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">  
+                    AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>  
+                </div>  
+                <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>  
+            </div>  
+        </a>  
+        <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600">  
             <a href="index.html" class="hover:text-[#059669] transition px-1 py-1">Home</a>
-            <a href="test-directory.html" class="hover:text-[#059669] transition px-1 py-1">Test Directory</a>
-            <a href="provider-hub-v2.html" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</a>
-            <a href="resources-v2.html" class="text-amber-600 transition px-1 py-1">Laboratory Resources</a>
-            <a href="connectivity.html" class="hover:text-[#059669] transition px-1 py-1">Connectivity</a>
-        </nav>
-    </div>
-</header>
+            <a href="test-directory.html" class="hover:text-[#059669] transition px-1 py-1">Test Directory</a>  
+            <a href="provider-hub-v2.html" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</a>  
+            <a href="resources-v2.html" class="text-[#059669] transition px-1 py-1">Laboratory Resources</a>  
+            <a href="connectivity.html" class="hover:text-[#059669] transition px-1 py-1">Connectivity</a>  
+        </nav>  
+    </div>  
+</header>  
 
-<main class="max-w-7xl mx-auto px-6 pt-16 pb-8 text-center space-y-4">
-    <span class="text-[10px] font-black tracking-widest text-amber-600 uppercase block">Resource & Documentation Center</span>
-    <h1 class="text-[36px] sm:text-[48px] font-black tracking-tight text-[#0A192F] uppercase leading-none max-w-4xl mx-auto">Laboratory Resources</h1>
-    <p class="text-xs sm:text-sm font-semibold text-slate-400 max-w-2xl mx-auto leading-relaxed">Access technical documentation, medical necessity forms, compliance guidelines, and our live interactive specimen manual.</p>
-</main>
+<!-- HERO INTERACTIVE PROFILE -->
+<section class="max-w-7xl mx-auto px-6 pt-12 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-6">  
+    <div class="max-w-xl space-y-2">  
+        <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">Clinical Resource Library</span>  
+        <h1 class="text-[28px] sm:text-[36px] font-black tracking-tight text-[#0A192F] uppercase leading-none">Laboratory Resource Center</h1>  
+        <p class="text-xs font-bold text-slate-400 leading-relaxed">
+            Instant pre-analytical guidance, searchable collection criteria updates, and official compliance documents. For physical supply requisitions or real-time courier dispatches, utilize the <a href="provider-hub-v2.html" class="text-[#059669] underline hover:text-[#0A192F]">Provider Operations Hub</a>.
+        </p>
+    </div>  
+      
+    <div class="w-full max-w-sm relative">  
+        <input type="text" id="portalSearch" placeholder="Filter specimen manuals or criteria codes..." class="w-full bg-white border border-slate-200 rounded-2xl pl-4 pr-10 py-3 text-xs font-semibold text-[#0A192F] shadow-sm placeholder-slate-500 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/20 focus:border-[#059669]/50" />  
+        <span class="absolute right-4 top-3.5 text-slate-300 font-bold text-xs select-none">🔍</span>  
+    </div>  
+</section>  
 
-<section class="max-w-7xl mx-auto px-6 py-8">
-    <div class="bg-white border-2 border-amber-500/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-4 gap-2">
-            <div>
-                <h2 class="text-xs font-black uppercase tracking-wider text-amber-600">Interactive Specimen Manual</h2>
-                <p class="text-[11px] font-medium text-slate-400">Select a diagnostic department to review stability guidelines, container rules, and collection instructions.</p>
+<!-- MAIN DOCUMENTATION ENGINE -->
+<main class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">  
+      
+    <!-- SEARCHABLE SPECIMEN MANUAL PANEL -->
+    <section id="collection-manual" class="lg:col-span-8 bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/70 shadow-sm space-y-5">  
+        <div class="border-b border-slate-100 pb-4 flex items-center justify-between">  
+            <h2 class="text-xs font-black tracking-widest text-[#0A192F] uppercase">Interactive Specimen Manual</h2>  
+            <span class="text-[10px] font-semibold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase select-none">Updated June 2026</span>
+        </div>  
+
+        <div id="directoryContainer" class="space-y-3">  
+            <!-- Chemistry Block -->
+            <details class="group searchable border border-slate-200/80 hover:border-slate-300 open:border-[#059669] open:ring-2 open:ring-[#059669]/10 open:bg-slate-50/20 open:shadow-sm rounded-xl overflow-hidden transition-all duration-200">  
+                <summary class="w-full px-4 py-3.5 text-left flex items-center justify-between bg-white hover:bg-slate-50 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden transition-all duration-200 ease-in-out focus:outline-none">  
+                    <div class="flex items-center space-x-3 min-w-0">  
+                        <div class="w-4 h-10 rounded-full bg-amber-200 border border-amber-300/40 shrink-0"></div>  
+                        <div class="truncate">  
+                            <h3 class="text-xs font-black text-[#0A192F] uppercase tracking-wide truncate">Chemistry</h3>  
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">BMP, CMP, Lipid Matrix // CPT 80048</p>  
+                        </div>  
+                    </div>  
+                    <svg class="w-3.5 h-3.5 text-slate-400 group-open:text-[#059669] group-open:rotate-90 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">  
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />  
+                    </svg>  
+                </summary>  
+                <div class="p-4 border-t border-slate-200/60 text-[11px] font-bold text-slate-700 space-y-3 bg-white">  
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">  
+                        <span class="text-[10px] font-black text-[#0A192F] uppercase tracking-wide">Tube Designation: Gold SST (Tiger/Gold Top)</span>  
+                    </div>  
+                    <div class="space-y-1 pl-1 text-slate-600 font-medium">  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Clot Time: Allow blood to clot vertically for 30 minutes before centrifugation.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Centrifugation Parameters: Spin down at 3,000 RPM for 10 minutes.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Processing Window: Transfer isolated serum within 2 hours post-draw.</span></div>  
+                    </div>  
+                </div>  
+            </details>  
+
+            <!-- Hematology Block -->
+            <details class="group searchable border border-slate-200/80 hover:border-slate-300 open:border-[#059669] open:ring-2 open:ring-[#059669]/10 open:bg-slate-50/20 open:shadow-sm rounded-xl overflow-hidden transition-all duration-200">  
+                <summary class="w-full px-4 py-3.5 text-left flex items-center justify-between bg-white hover:bg-slate-50 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden transition-all duration-200 ease-in-out focus:outline-none">  
+                    <div class="flex items-center space-x-3 min-w-0">  
+                        <div class="w-4 h-10 rounded-full bg-purple-200 border border-purple-300/40 shrink-0"></div>  
+                        <div class="truncate">  
+                            <h3 class="text-xs font-black text-[#0A192F] uppercase tracking-wide truncate">Hematology</h3>  
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">CBC, QuantiFERON // CPT 85025</p>  
+                        </div>  
+                    </div>  
+                    <svg class="w-3.5 h-3.5 text-slate-400 group-open:text-[#059669] group-open:rotate-90 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">  
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />  
+                    </svg>  
+                </summary>  
+                <div class="p-4 border-t border-slate-200/60 text-[11px] font-bold text-slate-700 space-y-3 bg-white">  
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">  
+                        <span class="text-[10px] font-black text-[#0A192F] uppercase tracking-wide">Tube Designation: Lavender EDTA</span>  
+                    </div>  
+                    <div class="space-y-1 pl-1 text-slate-600 font-medium">  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Inversion Rate: Mix gently by inversion 8–10 times immediately post-collection.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Centrifugation: Do NOT spin whole blood hematology specimens.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>QuantiFERON Mandate: Incubate whole blood matrix at 37°C within 16 hours of collection.</span></div>  
+                    </div>  
+                </div>  
+            </details>  
+
+            <!-- Molecular Block -->
+            <details class="group searchable border border-slate-200/80 hover:border-slate-300 open:border-[#059669] open:ring-2 open:ring-[#059669]/10 open:bg-slate-50/20 open:shadow-sm rounded-xl overflow-hidden transition-all duration-200">  
+                <summary class="w-full px-4 py-3.5 text-left flex items-center justify-between bg-white hover:bg-slate-50 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden transition-all duration-200 ease-in-out focus:outline-none">  
+                    <div class="flex items-center space-x-3 min-w-0">  
+                        <div class="w-4 h-10 rounded-full bg-emerald-200 border border-emerald-300/40 shrink-0"></div>  
+                        <div class="truncate">  
+                            <h3 class="text-xs font-black text-[#0A192F] uppercase tracking-wide truncate">Molecular</h3>  
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Respiratory, STI Panels // CPT 87635</p>  
+                        </div>  
+                    </div>  
+                    <svg class="w-3.5 h-3.5 text-slate-400 group-open:text-[#059669] group-open:rotate-90 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">  
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />  
+                    </svg>  
+                </summary>  
+                <div class="p-4 border-t border-slate-200/60 text-[11px] font-bold text-slate-700 space-y-3 bg-white">  
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">  
+                        <span class="text-[10px] font-black text-[#0A192F] uppercase tracking-wide">Collection Kit: Synthetic VTM Swab Kit</span>  
+                    </div>  
+                    <div class="space-y-1 pl-1 text-slate-600 font-medium">  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Collection Matrix: Use synthetic Dacron or Rayon tipped swabs only.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Shaft Integrity: Plastic shafts required. Wood stems contain PCR inhibitors.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Cold Chain Window: Transport refrigerated to preserve nucleic acid target markers.</span></div>  
+                    </div>  
+                </div>  
+            </details>  
+
+            <!-- Toxicology Block -->
+            <details class="group searchable border border-slate-200/80 hover:border-slate-300 open:border-[#059669] open:ring-2 open:ring-[#059669]/10 open:bg-slate-50/20 open:shadow-sm rounded-xl overflow-hidden transition-all duration-200">  
+                <summary class="w-full px-4 py-3.5 text-left flex items-center justify-between bg-white hover:bg-slate-50 cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden transition-all duration-200 ease-in-out focus:outline-none">  
+                    <div class="flex items-center space-x-3 min-w-0">  
+                        <div class="w-4 h-10 rounded-full bg-sky-200 border border-sky-300/40 shrink-0"></div>  
+                        <div class="truncate">  
+                            <h3 class="text-xs font-black text-[#0A192F] uppercase tracking-wide truncate">Toxicology</h3>  
+                            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Medication Compliance Logs // CPT 80307</p>  
+                        </div>  
+                    </div>  
+                    <svg class="w-3.5 h-3.5 text-slate-400 group-open:text-[#059669] group-open:rotate-90 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">  
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />  
+                    </svg>  
+                </summary>  
+                <div class="p-4 border-t border-slate-200/60 text-[11px] font-bold text-slate-700 space-y-3 bg-white">  
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">  
+                        <span class="text-[10px] font-black text-[#0A192F] uppercase tracking-wide">Collection Kit: Thermal Collection Cup Kit</span>  
+                    </div>  
+                    <div class="space-y-1 pl-1 text-slate-600 font-medium">  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Thermal Window Validation: Internal temp strip must read 32°C–38°C within 4 minutes.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Security Protocol: Secure tamper-evident adhesive labels immediately upon collection.</span></div>  
+                        <div class="flex items-center space-x-2"><span class="text-[#059669] font-bold">✓</span> <span>Stability Thresholds: Ambient: 7 Days // Refrigerated: 14 Days max.</span></div>  
+                    </div>  
+                </div>  
+            </details>  
+        </div>  
+
+        <!-- EMPTY STATE SEARCH MATCH -->
+        <div id="emptyState" class="hidden py-12 text-center space-y-2">  
+            <span class="text-2xl select-none block">🔍</span>  
+            <h4 class="text-xs font-black text-[#0A192F] uppercase tracking-wide">No Resources Matching Query</h4>  
+            <p class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Verify criteria keywords or structural CPT codes against directory index variables.</p>  
+        </div>  
+
+        <div class="bg-slate-100/60 border border-slate-200 rounded-2xl p-4 text-[10.5px] text-slate-500 font-semibold leading-relaxed">  
+            <span class="text-[9px] font-black text-[#059669] uppercase tracking-wider block mb-0.5">CLIA Quality Control Protocol Mandate:</span>  
+            All pre-analytical guidelines are synchronized under database frame identifier <span class="text-[#0A192F] font-black">APDX-OPS-REF-V2.6</span> (Effective Version Date: June 2026).  
+        </div>  
+    </section>  
+
+    <!-- RESTRUCTURALLY PURE COMPLIANCE LINKS & MATRIX CARD -->
+    <section class="lg:col-span-4 space-y-6">
+        <div class="bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm space-y-4">
+            <div class="border-b border-slate-100 pb-2">
+                <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Section 02 // Quality Systems</span>
+                <h2 class="text-xs font-black uppercase text-[#0A192F]">CMS CLIA Guidance Matrix</h2>
             </div>
-            <span class="text-[10px] font-mono bg-amber-50 text-amber-700 px-2.5 py-1 rounded-md self-start font-bold uppercase tracking-wider">Updated June 2026</span>
+            <p class="text-[11px] text-slate-400 font-semibold leading-relaxed">
+                Federal guidelines require active synchronization with Centers for Medicare & Medicaid Services quality parameters. All diagnostic metrics are cross-checked under laboratory accreditation structures.
+            </p>
+            <a href="https://www.cms.gov" target="_blank" rel="noopener noreferrer" class="w-full text-center block bg-[#0A192F] text-white hover:bg-[#059669] text-[10px] font-black uppercase tracking-wider py-3 rounded-xl transition duration-150">
+                Source CMS Portal ➔
+            </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="border border-slate-100 bg-slate-50/50 p-5 rounded-2xl space-y-3 hover:border-amber-500 transition group">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold text-lg">🧪</div>
-                <div>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Chemistry</h3>
-                    <p class="text-[11px] font-medium text-slate-400 mt-0.5">Serum separators, metabolic panels, lipid configurations.</p>
-                </div>
-                <a href="test-directory.html" class="text-[10px] font-bold text-amber-600 uppercase tracking-wider inline-flex items-center space-x-1 pt-1 group-hover:translate-x-0.5 transition-transform"><span>View Rules</span><span>➔</span></a>
+        <!-- EMERGENCY ALERTS PANEL -->
+        <div class="bg-red-50 border border-red-200 rounded-3xl p-5 space-y-3 text-[11px] font-semibold text-red-950 leading-normal">
+            <div class="border-b border-red-100 pb-2">
+                <span class="text-[9px] font-black text-red-800 uppercase tracking-widest block">Emergency Triage Routing</span>
+                <h3 class="text-xs font-black uppercase text-red-950">Critical Value Policy</h3>
             </div>
-
-            <div class="border border-slate-100 bg-slate-50/50 p-5 rounded-2xl space-y-3 hover:border-amber-500 transition group">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold text-lg">🩸</div>
-                <div>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Hematology</h3>
-                    <p class="text-[11px] font-medium text-slate-400 mt-0.5">Whole blood EDTA, CBC profiles, coagulation stability profiles.</p>
-                </div>
-                <a href="test-directory.html" class="text-[10px] font-bold text-amber-600 uppercase tracking-wider inline-flex items-center space-x-1 pt-1 group-hover:translate-x-0.5 transition-transform"><span>View Rules</span><span>➔</span></a>
-            </div>
-
-            <div class="border border-slate-100 bg-slate-50/50 p-5 rounded-2xl space-y-3 hover:border-amber-500 transition group">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold text-lg">🧬</div>
-                <div>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Molecular</h3>
-                    <p class="text-[11px] font-medium text-slate-400 mt-0.5">PCR pathogen swabs, viral load assays, genetic preservation tubes.</p>
-                </div>
-                <a href="test-directory.html" class="text-[10px] font-bold text-amber-600 uppercase tracking-wider inline-flex items-center space-x-1 pt-1 group-hover:translate-x-0.5 transition-transform"><span>View Rules</span><span>➔</span></a>
-            </div>
-
-            <div class="border border-slate-100 bg-slate-50/50 p-5 rounded-2xl space-y-3 hover:border-amber-500 transition group">
-                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-bold text-lg">💊</div>
-                <div>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Toxicology</h3>
-                    <p class="text-[11px] font-medium text-slate-400 mt-0.5">Chain-of-custody tracking, urine testing, therapeutic drug values.</p>
-                </div>
-                <a href="test-directory.html" class="text-[10px] font-bold text-amber-600 uppercase tracking-wider inline-flex items-center space-x-1 pt-1 group-hover:translate-x-0.5 transition-transform"><span>View Rules</span><span>➔</span></a>
+            <p class="text-[10px] text-red-900 leading-relaxed">
+                Federal CLIA regulations demand immediate telephone notifications for critical panic thresholds. Verify after-hours clinical communication pathways immediately.
+            </p>
+            <div class="pt-1 text-[11px] font-mono font-black text-red-800 flex items-center justify-between">
+                <span>☎ Hot-Line Axis:</span>
+                <span>(800) 555-APDX // Ext 9</span>
             </div>
         </div>
-</section>
+    </section>
+</main>  
 
-<footer class="bg-[#0A192F] text-white pt-12 pb-8 text-[11px] border-t border-slate-800 mt-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">
-        <div>© 2026 AccessPoint Dx. All Rights Reserved.</div>
-        <div class="text-slate-400 font-mono text-[10px]">Router System Stack ID: APDX-RESOURCES-V2-FINAL</div>
-    </div>
-</footer>
+<!-- DOWNLOADABLE RESOURCE CARDS GRID -->
+<section class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-start">  
+    <div class="space-y-2">  
+        <span class="text-[9px] font-black tracking-widest text-slate-400 uppercase block">Laboratory Resources</span>  
+        <div class="bg-white border border-slate-200 hover:border-[#059669] hover:-translate-y-0.5 rounded-2xl p-4 shadow-sm h-32 flex flex-col justify-between items-start transition duration-200 group">  
+            <div class="space-y-0.5">  
+                <h3 class="text-[11px] font-black text-[#0A192F] uppercase">Specimen Processing Guide</h3>  
+                <p class="text-[10px] text-slate-400 font-medium leading-tight">Complete laboratory routing manual and storage specifications.</p>  
+            </div>  
+            <a href="#download-manual" class="text-[10px] font-bold text-[#059669] group-hover:text-[#0A192F] transition rounded focus:outline-none">Download PDF [1.8MB] ➔</a>  
+        </div>  
+    </div>  
 
-</body>
+    <div class="space-y-2">  
+        <span class="text-[9px] font-black tracking-widest text-slate-400 uppercase block">Courier Infrastructure</span>  
+        <div class="bg-white border border-slate-200 hover:border-[#059669] hover:-translate-y-0.5 rounded-2xl p-4 shadow-sm h-32 flex flex-col justify-between items-start transition duration-200 group">  
+            <div class="space-y-0.5">  
+                <h3 class="text-[11px] font-black text-[#0A192F] uppercase">Statewide Courier Schedule</h3>  
+                <p class="text-[10px] text-slate-400 font-medium leading-tight">Daily localized pickup windows and cold-chain routes.</p>  
+            </div>  
+            <span class="text-[9px] font-extrabold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase">Slated Q3</span>  
+        </div>  
+    </div>  
+
+    <div class="space-y-2">  
+        <span class="text-[9px] font-black tracking-widest text-slate-400 uppercase block">Clinical Forms</span>  
+        <div class="bg-white border border-slate-200 hover:border-[#059669] hover:-translate-y-0.5 rounded-2xl p-4 shadow-sm h-32 flex flex-col justify-between items-start transition duration-200 group">  
+            <div class="space-y-0.5">  
+                <h3 class="text-[11px] font-black text-[#0A192F] uppercase">Blank Requisition Forms</h3>  
+                <p class="text-[10px] text-slate-400 font-medium leading-tight">Printable backup paperwork and custom panel sheets.</p>  
+            </div>  
+            <span class="text-[9px] font-extrabold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase">Slated Q3</span>  
+        </div>  
+    </div>  
+
+    <div class="space-y-2">  
+        <span class="text-[9px] font-black tracking-widest text-slate-400 uppercase block">Compliance Portals</span>  
+        <div class="bg-white border border-slate-200 hover:border-[#059669] hover:-translate-y-0.5 rounded-2xl p-4 shadow-sm h-32 flex flex-col justify-between items-start transition duration-200 group">  
+            <div class="space-y-0.5">  
+                <h3 class="text-[11px] font-black text-[#0A192F] uppercase">CLIA Enrollment Forms</h3>  
+                <p class="text-[10px] text-slate-400 font-medium leading-tight">Federal laboratory registration documents and CMS-116 panels.</p>  
+            </div>  
+            <a href="#download-cms116" class="text-[10px] font-bold text-[#059669] group-hover:text-[#0A192F] transition rounded focus:outline-none">Download Form ➔</a>  
+        </div>  
+    </div>  
+</section>  
+
+<!-- EMR AUTOMATION CONVERSION BANNER -->
+<section class="max-w-7xl mx-auto px-4 pt-4 pb-12">  
+    <div class="block bg-gradient-to-r from-slate-900 to-[#0A192F] border border-slate-800 rounded-2xl p-5 shadow-md">  
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">  
+            <div class="space-y-1">  
+                <h4 class="text-xs font-black uppercase tracking-wider text-white">Looking to automate ordering and results?</h4>  
+                <p class="text-[11px] font-medium text-slate-400 leading-normal max-w-xl">Automate laboratory ordering and result delivery directly inside your existing EMR workflow.</p>  
+            </div>  
+            <a href="connectivity.html#emr-onboarding" class="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-wider text-[#059669] bg-[#059669]/10 rounded-xl px-4 py-2.5 shrink-0 self-start sm:self-auto hover:bg-[#059669] hover:text-white transition duration-200">  
+                <span>Start EMR Onboarding</span>  
+                <span>➔</span>  
+            </a>  
+        </div>  
+    </div>  
+</section>  
+
+<!-- SYSTEM FOOTER -->
+<footer class="bg-[#0A192F] text-white pt-12 pb-8 text-[11px] border-t border-slate-800">  
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">  
+        <div>© 2026 AccessPoint Dx. All Rights Reserved.</div>  
+        <div class="text-slate-400">Resource Registry Node: APDX-RESOURCE-LIB-V3</div>
+    </div>  
+</footer>  
+
+<!-- HYBRID SEARCH & ACCORDION EXPANSION LIGHT SCRIPT -->
+<script>  
+    document.addEventListener('DOMContentLoaded', () => {  
+        const portalSearch = document.getElementById('portalSearch');  
+        const emptyState = document.getElementById('emptyState');  
+        const searchableCards = [...document.querySelectorAll('.searchable')].map(card => {  
+            card.dataset.organicOpen = card.open;  
+            return {  
+                element: card,  
+                text: card.innerText.toLowerCase()  
+            };  
+        });  
+
+        portalSearch.addEventListener('input', () => {  
+            const query = portalSearch.value.toLowerCase().trim();  
+            let hasMatches = false;  
+
+            searchableCards.forEach(card => {  
+                if (card.text.includes(query)) {  
+                    card.element.style.removeProperty("display");  
+                    hasMatches = true;  
+                      
+                    if (query !== "") {  
+                        card.element.open = true;  
+                    } else {  
+                        card.element.open = (card.element.dataset.organicOpen === 'true');  
+                    }  
+                } else {  
+                    card.element.style.display = "none";  
+                }  
+            });  
+
+            if (hasMatches) {  
+                emptyState.classList.add('hidden');  
+            } else {  
+                emptyState.classList.remove('hidden');  
+            }  
+        });  
+    });  
+</script>
+
+</body>  
 </html>
