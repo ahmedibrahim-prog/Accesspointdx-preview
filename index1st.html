@@ -27,18 +27,22 @@
 </head>  
 <body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col">  
 
+<!-- NATIVE HARDWARE LOADING INDICATOR -->
 <div class="fixed top-0 left-0 right-0 h-[3px] bg-slate-100 z-[200]">
     <div id="topProgress" class="h-full bg-[#059669] w-0 opacity-100"></div>
 </div>
 
+<!-- ACCESSIBILITY CORNERSTONE -->
 <a href="#main-content" class="skip-link absolute top-0 left-0 bg-[#059669] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-br-lg z-[100] transition-transform duration-150 -translate-y-full focus:outline-none">
     Skip to main content
 </a>
 
+<!-- LABORATORY OPERATIONS NOTICE BANNER -->
 <div class="bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-wider px-6 py-1.5 text-center flex items-center justify-center space-x-2" role="alert">
     <span>⚠️</span> <span>Laboratory Operations Notice: Processing regular schedules. Holiday courier dispatches must be logged in advance.</span>
 </div>
 
+<!-- PERSISTENT UTILITY REGULATORY SHIELD -->
 <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800" role="complementary" aria-label="Regulatory Profile">  
     <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">  
         <div class="flex items-center space-x-6">  
@@ -55,9 +59,11 @@
     </div>  
 </div>  
 
+<!-- APPLICATION PLATFORM HEADER -->
 <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">  
-        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
+        <!-- BRAND MARQUEE -->
+        <a href="index1st.html" aria-current="page" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
             <svg class="w-10 h-10 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">  
                 <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
                 <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
@@ -70,14 +76,16 @@
             </div>  
         </a>  
 
+        <!-- DESKTOP WORKSPACE NAVIGATION (TARGETED ROUTING MAP) -->
         <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
-            <a href="index.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition text-[#059669]">Home</a>
-            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Test Directory</a>  
-            <a href="provider-hub.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Provider Hub</a>  
-            <a href="resources.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Laboratory Resources</a>  
-            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Connectivity</a>  
+            <a href="index1st.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Home</a>
+            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Test Directory</a>  
+            <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Provider Hub</a>  
+            <a href="resources-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Laboratory Resources</a>  
+            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
         </nav>
 
+        <!-- MOBILE TRIGGER MENU BUTTON -->
         <div class="flex lg:hidden items-center">
             <button id="mobileDrawerTrigger" onclick="toggleMobileDrawer(true)" aria-expanded="false" aria-controls="mobileDrawer" class="p-2 rounded-xl text-[#0A192F] hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/40" aria-label="Open portal menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -86,6 +94,7 @@
     </div>  
 </header>  
 
+<!-- MOBILE WORKSPACE NAV DRAWER -->
 <div id="mobileDrawer" class="hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true">
     <div onclick="toggleMobileDrawer(false)" class="drawer-backdrop absolute inset-0 bg-slate-900/60 opacity-0 pointer-events-auto backdrop-blur-sm"></div>
     <nav class="drawer-content absolute top-0 bottom-0 left-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full z-10 overflow-y-auto">
@@ -95,11 +104,11 @@
                 <button onclick="toggleMobileDrawer(false)" class="text-slate-400 hover:text-[#0A192F] font-black text-xs select-none">✕ CLOSE</button>
             </div>
             <div id="mobileDrawerNavLinks" class="flex flex-col space-y-3 font-bold text-xs uppercase tracking-wider text-slate-600">
-                <a href="index.html" class="p-2.5 rounded-xl transition bg-emerald-50/10 text-[#059669]">Home</a>
+                <a href="index1st.html" class="p-2.5 rounded-xl transition">Home</a>
                 <a href="test-directory.html" class="p-2.5 rounded-xl transition">Test Directory</a>
-                <a href="provider-hub.html" class="p-2.5 rounded-xl transition">Provider Hub</a>
-                <a href="resources.html" class="p-2.5 rounded-xl transition">Laboratory Resources</a>
-                <a href="connectivity.html" class="p-2.5 rounded-xl transition">Connectivity</a>
+                <a href="provider-hub-v2.html" class="p-2.5 rounded-xl transition">Provider Hub</a>
+                <a href="resources-v2.html" class="p-2.5 rounded-xl transition">Laboratory Resources</a>
+                <a href="connectivity.html" class="p-2.5 rounded-xl transition">Connectivity & Integrations</a>
             </div>
         </div>
         <div class="border-t border-slate-100 pt-4 space-y-3">
@@ -108,12 +117,14 @@
     </nav>
 </div>
 
+<!-- MAIN WORKSPACE FRAME -->
 <main id="main-content" class="page-entry-anim focus:outline-none flex-grow" tabindex="-1">
 
+    <!-- BREADCRUMB INDEX -->
     <nav class="max-w-7xl mx-auto px-6 pt-5" aria-label="Location Breadcrumb">
         <div class="bg-white border border-slate-200/60 rounded-xl px-4 py-2 flex flex-col sm:flex-row sm:items-center justify-between text-[10px] font-black tracking-wider uppercase text-slate-400 gap-2">
             <div class="flex items-center space-x-2">
-                <a href="index.html" class="text-[#059669]">Home</a>
+                <a href="index1st.html" class="text-[#059669]">Home</a>
                 <span class="text-slate-300">/</span>
                 <span class="text-[#0A192F]">Platform Home</span>
             </div>
@@ -123,13 +134,17 @@
         </div>
     </nav>
 
+    <!-- HISTORICAL USER RUNTIME MATRIX (RECENTLY VISITED LIST) -->
     <section id="historicalTelemetryBlock" class="hidden max-w-7xl mx-auto px-6 pt-3" aria-label="Recently Accessed Workspace Links">
         <div class="bg-slate-100/80 border border-slate-200 rounded-xl px-4 py-2 flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-500">
             <span class="uppercase tracking-wider text-slate-400 font-black">Recently Visited:</span>
-            <div id="historicalTelemetryContainer" class="flex flex-wrap items-center gap-1.5"></div>
+            <div id="historicalTelemetryContainer" class="flex flex-wrap items-center gap-1.5">
+                <!-- Injected elements stream inside dynamically -->
+            </div>
         </div>
     </section>
 
+    <!-- SESSION RETAINED ACTIVE LINK BAR -->
     <div id="telemetryRecentBar" class="hidden max-w-7xl mx-auto px-6 pt-3">
         <div class="bg-emerald-50/60 border border-[#059669]/20 rounded-xl px-4 py-2 flex items-center justify-between text-[10px] font-bold text-emerald-800">
             <div class="flex items-center space-x-2">
@@ -140,6 +155,7 @@
         </div>
     </div>
 
+    <!-- MAIN BRAND TEXT AND REAL-TIME ROUTER LOOKUP -->
     <section class="max-w-7xl mx-auto px-6 pt-6 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-6" aria-labelledby="platform-heading">
         <div class="max-w-xl space-y-1.5">
             <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Integrated Diagnostics Core</span>
@@ -151,14 +167,17 @@
             </p>
         </div>
         
+        <!-- TARGETED MODULE LOOKUP BOX -->
         <div class="w-full max-w-sm relative">  
-            <input type="text" id="platformGlobalSearch" placeholder="Search components [Press / or ⌘K]..." class="w-full bg-white border border-slate-200 rounded-2xl pl-4 pr-10 py-3.5 text-xs font-semibold text-[#0A192F] shadow-sm placeholder-slate-400 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/20 focus:border-[#059669]/60" aria-label="Filter application workspace modules"/>  
+            <input type="text" id="platformGlobalSearch" placeholder="Search platform components [Press / or ⌘K]..." class="w-full bg-white border border-slate-200 rounded-2xl pl-4 pr-10 py-3.5 text-xs font-semibold text-[#0A192F] shadow-sm placeholder-slate-400 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/20 focus:border-[#059669]/60" aria-label="Filter application workspace modules"/>  
             <span class="absolute right-4 top-4 text-slate-300 font-bold text-xs select-none">🔍</span>  
         </div>  
     </section>
 
+    <!-- CORE 4-CARD WORKSPACE ROUTER MATRIX (ALIGNED WITH image_825924.png) -->
     <section class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" id="ecosystemGrid" aria-label="Platform Core Workspaces">
         
+        <!-- MODULE 1: TEST DIRECTORY MAP -->
         <div data-search="test directory matrix billing cpt specimen criteria codes profiles panels assays" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5 group">
             <div class="space-y-3">
                 <div class="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-xs font-bold text-[#0A192F] select-none">🧬</div>
@@ -172,7 +191,8 @@
             </a>
         </div>
 
-        <div data-search="provider logistics operations express medical couriers supply procurement orders kits dispatch scheduling" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5 group">
+        <!-- MODULE 2: PROVIDER LOGISTICS HUB (V2 VECTORS) -->
+        <div data-search="provider logistics operations express medical couriers supply procurement orders kits dispatch scheduling provider hub v2" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5 group">
             <div class="space-y-3">
                 <div class="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-xs font-bold text-[#0A192F] select-none">⚕️</div>
                 <div class="space-y-1">
@@ -180,12 +200,13 @@
                     <p class="text-[11px] text-slate-400 font-semibold leading-normal">Schedule regional laboratory transport couriers, coordinate kit supply collection setups, and track manifests.</p>
                 </div>
             </div>
-            <a href="provider-hub.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] transition pt-4 outline-none">
+            <a href="provider-hub-v2.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] transition pt-4 outline-none">
                 <span>Manage Logistics</span> <span>➔</span>
             </a>
         </div>
 
-        <div data-search="laboratory resource center analytical stability parameters documentation pdfs forms clia certifications logs" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-amber-500 hover:shadow-lg hover:-translate-y-0.5 group">
+        <!-- MODULE 3: RESOURCES MATRIX (V2 VAULT) -->
+        <div data-search="laboratory resource center analytical stability parameters documentation pdfs forms clia certifications logs resources v2" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5 group">
             <div class="space-y-3">
                 <div class="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-xs font-bold text-[#0A192F] select-none">📚</div>
                 <div class="space-y-1">
@@ -193,12 +214,13 @@
                     <p class="text-[11px] text-slate-400 font-semibold leading-normal">Review stability profiles, download technical processing forms, and examine regulatory licensure sheets.</p>
                 </div>
             </div>
-            <a href="resources.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-amber-600 group-hover:text-[#0A192F] transition pt-4 outline-none">
+            <a href="resources-v2.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] transition pt-4 outline-none">
                 <span>Open Resource Center</span> <span>➔</span>
             </a>
         </div>
 
-        <div data-search="connectivity integrations interoperability data streams hl7 loops webhooks fhir secure architecture integrations api pipelines" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-blue-600 hover:shadow-lg hover:-translate-y-0.5 group">
+        <!-- MODULE 4: CONNECTIVITY STREAM -->
+        <div data-search="connectivity integrations interoperability data streams hl7 loops webhooks fhir secure architecture integrations api pipelines" class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between items-start min-h-[220px] transition-all duration-200 hover:border-[#0A192F] hover:shadow-lg hover:-translate-y-0.5 group">
             <div class="space-y-3">
                 <div class="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-xs font-bold text-[#0A192F] select-none">🖥️</div>
                 <div class="space-y-1">
@@ -206,12 +228,13 @@
                     <p class="text-[11px] text-slate-400 font-semibold leading-normal">Configure production HL7 interface feeds, handle live webhook streams, and analyze clinical architecture data rules.</p>
                 </div>
             </div>
-            <a href="connectivity.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-blue-600 group-hover:text-[#0A192F] transition pt-4 outline-none">
+            <a href="connectivity.html" class="inline-flex items-center space-x-1.5 text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] transition pt-4 outline-none">
                 <span>Configure Streams</span> <span>➔</span>
             </a>
         </div>
     </section>
 
+    <!-- DETAILED WORKSPACE MODULE: SPECIMEN PROTOCOL DESK -->
     <section class="max-w-7xl mx-auto px-6 py-4" id="specimenManualPreviewBlock">
         <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-3 gap-2">
@@ -222,7 +245,7 @@
                         <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Quick-Reference Processing Manual Elements</p>
                     </div>
                 </div>
-                <a href="resources.html" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-xl transition text-center">Open Full Manual</a>
+                <a href="resources-v2.html" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-xl transition text-center">Open Full Manual</a>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="p-3 bg-slate-50 border border-slate-100 rounded-2xl space-y-1">
@@ -241,6 +264,7 @@
         </div>
     </section>
 
+    <!-- LOGISTICAL PERFORMANCE METRICS INFRASTRUCTURE -->
     <section class="max-w-7xl mx-auto px-6 py-4" aria-label="Laboratory Quality Performance Matrix">
         <div class="bg-white border border-slate-200 rounded-3xl p-6 grid grid-cols-2 md:grid-cols-4 gap-6 items-center shadow-sm">
             <div class="space-y-0.5 border-r border-slate-100 pr-2">
@@ -262,6 +286,7 @@
         </div>
     </section>
 
+    <!-- NO MATCH RESULTS EMPTY FRAME WITH DYNAMIC UX RECOVERY BUTTON -->
     <div id="globalSearchEmptyFrame" class="hidden max-w-7xl mx-auto px-6 py-12 text-center space-y-3">  
         <span class="text-2xl select-none block">⚠️</span>  
         <h4 class="text-xs font-black text-[#0A192F] uppercase tracking-wide">No Matched Workspaces Found</h4>  
@@ -271,6 +296,7 @@
         </button>
     </div>
 
+    <!-- AUTHENTICATED PORTAL TRANSFER INTERFACE -->
     <section class="max-w-7xl mx-auto px-6 pt-4 pb-16" aria-labelledby="enclave-heading">  
         <div class="bg-gradient-to-r from-slate-900 to-[#0A192F] border border-slate-800 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-md">  
             <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">  
@@ -296,20 +322,23 @@
 
 </main>
 
-<div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs" role="toolbar" aria-label="Application Dock">
+<!-- RESPONSIVE UTILITY NAVIGATION CONTROL FLOATING DOCK -->
+<div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs scale-90 md:scale-100" role="toolbar" aria-label="Application Dock">
     <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="index.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Node [Alt+H]">🏠</a>
+        <a href="index1st.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Node [Alt+H]">🏠</a>
         <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Back Page">←</button>
         <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Forward Page">→</button>
         <button onclick="focusGlobalSearchField()" class="text-slate-500 hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Focus Search Field [/]">🔍</button>
         <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Ceiling Anchor">↑</button>
     </div>
-    <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
-        <a href="index.html" class="text-[#059669] text-xs">🏠</a>
+    <!-- Mobile Micro Drawer Opener -->
+    <div class="flex md:hidden items-center space-x-3 px-1.5 py-0.5">
+        <a href="index1st.html" class="text-[#059669] text-xs">🏠</a>
         <button onclick="toggleMobileDockDrawer()" id="dockToggleBtn" class="text-slate-400 font-bold focus:outline-none tracking-tighter text-[11px] bg-slate-100 px-2 py-0.5 rounded-md">•••</button>
     </div>
 </div>
 
+<!-- SYSTEM FOOTER -->
 <footer class="bg-[#0A192F] text-white pt-12 pb-20 text-[11px] border-t border-slate-800" role="contentinfo">  
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">  
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-center sm:text-left">
@@ -321,11 +350,12 @@
     </div>  
 </footer>  
 
+<!-- APPLICATION LOGIC PLATFORM SCRIPT CONSOLE -->
 <script>  
     let drawerTimeout;
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Progress bar triggers
+        // A. LIFECYCLE INDICATOR PROGRESS BAR LOOPS
         const bar = document.getElementById('topProgress');
         document.onreadystatechange = function() {
             if (document.readyState === 'interactive') { bar.style.width = '65%'; }
@@ -339,7 +369,7 @@
             setTimeout(() => { bar.style.opacity = '0'; }, 300);
         }
 
-        // Link triggers
+        // B. SPA-LIKE CLICK CAPTURING ROUTER LOAD SIMULATION
         document.querySelectorAll('a[href]').forEach(link => {
             if (
                 link.hostname === window.location.hostname && 
@@ -355,34 +385,35 @@
             }
         });
 
-        // Add visual identifiers to active nodes
+        // C. RE-ENFORCED ROUTE HIGHLIGHT SCHEMES (SCOPED STRICTLY TO THE CHOSEN V2 MATRIX offering)
         document.querySelectorAll('#desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
-            if (link.href === window.location.href || (window.location.pathname === '/' && link.href.includes('index.html'))) {
+            if (link.href === window.location.href || (window.location.pathname.includes('index1st') && link.href.includes('index1st'))) {
                 link.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'bg-emerald-50/10');
             }
         });
 
-        // Retain tracking metrics
+        // D. WORKSPACE TELEMETRY ARCHIVE METRICS (DYNAMIC ROUTING PERSISTENCE)
         localStorage.setItem('apdx_target_retained_page', window.location.pathname);
         
-        // Multi-layer visit streamers
+        // E. MULTI-LAYER LOCALSTORAGE HISTORICAL VISIT STREAMER (EXCLUDING HOME ROOT)
         let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
         const totalPagesMap = {
             'test-directory.html': 'Test Directory',
-            'provider-hub.html': 'Provider Hub',
-            'resources.html': 'Laboratory Resources',
+            'provider-hub-v2.html': 'Provider Hub',
+            'resources-v2.html': 'Laboratory Resources',
             'connectivity.html': 'Connectivity Stream'
         };
 
-        const pathFile = window.location.pathname.split('/').pop() || 'index.html';
+        const pathFile = window.location.pathname.split('/').pop() || 'index1st.html';
         
-        if (pathFile !== 'index.html' && totalPagesMap[pathFile]) {
+        if (pathFile !== 'index1st.html' && totalPagesMap[pathFile]) {
             historyArray = historyArray.filter(i => i.file !== pathFile);
             historyArray.unshift({ file: pathFile, name: totalPagesMap[pathFile] });
             if (historyArray.length > 4) historyArray.pop();
             localStorage.setItem('apdx_history_stream', JSON.stringify(historyArray));
         }
 
+        // Render History Elements if tracking nodes exist
         const historyBlock = document.getElementById('historicalTelemetryBlock');
         const historyContainer = document.getElementById('historicalTelemetryContainer');
 
@@ -398,7 +429,7 @@
             historyBlock.classList.remove('hidden');
         }
 
-        // Scroll adjustments
+        // F. ROUTE-ISOLATED SCROLL MEMORY INDICES
         window.addEventListener('beforeunload', () => {
             sessionStorage.setItem(`scroll-${window.location.pathname}`, window.scrollY);
         });
@@ -411,7 +442,7 @@
             }
         }
 
-        // Global multi-term workspace algorithm
+        // G. TARGETED FRACTIONAL MULTI-TERM SEARCH ENGINE
         const searchInput = document.getElementById('platformGlobalSearch');  
         const searchEmptyFrame = document.getElementById('globalSearchEmptyFrame');  
         const systemSearchItems = [...document.querySelectorAll('[data-search]')].map(item => {  
@@ -438,7 +469,7 @@
             else { searchEmptyFrame.classList.remove('hidden'); }  
         });
 
-        // Key listeners
+        // H. GLOBAL KEYBOARD ACCESSIBILITY LISTENERS
         window.addEventListener('keydown', (e) => {
             const insideInput = document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA';
             
@@ -452,7 +483,7 @@
             }
             if (e.altKey && e.key.toLowerCase() === 'h') {
                 e.preventDefault();
-                window.location.href = 'index.html';
+                window.location.href = 'index1st.html';
             }
             if (e.key === 'Escape') {
                 if (!document.getElementById('mobileDrawer').classList.contains('hidden')) {
@@ -461,10 +492,12 @@
             }
         });
 
+        // I. SCREEN ADAPTIVE DOCK BREAKPOINT ENGINE
         initResponsiveDockLayout();
         window.addEventListener('resize', initResponsiveDockLayout);
     });  
 
+    // J. RESPONSIVE DOCK DESIGN ENFORCER LAYER
     function initResponsiveDockLayout() {
         const targetGroup = document.getElementById('dockExpandedGroup');
         const fallbackGroup = document.getElementById('dockMobileFallbackGroup');
@@ -482,6 +515,7 @@
         }
     }
 
+    // K. ACCESSIBLE DRAWER LOGIC CONTROLLER AND OVERFLOW FOCUS MANAGERS
     function toggleMobileDrawer(open) {
         const drawer = document.getElementById('mobileDrawer');
         const trigger = document.getElementById('mobileDrawerTrigger');
@@ -512,6 +546,7 @@
         }
     }
 
+    // L. MOBILE DOCK LAYER VISIBILITY STATE CONTROL SCHEMES
     function toggleMobileDockDrawer() {
         const targetGroup = document.getElementById('dockExpandedGroup');
         const btn = document.getElementById('dockToggleBtn');
@@ -526,6 +561,7 @@
         }
     }
 
+    // M. RECOVERY LOOP UX TRIGGER
     function clearGlobalWorkspaceSearch() {
         const searchBox = document.getElementById('platformGlobalSearch');
         searchBox.value = '';
