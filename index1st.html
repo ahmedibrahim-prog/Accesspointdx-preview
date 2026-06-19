@@ -81,7 +81,7 @@
             
             <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
                 <div class="relative flex-1">
-                    <span class="absolute left-3.5 top-3.5 text-xs text-slate-400">🔍</span>
+                    <span class="absolute left-3.5 top-3.5 text-xs text-slate-400" aria-hidden="true">🔍</span>
                     <input type="text" id="catalogSearchInput" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
                 </div>
                 <div class="flex items-center space-x-3 justify-end">
@@ -98,8 +98,9 @@
                 <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
                 <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
                 <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
+                <button data-cat="executive" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
                 <button data-cat="hormones" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
-                <button data-cat="compliance" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Compliance & Tox</button>
+                <button data-cat="cardiovascular" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
             </div>
 
             <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
@@ -191,7 +192,7 @@
 
             <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-sm space-y-3">
                 <div class="flex items-center space-x-2">
-                    <span class="text-xs">🔒</span>
+                    <span class="text-xs" aria-hidden="true">🔒</span>
                     <h5 class="text-[10px] font-black uppercase tracking-widest text-emerald-400">Application Security Notice</h5>
                 </div>
                 <p class="text-[11px] text-slate-400 font-medium leading-relaxed">
@@ -235,7 +236,7 @@
             const displayBadge = document.getElementById('catalogCountDisplay');
             const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
 
-            // Event Listeners for category chips
+            // Event Listeners for category filtering chips
             document.querySelectorAll('#categoryChipContainer button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const category = e.currentTarget.getAttribute('data-cat');
