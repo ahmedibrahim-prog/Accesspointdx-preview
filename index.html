@@ -3,115 +3,170 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>AccessPoint Dx // Clinical Diagnostics Network Entrance</title>  
+    <title>AccessPoint Dx // Diagnostics Without Barriers</title>  
     <script src="https://cdn.tailwindcss.com"></script>  
     <style>  
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
         body { font-family: 'Inter', sans-serif; }  
     </style>  
 </head>  
-<body class="bg-slate-900 text-white antialiased min-h-screen flex flex-col justify-between selection:bg-[#059669]/30">  
+<body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col justify-between">  
 
-<!-- DEPLOYED PUBLIC HERO BLOCK -->
-<main class="max-w-7xl mx-auto px-6 flex-grow flex flex-col items-center justify-center text-center py-20 space-y-8">
-    <div class="space-y-3">
-        <span class="text-[10px] font-black tracking-[0.25em] text-[#059669] uppercase block bg-emerald-950/40 border border-emerald-900/40 px-3 py-1 rounded-full w-max mx-auto">
-            Clinical Infrastructure Node // Minnesota
-        </span>
-        <h1 class="text-[36px] sm:text-[54px] font-black tracking-tight text-white uppercase leading-[0.95] max-w-3xl">
-            Diagnostics Without Barriers
+<!-- APPLICATION PLATFORM BRAND HEADER -->
+<header class="border-b border-slate-150/80 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">  
+        
+        <!-- BRAND MARQUEE BRANDING MATCHING image_74cd9f.jpg -->
+        <div class="flex items-center space-x-3 group select-none">  
+            <svg class="w-11 h-11 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">  
+                <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
+                <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
+                <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>  
+                <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>  
+            </svg>  
+            <div class="flex flex-col justify-center">  
+                <div class="text-[19px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
+                <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>  
+            </div>  
+        </div>  
+
+        <!-- MAIN HORIZONTAL PUBLIC NAVIGATION -->
+        <nav class="hidden lg:flex items-center space-x-6 font-bold text-xs text-slate-600 tracking-wide">  
+            <a href="index.html" class="text-[#059669] px-1 py-1">Home</a>  
+            <button onclick="toggleGatewayModal('login', true)" class="hover:text-[#059669] transition px-1 py-1">Test Directory</button>  
+            <button onclick="toggleGatewayModal('login', true)" class="hover:text-[#059669] transition px-1 py-1">Provider Hub</button>  
+            <button onclick="toggleGatewayModal('login', true)" class="hover:text-[#059669] transition px-1 py-1">Laboratory Resources</button>  
+            <button onclick="toggleGatewayModal('login', true)" class="hover:text-[#059669] transition px-1 py-1">Connectivity</button>  
+        </nav>  
+
+        <!-- INTERACTIVE INTERFACE CONTROLLER ACTION BUTTON FROM image_74cd9f.jpg -->
+        <button onclick="toggleGatewayModal('login', true)" class="inline-flex items-center space-x-2 bg-white hover:bg-slate-50 border border-slate-200 px-6 py-3 rounded-xl text-xs font-black tracking-wider text-[#0A192F] shadow-sm transition outline-none" aria-label="Open secure client portal authorization portal">  
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">  
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>  
+            </svg>  
+            <span class="uppercase font-extrabold">Client Portal</span>  
+        </button>  
+    </div>  
+</header>  
+
+<!-- DYNAMIC MARKETING CORE TEXT AND HERO DESK FRAME -->
+<main class="max-w-7xl mx-auto px-6 py-12 md:py-20 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    
+    <!-- LEFT PANEL: VALUE PROPOSITIONS AND CONVERSION BUTTONS -->
+    <div class="lg:col-span-6 space-y-6 text-left">
+        <h1 class="text-[44px] sm:text-[56px] font-black tracking-tight text-[#0A192F] uppercase leading-[0.95]">
+            Diagnostics<br>Without Barriers.
         </h1>
-        <p class="text-xs sm:text-sm font-medium text-slate-400 max-w-xl mx-auto leading-relaxed">
-            Secure, high-complexity laboratory testing interfaces integrated directly into regional healthcare logistics and EHR pipelines.
+        <p class="text-xs sm:text-sm font-semibold text-slate-400 max-w-xl leading-relaxed">
+            Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
         </p>
+        
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <button onclick="toggleGatewayModal('demo', true)" class="bg-[#059669] hover:bg-emerald-700 text-white text-[10px] sm:text-xs font-black uppercase tracking-wider px-6 py-4 rounded-xl transition shadow-md shadow-emerald-800/10 flex items-center justify-center space-x-2">
+                <span>Request a Laboratory Assessment</span>
+                <span>➔</span>
+            </button>
+            <button onclick="toggleGatewayModal('login', true)" class="bg-white hover:bg-slate-50 border border-slate-200 text-[#0A192F] text-[10px] sm:text-xs font-black uppercase tracking-wider px-6 py-4 rounded-xl transition flex items-center justify-center space-x-2">
+                <span>Explore Solutions</span>
+                <span>➔</span>
+            </button>
+        </div>
     </div>
 
-    <!-- MAIN INTERACTIVE HUB BUTTONS -->
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full max-w-md pt-4">
-        <button onclick="toggleGatewayModal('login', true)" class="bg-[#059669] hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-wider px-8 py-4 rounded-xl transition duration-150 shadow-lg shadow-emerald-900/20 outline-none">
-            🔒 Enter Client System
-        </button>
-        <button onclick="toggleGatewayModal('demo', true)" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-black uppercase tracking-wider px-8 py-4 rounded-xl transition duration-150 border border-slate-700 outline-none">
-            ⚡ Request Instant Demo
-        </button>
-    </div>
-
-    <!-- ACCESS MATRIX PROFILE DIRECTORY CHEAT-SHEET -->
-    <div class="bg-slate-950/60 border border-slate-800/80 rounded-2xl p-5 max-w-md w-full text-left space-y-3 mx-auto">
-        <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block border-b border-slate-800 pb-1.5">
-            🔑 System Access Evaluation Profiles (Try Now)
-        </span>
-        <div class="grid grid-cols-2 gap-3 text-[10px] font-mono text-slate-400">
-            <div>
-                <span class="block font-sans font-black uppercase text-slate-500 text-[8px]">Administrator Key:</span>
-                <span class="text-white select-all">apdx-admin</span>
+    <!-- RIGHT PANEL: HERO GRAPHIC AND RUNTIME HIGH-DENSITY TIMELINE MATRICES FROM image_74cd9f.jpg -->
+    <div class="lg:col-span-6 relative rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
+        <!-- High Quality clinical lab backdrop mimicking layout -->
+        <img src="https://images.unsplash.com/photo-1579154204601-01588f35116f?auto=format&fit=crop&w=1000&q=80" alt="AccessPoint Dx high complexity clinical lab processing core automation suite" class="w-full h-[360px] object-cover bg-slate-100">
+        
+        <!-- TWO METRIC BADGES OVERLAID DIRECTLY ON LAB CANVAS -->
+        <div class="absolute bottom-4 left-4 right-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="bg-[#0A192F]/90 backdrop-blur-md border border-slate-700/30 p-4 rounded-2xl flex items-center space-x-3 text-white">
+                <span class="text-xl">🕒</span>
+                <div class="flex flex-col">
+                    <span class="text-xs font-black uppercase tracking-wider">24 Hour</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wide">Qualifying Local Accounts</span>
+                </div>
             </div>
-            <div>
-                <span class="block font-sans font-black uppercase text-slate-500 text-[8px]">Provider Key:</span>
-                <span class="text-white select-all">apdx-provider</span>
-            </div>
-            <div class="col-span-2 pt-1 border-t border-slate-900">
-                <span class="block font-sans font-black uppercase text-slate-500 text-[8px]">Logistics Core Key:</span>
-                <span class="text-white select-all">apdx-logistics</span>
+            <div class="bg-[#0A192F]/90 backdrop-blur-md border border-slate-700/30 p-4 rounded-2xl flex items-center space-x-3 text-white">
+                <span class="text-xl">⏱️</span>
+                <div class="flex flex-col">
+                    <span class="text-xs font-black uppercase tracking-wider">48 Hour</span>
+                    <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wide">Statewide Target Workflow</span>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
+<!-- SYSTEM CREDENTIAL CHEAT-SHEET ASSIST STRIP -->
+<section class="max-w-7xl mx-auto px-6 pb-6 w-full">
+    <div class="bg-slate-950 text-slate-400 border border-slate-800 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] font-mono">
+        <span class="font-sans font-black text-slate-500 uppercase tracking-wider text-[9px] shrink-0">Evaluation Keys Platform Directory:</span>
+        <div class="flex flex-wrap gap-4">
+            <span>Admin Key: <strong class="text-white select-all bg-slate-900 px-1.5 py-0.5 rounded">apdx-admin</strong></span>
+            <span>Provider Key: <strong class="text-white select-all bg-slate-900 px-1.5 py-0.5 rounded">apdx-provider</strong></span>
+            <span>Logistics Key: <strong class="text-white select-all bg-slate-900 px-1.5 py-0.5 rounded">apdx-logistics</strong></span>
+        </div>
+    </div>
+</section>
+
 <!-- ========================================================= -->
-<!-- 1. AUTHENTICATED GATEWAY LOGIN MODAL -->
+<!-- 1. AUTHENTICATED GATEWAY LOGIN INTERACTION PANEL -->
 <!-- ========================================================= -->
-<div id="loginGatewayModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" role="dialog" aria-modal="true">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4 text-[#0A192F]">
+<div id="loginGatewayModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4">
         <div class="text-center space-y-1">
             <span class="text-2xl select-none block">🔒</span>
-            <h3 class="text-xs font-black uppercase tracking-wide">Secure Client Portal</h3>
-            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Authorized Laboratory Infrastructure Matrix</p>
+            <h3 class="text-xs font-black uppercase tracking-wide text-[#0A192F]">Secure Client Portal</h3>
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Authorized Facility Access Key ID Validation Matrix</p>
         </div>
         
         <form onsubmit="validateGatewayPasskey(event)" class="space-y-4">
             <div>
-                <label for="gatewayUserKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Access Key ID</label>
-                <input type="text" id="gatewayUserKey" required placeholder="Enter default or generated credential key..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold focus:outline-none focus:border-[#059669]">
+                <label for="gatewayUserKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Access Key</label>
+                <input type="text" id="gatewayUserKey" required placeholder="Enter key ID (e.g. apdx-admin)..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-[#0A192F] focus:outline-none focus:border-[#059669]">
             </div>
             <div id="loginErrorMessage" class="hidden text-[10px] font-black text-red-600 uppercase text-center">
-                ⚠️ Invalid Facility Access Key Code Matrix
+                ⚠️ Invalid Facility Access Key Code Vector
             </div>
             <button type="submit" class="w-full bg-[#0A192F] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-slate-800 outline-none">
                 Verify & Enter Platform ➔
             </button>
         </form>
-        <button onclick="toggleGatewayModal('login', false)" class="w-full text-center text-[9px] font-black text-slate-400 uppercase tracking-widest hover:text-red-500 transition">Close Panel</button>
+        <div class="text-center border-t border-slate-100 pt-3">
+            <button onclick="toggleGatewayModal('demo', true)" class="text-[10px] font-black text-[#059669] uppercase tracking-wide underline hover:text-[#0A192F]">Need credentials? Get an Instant Demo Passkey ⚡</button>
+        </div>
+        <button onclick="toggleGatewayModal('login', false)" class="w-full text-center text-[9px] font-black text-slate-400 uppercase tracking-widest hover:text-red-500 transition pt-1">Close Panel</button>
     </div>
 </div>
 
 <!-- ========================================================= -->
 <!-- 2. INSTANT DEMO REQUISITION FORM MODAL -->
 <!-- ========================================================= -->
-<div id="demoRequisitionModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md" role="dialog" aria-modal="true">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4 text-[#0A192F]">
+<div id="demoRequisitionModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4">
         <div class="text-center space-y-1">
             <span class="text-2xl select-none block">⚡</span>
-            <h3 class="text-xs font-black uppercase tracking-wide">Instant Demo Access</h3>
+            <h3 class="text-xs font-black uppercase tracking-wide text-[#0A192F]">Instant Demo Access</h3>
             <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Fill form to generate temporary client codes</p>
         </div>
         
-        <!-- FORM REQUISITION LAYER -->
+        <!-- SUBMISSION FIELDS -->
         <form id="demoForm" onsubmit="generateTemporaryCredentials(event)" class="space-y-3">
             <div>
                 <label for="demoName" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Full Provider Name</label>
-                <input type="text" id="demoName" required placeholder="Dr. Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#059669]">
+                <input type="text" id="demoName" required placeholder="Dr. Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
             </div>
             <div>
                 <label for="demoClinic" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Clinic / Hospital Affiliate</label>
-                <input type="text" id="demoClinic" required placeholder="North Star Health Group" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#059669]">
+                <input type="text" id="demoClinic" required placeholder="North Star Health Group" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
             </div>
             <button type="submit" class="w-full bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-emerald-700 outline-none">
                 Generate Passkey ➔
             </button>
         </form>
 
-        <!-- OUTPUT GENERATION LAYER -->
+        <!-- CREDENTIAL GENERATION LAYOUT SHEET -->
         <div id="credentialGenerationSheet" class="hidden space-y-4 text-center">
             <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-2xl space-y-1">
                 <span class="text-[9px] font-black text-emerald-800 uppercase tracking-wider block">Your Temporary Passkey Generated</span>
@@ -127,21 +182,20 @@
     </div>
 </div>
 
-<footer class="bg-slate-950 px-6 py-6 border-t border-slate-800 text-[11px] font-bold uppercase tracking-wider text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+<footer class="bg-[#0A192F] text-white pt-8 pb-12 text-[11px] border-t border-slate-800 px-6 uppercase font-bold tracking-wider text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
     <span>© 2026 AccessPoint Dx. All Rights Reserved.</span>
-    <span class="text-slate-600 font-mono text-[9px]">Platform Module Entrance // v5.2</span>
+    <span class="font-mono text-[9px] text-slate-400">Public Root Node Framework // v5.2</span>
 </footer>
 
-<!-- SYSTEM AUTH ENGINE CONSOLE SCRIPT -->
+<!-- SYSTEM LOGIN VALIDATOR SCRIPT MODULE -->
 <script>
-    // Initialize Master Credentials Map arrays inside Persistent Storage frameworks if blank
+    // Instantiate Local database if uninitialized
     if(!localStorage.getItem('apdx_master_identities')) {
-        const standardIdentities = {
-            'APDX-ADMIN': { role: 'Administrator', identity: 'System Admin Core' },
-            'APDX-PROVIDER': { role: 'Provider Provider', identity: 'Clinical Core Partner' },
-            'APDX-LOGISTICS': { role: 'Logistics Manager', identity: 'Regional Transport Lead' }
-        };
-        localStorage.setItem('apdx_master_identities', JSON.stringify(standardIdentities));
+        localStorage.setItem('apdx_master_identities', JSON.stringify({
+            'APDX-ADMIN': { role: 'Administrator', identity: 'System Admin Core Layer' },
+            'APDX-PROVIDER': { role: 'Provider Partner', identity: 'Clinical Specialist Node' },
+            'APDX-LOGISTICS': { role: 'Logistics Core Manager', identity: 'Statewide Dispatch Supervisor' }
+        }));
     }
 
     function toggleGatewayModal(target, show = true) {
@@ -170,12 +224,10 @@
         const clinicName = document.getElementById('demoClinic').value.trim();
         const generatedKey = `APDX-DEMO-${Math.floor(1000 + Math.random() * 9000)}`;
         
-        // Inject dynamic credentials into the Shared Master Registry Database
         const currentDb = JSON.parse(localStorage.getItem('apdx_master_identities'));
-        currentDb[generatedKey] = { role: 'Temporary Demo Provider', identity: `${providerName} (${clinicName})` };
+        currentDb[generatedKey] = { role: 'Temporary Demo Provider', identity: `${providerName} @ ${clinicName}` };
         localStorage.setItem('apdx_master_identities', JSON.stringify(currentDb));
         
-        // Cache session tokens parameters
         sessionStorage.setItem('apdx_active_session_token', generatedKey);
         
         document.getElementById('demoForm').classList.add('hidden');
