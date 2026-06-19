@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AccessPoint Dx // Laboratory Infrastructure Platform</title>
+    <title>AccessPoint Dx // Diagnostics Without Barriers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
@@ -11,31 +11,40 @@
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        html { scroll-behavior: smooth; }
+        
+        .mobile-scroll::-webkit-scrollbar { height: 6px; }
+        .mobile-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; margin: 0 24px; }
+        .mobile-scroll::-webkit-scrollbar-thumb { background: #059669; border-radius: 8px; }
+        @media (min-width: 768px) { .mobile-scroll::-webkit-scrollbar { display: none; } }
+
         .hover-lift { transition: all .25s ease; }
         .hover-lift:hover { transform: translateY(-2px); }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-white text-[#0A192F] antialiased selection:bg-[#059669]/10">
 
-    <!-- REGULATORY BANNER SHIELD -->
-    <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800" role="complementary" aria-label="System Notice">
+    <!-- TOP UTILITY SHIELD -->
+    <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800">
         <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">
             <div class="flex items-center space-x-6">
                 <span class="flex items-center space-x-2 text-slate-300">
-                    <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                    <span>Minnesota Clinical Laboratory Network Node</span>
+                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <span>Minnesota-Based Processing</span>
+                </span>
+                <span class="hidden sm:flex items-center space-x-2 text-slate-300">
+                    <svg class="w-3.5 h-3.5 text-[#059669]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.164l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <span>Direct Laboratory Support</span>
                 </span>
             </div>
-            <div class="hidden md:flex items-center space-x-6 text-slate-400 font-bold uppercase tracking-wider text-[9px]">
-                <span>✓ CLIA ACCREDITED</span>
-                <span>✓ HIPAA COMPLIANT DATA PIPELINES</span>
-            </div>
+            <button onclick="toggleGatewayModal('demo', true)" class="bg-[#059669] hover:bg-emerald-700 text-white font-bold px-3 py-1 rounded-lg text-[10px] tracking-wide transition flex items-center space-x-1 uppercase whitespace-nowrap outline-none">
+                <span>Request Assessment</span> <span class="text-xs ml-1">➔</span>
+            </button>
         </div>
     </div>
 
-    <!-- MAIN HEADER NAV -->
-    <header class="border-b border-slate-150/80 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">
+    <!-- MAIN BRAND HEADER WITH RE-ROUTED AUDIENCE TABS -->
+    <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <a href="#" class="flex items-center space-x-3 group">
@@ -45,207 +54,222 @@
                         <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
                         <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
                         <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                        <circle cx="74" cy="27" r="4" fill="#059669" />
                     </svg>
                     <div class="flex flex-col justify-center">
-                        <div class="text-[20px] font-black tracking-tight text-[#0A192F] leading-none">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>
-                        <span class="text-[8px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1">Diagnostics Without Barriers</span>
+                        <div class="text-[20px] sm:text-[22px] font-black tracking-tight text-[#0A192F] leading-none">
+                            AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
+                        </div>
+                        <span class="text-[7.5px] sm:text-[8.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1.5">Diagnostics Without Barriers</span>
                     </div>
                 </a>
             </div>
 
-            <nav class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-wide text-slate-700">
-                <a href="#operational-journey" class="hover:text-[#059669] transition">Operational Journey</a>
-                <a href="#integration-layer" class="hover:text-[#059669] transition">Integration Layer</a>
-                <a href="#onboarding-pathway" class="hover:text-[#059669] transition">Become a Partner</a>
-                <a href="#reliability-architecture" class="hover:text-[#059669] transition">Operational Reliability</a>
+            <!-- AUDIENCE FIXED NAVIGATION LINKS -->
+            <nav id="navLinks" class="hidden lg:flex flex-col lg:flex-row absolute lg:relative top-24 lg:top-0 left-0 w-full lg:w-auto bg-white lg:bg-transparent shadow-xl lg:shadow-none py-6 lg:py-0 items-center space-y-4 lg:space-y-0 lg:space-x-8 font-bold text-xs tracking-[0.08em] text-slate-700 z-40 border-b lg:border-none border-slate-100">
+                <a href="#" class="text-[#059669] transition">Home</a>
+                <a href="#healthcare-providers" class="hover:text-[#059669] transition">Healthcare Providers</a>
+                <a href="#long-term-care" class="hover:text-[#059669] transition">Long-Term Care</a>
+                <a href="#occupational-health" class="hover:text-[#059669] transition">Occupational Health</a>
+                <a href="#public-sector" class="hover:text-[#059669] transition">Public Sector</a>
             </nav>
 
-            <button onclick="toggleGatewayModal('login', true)" class="flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition items-center space-x-2 shadow-sm bg-white outline-none">
-                <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                </svg>
-                <span>Secure Client Portal</span>
-            </button>
+            <div class="flex items-center space-x-4">
+                <button id="mobileBtn" class="lg:hidden text-[#0A192F] p-1 focus:outline-none" aria-label="Toggle Navigation">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <button onclick="toggleGatewayModal('login', true)" class="flex border border-slate-300 hover:border-[#0A192F] text-[#0A192F] px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition items-center space-x-2 focus:outline-none shadow-sm bg-white">
+                    <svg class="w-4 h-4 text-[#0A192F]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                    <span>Client Portal</span>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section class="max-w-7xl mx-auto px-6 pt-12 sm:pt-16 pb-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section class="max-w-7xl mx-auto px-6 pt-12 sm:pt-16 pb-16 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
-            <h1 class="text-[46px] sm:text-[58px] lg:text-[68px] font-black leading-[0.95] tracking-[-0.04em] text-[#0A192F] uppercase">
-                Clinical Testing <br><span class="text-[#059669]">Infrastructure.</span>
+            <h1 class="text-[46px] sm:text-[58px] lg:text-[72px] font-black leading-[0.95] tracking-[-0.04em] text-[#0A192F]">
+                Diagnostics <br><span class="text-[#0A192F]">Without Barriers.</span>
             </h1>
             <p class="text-sm sm:text-base text-slate-600 max-w-xl leading-relaxed font-medium">
-                Minnesota-based high-complexity laboratory network engineered for regional healthcare systems that demand faster processing loops, total data interoperability, and absolute structural accountability.
+                Minnesota-based clinical laboratory infrastructure engineered for healthcare organizations that demand faster turnaround times, seamless interoperability, and direct accountability.
             </p>
             <div class="pt-2 flex flex-col sm:flex-row gap-4">
-                <button onclick="toggleGatewayModal('demo', true)" class="bg-[#059669] text-white px-6 py-4 rounded-lg font-bold text-xs hover:bg-emerald-700 transition tracking-wide flex items-center justify-center space-x-2 uppercase outline-none shadow-sm">
-                    <span>Initiate Infrastructure Assessment</span> <span class="text-xs ml-1">➔</span>
+                <button onclick="toggleGatewayModal('demo', true)" class="w-full sm:w-auto bg-[#059669] text-white px-6 py-4 sm:py-3.5 rounded-lg font-bold text-xs hover:bg-emerald-700 transition tracking-wide flex items-center justify-center space-x-2 uppercase outline-none shadow-sm">
+                    <span>Request a Laboratory Assessment</span> <span class="text-xs ml-1">➔</span>
                 </button>
+                <a href="#advantage" class="w-full sm:w-auto border border-slate-300 text-[#0A192F] px-6 py-4 sm:py-3.5 rounded-lg font-bold text-xs hover:bg-slate-50 transition tracking-wide flex items-center justify-center space-x-2 uppercase text-center shadow-sm">
+                    <span>Explore Solutions</span> <span class="text-xs ml-1">➔</span>
+                </a>
             </div>
         </div>
         
-        <div class="lg:col-span-6 relative h-[400px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
-            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Lab Core">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/40 to-transparent"></div>
-        </div>
-    </section>
-
-    <!-- 1. THE VISUAL OPERATIONAL JOURNEY -->
-    <section id="operational-journey" class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 scroll-mt-24">
-        <div class="text-center max-w-xl mx-auto mb-10 space-y-1.5">
-            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">The Pipeline</span>
-            <h2 class="text-2xl font-black text-[#0A192F] uppercase tracking-tight">System Operational Workflow</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl space-y-2 relative">
-                <div class="text-xs font-black text-white bg-[#0A192F] w-6 h-6 rounded-full flex items-center justify-center font-mono">01</div>
-                <h4 class="text-xs font-black uppercase text-[#0A192F]">Specimen Collection</h4>
-                <p class="text-[11px] font-semibold text-slate-400 leading-relaxed">Sterile point-of-care procurement via structured asset supply matrices.</p>
-            </div>
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl space-y-2">
-                <div class="text-xs font-black text-white bg-[#0A192F] w-6 h-6 rounded-full flex items-center justify-center font-mono">02</div>
-                <h4 class="text-xs font-black uppercase text-[#0A192F]">Secure Transport</h4>
-                <p class="text-[11px] font-semibold text-slate-400 leading-relaxed">Cold-chain logistics dispatched and monitored locally across state transit lines.</p>
-            </div>
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl space-y-2">
-                <div class="text-xs font-black text-white bg-[#059669] w-6 h-6 rounded-full flex items-center justify-center font-mono">03</div>
-                <h4 class="text-xs font-black uppercase text-[#0A192F]">Minnesota Processing Hub</h4>
-                <p class="text-[11px] font-semibold text-slate-400 leading-relaxed">High-complexity automated assay execution inside our centralized lab facility.</p>
-            </div>
-            <div class="p-6 bg-slate-50 border border-slate-200/60 rounded-2xl space-y-2">
-                <div class="text-xs font-black text-white bg-[#0A192F] w-6 h-6 rounded-full flex items-center justify-center font-mono">04</div>
-                <h4 class="text-xs font-black uppercase text-[#0A192F]">Results + EMR Delivery</h4>
-                <p class="text-[11px] font-semibold text-slate-400 leading-relaxed">Discrete data payloads dispatched directly to your network clinical database.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. INTEGRATION LAYER -->
-    <section id="integration-layer" class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-100 scroll-mt-24">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5 space-y-4">
-                <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">Interoperability Protocol</span>
-                <h3 class="text-2xl sm:text-3xl font-black text-[#0A192F] uppercase tracking-tight leading-tight">Connected Clinical Systems</h3>
-                <p class="text-xs font-semibold text-slate-400 leading-relaxed">We bypass unsecure secondary portals by embedding clean, programmatic data feeds straight into your active electronic health records databases.</p>
-            </div>
-            <div class="lg:col-span-7 bg-[#0A192F] text-white rounded-3xl p-8 grid grid-cols-1 sm:grid-cols-2 gap-4 border border-slate-800 shadow-xl">
-                <div class="flex items-start space-x-3 p-2">
-                    <span class="text-[#059669] font-bold text-xs mt-0.5">✓</span>
+        <div class="lg:col-span-6 relative h-[520px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-100">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=1200" alt="AccessPoint Dx Laboratory Infrastructure">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A192F]/55 sm:from-[#0A192F]/45 via-transparent to-transparent"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-2xl p-4 text-white flex items-center space-x-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)] flex-1 sm:min-w-[200px]">
+                    <div class="p-2 border border-white/20 rounded-full text-white shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
                     <div>
-                        <h5 class="text-xs font-black uppercase tracking-wider text-white">EMR Integration Pathways</h5>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Native HL7 ORM/ORU loops & FHIR REST APIs.</p>
+                        <h4 class="font-bold text-[13px] tracking-tight">24 HOUR</h4>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Qualifying Local Accounts</p>
                     </div>
                 </div>
-                <div class="flex items-start space-x-3 p-2">
-                    <span class="text-[#059669] font-bold text-xs mt-0.5">✓</span>
-                    <div>
-                        <h5 class="text-xs font-black uppercase tracking-wider text-white">Secure Reporting Workflows</h5>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Automated encrypted endpoint transmissions.</p>
+                <div class="bg-[#0A192F]/95 backdrop-blur border border-slate-700/60 rounded-2xl p-4 text-white flex items-center space-x-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)] flex-1 sm:min-w-[200px]">
+                    <div class="p-2 border border-white/20 rounded-full text-white shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                </div>
-                <div class="flex items-start space-x-3 p-2">
-                    <span class="text-[#059669] font-bold text-xs mt-0.5">✓</span>
                     <div>
-                        <h5 class="text-xs font-black uppercase tracking-wider text-white">Specimen Logistics Coordination</h5>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Digital barcode assignments from point-of-draw.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-3 p-2">
-                    <span class="text-[#059669] font-bold text-xs mt-0.5">✓</span>
-                    <div>
-                        <h5 class="text-xs font-black uppercase tracking-wider text-white">Chain-of-Custody Management</h5>
-                        <p class="text-[10px] text-slate-400 mt-0.5">Auditable timestamp verification sequences.</p>
+                        <h4 class="font-bold text-[13px] tracking-tight">48 HOUR</h4>
+                        <p class="text-[10px] text-slate-300 font-medium leading-tight">Statewide Target Workflow</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. ONBOARDING JOURNEY -->
-    <section id="onboarding-pathway" class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-100 scroll-mt-24 bg-slate-50 rounded-3xl">
-        <div class="text-center max-w-xl mx-auto mb-12 space-y-1">
-            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Onboarding Framework</span>
-            <h2 class="text-2xl font-black text-[#0A192F] uppercase tracking-tight">Become a Partner</h2>
+    <!-- WHO WE SERVE TRACK SEGMENT ANCHORS -->
+    <section id="who-we-serve" class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-100">
+        <div class="text-center mb-12">
+            <span class="text-[12px] font-black tracking-[0.15em] text-[#0A192F] uppercase">Who We Serve</span>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left font-bold text-xs text-slate-700 uppercase">
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-2">
-                <span class="text-[9px] font-black text-slate-400 block tracking-widest">STEP 01</span>
-                <h4 class="font-black text-[#0A192F] tracking-tight">Infrastructure Assessment</h4>
-                <p class="text-[10.5px] font-semibold text-slate-400 normal-case leading-relaxed">Evaluation of clinic target volume indexes and procurement logistical routing parameters.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 scroll-smooth">
+            
+            <!-- SECTION 1: HEALTHCARE PROVIDERS -->
+            <div id="healthcare-providers" class="border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative hover-lift scroll-mt-28">
+                <div class="h-44 relative w-full">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=500" alt="Healthcare Providers">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Healthcare Providers</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Comprehensive laboratory processing solutions engineered directly for specialty medical clinics and standalone physician practices.</p>
+                </div>
+                <div class="p-6 pt-0"><button onclick="toggleGatewayModal('login', true)" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center focus:outline-none">Access Matrix <span class="ml-1 text-sm">→</span></button></div>
             </div>
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-2">
-                <span class="text-[9px] font-black text-slate-400 block tracking-widest">STEP 02</span>
-                <h4 class="font-black text-[#0A192F] tracking-tight">Workflow Alignment</h4>
-                <p class="text-[10.5px] font-semibold text-slate-400 normal-case leading-relaxed">Customizing client courier timetables and standard collection stabilizer tube assignments.</p>
+            
+            <!-- SECTION 2: LONG TERM CARE -->
+            <div id="long-term-care" class="border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative hover-lift scroll-mt-28">
+                <div class="h-44 relative w-full">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=500" alt="Long-Term Care">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18m9-14.25h1.5"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Long-Term Care & Hospice</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Symmetric turnaround logs supporting regional nursing facilities, senior care frames, and hospice programs.</p>
+                </div>
+                <div class="p-6 pt-0"><button onclick="toggleGatewayModal('login', true)" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center focus:outline-none">Access Matrix <span class="ml-1 text-sm">→</span></button></div>
             </div>
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-2">
-                <span class="text-[9px] font-black text-slate-400 block tracking-widest">STEP 03</span>
-                <h4 class="font-black text-[#0A192F] tracking-tight">Interface Configuration</h4>
-                <p class="text-[10.5px] font-semibold text-slate-400 normal-case leading-relaxed">Deploying isolated data mappings between our network servers and your internal EMR engine.</p>
+            
+            <!-- SECTION 3: OCCUPATIONAL HEALTH -->
+            <div id="occupational-health" class="border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative hover-lift scroll-mt-28">
+                <div class="h-44 relative w-full">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=500" alt="Occupational Health">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#059669] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Occupational Health Matrix</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Compliance-driven screening frameworks built explicitly for corporate safety and workforce monitoring.</p>
+                </div>
+                <div class="p-6 pt-0"><button onclick="toggleGatewayModal('login', true)" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center focus:outline-none">Access Matrix <span class="ml-1 text-sm">→</span></button></div>
             </div>
-            <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm space-y-2 border-emerald-500/30 bg-emerald-50/10">
-                <span class="text-[9px] font-black text-[#059669] block tracking-widest">STEP 04</span>
-                <h4 class="font-black text-[#0A192F] tracking-tight text-emerald-800">Go Live Allocation</h4>
-                <p class="text-[10.5px] font-semibold text-slate-400 normal-case leading-relaxed">System authorization, component barcoding clearance, and live specimen pipeline operations.</p>
+            
+            <!-- SECTION 4: PUBLIC SECTOR -->
+            <div id="public-sector" class="border border-slate-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition bg-white flex flex-col justify-between relative hover-lift scroll-mt-28">
+                <div class="h-44 relative w-full">
+                    <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?auto=format&fit=crop&q=80&w=500" alt="Public Sector">
+                    <div class="absolute -bottom-5 left-5 w-12 h-12 rounded-full bg-[#0A192F] border-[3px] border-white flex items-center justify-center text-white shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6"/></svg>
+                    </div>
+                </div>
+                <div class="p-6 pt-10 space-y-2 flex-grow">
+                    <h3 class="font-black text-[15px] text-[#0A192F]">Public Sector Programs</h3>
+                    <p class="text-[12px] text-slate-500 leading-relaxed font-medium">Defensible chains of custody workflows integrated securely with municipal and government agencies.</p>
+                </div>
+                <div class="p-6 pt-0"><button onclick="toggleGatewayModal('login', true)" class="text-[11px] font-bold text-[#059669] hover:text-[#0A192F] transition uppercase tracking-widest flex items-center focus:outline-none">Access Matrix <span class="ml-1 text-sm">→</span></button></div>
             </div>
         </div>
     </section>
 
-    <!-- 4. TRUST ARCHITECTURE -->
-    <section id="reliability-architecture" class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-100 scroll-mt-24">
-        <div class="text-center max-w-xl mx-auto mb-12 space-y-1">
-            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Risk Reduction Matrix</span>
-            <h2 class="text-2xl font-black text-[#0A192F] uppercase tracking-tight">Built for Operational Reliability</h2>
+    <!-- LAB ADVANTAGE GEOGRAPHIC GRID -->
+    <section id="advantage" class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border-t border-slate-100">
+        <div class="lg:col-span-5 flex items-center justify-center relative p-4 h-80 sm:h-96 hover-lift">
+            <svg class="w-full h-full drop-shadow-md" viewBox="0 0 300 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 120 20 L 140 25 L 145 10 L 160 30 L 175 35 L 180 50 L 195 55 L 210 50 L 220 55 L 245 75 L 255 100 L 245 130 L 250 160 L 235 190 L 245 220 L 255 240 L 250 270 L 260 290 L 265 315 L 255 330 L 95 330 L 90 280 L 85 240 L 80 200 L 75 160 L 70 120 L 65 80 L 120 80 Z" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" stroke-linejoin="round"/>
+                <circle cx="190" cy="220" r="40" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" opacity="0.3"/>
+                <circle cx="190" cy="220" r="25" fill="#059669" opacity="0.1"/>
+                <circle cx="190" cy="220" r="6" fill="#059669"/>
+                <g transform="translate(15, 200)">
+                    <text x="120" y="14" fill="#0A192F" font-size="12" font-weight="800" text-anchor="end">Twin Cities</text>
+                    <text x="120" y="28" fill="#059669" font-size="10" font-weight="700" text-anchor="end">Laboratory Hub</text>
+                </g>
+            </svg>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center text-[11px] font-black uppercase text-slate-700 tracking-wider">
-            <div class="p-5 border border-slate-200/80 rounded-xl bg-slate-50/50 flex flex-col justify-center min-h-[90px]">
-                <span class="text-[#059669] block text-base mb-1">📍</span>
-                Minnesota-Based Processing
-            </div>
-            <div class="p-5 border border-slate-200/80 rounded-xl bg-slate-50/50 flex flex-col justify-center min-h-[90px]">
-                <span class="text-[#059669] block text-base mb-1">🤝</span>
-                Direct Laboratory Support
-            </div>
-            <div class="p-5 border border-slate-200/80 rounded-xl bg-slate-50/50 flex flex-col justify-center min-h-[90px]">
-                <span class="text-[#059669] block text-base mb-1">🛡️</span>
-                Secure Data Handling
-            </div>
-            <div class="p-5 border border-slate-200/80 rounded-xl bg-slate-50/50 flex flex-col justify-center min-h-[90px]">
-                <span class="text-[#059669] block text-base mb-1">⏱️</span>
-                Defined Turnaround Pathways
-            </div>
-            <div class="p-5 border border-slate-200/80 rounded-xl bg-slate-50/50 flex flex-col justify-center min-h-[90px]">
-                <span class="text-[#059669] block text-base mb-1">🗣️</span>
-                Accountable Communication
+
+        <div class="lg:col-span-7 space-y-5">
+            <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase">Why Local Processing Matters</span>
+            <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-[#0A192F]">Faster results start closer to the source.</h2>
+            <p class="text-slate-600 text-[15px] leading-relaxed font-medium">
+                By processing specimens inside Minnesota infrastructure network centers, we reduce standard transit risks and deliver direct administrative access to the clinical team.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 text-center">
+                <div><span class="block font-black text-sm text-[#0A192F]">24 HOUR</span><span class="block text-[10px] text-slate-500 font-medium">Local Turnaround</span></div>
+                <div><span class="block font-black text-sm text-[#0A192F]">48 HOUR</span><span class="block text-[10px] text-slate-500 font-medium">Statewide Target</span></div>
+                <div><span class="block font-black text-sm text-[#0A192F]">100%</span><span class="block text-[10px] text-slate-500 font-medium">Minnesota-Based</span></div>
+                <div><span class="block font-black text-sm text-[#0A192F]">DIRECT</span><span class="block text-[10px] text-slate-500 font-medium">Clinical Support</span></div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-[#0A192F] text-white py-12 px-6 border-t border-slate-800 text-[10px] font-bold tracking-wider uppercase text-slate-500">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>© 2026 AccessPoint Dx. All rights reserved.</div>
-            <div class="text-slate-400 font-mono text-[9px]">Infrastructure Core Entry Framework // v5.5</div>
+    <!-- FOOTER BLOCK -->
+    <footer class="bg-[#0A192F] text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 space-y-12">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-12 border-b border-slate-800">
+                <div class="space-y-1.5 text-center lg:text-left">
+                    <h3 class="text-[32px] font-black tracking-tight leading-tight">Evaluate Your Laboratory Infrastructure.</h3>
+                    <p class="text-[13px] text-slate-400 font-medium">Compare turnaround time indices, logistics protocols, and discrete EMR pipelines with zero obligation.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+                    <button onclick="toggleGatewayModal('demo', true)" class="w-full sm:w-auto bg-[#059669] hover:bg-emerald-700 text-white px-6 py-4 rounded-lg text-xs font-bold tracking-wider transition uppercase shadow-sm">Request Assessment ➔</button>
+                    <button onclick="toggleGatewayModal('login', true)" class="w-full sm:w-auto border border-slate-700 hover:bg-slate-800 text-white px-6 py-4 rounded-lg text-xs font-bold tracking-wider transition uppercase">Portal Gateway ➔</button>
+                </div>
+            </div>
+            <div class="pt-8 text-[10px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider">
+                <div>© 2026 AccessPoint Dx. All rights reserved.</div>
+                <div class="text-slate-400 font-mono text-[9px]">Platform Security Core Entry // v5.2</div>
+            </div>
         </div>
     </footer>
 
     <!-- ========================================================= -->
-    <!-- SECURE INTERACTIVE MODALS AND ENGINE -->
+    <!-- SECURE INTERACTIVE MODALS MATRIX LAYOUT PANELS -->
     <!-- ========================================================= -->
+    
+    <!-- 1. LOGIN GATEWAY OVERLAY -->
     <div id="loginGatewayModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md" role="dialog" aria-modal="true">
-        <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4 text-[#0A192F]">
+        <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4">
             <div class="text-center space-y-1">
                 <span class="text-2xl select-none block">🔒</span>
-                <h3 class="text-xs font-black uppercase tracking-wide">Secure Client Portal</h3>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Authorized Facility Entry Validation</p>
+                <h3 class="text-xs font-black uppercase text-[#0A192F]">Secure Client Portal</h3>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Authorized Facility Identification Access Validation</p>
             </div>
             <form onsubmit="validateGatewayPasskey(event)" class="space-y-4">
                 <div>
-                    <label for="gatewayUserKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Access Key ID</label>
-                    <input type="text" id="gatewayUserKey" required placeholder="apdx-admin, apdx-provider..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-[#0A192F] focus:outline-none focus:border-[#059669]">
+                    <label for="gatewayUserKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Access Key ID</label>
+                    <input type="text" id="gatewayUserKey" required placeholder="apdx-admin, apdx-provider, etc..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-[#0A192F] focus:outline-none focus:border-[#059669]">
                 </div>
-                <div id="loginErrorMessage" class="hidden text-[10px] font-black text-red-600 uppercase text-center">⚠️ Invalid Access Key Matrix</div>
+                <div id="loginErrorMessage" class="hidden text-[10px] font-black text-red-600 uppercase text-center">⚠️ Invalid Facility Access Key Matrix</div>
                 <button type="submit" class="w-full bg-[#0A192F] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-slate-800 outline-none">Verify & Enter App ➔</button>
             </form>
             <div class="text-center border-t border-slate-100 pt-3">
@@ -255,21 +279,22 @@
         </div>
     </div>
 
+    <!-- 2. DEMO GENERATOR OVERLAY -->
     <div id="demoRequisitionModal" class="hidden fixed inset-0 z-[300] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md" role="dialog" aria-modal="true">
-        <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4 text-[#0A192F]">
+        <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-2xl space-y-4">
             <div class="text-center space-y-1">
                 <span class="text-2xl select-none block">⚡</span>
-                <h3 class="text-xs font-black uppercase tracking-wide">Instant Sandbox Code</h3>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Generate temporary test profile keys</p>
+                <h3 class="text-xs font-black uppercase text-[#0A192F]">Instant Sandbox Code</h3>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Generate temporary test profiles keys</p>
             </div>
             <form id="demoForm" onsubmit="generateTemporaryCredentials(event)" class="space-y-3">
                 <div>
                     <label for="demoName" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Provider Name</label>
-                    <input type="text" id="demoName" required placeholder="Dr. Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#059669]">
+                    <input type="text" id="demoName" required placeholder="Dr. Alex Morgan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
                 </div>
                 <div>
-                    <label for="demoClinic" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Name</label>
-                    <input type="text" id="demoClinic" required placeholder="North Star Medical Network" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#059669]">
+                    <label Nitro for="demoClinic" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Name</label>
+                    <input type="text" id="demoClinic" required placeholder="North Star Medical Network" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
                 </div>
                 <button type="submit" class="w-full bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-emerald-700 outline-none">Generate Key Vector ➔</button>
             </form>
@@ -284,7 +309,18 @@
         </div>
     </div>
 
+    <!-- CORE SCRIPTS RUNTIME ENGINE -->
     <script>
+        const mobileBtn = document.getElementById('mobileBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileBtn && navLinks) {
+            mobileBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+            });
+        }
+
+        // Initialize Shared Client Database Matrix Profiles
         if(!localStorage.getItem('apdx_master_identities')) {
             localStorage.setItem('apdx_master_identities', JSON.stringify({
                 'APDX-ADMIN': { role: 'Administrator', identity: 'System Admin Core Layer' },
@@ -303,6 +339,10 @@
                 demoModal.classList.add('hidden');
                 targetModal.classList.remove('hidden');
                 if (target === 'login') document.getElementById('gatewayUserKey').focus();
+                if (target === 'demo') {
+                    document.getElementById('demoForm').classList.remove('hidden');
+                    document.getElementById('credentialGenerationSheet').classList.add('hidden');
+                }
             } else {
                 targetModal.classList.add('hidden');
                 document.getElementById('loginErrorMessage').classList.add('hidden');
