@@ -1,203 +1,278 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Workspace Dashboard // AccessPoint Dx Portal</title>  
-    <script src="https://cdn.tailwindcss.com"></script>  
-    <style>  
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
-        body { font-family: 'Inter', sans-serif; }  
-        .page-reveal { animation: revealFrame 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }  
-        @keyframes revealFrame { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }  
-    </style>  
-</head>  
-<body class="bg-slate-50 text-[#0A192F] antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AccessPoint Dx // Secure Core Laboratory Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Clean list resetting for consistent operational dropdowns */
+        details summary::-webkit-details-marker { display: none; }
+        details summary { list-style: none; }
 
-<!-- IMMEDIATE SECURITY COMPLIANCE HANDSHAKE GATEKEEPER -->
-<script>
-    if (sessionStorage.getItem('apdx_portal_gear') !== 'gear_2') { 
-        window.location.replace('index.html'); 
-    } else {
-        window.history.pushState(null, null, window.location.href);
-        window.addEventListener('popstate', function () {
-            window.history.pushState(null, null, window.location.href);
-        });
-    }
-</script>
+        .hover-lift { transition: all .2s ease; }
+        .hover-lift:hover { transform: translateY(-1px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
 
-<div class="page-reveal flex flex-col justify-between flex-grow">
-    <div>
-        <!-- SYSTEM NOTIFICATION PROFILE UTILITY BAR -->
-        <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800 px-6 py-2.5 flex items-center justify-between">  
-            <div class="flex items-center space-x-2">  
-                <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                <span>Facility Nodes Identity: <span id="activeTokenDisplay" class="font-mono text-amber-400 font-black">APDX-SECURE</span></span>  
-            </div>  
-            <button onclick="platformSecureLogOut()" class="text-slate-400 hover:text-red-400 text-[10px] font-black uppercase tracking-wider transition outline-none">🔒 Terminate Session [Log Out]</button>
-        </div>  
+    <!-- TOP CONTROL & ACCREDITATION BANNER -->
+    <div class="bg-[#0A192F] text-white text-[10px] font-mono border-b border-slate-800 hidden md:block">
+        <div class="max-w-7xl mx-auto h-10 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <span class="text-emerald-500 font-bold">● LIVE CONNECTION</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-300">Twin Cities Processing Node Hub: CLIA #24D2284915</span>
+            </div>
+            <div class="text-slate-400">Authenticated Session Token Validated</div>
+        </div>
+    </div>
 
-        <!-- HIGH PERFORMANCE NAVIGATION HEADER -->
-        <header class="border-b border-slate-150 bg-white sticky top-0 z-50 px-6 py-5 flex items-center justify-between shadow-sm">  
-            <div class="flex items-center space-x-3 select-none">  
-                <div class="text-[20px] font-black tracking-tight uppercase text-[#0A192F]">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
-                <span class="text-[8px] font-black text-[#059669] bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded uppercase">Workspace Engine</span>  
-            </div>  
-            <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs text-slate-600 tracking-wide">  
-                <a href="index1st.html" class="text-[#059669] border-b-2 border-[#059669] py-0.5">Home Workspace</a>
-                <a href="test-directory.html" class="hover:text-[#059669] transition">Test Directory</a>  
-                <a href="provider-hub-v2.html" class="hover:text-[#059669] transition">Provider Hub</a>  
-                <a href="resources-v2.html" class="hover:text-[#059669] transition">Laboratory Resources</a>  
-                <a href="connectivity.html" class="hover:text-[#059669] transition">Connectivity</a>  
-            </nav>  
-        </header>  
+    <!-- MAIN APP CORE CONTAINER -->
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- SIDEBAR PLATFORM NAVIGATION (DESKTOP MODE) -->
+        <aside class="hidden lg:block lg:col-span-3 space-y-4">
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm space-y-6">
+                
+                <!-- BRANDING CORE -->
+                <div class="flex items-center space-x-2.5 px-2">
+                    <div class="font-black text-sm text-[#0A192F] tracking-tight">AccessPoint <span class="text-[#059669]">Dx</span></div>
+                    <span class="text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded tracking-wide font-mono uppercase">v2.4</span>
+                </div>
 
-        <!-- DASHBOARD CONTAINER FRAME -->
-        <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+                <!-- NAVIGATION CORE -->
+                <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
+                    <a href="index.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400">
+                        <span>🏠</span> <span>Site Home</span>
+                    </a>
+                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
+                        <span>🧪</span> <span>Test Catalog</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500 group">
+                        <div class="flex items-center space-x-3"><span>📄</span> <span>Requisition Builder</span></div>
+                        <span id="badgeRequisitionCount" class="bg-[#059669] text-white text-[9px] font-black font-mono px-2 py-0.5 rounded-full hidden">0</span>
+                    </button>
+                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none">
+                        <span>📦</span> <span>Specimen Tracking</span>
+                    </button>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- MAIN SECURE CATALOG WORKSPACE PANEL -->
+        <main class="col-span-1 lg:col-span-9 space-y-6">
             
-            <header class="border-b border-slate-200/60 pb-4 space-y-1">
-                <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">System Diagnostics Console</span>
-                <h2 class="text-2xl font-black uppercase tracking-tight text-[#0A192F]">Clinical Operations Work Desk</h2>
-                <p class="text-xs font-bold text-slate-400">Authorized platform infrastructure workspace node.</p>
-            </header>
+            <!-- SEARCH & UTILITY HEADER SLAT -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
+                <div class="relative flex-1">
+                    <span class="absolute left-3.5 top-3.5 text-xs text-slate-400">🔍</span>
+                    <input type="text" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
+                </div>
+                <div class="flex items-center space-x-3 justify-end">
+                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-wider hidden sm:block">Filter Level</span>
+                    <select class="bg-white border border-slate-200/80 rounded-xl px-3 py-3 text-xs font-bold uppercase text-[#0A192F] focus:outline-none outline-none cursor-pointer">
+                        <option>Clinical Diagnostics</option>
+                        <option>Toxicology Tracking</option>
+                        <option>Molecular Genetics</option>
+                    </select>
+                </div>
+            </div>
 
-            <!-- REAL INFRASTRUCTURE METRICS GRID -->
-            <section class="grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Telemetry</span>
-                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Pending Specimens</h5>
-                    <span class="font-mono text-2xl font-black text-amber-500 block pt-1">04</span>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Active Stream</span>
-                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Recent Requisitions</h5>
-                    <span class="font-mono text-2xl font-black text-[#059669] block pt-1">12</span>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Logistics</span>
-                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Courier Dispatches</h5>
-                    <span class="font-mono text-2xl font-black text-blue-600 block pt-1">01</span>
-                </div>
-                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
-                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Compliance</span>
-                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Database Sync</h5>
-                    <span class="font-mono text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-1 rounded block w-max mt-2">✓ HL7 SECURE</span>
-                </div>
-            </section>
+            <!-- COMPRESSED RESPONSIVE CATEGORY CHIPS (FIXED MOBILE SCROLL WIDTHS) -->
+            <div class="flex items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
+                <button class="bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
+                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
+                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
+                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
+                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
+                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
+            </div>
 
-            <!-- ADMINISTRATOR PRIVILEGE MODULE -->
-            <section id="adminCredentialMatrixBlock" class="hidden bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
-                <div class="border-b border-slate-100 pb-2">
-                    <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block">🛡️ Admin Infrastructure Matrix Suite</span>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Generate Custom Facility Entrance Keys</h3>
-                </div>
-                <form onsubmit="handleAdminAccountInception(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-                    <div>
-                        <label for="newAccountKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">New Access Key ID</label>
-                        <input type="text" id="newAccountKey" required placeholder="e.g. APDX-ST-JUDE" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#059669] uppercase text-[#0A192F]">
-                    </div>
-                    <div>
-                        <label for="newAccountIdentity" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Partner Identification Name</label>
-                        <input type="text" id="newAccountIdentity" required placeholder="e.g. St. Jude Childrens Research" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#059669] text-[#0A192F]">
-                    </div>
-                    <button type="submit" class="w-full bg-[#0A192F] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition hover:bg-slate-800 outline-none">Register Key Vector ➔</button>
-                </form>
-                <div class="pt-2 border-t border-slate-50">
-                    <span class="block text-[8px] font-black text-slate-400 uppercase tracking-wider mb-2">Memory Registry File System Base:</span>
-                    <div id="liveRegistryContainer" class="flex flex-wrap gap-2"></div>
-                </div>
-            </section>
+            <!-- THE INTERACTIVE TEST CATALOG WORKSPACE ACCORDION -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
+                
+                <!-- DROPDOWN CORE WRAPPER -->
+                <details class="group" open>
+                    <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs transition-transform group-open:rotate-90 text-slate-400">▶</span>
+                            <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Routine Chemistry Nodes</span>
+                        </div>
+                        <div class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">
+                            148 Assays Available • Expand Catalog
+                        </div>
+                    </summary>
 
-            <!-- CORE UTILITY NAVIGATION TILES -->
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" aria-label="Ecosystem Nodes">
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
-                    <div class="space-y-1">
-                        <span class="text-xl select-none">🧬</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Test Directory</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Query chemical handling metrics, stabilizing rules, and panel CPT codes arrays.</p>
+                    <!-- INTERNAL OPERATIONAL PAYLOAD MATRIX LIST -->
+                    <div class="divide-y border-t border-slate-100 divide-slate-100">
+                        
+                        <!-- ASSAY ROW 1: CMP -->
+                        <details class="group/item outline-none">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
+                                    <p class="text-[#0A192F] font-bold">24–48 Hours Maximum Guaranteed</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
+                                    <p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
+                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
+                                </div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button onclick="addAssayToActiveRequisition('Comprehensive Metabolic Panel (CMP)', '80053')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- ASSAY ROW 2: CBC -->
+                        <details class="group/item outline-none">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Complete Blood Count (CBC) with Differential</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 85025</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
+                                    <p class="text-[#0A192F] font-bold">24 Hours Standard Route</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
+                                    <p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
+                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
+                                </div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button onclick="addAssayToActiveRequisition('Complete Blood Count (CBC)', '85025')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- ASSAY ROW 3: LIPID -->
+                        <details class="group/item outline-none">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Lipid Panel with Total Cholesterol / HDL / LDL</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80061</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
+                                    <p class="text-[#0A192F] font-bold">24–48 Hours Maximum Guaranteed</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
+                                    <p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 12-Hour Fasting Recommended</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
+                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
+                                </div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button onclick="addAssayToActiveRequisition('Lipid Panel', '800061')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+
                     </div>
-                    <a href="test-directory.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Directory ➔</a>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
-                    <div class="space-y-1">
-                        <span class="text-xl select-none">📦</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Provider Hub Logistics</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Procure sterile kit tubes components and dispatch cold chain medical couriers.</p>
-                    </div>
-                    <a href="provider-hub-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Logistics Center ➔</a>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
-                    <div class="space-y-1">
-                        <span class="text-xl select-none">📚</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Laboratory Resources</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Download emergency downtime manifests and verify CMS regulatory certifications.</p>
-                    </div>
-                    <a href="resources-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Vault ➔</a>
-                </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
-                    <div class="space-y-1">
-                        <span class="text-xl select-none">🖥️</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Connectivity Console</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Onboard programmatic clinical data tunnels and bidirectional observations streams.</p>
-                    </div>
-                    <a href="connectivity.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Manage Interface ➔</a>
-                </div>
-            </section>
+                </details>
+            </div>
         </main>
     </div>
 
-    <footer class="bg-[#0A192F] text-white pt-8 pb-12 text-[11px] border-t border-slate-800 px-6 uppercase font-bold tracking-wider text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© 2026 AccessPoint Dx. Operational Workspace.</span>
-        <span class="font-mono text-[9px] text-slate-400">Authenticated Internal Stack</span>
-    </footer>
-</div>
+    <!-- PERSISTENT PERSISTENT PERSISTENT APPLICATION ACTION NAVIGATION HUB (MOBILE DOCK) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
+        <div class="grid grid-cols-5 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
+            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition text-slate-400">
+                <span class="text-base">🏠</span>
+                <span class="scale-90 transform origin-center">Home</span>
+            </a>
+            <button class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
+                <span class="text-base">🧪</span>
+                <span class="scale-90 transform origin-center">Catalog</span>
+            </button>
+            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition relative focus:outline-none">
+                <span class="text-base">📄</span>
+                <span class="scale-90 transform origin-center">Builder</span>
+                <span id="badgeMobileRequisitionCount" class="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-[#059669] text-white font-mono font-black text-[7px] flex items-center justify-center hidden">0</span>
+            </button>
+            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition focus:outline-none">
+                <span class="text-base">📦</span>
+                <span class="scale-90 transform origin-center">Tracking</span>
+            </button>
+            <button onclick="window.history.back()" class="flex flex-col items-center justify-center space-y-1 hover:text-red-500 transition focus:outline-none">
+                <span class="text-base">👤</span>
+                <span class="scale-90 transform origin-center">Exit</span>
+            </button>
+        </div>
+    </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const activeToken = sessionStorage.getItem('apdx_active_session_token') || 'APDX-ANONYMOUS';
-        document.getElementById('activeTokenDisplay').innerText = activeToken;
-        document.querySelectorAll('a[href="index.html"]').forEach(link => { link.href = 'index1st.html'; });
+    <!-- CORE INTERACTION APPLICATION ENGINE -->
+    <script>
+        let selectedAssaysInQueue = 0;
 
-        if (activeToken === 'APDX-ADMIN') {
-            document.getElementById('adminCredentialMatrixBlock').classList.remove('hidden');
-            renderLiveAccountsRegistry();
+        function addAssayToActiveRequisition(assayName, cptCode) {
+            selectedAssaysInQueue++;
+            
+            // Sync Desktop Sidebar counters
+            const desktopCountBadge = document.getElementById('badgeRequisitionCount');
+            desktopCountBadge.innerText = selectedAssaysInQueue;
+            desktopCountBadge.classList.remove('hidden');
+
+            // Sync Mobile Sticky Dock counters
+            const mobileCountBadge = document.getElementById('badgeMobileRequisitionCount');
+            mobileCountBadge.innerText = selectedAssaysInQueue;
+            mobileCountBadge.classList.remove('hidden');
+
+            // Flash temporary positive confirmation telemetry on target click button
+            const clickedBtn = event.target;
+            const originalButtonText = clickedBtn.innerText;
+            clickedBtn.innerText = 'Assay Added ✓';
+            clickedBtn.classList.replace('bg-[#059669]', 'bg-slate-900');
+            
+            setTimeout(() => {
+                clickedBtn.innerText = originalButtonText;
+                clickedBtn.classList.replace('bg-slate-900', 'bg-[#059669]');
+            }, 1000);
         }
-    });
-
-    function renderLiveAccountsRegistry() {
-        const container = document.getElementById('liveRegistryContainer');
-        if(!container) return;
-        const currentRegistry = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
-        container.innerHTML = '';
-        Object.keys(currentRegistry).forEach(key => {
-            const block = document.createElement('span');
-            block.className = "bg-slate-100 border border-slate-200 font-mono text-[9px] px-2.5 py-1 rounded-lg font-black text-slate-700 block shrink-0";
-            block.innerText = `🔑 [${key}] ➔ ${currentRegistry[key].identity}`;
-            container.appendChild(block);
-        });
-    }
-
-    function handleAdminAccountInception(event) {
-        event.preventDefault();
-        const inputKey = document.getElementById('newAccountKey');
-        const inputIdentity = document.getElementById('newAccountIdentity');
-        const keyVal = inputKey.value.trim().toUpperCase();
-        const identityVal = inputIdentity.value.trim();
-
-        const currentDb = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
-        currentDb[keyVal] = { role: 'Partner Provider', identity: identityVal };
-        localStorage.setItem('apdx_master_identities', JSON.stringify(currentDb));
-
-        inputKey.value = '';
-        inputIdentity.value = '';
-        renderLiveAccountsRegistry();
-    }
-
-    function platformSecureLogOut() {
-        sessionStorage.removeItem('apdx_portal_gear');
-        sessionStorage.removeItem('apdx_active_session_token');
-        window.location.replace('index.html');
-    }
-</script>
-</body>  
+    </script>
+</body>
 </html>
