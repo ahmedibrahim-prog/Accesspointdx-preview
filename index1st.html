@@ -3,42 +3,49 @@
 <head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>AccessPoint Rx // Clinical Workspace App Shell</title>  
+    <title>Workspace Dashboard // AccessPoint Dx Portal</title>  
     <script src="https://cdn.tailwindcss.com"></script>  
     <style>  
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
         body { font-family: 'Inter', sans-serif; }  
-        .page-entry-anim { animation: appReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }  
-        @keyframes appReveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }  
+        .page-reveal { animation: revealFrame 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }  
+        @keyframes revealFrame { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }  
     </style>  
 </head>  
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col justify-between">  
+<body class="bg-slate-50 text-[#0A192F] antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">  
 
-<!-- SECURE BACKDROP GATEWAY CHECKER -->
+<!-- IMMEDIATE SECURITY COMPLIANCE HANDSHAKE GATEKEEPER -->
 <script>
-    if(sessionStorage.getItem('apdx_portal_gear') !== 'gear_2') { window.location.replace('index.html'); }
+    if (sessionStorage.getItem('apdx_portal_gear') !== 'gear_2') { 
+        window.location.replace('index.html'); 
+    } else {
+        // ENFORCE HARDWARE HISTORY STATE LOCK OUT LOOP (BLOCKS BROWSER BACK REDIRECT)
+        window.history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function () {
+            window.history.pushState(null, null, window.location.href);
+        });
+    }
 </script>
 
-<div class="page-entry-anim flex flex-col justify-between flex-grow">
-    
-    <!-- APPLICATION PLATFORM TOP SHIELD -->
+<div class="page-reveal flex flex-col justify-between flex-grow">
     <div>
+        <!-- SYSTEM NOTIFICATION PROFILE UTILITY BAR -->
         <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800 px-6 py-2.5 flex items-center justify-between">  
             <div class="flex items-center space-x-2">  
                 <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                <span>Active Profile Token Vector: <span id="activeTokenDisplayProfile" class="font-mono text-amber-400 font-bold">APDX-CORE</span></span>  
+                <span>Session Matrix Protocol: <span id="activeTokenDisplay" class="font-mono text-amber-400 font-black">APDX-SECURE</span></span>  
             </div>  
-            <button onclick="platformSecureLogOut()" class="text-slate-400 hover:text-red-400 text-[10px] font-black uppercase tracking-wider transition">🔒 Terminate Session [Log Out]</button>
+            <button onclick="platformSecureLogOut()" class="text-slate-400 hover:text-red-400 text-[10px] font-black uppercase tracking-wider transition outline-none">🔒 Terminate Session [Log Out]</button>
         </div>  
 
-        <!-- HEADER BANNER -->
-        <header class="border-b border-slate-100 bg-white/95 sticky top-0 z-50 p-6 flex items-center justify-between">  
-            <div class="flex items-center space-x-3">  
-                <div class="text-[20px] font-black tracking-tight uppercase">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
-                <span class="text-[8px] font-black tracking-widest text-[#059669] uppercase bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">Gear 2 Engine Matrix</span>  
+        <!-- HIGH PERFORMANCE NAVIGATION HEADER -->
+        <header class="border-b border-slate-150 bg-white sticky top-0 z-50 px-6 py-5 flex items-center justify-between shadow-sm">  
+            <div class="flex items-center space-x-3 select-none">  
+                <div class="text-[20px] font-black tracking-tight uppercase text-[#0A192F]">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
+                <span class="text-[8px] font-black text-[#059669] bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded uppercase">Gear 2 Workspace Suite</span>  
             </div>  
-            <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-5 font-bold text-xs tracking-wide text-slate-600">  
-                <a href="index1st.html" class="text-[#059669] border-b-2 border-[#059669]">Home Workspace</a>
+            <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs text-slate-600 tracking-wide">  
+                <a href="index1st.html" class="text-[#059669] border-b-2 border-[#059669] py-0.5">Home Workspace</a>
                 <a href="test-directory.html" class="hover:text-[#059669] transition">Test Directory</a>  
                 <a href="provider-hub-v2.html" class="hover:text-[#059669] transition">Provider Hub</a>  
                 <a href="resources-v2.html" class="hover:text-[#059669] transition">Laboratory Resources</a>  
@@ -46,106 +53,102 @@
             </nav>  
         </header>  
 
-        <!-- CONTENT CONTAINER FRAME -->
+        <!-- DASHBOARD CONTAINER FRAME -->
         <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
+            
+            <header class="border-b border-slate-200/60 pb-4 space-y-1">
+                <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">System Diagnostics Routing Node</span>
+                <h2 class="text-2xl font-black uppercase tracking-tight text-[#0A192F]">Clinical Operations Dashboard</h2>
+                <p class="text-xs font-bold text-slate-400">Welcome back. Select an application node utility from your diagnostic framework layout.</p>
+            </header>
 
-            <!-- INTRO HUB STATUS META -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200/60 pb-4 gap-4">
-                <div class="space-y-1">
-                    <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">System Diagnostics Console</span>
-                    <h2 class="text-2xl font-black uppercase tracking-tight text-[#0A192F]">Clinical Operations Dashboard</h2>
-                    <p class="text-xs font-bold text-slate-400">Welcome to your high-performance clinical workspace routing nodes matrix.</p>
-                </div>
-            </div>
-
-            <!-- ADMINISTRATIVE PORTAL CREATION LAYER MATRIX (DYNAMIC KEY GENERATION DESK) -->
+            <!-- ========================================================= -->
+            <!-- ADMINISTRATOR CREDENTIAL INCEPTION CONTROL MODULE -->
+            <!-- ========================================================= -->
             <section id="adminCredentialMatrixBlock" class="hidden bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
                 <div class="border-b border-slate-100 pb-2">
-                    <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block">🛡️ Administrator Account Matrix Suite</span>
-                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Generate New Client Facility Access Keys</h3>
+                    <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block">🛡️ Root Privilege System Matrix Suite</span>
+                    <h3 class="text-xs font-black uppercase text-[#0A192F]">Generate Custom Facility Entrance Keys</h3>
                 </div>
                 
                 <form onsubmit="handleAdminAccountInception(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
                     <div>
-                        <label for="newAccountKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Desired Access Key Code</label>
-                        <input type="text" id="newAccountKey" required placeholder="e.g. APDX-ST-LUKE" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#059669] uppercase">
+                        <label for="newAccountKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">New Access Key ID</label>
+                        <input type="text" id="newAccountKey" required placeholder="e.g. APDX-ST-JUDE" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#059669] uppercase text-[#0A192F]">
                     </div>
                     <div>
-                        <label for="newAccountIdentity" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Partner Identification</label>
-                        <input type="text" id="newAccountIdentity" required placeholder="e.g. St. Luke Emergency Clinic" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#059669]">
+                        <label for="newAccountIdentity" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Partner Identification Name</label>
+                        <input type="text" id="newAccountIdentity" required placeholder="e.g. St. Jude Childrens Research" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#059669] text-[#0A192F]">
                     </div>
                     <button type="submit" class="w-full bg-[#0A192F] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition hover:bg-slate-800 outline-none">
                         Register Key Vector ➔
                     </button>
                 </form>
 
-                <!-- ACTIVE LIVE ACCOUNTS REGISTRY VIEW -->
-                <div class="pt-2">
-                    <span class="block text-[8px] font-black text-slate-400 uppercase tracking-wider mb-1.5">Active Live Memory Registry Database:</span>
-                    <div id="liveRegistryContainer" class="flex flex-wrap gap-2">
-                        <!-- Dynamic Account Tags stream inside automatically -->
-                    </div>
+                <div class="pt-2 border-t border-slate-50">
+                    <span class="block text-[8px] font-black text-slate-400 uppercase tracking-wider mb-2">Active Live Registry File System Base:</span>
+                    <div id="liveRegistryContainer" class="flex flex-wrap gap-2"></div>
                 </div>
             </section>
 
-            <!-- 4-MODULE APP SECTIONS HUB GRID -->
+            <!-- CORE UTILITY NODE PANELS -->
             <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" aria-label="Ecosystem Nodes">
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition-all duration-150 hover:border-[#0A192F]">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">🧬</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Test Directory</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Query stabilizing criteria parameters, billing metrics and panel arrays.</p>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Test Directory Matrix</h4>
+                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Query chemical handling metrics, stabilizing rules, and panel CPT codes arrays.</p>
                     </div>
-                    <a href="test-directory.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] pt-2">Open Directory ➔</a>
+                    <a href="test-directory.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Directory ➔</a>
                 </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition-all duration-150 hover:border-[#0A192F]">
+                
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">📦</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Logistics Hub</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Schedule transport couriers and order component tube packs dynamically.</p>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Logistics Dispatch</h4>
+                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Procure sterile kit tubes components and dispatch cold chain medical couriers.</p>
                     </div>
-                    <a href="provider-hub-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] pt-2">Logistics Center ➔</a>
+                    <a href="provider-hub-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Logistics Center ➔</a>
                 </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition-all duration-150 hover:border-[#0A192F]">
+
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">📚</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Resources Vault</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Review stabilization processing files and CMS certifications sheets.</p>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Knowledge Resources</h4>
+                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Download emergency downtime manifests and verify CMS regulatory certifications.</p>
                     </div>
-                    <a href="resources-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] pt-2">Open Resources ➔</a>
+                    <a href="resources-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Vault ➔</a>
                 </div>
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition-all duration-150 hover:border-[#0A192F]">
+
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">🖥️</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Connectivity</h4>
-                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Build production bidirectional HL7 data interface streams securely.</p>
+                        <h4 class="text-xs font-black uppercase tracking-wide">EMR Connectivity</h4>
+                        <p class="text-[11px] text-slate-400 font-semibold leading-normal">Onboard programmatic clinical data tunnels and bidirectional observations streams.</p>
                     </div>
-                    <a href="connectivity.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] pt-2">Manage Streams ➔</a>
+                    <a href="connectivity.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Manage Interface ➔</a>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- SYSTEM FOOTER -->
     <footer class="bg-[#0A192F] text-white pt-8 pb-12 text-[11px] border-t border-slate-800 px-6 uppercase font-bold tracking-wider text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
         <span>© 2026 AccessPoint Dx. Operational App Workspace Environment.</span>
-        <span class="font-mono text-[9px] text-slate-400">Authenticated Stack Profile Core</span>
+        <span class="font-mono text-[9px] text-slate-400">Authenticated Internal Stack</span>
     </footer>
 </div>
 
-<!-- WORKSPACE CONTROLLER CORE APPLICATION SCRIPTS -->
+<!-- PROCESS CONTROL SCRIPTS MODULE -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const tokenValue = sessionStorage.getItem('apdx_active_session_token') || 'APDX-ANONYMOUS';
-        document.getElementById('activeTokenDisplayProfile').innerText = tokenValue;
+        const activeToken = sessionStorage.getItem('apdx_active_session_token') || 'APDX-ANONYMOUS';
+        document.getElementById('activeTokenDisplay').innerText = activeToken;
 
-        // Force all sub-page home links to return safely to index1st.html instead of hitting the login page
-        document.querySelectorAll('a[href="index.html"]').forEach(link => {
-            link.href = 'index1st.html';
-        });
+        // Force secondary routing elements within sub-pages to target index1st.html inside Gear 2 loops
+        document.querySelectorAll('a[href="index.html"]').forEach(link => { link.href = 'index1st.html'; });
 
-        // Activate Administrator Tool Matrix view if access level matches
-        if (tokenValue === 'APDX-ADMIN') {
+        // Unveil the Key Inception Studio block exclusively if logged in as ROOT ADMIN
+        if (activeToken === 'APDX-ADMIN') {
             document.getElementById('adminCredentialMatrixBlock').classList.remove('hidden');
             renderLiveAccountsRegistry();
         }
@@ -154,33 +157,32 @@
     function renderLiveAccountsRegistry() {
         const container = document.getElementById('liveRegistryContainer');
         if(!container) return;
-        const registryDb = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
+        const currentRegistry = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
         
         container.innerHTML = '';
-        Object.keys(registryDb).forEach(key => {
-            const wrapper = document.createElement('span');
-            wrapper.className = "bg-slate-100 border border-slate-200 font-mono text-[9px] px-2.5 py-1 rounded-lg font-black text-slate-700 block shrink-0";
-            wrapper.innerText = `🔑 [${key}] ➔ ${registryDb[key].identity}`;
-            container.appendChild(wrapper);
+        Object.keys(currentRegistry).forEach(key => {
+            const block = document.createElement('span');
+            block.className = "bg-slate-100 border border-slate-200 font-mono text-[9px] px-2.5 py-1 rounded-lg font-black text-slate-700 block shrink-0";
+            block.innerText = `🔑 [${key}] ➔ ${currentRegistry[key].identity}`;
+            container.appendChild(block);
         });
     }
 
     function handleAdminAccountInception(event) {
         event.preventDefault();
-        const keyField = document.getElementById('newAccountKey');
-        const identityField = document.getElementById('newAccountIdentity');
+        const inputKey = document.getElementById('newAccountKey');
+        const inputIdentity = document.getElementById('newAccountIdentity');
         
-        const keyVal = keyField.value.trim().toUpperCase();
-        const identityVal = identityField.value.trim();
+        const keyVal = inputKey.value.trim().toUpperCase();
+        const identityVal = inputIdentity.value.trim();
 
         const currentDb = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
         currentDb[keyVal] = { role: 'Partner Provider', identity: identityVal };
         localStorage.setItem('apdx_master_identities', JSON.stringify(currentDb));
 
-        keyField.value = '';
-        identityField.value = '';
+        inputKey.value = '';
+        inputIdentity.value = '';
         renderLiveAccountsRegistry();
-        alert(`Account Vector Successfully Registered! Key [${keyVal}] is now active and ready to log in.`);
     }
 
     function platformSecureLogOut() {
