@@ -586,7 +586,6 @@
                 });
             }
 
-            // Safe lookup conditional handler to shield engine execution from absent selectors
             const bindSafeListener = (targetId, eventType, executionCallback) => {
                 const elementNode = document.getElementById(targetId);
                 if (elementNode) {
@@ -619,8 +618,8 @@
                 if (!targetModal) return;
 
                 if (show) {
-                    if (loginModal) loginModal.classList.add('hidden');
-                    if (demoModal) demoModal.classList.add('hidden');
+                    loginModal.classList.add('hidden');
+                    demoModal.classList.add('hidden');
                     targetModal.classList.remove('hidden');
                     document.body.style.overflow = 'hidden';
                     activeFocusTrapElement = targetModal;
@@ -630,22 +629,21 @@
                     } else {
                         const demoFocusNode = document.getElementById('demoName');
                         if (demoFocusNode) demoFocusNode.focus();
-                        if (demoForm) demoForm.classList.remove('hidden');
-                        if (credentialSheet) credentialSheet.classList.add('hidden');
+                        demoForm.classList.remove('hidden');
+                        credentialSheet.classList.add('hidden');
                     }
                     if (!window.history.state || !window.history.state.modalOpen) {
                         window.history.pushState({ modalOpen: true }, '', '#portal-view');
                     }
                 } else {
                     targetModal.classList.add('hidden');
-                    if (loginError) loginError.classList.add('hidden');
+                    loginError.classList.add('hidden');
                     document.body.style.overflow = '';
                     activeFocusTrapElement = null;
                     if (window.location.hash === '#portal-view') { window.history.back(); }
                 }
             }
 
-            // Expose logic to browser window instance for secondary fallback execution layers
             window.toggleGatewayModal = toggleGatewayModal;
 
             function generateTemporaryCredentials(event) {
@@ -664,14 +662,14 @@
                 localStorage.setItem('apdx_sandbox_registry', JSON.stringify(sandboxRegistry));
                 sessionStorage.setItem('apdx_active_session_token', generatedKey);
                 
-                if (demoForm) demoForm.classList.add('hidden');
-                if (tokenDisplay) tokenDisplay.textContent = generatedKey; 
-                if (credentialSheet) credentialSheet.classList.remove('hidden');
+                demoForm.classList.add('hidden');
+                tokenDisplay.textContent = generatedKey; 
+                credentialSheet.classList.remove('hidden');
             }
 
             function autoLoginDemoUser() {
                 sessionStorage.setItem('apdx_portal_gear', 'gear_2');
-                window.location.replace('index1st.html');
+                window.location.replace('test-directory.html');
             }
 
             function validateGatewayPasskey(event) {
@@ -681,12 +679,12 @@
                 const sandboxRegistry = JSON.parse(localStorage.getItem('apdx_sandbox_registry') || '{}');
                 
                 if (sandboxRegistry[inputKey] || inputKey === 'APDX-DEMO') {
-                    if (loginError) loginError.classList.add('hidden');
+                    loginError.classList.add('hidden');
                     sessionStorage.setItem('apdx_portal_gear', 'gear_2');
                     sessionStorage.setItem('apdx_active_session_token', inputKey);
-                    window.location.replace('index1st.html');
+                    window.location.replace('test-directory.html');
                 } else {
-                    if (loginError) loginError.classList.remove('hidden');
+                    loginError.classList.remove('hidden');
                     gatewayInput.select();
                 }
             }
@@ -695,27 +693,6 @@
                 if (event.key === "Escape" && activeFocusTrapElement) {
                     const currentTarget = activeFocusTrapElement === loginModal ? 'login' : 'demo';
                     toggleGatewayModal(currentTarget, false);
-                }
-                if (event.key === 'Tab' && activeFocusTrapElement) {
-                    const focusableElements = activeFocusTrapElement.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
-                    if (focusableElements.length === 0) return;
-                    const firstElement = focusableElements[0];
-                    const lastElement = focusableElements[focusableElements.length - 1];
-                    if (event.shiftKey) { 
-                        if (document.activeElement === firstElement) { lastElement.focus(); event.preventDefault(); }
-                    } else { 
-                        if (document.activeElement === lastElement) { firstElement.focus(); event.preventDefault(); }
-                    }
-                }
-            });
-
-            window.addEventListener('popstate', () => {
-                if (activeFocusTrapElement) {
-                    if (loginModal) loginModal.classList.add('hidden');
-                    if (demoModal) demoModal.classList.add('hidden');
-                    if (loginError) loginError.classList.add('hidden');
-                    document.body.style.overflow = '';
-                    activeFocusTrapElement = null;
                 }
             });
         });
