@@ -32,6 +32,9 @@
 
         .assay-card { display: block; }
         .filtered-out { display: none !important; }
+        
+        /* Smooth transitions for seamless client-side tab routing */
+        .workspace-view { transition: opacity 0.15s ease-in-out; }
     </style>
 </head>
 <body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
@@ -65,12 +68,11 @@
                 </div>
             </div>
 
-            <nav aria-label="Main Site Navigation Links" class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-[0.08em] text-slate-700">
-                <a href="index.html" class="hover:text-[#059669] transition">Home</a>
-                <a href="test-directory.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 transition">Test Directory</a>
-                <a href="provider-hub.html" class="hover:text-[#059669] transition">Provider Hub</a>
-                <a href="resources.html" class="hover:text-[#059669] transition">Laboratory Resources</a>
-                <a href="connectivity.html" class="hover:text-[#059669] transition">Connectivity</a>
+            <nav id="portalNavRouter" aria-label="Secure System Workspace Links" class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-[0.08em] text-slate-700">
+                <button data-target="view-test-directory" class="nav-route-btn text-[#059669] border-b-2 border-[#059669] pb-1 transition outline-none">Test Directory</button>
+                <button data-target="view-provider-hub" class="nav-route-btn hover:text-[#059669] transition outline-none">Provider Hub</button>
+                <button data-target="view-laboratory-resources" class="nav-route-btn hover:text-[#059669] transition outline-none">Laboratory Resources</button>
+                <button data-target="view-connectivity" class="nav-route-btn hover:text-[#059669] transition outline-none">Connectivity</button>
             </nav>
 
             <div class="flex items-center space-x-3">
@@ -88,11 +90,11 @@
                 
                 <div class="flex items-center space-x-2 px-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-[10px] font-black tracking-widest text-[#0A192F] uppercase">Portal Environment</span>
+                    <span class="text-[10px] font-black tracking-widest text-[#0A192F] uppercase">Active Session Workstation</span>
                 </div>
 
                 <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
-                    <button id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
+                    <button data-target="view-test-directory" class="sidebar-route-trigger w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
                         <span>🧪</span> <span>Test Catalog</span>
                     </button>
                     <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500 group">
@@ -106,113 +108,150 @@
             </div>
         </aside>
 
-        <main class="col-span-1 lg:col-span-9 space-y-6">
+        <main class="col-span-1 lg:col-span-9">
             
-            <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
-                <div class="relative flex-1">
-                    <span class="absolute left-3.5 top-3.5 text-xs text-slate-400" aria-hidden="true">🔍</span>
-                    <input type="text" id="catalogSearchInput" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
-                </div>
-                <div class="flex items-center space-x-3 justify-end">
-                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-wider hidden sm:block">Filter Level</span>
-                    <select class="bg-white border border-slate-200/80 rounded-xl px-3 py-3 text-xs font-bold uppercase text-[#0A192F] focus:outline-none outline-none cursor-pointer">
-                        <option>Clinical Diagnostics</option>
-                        <option>Toxicology Tracking</option>
-                        <option>Molecular Genetics</option>
-                    </select>
-                </div>
-            </div>
-
-            <div id="categoryChipContainer" class="flex flex-row flex-nowrap items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
-                <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
-                <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
-                <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
-            </div>
-
-            <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
-                <details class="group" open>
-                    <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs transition-transform group-open:rotate-90 text-slate-400">▶</span>
-                            <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Routine Chemistry Nodes</span>
-                        </div>
-                        <div id="catalogCountDisplay" class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">
-                            Showing 3 Active Assay Channels
-                        </div>
-                    </summary>
-
-                    <div class="divide-y border-t border-slate-100 divide-slate-100" id="masterAssayList">
-                        <details class="assay-card group/item outline-none" data-category="metabolic">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Expected Workflow</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p></div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details class="assay-card group/item outline-none" data-category="metabolic">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Hemoglobin A1c (HbA1c) w/ Glucose</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83036</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Standard Route</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Variable Delivery Loops</p></div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details class="assay-card group/item outline-none" data-category="inflammation">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">High-Sensitivity C-Reactive Protein (hs-CRP)</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 86141</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Local Pipeline</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Tube or SST • Centrifuge immediate</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Integrated Core Data Streams</p></div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
-                            </div>
-                        </details>
+            <div id="view-test-directory" class="workspace-view space-y-6">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
+                    <div class="relative flex-1">
+                        <span class="absolute left-3.5 top-3.5 text-xs text-slate-400" aria-hidden="true">🔍</span>
+                        <input type="text" id="catalogSearchInput" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
                     </div>
-                </details>
+                    <div class="flex items-center space-x-3 justify-end">
+                        <span class="text-[11px] font-black uppercase text-slate-400 tracking-wider hidden sm:block">Filter Level</span>
+                        <select class="bg-white border border-slate-200/80 rounded-xl px-3 py-3 text-xs font-bold uppercase text-[#0A192F] focus:outline-none outline-none cursor-pointer">
+                            <option>Clinical Diagnostics</option>
+                            <option>Toxicology Tracking</option>
+                            <option>Molecular Genetics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="categoryChipContainer" class="flex flex-row flex-nowrap items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
+                    <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
+                    <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
+                    <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
+                </div>
+
+                <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
+                    <details class="group" open>
+                        <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs transition-transform group-open:rotate-90 text-slate-400">▶</span>
+                                <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Routine Chemistry Nodes</span>
+                            </div>
+                            <div id="catalogCountDisplay" class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">
+                                Showing 3 Active Assay Channels
+                            </div>
+                        </summary>
+
+                        <div class="divide-y border-t border-slate-100 divide-slate-100" id="masterAssayList">
+                            <details class="assay-card group/item outline-none" data-category="metabolic">
+                                <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                        <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
+                                        <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                        <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                    </div>
+                                </summary>
+                                <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Expected Workflow</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p></div>
+                                    <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                        <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="assay-card group/item outline-none" data-category="metabolic">
+                                <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                        <span class="text-xs font-bold text-[#0A192F] tracking-tight">Hemoglobin A1c (HbA1c) w/ Glucose</span>
+                                        <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83036</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                        <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                    </div>
+                                </summary>
+                                <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Standard Route</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Variable Delivery Loops</p></div>
+                                    <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                        <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <details class="assay-card group/item outline-none" data-category="inflammation">
+                                <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                        <span class="text-xs font-bold text-[#0A192F] tracking-tight">High-Sensitivity C-Reactive Protein (hs-CRP)</span>
+                                        <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 86141</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                        <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                    </div>
+                                </summary>
+                                <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Local Pipeline</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Tube or SST • Centrifuge immediate</p></div>
+                                    <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Integrated Core Data Streams</p></div>
+                                    <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                        <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+                </div>
             </div>
+
+            <div id="view-provider-hub" class="workspace-view hidden space-y-6">
+                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
+                    <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">Secure Provider Hub Node</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Manage clinical administrative workflows, view assigned courier loops, and edit your medical network practice configurations safely.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1">
+                            <span class="block font-black text-[10px] text-slate-400 uppercase">Assigned Pickups</span>
+                            <span class="text-xs font-bold text-[#0A192F]">Daily Dynamic Route Route #402</span>
+                        </div>
+                        <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1">
+                            <span class="block font-black text-[10px] text-slate-400 uppercase">Primary Contact Base</span>
+                            <span class="text-xs font-bold text-[#059669]">Direct Processing Team Loop Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-laboratory-resources" class="workspace-view hidden space-y-6">
+                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
+                    <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">Laboratory Resources Index</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Access technical assay configurations, CLIA validation packets, pre-analytical sample preparation guides, and downline compliance materials.</p>
+                    <ul class="divide-y divide-slate-100 text-xs font-bold text-[#0A192F] bg-slate-50 rounded-xl p-2 border border-slate-100">
+                        <li class="p-3 flex justify-between items-center"><span>🧬 Pre-Analytical Sample Prep Blueprint v4.1</span> <span class="text-slate-400 font-mono text-[10px]">PDF (1.4MB)</span></li>
+                        <li class="p-3 flex justify-between items-center"><span>🏛️ CLIA Operations Program Certification Documentation</span> <span class="text-slate-400 font-mono text-[10px]">VERIFIED</span></li>
+                        <li class="p-3 flex justify-between items-center"><span>🧪 Tube Draw Configurations & Preservation Guidelines</span> <span class="text-slate-400 font-mono text-[10px]">DOCX (800KB)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="view-connectivity" class="workspace-view hidden space-y-6">
+                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
+                    <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">EHR / HL7 Integration Interface Engine</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Configure continuous health record synchronizations. Monitor outbound discrete results endpoints and verify data stream status values.</p>
+                    <div class="p-4 bg-[#0A192F] text-white rounded-xl flex items-center justify-between font-mono text-[11px]">
+                        <span class="text-slate-400">FHIR API Endpoint Endpoint Status:</span>
+                        <span class="text-emerald-400 font-black">READY // SECURE LOOP</span>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
 
@@ -244,6 +283,60 @@
             const displayBadge = document.getElementById('catalogCountDisplay');
             const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
 
+            // --- INSTANT WORKSPACE VIEW ROUTER LOGIC ---
+            const topNavButtons = document.querySelectorAll('#portalNavRouter .nav-route-btn');
+            const sidebarButtons = document.querySelectorAll('.sidebar-route-trigger');
+            const workspaceViews = document.querySelectorAll('.workspace-view');
+
+            function routeToWorkspaceView(targetViewId) {
+                // Hide all views instantly
+                workspaceViews.forEach(view => view.classList.add('hidden'));
+                
+                // Show selected target workspace view
+                const activeView = document.getElementById(targetViewId);
+                if (activeView) activeView.classList.remove('hidden');
+
+                // Update styling state across navigation elements
+                topNavButtons.forEach(btn => {
+                    if (btn.getAttribute('data-target') === targetViewId) {
+                        btn.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'pb-1');
+                        btn.classList.remove('hover:text-[#059669]');
+                    } else {
+                        btn.classList.remove('text-[#059669]', 'border-b-2', 'border-[#059669]', 'pb-1');
+                        btn.classList.add('hover:text-[#059669]');
+                    }
+                });
+
+                // Update sidebar styling context state
+                sidebarButtons.forEach(btn => {
+                    if (btn.getAttribute('data-target') === targetViewId) {
+                        btn.classList.add('bg-slate-900', 'text-white');
+                        btn.classList.remove('hover:bg-slate-50', 'text-slate-500');
+                    } else {
+                        btn.classList.remove('bg-slate-900', 'text-white');
+                        btn.classList.add('hover:bg-slate-50', 'text-slate-500');
+                    }
+                });
+            }
+
+            // Bind click listeners across header buttons
+            topNavButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const target = e.currentTarget.getAttribute('data-target');
+                    routeToWorkspaceView(target);
+                });
+            });
+
+            // Bind click listeners across sidebar trigger paths
+            sidebarButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const target = e.currentTarget.getAttribute('data-target');
+                    routeToWorkspaceView(target);
+                });
+            });
+
+
+            // --- INTERNAL DATA INTERACTION SCRIPTS ---
             document.querySelectorAll('#categoryChipContainer button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const category = e.currentTarget.getAttribute('data-cat');
@@ -266,6 +359,7 @@
             const mobileCatBtn = document.getElementById('mobileCatalogFilterAll');
             if (mobileCatBtn) {
                 mobileCatBtn.addEventListener('click', () => {
+                    routeToWorkspaceView('view-test-directory');
                     const desktopAllBtn = document.querySelector('[data-cat="all"]');
                     if(desktopAllBtn) filterCategory('all', desktopAllBtn);
                 });
