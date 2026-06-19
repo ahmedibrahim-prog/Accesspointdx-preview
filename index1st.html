@@ -33,7 +33,6 @@
         .assay-card { display: block; }
         .filtered-out { display: none !important; }
         
-        /* Smooth transitions for seamless client-side tab routing */
         .workspace-view { transition: opacity 0.15s ease-in-out; }
     </style>
 </head>
@@ -213,16 +212,18 @@
             </div>
 
             <div id="view-provider-hub" class="workspace-view hidden space-y-6">
-                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
-                    <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">Secure Provider Hub Node</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Manage clinical administrative workflows, view assigned courier loops, and edit your medical network practice configurations safely.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                        <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1">
-                            <span class="block font-black text-[10px] text-slate-400 uppercase">Assigned Pickups</span>
-                            <span class="text-xs font-bold text-[#0A192F]">Daily Dynamic Route Route #402</span>
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-6">
+                    <div>
+                        <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">Secure Provider Hub Node</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium mt-1">Manage clinical administrative workflows, view assigned courier loops, and edit your medical network practice configurations safely.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="border border-slate-100 p-5 bg-slate-50/50 rounded-xl space-y-1.5">
+                            <span class="block font-black text-[10px] text-slate-400 uppercase tracking-wider">Assigned Pickups</span>
+                            <span class="text-xs font-bold text-[#0A192F]">Daily Dynamic Route #402</span>
                         </div>
-                        <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1">
-                            <span class="block font-black text-[10px] text-slate-400 uppercase">Primary Contact Base</span>
+                        <div class="border border-slate-100 p-5 bg-slate-50/50 rounded-xl space-y-1.5">
+                            <span class="block font-black text-[10px] text-slate-400 uppercase tracking-wider">Primary Contact Base</span>
                             <span class="text-xs font-bold text-[#059669]">Direct Processing Team Loop Active</span>
                         </div>
                     </div>
@@ -230,23 +231,112 @@
             </div>
 
             <div id="view-laboratory-resources" class="workspace-view hidden space-y-6">
-                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
-                    <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">Laboratory Resources Index</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed font-medium">Access technical assay configurations, CLIA validation packets, pre-analytical sample preparation guides, and downline compliance materials.</p>
-                    <ul class="divide-y divide-slate-100 text-xs font-bold text-[#0A192F] bg-slate-50 rounded-xl p-2 border border-slate-100">
-                        <li class="p-3 flex justify-between items-center"><span>🧬 Pre-Analytical Sample Prep Blueprint v4.1</span> <span class="text-slate-400 font-mono text-[10px]">PDF (1.4MB)</span></li>
-                        <li class="p-3 flex justify-between items-center"><span>🏛️ CLIA Operations Program Certification Documentation</span> <span class="text-slate-400 font-mono text-[10px]">VERIFIED</span></li>
-                        <li class="p-3 flex justify-between items-center"><span>🧪 Tube Draw Configurations & Preservation Guidelines</span> <span class="text-slate-400 font-mono text-[10px]">DOCX (800KB)</span></li>
-                    </ul>
+                <div class="text-[10px] font-black uppercase tracking-widest text-[#059669]">Clinical Reference Matrix</div>
+                <h2 class="text-2xl font-black text-[#0A192F] uppercase tracking-tight leading-none mt-1">Laboratory Resource Center</h2>
+                <p class="text-xs font-medium text-slate-500 max-w-2xl leading-relaxed">
+                    Instant pre-analytical guidance, searchable collection criteria updates, and official compliance documents. For physical supply requisitions or real-time courier dispatches, utilize the <span class="text-[#059669] underline cursor-pointer font-bold">Provider Operations Hub</span>.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2 items-start">
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-slate-50 pb-3">
+                                <h4 class="text-xs font-black uppercase tracking-wider text-[#0A192F]">Interactive Specimen Manual</h4>
+                                <span class="font-mono text-[9px] font-bold text-slate-400 uppercase">4 Matrix Blocks Loaded</span>
+                            </div>
+                            
+                            <div class="space-y-2.5">
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 transition cursor-pointer group">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-2 h-8 bg-amber-400 rounded-md"></div>
+                                        <div>
+                                            <span class="block text-xs font-black uppercase text-[#0A192F]">Chemistry</span>
+                                            <span class="block text-[10px] font-mono font-bold text-slate-400 uppercase mt-0.5">BMP, CMP, Lipid Matrix // CPT 80048</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-slate-300 group-hover:text-[#0A192F] transition text-sm">➔</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 transition cursor-pointer group">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-2 h-8 bg-purple-400 rounded-md"></div>
+                                        <div>
+                                            <span class="block text-xs font-black uppercase text-[#0A192F]">Hematology</span>
+                                            <span class="block text-[10px] font-mono font-bold text-slate-400 uppercase mt-0.5">CBC, Quantiferon // CPT 85025</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-slate-300 group-hover:text-[#0A192F] transition text-sm">➔</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 transition cursor-pointer group">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-2 h-8 bg-emerald-400 rounded-md"></div>
+                                        <div>
+                                            <span class="block text-xs font-black uppercase text-[#0A192F]">Molecular</span>
+                                            <span class="block text-[10px] font-mono font-bold text-slate-400 uppercase mt-0.5">Respiratory, STI Panels // CPT 87635</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-slate-300 group-hover:text-[#0A192F] transition text-sm">➔</span>
+                                </div>
+
+                                <div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 transition cursor-pointer group">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-2 h-8 bg-sky-400 rounded-md"></div>
+                                        <div>
+                                            <span class="block text-xs font-black uppercase text-[#0A192F]">Toxicology</span>
+                                            <span class="block text-[10px] font-mono font-bold text-slate-400 uppercase mt-0.5">Medication Compliance Logs // CPT 80307</span>
+                                        </div>
+                                    </div>
+                                    <span class="text-slate-300 group-hover:text-[#0A192F] transition text-sm">➔</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm space-y-4">
+                            <div class="relative">
+                                <input type="text" placeholder="Filter specimen manuals or criteria codes..." class="w-full bg-slate-50 border border-slate-100 rounded-xl pl-4 pr-10 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none placeholder:text-slate-400">
+                                <span class="absolute right-3.5 top-3.5 text-xs text-slate-400">🔍</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-3.5">
+                            <div>
+                                <span class="text-[9px] font-black tracking-wider text-[#059669] uppercase">Section 02 // Quality Systems</span>
+                                <h4 class="text-xs font-black uppercase text-[#0A192F] mt-0.5">CMS CLIA Guidance Matrix</h4>
+                            </div>
+                            <p class="text-[11px] font-medium text-slate-500 leading-relaxed">
+                                Federal guidelines require active synchronization with Centers for Medicare & Medicaid Services quality parameters. All diagnostic metrics are cross-checked under laboratory accreditation structures.
+                            </p>
+                            <button class="w-full bg-[#0A192F] hover:bg-slate-800 text-white text-[10px] font-black uppercase tracking-wider py-3 rounded-xl transition outline-none shadow-sm">
+                                Source CMS Portal ➔
+                            </button>
+                        </div>
+
+                        <div class="bg-red-50 border border-red-100 rounded-2xl p-5 shadow-sm space-y-3">
+                            <div>
+                                <span class="text-[9px] font-black tracking-wider text-red-800 uppercase">Emergency Triage Routing</span>
+                                <h4 class="text-xs font-black uppercase text-[#0A192F] mt-0.5">Critical Value Policy</h4>
+                            </div>
+                            <p class="text-[11px] font-medium text-red-950/80 leading-relaxed">
+                                Federal CLIA regulations demand immediate telephone notifications for critical panic thresholds. Verify after-hours clinical communication pathways immediately.
+                            </p>
+                            <div class="pt-2 border-t border-red-200/60 flex justify-between items-center text-[10px] font-black uppercase tracking-wider text-red-900">
+                                <span>☎ Hot-Line Axis:</span>
+                                <span class="font-mono tracking-tight">(800) 555-APDX // Ext 9</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="view-connectivity" class="workspace-view hidden space-y-6">
-                <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm space-y-4">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
                     <h3 class="text-base font-black uppercase tracking-wide text-[#0A192F]">EHR / HL7 Integration Interface Engine</h3>
                     <p class="text-xs text-slate-500 leading-relaxed font-medium">Configure continuous health record synchronizations. Monitor outbound discrete results endpoints and verify data stream status values.</p>
                     <div class="p-4 bg-[#0A192F] text-white rounded-xl flex items-center justify-between font-mono text-[11px]">
-                        <span class="text-slate-400">FHIR API Endpoint Endpoint Status:</span>
+                        <span class="text-slate-400">FHIR API Endpoint Status:</span>
                         <span class="text-emerald-400 font-black">READY // SECURE LOOP</span>
                     </div>
                 </div>
@@ -283,20 +373,20 @@
             const displayBadge = document.getElementById('catalogCountDisplay');
             const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
 
-            // --- INSTANT WORKSPACE VIEW ROUTER LOGIC ---
+            // --- REENGINIERED CLIENT-SIDE WORKSPACE ROUTER CONTROL LOOP ---
             const topNavButtons = document.querySelectorAll('#portalNavRouter .nav-route-btn');
             const sidebarButtons = document.querySelectorAll('.sidebar-route-trigger');
             const workspaceViews = document.querySelectorAll('.workspace-view');
 
             function routeToWorkspaceView(targetViewId) {
-                // Hide all views instantly
+                // Instantly clean active panel stack displays
                 workspaceViews.forEach(view => view.classList.add('hidden'));
                 
-                // Show selected target workspace view
+                // Mount target panel context view explicitly
                 const activeView = document.getElementById(targetViewId);
                 if (activeView) activeView.classList.remove('hidden');
 
-                // Update styling state across navigation elements
+                // Track and apply visual highlight accents to the active top nav tab
                 topNavButtons.forEach(btn => {
                     if (btn.getAttribute('data-target') === targetViewId) {
                         btn.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'pb-1');
@@ -307,7 +397,7 @@
                     }
                 });
 
-                // Update sidebar styling context state
+                // Track and apply visual highlights to the sidebar elements
                 sidebarButtons.forEach(btn => {
                     if (btn.getAttribute('data-target') === targetViewId) {
                         btn.classList.add('bg-slate-900', 'text-white');
@@ -319,24 +409,19 @@
                 });
             }
 
-            // Bind click listeners across header buttons
             topNavButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
-                    const target = e.currentTarget.getAttribute('data-target');
-                    routeToWorkspaceView(target);
+                    routeToWorkspaceView(e.currentTarget.getAttribute('data-target'));
                 });
             });
 
-            // Bind click listeners across sidebar trigger paths
             sidebarButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
-                    const target = e.currentTarget.getAttribute('data-target');
-                    routeToWorkspaceView(target);
+                    routeToWorkspaceView(e.currentTarget.getAttribute('data-target'));
                 });
             });
 
-
-            // --- INTERNAL DATA INTERACTION SCRIPTS ---
+            // --- ASSAY FILTER & SEARCH COMPONENT ENGINE ---
             document.querySelectorAll('#categoryChipContainer button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const category = e.currentTarget.getAttribute('data-cat');
