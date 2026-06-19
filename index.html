@@ -557,7 +557,7 @@
                 </div>
                 <button id="launchWorkspaceAppBtn" class="w-full bg-[#0A192F] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-slate-800 outline-none">Launch Workspace App ➔</button>
             </div>
-            <button onclick="toggleGatewayModal('demo', false)" class="w-full text-center text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-red-500 transition pt-1 flex items-center justify-center space-x-1">
+            <button id="closeDemoModalBtn" class="w-full text-center text-[10px] font-black text-slate-400 uppercase tracking-widest hover:text-red-500 transition pt-1 flex items-center justify-center space-x-1">
                 <span>← Back to Marketing Site</span>
             </button>
         </div>
@@ -586,13 +586,24 @@
                 });
             }
 
-            document.getElementById('topNavAssessmentBtn').addEventListener('click', () => toggleGatewayModal('demo', true));
-            document.getElementById('headerPortalBtn').addEventListener('click', () => toggleGatewayModal('login', true));
-            document.getElementById('heroAssessmentBtn').addEventListener('click', () => toggleGatewayModal('demo', true));
-            document.getElementById('footerAssessmentBtn').addEventListener('click', () => toggleGatewayModal('demo', true));
-            document.getElementById('footerContactBtn').addEventListener('click', () => toggleGatewayModal('demo', true));
-            document.getElementById('footerDirectContactAnchor').addEventListener('click', () => toggleGatewayModal('demo', true));
-            
+            // Safe lookup conditional handler to shield engine execution from absent selectors
+            const bindSafeListener = (targetId, eventType, executionCallback) => {
+                const elementNode = document.getElementById(targetId);
+                if (elementNode) {
+                    elementNode.addEventListener(eventType, executionCallback);
+                }
+            };
+
+            bindSafeListener('topNavAssessmentBtn', 'click', () => toggleGatewayModal('demo', true));
+            bindSafeListener('headerPortalBtn', 'click', () => toggleGatewayModal('login', true));
+            bindSafeListener('heroAssessmentBtn', 'click', () => toggleGatewayModal('demo', true));
+            bindSafeListener('footerAssessmentBtn', 'click', () => toggleGatewayModal('demo', true));
+            bindSafeListener('footerContactBtn', 'click', () => toggleGatewayModal('demo', true));
+            bindSafeListener('modalSwitchToDemoBtn', 'click', () => toggleGatewayModal('demo', true));
+            bindSafeListener('closeLoginModalBtn', 'click', () => toggleGatewayModal('login', false));
+            bindSafeListener('closeDemoModalBtn', 'click', () => toggleGatewayModal('demo', false));
+            bindSafeListener('launchWorkspaceAppBtn', 'click', autoLoginDemoUser);
+
             document.querySelectorAll('[data-trigger="portal"]').forEach(el => {
                 el.addEventListener('click', () => toggleGatewayModal('login', true));
             });
@@ -600,41 +611,42 @@
                 el.addEventListener('click', () => toggleGatewayModal('demo', true));
             });
 
-            document.getElementById('modalSwitchToDemoBtn').addEventListener('click', () => toggleGatewayModal('demo', true));
-            document.getElementById('closeLoginModalBtn').addEventListener('click', () => toggleGatewayModal('login', false));
-            document.getElementById('closeDemoModalBtn').addEventListener('click', () => toggleGatewayModal('demo', false));
-            document.getElementById('launchWorkspaceAppBtn').addEventListener('click', autoLoginDemoUser);
-
-            portalLoginForm.addEventListener('submit', validateGatewayPasskey);
-            demoForm.addEventListener('submit', generateTemporaryCredentials);
+            if (portalLoginForm) portalLoginForm.addEventListener('submit', validateGatewayPasskey);
+            if (demoForm) demoForm.addEventListener('submit', generateTemporaryCredentials);
 
             function toggleGatewayModal(target, show = true) {
                 const targetModal = (target === 'login') ? loginModal : demoModal;
+                if (!targetModal) return;
+
                 if (show) {
-                    loginModal.classList.add('hidden');
-                    demoModal.classList.add('hidden');
+                    if (loginModal) loginModal.classList.add('hidden');
+                    if (demoModal) demoModal.classList.add('hidden');
                     targetModal.classList.remove('hidden');
                     document.body.style.overflow = 'hidden';
                     activeFocusTrapElement = targetModal;
                     
-                    if (target === 'login') {
+                    if (target === 'login' && gatewayInput) {
                         gatewayInput.focus();
                     } else {
-                        document.getElementById('demoName').focus();
-                        demoForm.classList.remove('hidden');
-                        credentialSheet.classList.add('hidden');
+                        const demoFocusNode = document.getElementById('demoName');
+                        if (demoFocusNode) demoFocusNode.focus();
+                        if (demoForm) demoForm.classList.remove('hidden');
+                        if (credentialSheet) credentialSheet.classList.add('hidden');
                     }
                     if (!window.history.state || !window.history.state.modalOpen) {
                         window.history.pushState({ modalOpen: true }, '', '#portal-view');
                     }
                 } else {
                     targetModal.classList.add('hidden');
-                    loginError.classList.add('hidden');
+                    if (loginError) loginError.classList.add('hidden');
                     document.body.style.overflow = '';
                     activeFocusTrapElement = null;
                     if (window.location.hash === '#portal-view') { window.history.back(); }
                 }
             }
+
+            // Expose logic to browser window instance for secondary fallback execution layers
+            window.toggleGatewayModal = toggleGatewayModal;
 
             function generateTemporaryCredentials(event) {
                 event.preventDefault();
@@ -642,11 +654,7 @@
                 const clinic = document.getElementById('demoClinic').value.trim();
                 
                 const sandboxRegistry = JSON.parse(localStorage.getItem('apdx_sandbox_registry') || '{}');
-                let generatedKey;
-                
-                do {
-                    generatedKey = `APDX-${crypto.randomUUID()}`;
-                } while (sandboxRegistry[generatedKey]);
+                let generatedKey = `APDX-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
                 
                 sandboxRegistry[generatedKey] = { 
                     role: 'Temporary Simulation Provider', 
@@ -656,9 +664,9 @@
                 localStorage.setItem('apdx_sandbox_registry', JSON.stringify(sandboxRegistry));
                 sessionStorage.setItem('apdx_active_session_token', generatedKey);
                 
-                demoForm.classList.add('hidden');
-                tokenDisplay.textContent = generatedKey; 
-                credentialSheet.classList.remove('hidden');
+                if (demoForm) demoForm.classList.add('hidden');
+                if (tokenDisplay) tokenDisplay.textContent = generatedKey; 
+                if (credentialSheet) credentialSheet.classList.remove('hidden');
             }
 
             function autoLoginDemoUser() {
@@ -668,16 +676,17 @@
 
             function validateGatewayPasskey(event) {
                 event.preventDefault();
+                if (!gatewayInput) return;
                 const inputKey = gatewayInput.value.trim().toUpperCase();
                 const sandboxRegistry = JSON.parse(localStorage.getItem('apdx_sandbox_registry') || '{}');
                 
                 if (sandboxRegistry[inputKey] || inputKey === 'APDX-DEMO') {
-                    loginError.classList.add('hidden');
+                    if (loginError) loginError.classList.add('hidden');
                     sessionStorage.setItem('apdx_portal_gear', 'gear_2');
                     sessionStorage.setItem('apdx_active_session_token', inputKey);
                     window.location.replace('index1st.html');
                 } else {
-                    loginError.classList.remove('hidden');
+                    if (loginError) loginError.classList.remove('hidden');
                     gatewayInput.select();
                 }
             }
@@ -689,6 +698,7 @@
                 }
                 if (event.key === 'Tab' && activeFocusTrapElement) {
                     const focusableElements = activeFocusTrapElement.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
+                    if (focusableElements.length === 0) return;
                     const firstElement = focusableElements[0];
                     const lastElement = focusableElements[focusableElements.length - 1];
                     if (event.shiftKey) { 
@@ -701,9 +711,9 @@
 
             window.addEventListener('popstate', () => {
                 if (activeFocusTrapElement) {
-                    loginModal.classList.add('hidden');
-                    demoModal.classList.add('hidden');
-                    loginError.classList.add('hidden');
+                    if (loginModal) loginModal.classList.add('hidden');
+                    if (demoModal) demoModal.classList.add('hidden');
+                    if (loginError) loginError.classList.add('hidden');
                     document.body.style.overflow = '';
                     activeFocusTrapElement = null;
                 }
@@ -711,4 +721,4 @@
         });
     </script>
 </body>
-</html> Here is the code you want to put inside index.html. Tweak this code with the right path and links. Keep everything else we gained.
+</html>
