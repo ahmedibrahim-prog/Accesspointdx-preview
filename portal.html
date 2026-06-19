@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function () {
+            const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
+            const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
+
+            // Hard intercept redirect if security handshake validation traits fail
+            if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
+                sessionStorage.clear();
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AccessPoint Dx // Secure Provider Portal Shell</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
+
+    <div class="bg-[#0A192F] text-white text-[10px] font-mono border-b border-slate-800">
+        <div class="max-w-7xl mx-auto h-10 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <span class="text-emerald-500 font-bold">● LIVE CORE CONNECTION</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-300">Twin Cities Node Hub: CLIA #24D2284915</span>
+            </div>
+            <button id="globalPortalLogoffBtn" class="text-slate-400 hover:text-red-400 transition font-bold uppercase tracking-wider focus:outline-none">Exit Portal</button>
+        </div>
+    </div>
+
+    <header class="bg-white border-b border-slate-200/80 shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+            
+            <div class="flex items-center space-x-3">
+                <div class="font-black text-base text-[#0A192F] tracking-tight">AccessPoint <span class="text-[#059669]">Dx</span></div>
+                <span class="text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded tracking-wide font-mono uppercase">Portal v2.4</span>
+            </div>
+            
+            <nav id="masterPortalTabs" aria-label="Portal Workspace View Tabs" class="hidden md:flex items-center space-x-8 h-full font-bold text-xs uppercase tracking-wider text-slate-500">
+                <a href="?view=home" data-view-target="home" class="portal-tab flex items-center h-full border-b-2 border-transparent hover:text-[#0A192F] transition pt-1">Home</a>
+                <a href="?view=test-directory" data-view-target="test-directory" class="portal-tab flex items-center h-full border-b-2 border-transparent hover:text-[#0A192F] transition pt-1">Test Directory</a>
+                <a href="?view=provider-hub" data-view-target="provider-hub" class="portal-tab flex items-center h-full border-b-2 border-transparent hover:text-[#0A192F] transition pt-1">Provider Hub</a>
+                <a href="?view=resources" data-view-target="resources" class="portal-tab flex items-center h-full border-b-2 border-transparent hover:text-[#0A192F] transition pt-1">Laboratory Resources</a>
+                <a href="?view=connectivity" data-view-target="connectivity" class="portal-tab flex items-center h-full border-b-2 border-transparent hover:text-[#0A192F] transition pt-1">Connectivity</a>
+            </nav>
+
+            <button id="mobileNavToggleBtn" aria-label="Toggle Portal View Menu" aria-expanded="false" aria-controls="mobileTabsMenu" class="md:hidden text-[#0A192F] p-1 focus:outline-none font-bold text-xs uppercase tracking-wider">Menu ☰</button>
+
+            <div id="mobileTabsMenu" class="hidden absolute top-20 left-0 right-0 bg-white border-b border-slate-200 flex-col p-6 space-y-4 font-bold text-xs uppercase tracking-wider text-slate-700 shadow-xl z-[400]">
+                <a href="?view=home" class="hover:text-[#059669] transition">Home Dashboard</a>
+                <a href="?view=test-directory" class="hover:text-[#059669] transition">Test Directory</a>
+                <a href="?view=provider-hub" class="hover:text-[#059669] transition">Provider Hub</a>
+                <a href="?view=resources" class="hover:text-[#059669] transition">Laboratory Resources</a>
+                <a href="?view=connectivity" class="hover:text-[#059669] transition">Connectivity</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="portal-content" class="min-h-[calc(100vh-7.5rem)]">
+        </main>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] md:hidden block">
+        <div class="grid grid-cols-5 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
+            <a href="?view=home" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">🏠</span><span>Home</span>
+            </a>
+            <a href="?view=test-directory" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">🧪</span><span>Catalog</span>
+            </a>
+            <a href="?view=provider-hub" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">📄</span><span>Hub</span>
+            </a>
+            <a href="?view=connectivity" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">📦</span><span>Sync</span>
+            </a>
+            <button id="mobileLogoffBtn" class="flex flex-col items-center justify-center space-y-1 hover:text-red-500 transition focus:outline-none">
+                <span class="text-base">🚪</span><span>Exit</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const portalContent = document.getElementById('portal-content');
+            const globalPortalLogoffBtn = document.getElementById('globalPortalLogoffBtn');
+            const mobileLogoffBtn = document.getElementById('mobileLogoffBtn');
+            const mobileNavToggleBtn = document.getElementById('mobileNavToggleBtn');
+            const mobileTabsMenu = document.getElementById('mobileTabsMenu');
+
+            // 1. Parse View Identification Parameter From Browser URL Address Bar
+            const urlQueryParameters = new URLSearchParams(window.location.search);
+            const targetedViewId = urlQueryParameters.get('view') || 'home';
+
+            // 2. Map Clean Component Sub-Files In Subdirectory Mapping Array
+            const structuralViewsRegistry = {
+                'home': 'dashboard-views/home-view.html',
+                'test-directory': 'dashboard-views/test-directory.html',
+                'provider-hub': 'dashboard-views/provider-hub.html',
+                'resources': 'dashboard-views/resources.html',
+                'connectivity': 'dashboard-views/connectivity.html'
+            };
+
+            const selectedFetchEndpoint = structuralViewsRegistry[targetedViewId] || structuralViewsRegistry['home'];
+
+            // 3. Dynamic HTTP Fetch Injection Stream
+            fetch(selectedFetchEndpoint)
+                .then(response => {
+                    if (!response.ok) throw new Error(`Network infrastructure view load failure: ${response.status}`);
+                    return response.text();
+                })
+                .then(htmlPayloadMarkup => {
+                    portalContent.innerHTML = htmlPayloadMarkup;
+                    
+                    // Fire up catalog listeners instantly inside injected template runtime scopes
+                    if (targetedViewId === 'test-directory' && window.initializeTestCatalogRoutines) {
+                        window.initializeTestCatalogRoutines();
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    portalContent.innerHTML = `<div class="max-w-7xl mx-auto p-12 text-xs font-mono uppercase font-bold text-red-600">⚠️ Error loading portal view module state. Contact technical administration channels.</div>`;
+                });
+
+            // 4. UI Navigation Tab Highlighter Style Controller
+            document.querySelectorAll('#masterPortalTabs a').forEach(tabLink => {
+                const targetAttributeId = tabLink.getAttribute('data-view-target');
+                if (targetAttributeId === targetedViewId) {
+                    tabLink.classList.remove('text-slate-500', 'border-transparent');
+                    tabLink.classList.add('text-[#059669]', 'border-[#059669]', 'border-b-2');
+                }
+            });
+
+            // Mobile Menu Controller
+            if (mobileNavToggleBtn && mobileTabsMenu) {
+                mobileNavToggleBtn.addEventListener('click', () => {
+                    const isExpanded = mobileNavToggleBtn.getAttribute('aria-expanded') === 'true';
+                    mobileTabsMenu.classList.toggle('hidden');
+                    mobileNavToggleBtn.setAttribute('aria-expanded', !isExpanded);
+                });
+            }
+
+            function executePortalLogoffWipe() {
+                sessionStorage.clear();
+                window.location.replace('index.html');
+            }
+
+            globalPortalLogoffBtn.addEventListener('click', executePortalLogoffWipe);
+            mobileLogoffBtn.addEventListener('click', executePortalLogoffWipe);
+        });
+    </script>
+</body>
+</html>
