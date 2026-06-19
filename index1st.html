@@ -6,7 +6,7 @@
             const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
             const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
 
-            // Hard redirection kick if session validation parameters fail
+            // Hard redirection sweep if session state properties do not exist
             if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
                 sessionStorage.clear();
                 window.location.replace('index.html');
@@ -24,15 +24,19 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
+        /* Clean list resetting for consistent operational dropdowns */
         details summary::-webkit-details-marker { display: none; }
         details summary { list-style: none; }
 
         .hover-lift { transition: all .2s ease; }
         .hover-lift:hover { transform: translateY(-1px); }
+
+        /* Dynamic Category Filtering States */
+        .assay-card { display: block; }
         .filtered-out { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 lg:pb-0">
+<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
 
     <div class="bg-[#0A192F] text-white text-[10px] font-mono border-b border-slate-800 hidden md:block">
         <div class="max-w-7xl mx-auto h-10 px-6 flex items-center justify-between">
@@ -59,7 +63,7 @@
                     <a href="index.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400">
                         <span>🏠</span> <span>Site Home</span>
                     </a>
-                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
+                    <button id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
                         <span>🧪</span> <span>Test Catalog</span>
                     </button>
                     <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500 group">
@@ -94,9 +98,8 @@
                 <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
                 <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
                 <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
-                <button data-cat="executive" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
                 <button data-cat="hormones" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
-                <button data-cat="cardiovascular" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
+                <button data-cat="compliance" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Compliance & Tox</button>
             </div>
 
             <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
@@ -137,11 +140,11 @@
                             </div>
                         </details>
 
-                        <details class="assay-card group/item outline-none" data-category="inflammation">
+                        <details class="assay-card group/item outline-none" data-category="metabolic">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Complete Blood Count (CBC) with Differential</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 85025</span>
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Hemoglobin A1c (HbA1c) w/ Glucose</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83036</span>
                                 </div>
                                 <div class="flex items-center space-x-3">
                                     <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
@@ -151,7 +154,7 @@
                             <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
                                 <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Standard Route</p></div>
                                 <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Variable Delivery Loops</p></div>
                                 <div class="pt-2 sm:col-span-2 md:col-span-3">
                                     <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
                                         Add to requisition +
@@ -160,21 +163,21 @@
                             </div>
                         </details>
 
-                        <details class="assay-card group/item outline-none" data-category="executive">
+                        <details class="assay-card group/item outline-none" data-category="inflammation">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Lipid Panel with Total Cholesterol / HDL / LDL</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80061</span>
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">High-Sensitivity C-Reactive Protein (hs-CRP)</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 86141</span>
                                 </div>
                                 <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
                                     <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
                                 </div>
                             </summary>
                             <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Expected Workflow</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 12-Hour Fasting Recommended</p></div>
-                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Local Pipeline</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Tube or SST • Centrifuge immediate</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Integrated Core Data Streams</p></div>
                                 <div class="pt-2 sm:col-span-2 md:col-span-3">
                                     <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
                                         Add to requisition +
@@ -203,26 +206,21 @@
 
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
         <div class="grid grid-cols-5 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
-            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition text-slate-400">
-                <span class="text-base">🏠</span>
-                <span class="scale-90 transform origin-center">Home</span>
+            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">🏠</span><span class="scale-90 transform">Home</span>
             </a>
             <button id="mobileCatalogFilterAll" class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
-                <span class="text-base">🧪</span>
-                <span class="scale-90 transform origin-center">Catalog</span>
+                <span class="text-base">🧪</span><span class="scale-90 transform">Catalog</span>
             </button>
-            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition relative focus:outline-none">
-                <span class="text-base">📄</span>
-                <span class="scale-90 transform origin-center">Builder</span>
+            <button class="flex flex-col items-center justify-center space-y-1 relative focus:outline-none">
+                <span class="text-base">📄</span><span class="scale-90 transform">Builder</span>
                 <span id="badgeMobileRequisitionCount" class="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-[#059669] text-white font-mono font-black text-[7px] flex items-center justify-center hidden">0</span>
             </button>
-            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition focus:outline-none">
-                <span class="text-base">📦</span>
-                <span class="scale-90 transform origin-center">Tracking</span>
+            <button class="flex flex-col items-center justify-center space-y-1 focus:outline-none">
+                <span class="text-base">📦</span><span class="scale-90 transform">Tracking</span>
             </button>
-            <button id="exitMobilePortalBtn" class="flex flex-col items-center justify-center space-y-1 hover:text-red-500 transition focus:outline-none">
-                <span class="text-base">🚪</span>
-                <span class="scale-90 transform origin-center">Exit</span>
+            <button id="exitMobilePortalBtn" class="flex flex-col items-center justify-center space-y-1 text-slate-400 focus:outline-none">
+                <span class="text-base">🚪</span><span class="scale-90 transform">Exit</span>
             </button>
         </div>
     </div>
@@ -233,11 +231,11 @@
             
             const desktopCountBadge = document.getElementById('badgeRequisitionCount');
             const mobileCountBadge = document.getElementById('badgeMobileRequisitionCount');
-            const searchInput = document.querySelector('input[type="text"]');
+            const searchInput = document.getElementById('catalogSearchInput');
             const displayBadge = document.getElementById('catalogCountDisplay');
             const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
 
-            // Hook Event Listeners for category filtering chips
+            // Event Listeners for chips
             document.querySelectorAll('#categoryChipContainer button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const category = e.currentTarget.getAttribute('data-cat');
@@ -302,11 +300,15 @@
             function addAssayToActiveRequisition(e) {
                 selectedAssaysInQueue++;
                 
-                desktopCountBadge.innerText = selectedAssaysInQueue;
-                desktopCountBadge.classList.remove('hidden');
+                if (desktopCountBadge) {
+                    desktopCountBadge.innerText = selectedAssaysInQueue;
+                    desktopCountBadge.classList.remove('hidden');
+                }
 
-                mobileCountBadge.innerText = selectedAssaysInQueue;
-                mobileCountBadge.classList.remove('hidden');
+                if (mobileCountBadge) {
+                    mobileCountBadge.innerText = selectedAssaysInQueue;
+                    mobileCountBadge.classList.remove('hidden');
+                }
 
                 const clickedBtn = e.target;
                 const originalButtonText = clickedBtn.innerText;
