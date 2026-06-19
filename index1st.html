@@ -47,20 +47,51 @@
         </div>
     </div>
 
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+            <div class="flex items-center space-x-3">
+                <svg class="w-9 h-9 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
+                    <circle cx="26" cy="52" r="4" fill="#0A192F"/>
+                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                </svg>
+                <div class="flex flex-col justify-center">
+                    <div class="text-[18px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                        AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
+                    </div>
+                    <span class="text-[7.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1">Diagnostics Without Barriers</span>
+                </div>
+            </div>
+
+            <nav aria-label="Main Site Navigation Links" class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-[0.08em] text-slate-700">
+                <a href="index.html" class="hover:text-[#059669] transition">Home</a>
+                <a href="test-directory.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 transition">Test Directory</a>
+                <a href="provider-hub.html" class="hover:text-[#059669] transition">Provider Hub</a>
+                <a href="resources.html" class="hover:text-[#059669] transition">Laboratory Resources</a>
+                <a href="connectivity.html" class="hover:text-[#059669] transition">Connectivity</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="executePortalLogoffWipe();" class="flex border border-red-200 text-red-600 bg-red-50/30 hover:bg-red-50 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition items-center space-x-1.5 focus:outline-none">
+                    <span>🚪</span> <span>Exit Portal</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         <aside class="hidden lg:block lg:col-span-3 space-y-4">
             <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm space-y-6">
                 
-                <div class="flex items-center space-x-2.5 px-2">
-                    <div class="font-black text-sm text-[#0A192F] tracking-tight">AccessPoint <span class="text-[#059669]">Dx</span></div>
-                    <span class="text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded tracking-wide font-mono uppercase">v2.4</span>
+                <div class="flex items-center space-x-2 px-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-[10px] font-black tracking-widest text-[#0A192F] uppercase">Portal Environment</span>
                 </div>
 
                 <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
-                    <button onclick="sessionStorage.clear(); window.location.replace('index.html');" class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400 text-left focus:outline-none">
-                        <span>🏠</span> <span>Site Home</span>
-                    </button>
                     <button id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
                         <span>🧪</span> <span>Test Catalog</span>
                     </button>
@@ -92,7 +123,7 @@
                 </div>
             </div>
 
-            <div id="categoryChipContainer" class="flex items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
+            <div id="categoryChipContainer" class="flex flex-row flex-nowrap items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
                 <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
                 <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
                 <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
@@ -111,7 +142,6 @@
                     </summary>
 
                     <div class="divide-y border-t border-slate-100 divide-slate-100" id="masterAssayList">
-                        <!-- CMP ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="metabolic">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -135,7 +165,6 @@
                             </div>
                         </details>
 
-                        <!-- HBA1C ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="metabolic">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -159,7 +188,6 @@
                             </div>
                         </details>
 
-                        <!-- CRP ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="inflammation">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -188,7 +216,6 @@
         </main>
     </div>
 
-    <!-- MOBILE SYSTEM ACTIONS NAVBAR FOOTER -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
         <div class="grid grid-cols-4 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
             <button onclick="executePortalLogoffWipe();" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
