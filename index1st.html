@@ -6,7 +6,7 @@
             const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
             const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
 
-            // Hard redirection sweep if session state properties do not exist
+            // Route protection sweep: redirect home if tokens are missing
             if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
                 sessionStorage.clear();
                 window.location.replace('index.html');
@@ -24,14 +24,12 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Clean list resetting for consistent operational dropdowns */
         details summary::-webkit-details-marker { display: none; }
         details summary { list-style: none; }
 
         .hover-lift { transition: all .2s ease; }
         .hover-lift:hover { transform: translateY(-1px); }
 
-        /* Dynamic Category Filtering States */
         .assay-card { display: block; }
         .filtered-out { display: none !important; }
     </style>
@@ -60,9 +58,9 @@
                 </div>
 
                 <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
-                    <a href="index.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400">
+                    <button onclick="sessionStorage.clear(); window.location.replace('index.html');" class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400 text-left focus:outline-none">
                         <span>🏠</span> <span>Site Home</span>
-                    </a>
+                    </button>
                     <button id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
                         <span>🧪</span> <span>Test Catalog</span>
                     </button>
@@ -98,13 +96,9 @@
                 <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
                 <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
                 <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
-                <button data-cat="executive" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
-                <button data-cat="hormones" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
-                <button data-cat="cardiovascular" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
             </div>
 
             <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
-                
                 <details class="group" open>
                     <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
                         <div class="flex items-center space-x-3">
@@ -117,7 +111,7 @@
                     </summary>
 
                     <div class="divide-y border-t border-slate-100 divide-slate-100" id="masterAssayList">
-                        
+                        <!-- CMP ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="metabolic">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -141,6 +135,7 @@
                             </div>
                         </details>
 
+                        <!-- HBA1C ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="metabolic">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -164,6 +159,7 @@
                             </div>
                         </details>
 
+                        <!-- CRP ASSAY CARD -->
                         <details class="assay-card group/item outline-none" data-category="inflammation">
                             <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
                                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
@@ -189,27 +185,15 @@
                     </div>
                 </details>
             </div>
-
-            <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-sm space-y-3">
-                <div class="flex items-center space-x-2">
-                    <span class="text-xs" aria-hidden="true">🔒</span>
-                    <h5 class="text-[10px] font-black uppercase tracking-widest text-emerald-400">Application Security Notice</h5>
-                </div>
-                <p class="text-[11px] text-slate-400 font-medium leading-relaxed">
-                    This portal operates under a strict Zero-Trust Data Architecture. Unauthorized automated scraping, script-based data indexing, or deep-linking into unauthenticated session states is programmatically blocked.
-                </p>
-                <div class="pt-1 text-[9px] font-mono text-slate-500 border-t border-slate-800 uppercase tracking-wider">
-                    Security Policy Framework: HIPAA / NIST Compliant
-                </div>
-            </div>
         </main>
     </div>
 
+    <!-- MOBILE SYSTEM ACTIONS NAVBAR FOOTER -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
-        <div class="grid grid-cols-5 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
-            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+        <div class="grid grid-cols-4 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
+            <button onclick="executePortalLogoffWipe();" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
                 <span class="text-base">🏠</span><span class="scale-90 transform">Home</span>
-            </a>
+            </button>
             <button id="mobileCatalogFilterAll" class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
                 <span class="text-base">🧪</span><span class="scale-90 transform">Catalog</span>
             </button>
@@ -217,11 +201,8 @@
                 <span class="text-base">📄</span><span class="scale-90 transform">Builder</span>
                 <span id="badgeMobileRequisitionCount" class="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-[#059669] text-white font-mono font-black text-[7px] flex items-center justify-center hidden">0</span>
             </button>
-            <button class="flex flex-col items-center justify-center space-y-1 focus:outline-none">
-                <span class="text-base">📦</span><span class="scale-90 transform">Tracking</span>
-            </button>
             <button id="exitMobilePortalBtn" class="flex flex-col items-center justify-center space-y-1 text-slate-400 focus:outline-none">
-                <span class="text-base">🚪</span><span class="scale-90 transform">Exit</span>
+                <span class="text-base">🚪</span><span class="scale-90 transform">Exit Portal</span>
             </button>
         </div>
     </div>
@@ -236,7 +217,6 @@
             const displayBadge = document.getElementById('catalogCountDisplay');
             const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
 
-            // Event Listeners for category filtering chips
             document.querySelectorAll('#categoryChipContainer button').forEach(button => {
                 button.addEventListener('click', (e) => {
                     const category = e.currentTarget.getAttribute('data-cat');
@@ -256,23 +236,24 @@
                 exitMobilePortalBtn.addEventListener('click', executePortalLogoffWipe);
             }
 
-            document.getElementById('mobileCatalogFilterAll').addEventListener('click', () => {
-                const desktopAllBtn = document.querySelector('[data-cat="all"]');
-                filterCategory('all', desktopAllBtn);
-            });
+            const mobileCatBtn = document.getElementById('mobileCatalogFilterAll');
+            if (mobileCatBtn) {
+                mobileCatBtn.addEventListener('click', () => {
+                    const desktopAllBtn = document.querySelector('[data-cat="all"]');
+                    if(desktopAllBtn) filterCategory('all', desktopAllBtn);
+                });
+            }
 
             function filterCategory(category, activeBtn) {
                 const cards = document.querySelectorAll('.assay-card');
                 
                 document.querySelectorAll('.chip-btn').forEach(btn => {
-                    btn.classList.replace('bg-slate-900', 'bg-white');
-                    btn.classList.replace('text-white', 'text-slate-600');
-                    btn.classList.add('border', 'border-slate-200');
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
                 });
                 
-                activeBtn.classList.replace('bg-white', 'bg-slate-900');
-                activeBtn.classList.replace('text-slate-600', 'text-white');
-                activeBtn.classList.remove('border', 'border-slate-200');
+                activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                activeBtn.classList.add('bg-slate-900', 'text-white');
 
                 let matchingCount = 0;
                 cards.forEach(card => {
@@ -283,7 +264,7 @@
                         card.classList.add('filtered-out');
                     }
                 });
-                displayBadge.textContent = `Showing ${matchingCount} Active Assay Channels`;
+                if(displayBadge) displayBadge.textContent = `Showing ${matchingCount} Active Assay Channels`;
             }
 
             function searchCatalog() {
@@ -295,7 +276,7 @@
                     card.classList.toggle('filtered-out', !contentMatch);
                     if (contentMatch) matchCounter++;
                 });
-                displayBadge.textContent = `Showing ${matchCounter} Filtered Assay Channels`;
+                if(displayBadge) displayBadge.textContent = `Showing ${matchCounter} Filtered Assay Channels`;
             }
 
             function addAssayToActiveRequisition(e) {
@@ -314,11 +295,13 @@
                 const clickedBtn = e.target;
                 const originalButtonText = clickedBtn.innerText;
                 clickedBtn.innerText = 'Assay Added ✓';
-                clickedBtn.classList.replace('bg-[#059669]', 'bg-slate-900');
+                clickedBtn.classList.remove('bg-[#059669]');
+                clickedBtn.classList.add('bg-slate-900');
                 
                 setTimeout(() => {
                     clickedBtn.innerText = originalButtonText;
-                    clickedBtn.classList.replace('bg-slate-900', 'bg-[#059669]');
+                    clickedBtn.classList.remove('bg-slate-900');
+                    clickedBtn.classList.add('bg-[#059669]');
                 }, 1000);
             }
 
@@ -326,6 +309,7 @@
                 sessionStorage.clear();
                 window.location.replace('index.html');
             }
+            window.executePortalLogoffWipe = executePortalLogoffWipe;
         });
     </script>
 </body>
