@@ -19,7 +19,6 @@
     if (sessionStorage.getItem('apdx_portal_gear') !== 'gear_2') { 
         window.location.replace('index.html'); 
     } else {
-        // ENFORCE HARDWARE HISTORY STATE LOCK OUT LOOP (BLOCKS BROWSER BACK REDIRECT)
         window.history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', function () {
             window.history.pushState(null, null, window.location.href);
@@ -33,7 +32,7 @@
         <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800 px-6 py-2.5 flex items-center justify-between">  
             <div class="flex items-center space-x-2">  
                 <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                <span>Session Matrix Protocol: <span id="activeTokenDisplay" class="font-mono text-amber-400 font-black">APDX-SECURE</span></span>  
+                <span>Facility Nodes Identity: <span id="activeTokenDisplay" class="font-mono text-amber-400 font-black">APDX-SECURE</span></span>  
             </div>  
             <button onclick="platformSecureLogOut()" class="text-slate-400 hover:text-red-400 text-[10px] font-black uppercase tracking-wider transition outline-none">🔒 Terminate Session [Log Out]</button>
         </div>  
@@ -42,7 +41,7 @@
         <header class="border-b border-slate-150 bg-white sticky top-0 z-50 px-6 py-5 flex items-center justify-between shadow-sm">  
             <div class="flex items-center space-x-3 select-none">  
                 <div class="text-[20px] font-black tracking-tight uppercase text-[#0A192F]">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
-                <span class="text-[8px] font-black text-[#059669] bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded uppercase">Gear 2 Workspace Suite</span>  
+                <span class="text-[8px] font-black text-[#059669] bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded uppercase">Workspace Engine</span>  
             </div>  
             <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs text-slate-600 tracking-wide">  
                 <a href="index1st.html" class="text-[#059669] border-b-2 border-[#059669] py-0.5">Home Workspace</a>
@@ -57,20 +56,41 @@
         <main class="max-w-7xl mx-auto px-6 py-6 space-y-6">
             
             <header class="border-b border-slate-200/60 pb-4 space-y-1">
-                <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">System Diagnostics Routing Node</span>
-                <h2 class="text-2xl font-black uppercase tracking-tight text-[#0A192F]">Clinical Operations Dashboard</h2>
-                <p class="text-xs font-bold text-slate-400">Welcome back. Select an application node utility from your diagnostic framework layout.</p>
+                <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">System Diagnostics Console</span>
+                <h2 class="text-2xl font-black uppercase tracking-tight text-[#0A192F]">Clinical Operations Work Desk</h2>
+                <p class="text-xs font-bold text-slate-400">Authorized platform infrastructure workspace node.</p>
             </header>
 
-            <!-- ========================================================= -->
-            <!-- ADMINISTRATOR CREDENTIAL INCEPTION CONTROL MODULE -->
-            <!-- ========================================================= -->
+            <!-- REAL INFRASTRUCTURE METRICS GRID -->
+            <section class="grid grid-cols-1 md:grid-cols-4 gap-4 text-left">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Telemetry</span>
+                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Pending Specimens</h5>
+                    <span class="font-mono text-2xl font-black text-amber-500 block pt-1">04</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Active Stream</span>
+                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Recent Requisitions</h5>
+                    <span class="font-mono text-2xl font-black text-[#059669] block pt-1">12</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Logistics</span>
+                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Courier Dispatches</h5>
+                    <span class="font-mono text-2xl font-black text-blue-600 block pt-1">01</span>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200/60 shadow-sm space-y-1">
+                    <span class="text-[9px] font-black text-slate-400 uppercase tracking-widest block">Compliance</span>
+                    <h5 class="text-sm font-black text-[#0A192F] uppercase">Database Sync</h5>
+                    <span class="font-mono text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-1 rounded block w-max mt-2">✓ HL7 SECURE</span>
+                </div>
+            </section>
+
+            <!-- ADMINISTRATOR PRIVILEGE MODULE -->
             <section id="adminCredentialMatrixBlock" class="hidden bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
                 <div class="border-b border-slate-100 pb-2">
-                    <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block">🛡️ Root Privilege System Matrix Suite</span>
+                    <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block">🛡️ Admin Infrastructure Matrix Suite</span>
                     <h3 class="text-xs font-black uppercase text-[#0A192F]">Generate Custom Facility Entrance Keys</h3>
                 </div>
-                
                 <form onsubmit="handleAdminAccountInception(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
                     <div>
                         <label for="newAccountKey" class="block text-[9px] font-black uppercase text-slate-400 mb-1">New Access Key ID</label>
@@ -80,50 +100,44 @@
                         <label for="newAccountIdentity" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Facility Partner Identification Name</label>
                         <input type="text" id="newAccountIdentity" required placeholder="e.g. St. Jude Childrens Research" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:border-[#059669] text-[#0A192F]">
                     </div>
-                    <button type="submit" class="w-full bg-[#0A192F] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition hover:bg-slate-800 outline-none">
-                        Register Key Vector ➔
-                    </button>
+                    <button type="submit" class="w-full bg-[#0A192F] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition hover:bg-slate-800 outline-none">Register Key Vector ➔</button>
                 </form>
-
                 <div class="pt-2 border-t border-slate-50">
-                    <span class="block text-[8px] font-black text-slate-400 uppercase tracking-wider mb-2">Active Live Registry File System Base:</span>
+                    <span class="block text-[8px] font-black text-slate-400 uppercase tracking-wider mb-2">Memory Registry File System Base:</span>
                     <div id="liveRegistryContainer" class="flex flex-wrap gap-2"></div>
                 </div>
             </section>
 
-            <!-- CORE UTILITY NODE PANELS -->
+            <!-- CORE UTILITY NAVIGATION TILES -->
             <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5" aria-label="Ecosystem Nodes">
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">🧬</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Test Directory Matrix</h4>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Test Directory</h4>
                         <p class="text-[11px] text-slate-400 font-semibold leading-normal">Query chemical handling metrics, stabilizing rules, and panel CPT codes arrays.</p>
                     </div>
                     <a href="test-directory.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Directory ➔</a>
                 </div>
-                
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">📦</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Logistics Dispatch</h4>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Provider Hub Logistics</h4>
                         <p class="text-[11px] text-slate-400 font-semibold leading-normal">Procure sterile kit tubes components and dispatch cold chain medical couriers.</p>
                     </div>
                     <a href="provider-hub-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Logistics Center ➔</a>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">📚</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">Knowledge Resources</h4>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Laboratory Resources</h4>
                         <p class="text-[11px] text-slate-400 font-semibold leading-normal">Download emergency downtime manifests and verify CMS regulatory certifications.</p>
                     </div>
                     <a href="resources-v2.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Open Vault ➔</a>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[170px] transition hover:border-[#0A192F] group">
+                <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col justify-between items-start min-h-[160px] transition hover:border-[#0A192F] group">
                     <div class="space-y-1">
                         <span class="text-xl select-none">🖥️</span>
-                        <h4 class="text-xs font-black uppercase tracking-wide">EMR Connectivity</h4>
+                        <h4 class="text-xs font-black uppercase tracking-wide">Connectivity Console</h4>
                         <p class="text-[11px] text-slate-400 font-semibold leading-normal">Onboard programmatic clinical data tunnels and bidirectional observations streams.</p>
                     </div>
                     <a href="connectivity.html" class="text-[10px] font-black uppercase tracking-wider text-[#059669] group-hover:text-[#0A192F] pt-2 transition">Manage Interface ➔</a>
@@ -133,21 +147,17 @@
     </div>
 
     <footer class="bg-[#0A192F] text-white pt-8 pb-12 text-[11px] border-t border-slate-800 px-6 uppercase font-bold tracking-wider text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <span>© 2026 AccessPoint Dx. Operational App Workspace Environment.</span>
+        <span>© 2026 AccessPoint Dx. Operational Workspace.</span>
         <span class="font-mono text-[9px] text-slate-400">Authenticated Internal Stack</span>
     </footer>
 </div>
 
-<!-- PROCESS CONTROL SCRIPTS MODULE -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const activeToken = sessionStorage.getItem('apdx_active_session_token') || 'APDX-ANONYMOUS';
         document.getElementById('activeTokenDisplay').innerText = activeToken;
-
-        // Force secondary routing elements within sub-pages to target index1st.html inside Gear 2 loops
         document.querySelectorAll('a[href="index.html"]').forEach(link => { link.href = 'index1st.html'; });
 
-        // Unveil the Key Inception Studio block exclusively if logged in as ROOT ADMIN
         if (activeToken === 'APDX-ADMIN') {
             document.getElementById('adminCredentialMatrixBlock').classList.remove('hidden');
             renderLiveAccountsRegistry();
@@ -158,7 +168,6 @@
         const container = document.getElementById('liveRegistryContainer');
         if(!container) return;
         const currentRegistry = JSON.parse(localStorage.getItem('apdx_master_identities') || '{}');
-        
         container.innerHTML = '';
         Object.keys(currentRegistry).forEach(key => {
             const block = document.createElement('span');
@@ -172,7 +181,6 @@
         event.preventDefault();
         const inputKey = document.getElementById('newAccountKey');
         const inputIdentity = document.getElementById('newAccountIdentity');
-        
         const keyVal = inputKey.value.trim().toUpperCase();
         const identityVal = inputIdentity.value.trim();
 
