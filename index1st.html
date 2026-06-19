@@ -12,15 +12,19 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Clean list resetting for consistent operational dropdowns */
+        /* Interactive Summary Marker Reset */
         details summary::-webkit-details-marker { display: none; }
         details summary { list-style: none; }
 
         .hover-lift { transition: all .2s ease; }
         .hover-lift:hover { transform: translateY(-1px); }
+
+        /* Dynamic Category Filtering States */
+        .assay-card { display: block; }
+        .filtered-out { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
+<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 lg:pb-0">
 
     <!-- TOP CONTROL & ACCREDITATION BANNER -->
     <div class="bg-[#0A192F] text-white text-[10px] font-mono border-b border-slate-800 hidden md:block">
@@ -37,29 +41,29 @@
     <!-- MAIN APP CORE CONTAINER -->
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <!-- SIDEBAR PLATFORM NAVIGATION (DESKTOP MODE) -->
+        <!-- SIDEBAR NAVIGATION (DESKTOP MODE) -->
         <aside class="hidden lg:block lg:col-span-3 space-y-4">
             <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm space-y-6">
                 
-                <!-- BRANDING CORE -->
+                <!-- BRANDING NODE -->
                 <div class="flex items-center space-x-2.5 px-2">
                     <div class="font-black text-sm text-[#0A192F] tracking-tight">AccessPoint <span class="text-[#059669]">Dx</span></div>
                     <span class="text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded tracking-wide font-mono uppercase">v2.4</span>
                 </div>
 
-                <!-- NAVIGATION CORE -->
+                <!-- NAVIGATION HUB -->
                 <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
                     <a href="index.html" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-slate-400">
                         <span>🏠</span> <span>Site Home</span>
                     </a>
-                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
+                    <button onclick="filterCategory('all', this)" id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
                         <span>🧪</span> <span>Test Catalog</span>
                     </button>
                     <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500 group">
                         <div class="flex items-center space-x-3"><span>📄</span> <span>Requisition Builder</span></div>
                         <span id="badgeRequisitionCount" class="bg-[#059669] text-white text-[9px] font-black font-mono px-2 py-0.5 rounded-full hidden">0</span>
                     </button>
-                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none">
+                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500">
                         <span>📦</span> <span>Specimen Tracking</span>
                     </button>
                 </nav>
@@ -69,210 +73,291 @@
         <!-- MAIN SECURE CATALOG WORKSPACE PANEL -->
         <main class="col-span-1 lg:col-span-9 space-y-6">
             
-            <!-- SEARCH & UTILITY HEADER SLAT -->
+            <!-- SEARCH & FILTER UTILITY SLAT -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
                 <div class="relative flex-1">
                     <span class="absolute left-3.5 top-3.5 text-xs text-slate-400">🔍</span>
-                    <input type="text" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
-                </div>
-                <div class="flex items-center space-x-3 justify-end">
-                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-wider hidden sm:block">Filter Level</span>
-                    <select class="bg-white border border-slate-200/80 rounded-xl px-3 py-3 text-xs font-bold uppercase text-[#0A192F] focus:outline-none outline-none cursor-pointer">
-                        <option>Clinical Diagnostics</option>
-                        <option>Toxicology Tracking</option>
-                        <option>Molecular Genetics</option>
-                    </select>
+                    <input type="text" id="catalogSearchInput" onkeyup="searchCatalog()" placeholder="Search comprehensive catalog by assay name, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
                 </div>
             </div>
 
-            <!-- COMPRESSED RESPONSIVE CATEGORY CHIPS (FIXED MOBILE SCROLL WIDTHS) -->
-            <div class="flex items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
-                <button class="bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
-                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
-                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
-                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
-                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
-                <button class="bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
+            <!-- FIXED & COMPRESSED CATEGORY CHIPS -->
+            <div id="categoryChipContainer" class="flex items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
+                <button onclick="filterCategory('all', this)" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
+                <button onclick="filterCategory('metabolic', this)" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
+                <button onclick="filterCategory('inflammation', this)" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
+                <button onclick="filterCategory('hormones', this)" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
+                <button onclick="filterCategory('compliance', this)" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Compliance & Tox</button>
             </div>
 
-            <!-- THE INTERACTIVE TEST CATALOG WORKSPACE ACCORDION -->
+            <!-- UNCOMPRESSED COMPREHENSIVE REQUISITION CATALOG GRID -->
             <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
-                
-                <!-- DROPDOWN CORE WRAPPER -->
-                <details class="group" open>
-                    <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-xs transition-transform group-open:rotate-90 text-slate-400">▶</span>
-                            <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Routine Chemistry Nodes</span>
+                <div class="p-5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                    <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Core Laboratory Specimen Channels</span>
+                    <span id="catalogCountDisplay" class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">Showing All Processing Channels</span>
+                </div>
+
+                <div class="divide-y divide-slate-100" id="masterAssayList">
+                    
+                    <!-- ================= METABOLIC PANEL ================= -->
+                    <details class="assay-card group outline-none" data-category="metabolic">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Maximum Guaranteed</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Live</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Comprehensive Metabolic Panel (CMP)', '80053')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
                         </div>
-                        <div class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">
-                            148 Assays Available • Expand Catalog
+                    </details>
+
+                    <details class="assay-card group outline-none" data-category="metabolic">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Hemoglobin A1c (HbA1c) w/ Estimated Average Glucose</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83036</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Standard Route</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Payload Mapping Available</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Hemoglobin A1c', '83036')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
                         </div>
-                    </summary>
+                    </details>
 
-                    <!-- INTERNAL OPERATIONAL PAYLOAD MATRIX LIST -->
-                    <div class="divide-y border-t border-slate-100 divide-slate-100">
-                        
-                        <!-- ASSAY ROW 1: CMP -->
-                        <details class="group/item outline-none">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
-                                    <p class="text-[#0A192F] font-bold">24–48 Hours Maximum Guaranteed</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
-                                    <p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
-                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
-                                </div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button onclick="addAssayToActiveRequisition('Comprehensive Metabolic Panel (CMP)', '80053')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
+                    <details class="assay-card group outline-none" data-category="metabolic">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Fasting Insulin Assay</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83525</span>
                             </div>
-                        </details>
-
-                        <!-- ASSAY ROW 2: CBC -->
-                        <details class="group/item outline-none">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Complete Blood Count (CBC) with Differential</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 85025</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
-                                    <p class="text-[#0A192F] font-bold">24 Hours Standard Route</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
-                                    <p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
-                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
-                                </div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button onclick="addAssayToActiveRequisition('Complete Blood Count (CBC)', '85025')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">48 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
                             </div>
-                        </details>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">48 Hours Processing Loop</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 8-Hour Fast Required</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Automated Sync Enabled</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Fasting Insulin', '83525')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
 
-                        <!-- ASSAY ROW 3: LIPID -->
-                        <details class="group/item outline-none">
-                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
-                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
-                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Lipid Panel with Total Cholesterol / HDL / LDL</span>
-                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80061</span>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
-                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
-                                </div>
-                            </summary>
-                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span>
-                                    <p class="text-[#0A192F] font-bold">24–48 Hours Maximum Guaranteed</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span>
-                                    <p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 12-Hour Fasting Recommended</p>
-                                </div>
-                                <div class="space-y-1">
-                                    <span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span>
-                                    <p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p>
-                                </div>
-                                <div class="pt-2 sm:col-span-2 md:col-span-3">
-                                    <button onclick="addAssayToActiveRequisition('Lipid Panel', '800061')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
-                                        Add to requisition +
-                                    </button>
-                                </div>
+                    <!-- ================= INFLAMMATION PANEL ================= -->
+                    <details class="assay-card group outline-none" data-category="inflammation">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">High-Sensitivity C-Reactive Protein (hs-CRP)</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 86141</span>
                             </div>
-                        </details>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Rapid Processing</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Tube or SST • Centrifuge immediately</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Payload Mapping Available</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('hs-CRP', '86141')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
 
-                    </div>
-                </details>
+                    <details class="assay-card group outline-none" data-category="inflammation">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Homocysteine Quantitation</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83090</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Local Target</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Green Top (Lithium Heparin) Tube • Keep Refrigerated</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Live</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Homocysteine', '83090')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
+
+                    <!-- ================= HORMONES PANEL ================= -->
+                    <details class="assay-card group outline-none" data-category="hormones">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Total & Free Testosterone Baseline Matrix</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 84403</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">48 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">48 Hours Standard Dial</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum SST Red Top • Morning Draw Recommended</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Automated Sync Enabled</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Testosterone Free/Total', '84403')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
+
+                    <details class="assay-card group outline-none" data-category="hormones">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">Thyroid Stimulating Hormone (TSH) with Reflex to Free T4</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 84443</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Core Turnaround</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Live</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('TSH with Reflex', '84443')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
+
+                    <!-- ================= COMPLIANCE & TOX PANEL ================= -->
+                    <details class="assay-card group outline-none" data-category="compliance">
+                        <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                <span class="text-xs font-bold text-[#0A192F] tracking-tight">DATWA-Compliant Oral Fluid Testing Panel (9-Parameter)</span>
+                                <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80307</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                <span class="text-xs text-slate-400 transition-transform group-open:rotate-90">➔</span>
+                            </div>
+                        </summary>
+                        <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Accelerated Route</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Quantosal Oral Fluid Device Collectors • Secure Chain Box</p></div>
+                            <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Regulatory Code</span><p class="text-[#059669] font-bold">Full MN Drug Workplace Act Compliant</p></div>
+                            <div class="pt-2 sm:col-span-2 md:col-span-3"><button onclick="addAssayToActiveRequisition('Oral Fluid Screen', '80307')" class="w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">Add to requisition +</button></div>
+                        </div>
+                    </details>
+
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- PERSISTENT PERSISTENT PERSISTENT APPLICATION ACTION NAVIGATION HUB (MOBILE DOCK) -->
+    <!-- PERSISTENT APP MOBILE DOCK ACTION BAR (STOPS WEBSITE SCROLL ILLUSION) -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
         <div class="grid grid-cols-5 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
-            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition text-slate-400">
-                <span class="text-base">🏠</span>
-                <span class="scale-90 transform origin-center">Home</span>
+            <a href="index.html" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">🏠</span><span class="scale-90 transform">Home</span>
             </a>
-            <button class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
-                <span class="text-base">🧪</span>
-                <span class="scale-90 transform origin-center">Catalog</span>
+            <button onclick="filterCategory('all', this)" class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
+                <span class="text-base">🧪</span><span class="scale-90 transform">Catalog</span>
             </button>
-            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition relative focus:outline-none">
-                <span class="text-base">📄</span>
-                <span class="scale-90 transform origin-center">Builder</span>
+            <button class="flex flex-col items-center justify-center space-y-1 relative focus:outline-none">
+                <span class="text-base">📄</span><span class="scale-90 transform">Builder</span>
                 <span id="badgeMobileRequisitionCount" class="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-[#059669] text-white font-mono font-black text-[7px] flex items-center justify-center hidden">0</span>
             </button>
-            <button class="flex flex-col items-center justify-center space-y-1 hover:text-[#0A192F] transition focus:outline-none">
-                <span class="text-base">📦</span>
-                <span class="scale-90 transform origin-center">Tracking</span>
+            <button class="flex flex-col items-center justify-center space-y-1 focus:outline-none">
+                <span class="text-base">📦</span><span class="scale-90 transform">Tracking</span>
             </button>
-            <button onclick="window.history.back()" class="flex flex-col items-center justify-center space-y-1 hover:text-red-500 transition focus:outline-none">
-                <span class="text-base">👤</span>
-                <span class="scale-90 transform origin-center">Exit</span>
+            <button onclick="window.history.back()" class="flex flex-col items-center justify-center space-y-1 text-slate-400 focus:outline-none">
+                <span class="text-base">👤</span><span class="scale-90 transform">Exit</span>
             </button>
         </div>
     </div>
 
-    <!-- CORE INTERACTION APPLICATION ENGINE -->
+    <!-- REVENUE CORE WORKSPACE ROUTINES -->
     <script>
         let selectedAssaysInQueue = 0;
 
-        function addAssayToActiveRequisition(assayName, cptCode) {
+        // 1. Dynamic Category Tab Switcher Routine
+        function filterCategory(category, activeBtn) {
+            const cards = document.querySelectorAll('.assay-card');
+            const displayBadge = document.getElementById('catalogCountDisplay');
+            
+            // Sync Category Button UI Rings (Universal Selection Reset)
+            document.querySelectorAll('.chip-btn').forEach(btn => {
+                btn.classList.replace('bg-slate-900', 'bg-white');
+                btn.classList.replace('text-white', 'text-slate-600');
+                btn.classList.add('border', 'border-slate-200');
+            });
+            
+            // Set Selected State styles
+            activeBtn.classList.replace('bg-white', 'bg-slate-900');
+            activeBtn.classList.replace('text-slate-600', 'text-white');
+            activeBtn.classList.remove('border', 'border-slate-200');
+
+            let matchingCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('filtered-out');
+                    matchingCount++;
+                } else {
+                    card.classList.add('filtered-out');
+                }
+            });
+
+            displayBadge.innerText = `Showing ${matchingCount} Active Channels`;
+        }
+
+        // 2. Comprehensive Slat Filtering Search Engine Routing
+        function searchCatalog() {
+            const searchVal = document.getElementById('catalogSearchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.assay-card');
+
+            cards.forEach(card => {
+                const textContext = card.innerText.toLowerCase();
+                if (textContext.includes(searchVal)) {
+                    card.classList.remove('filtered-out');
+                } else {
+                    card.classList.add('filtered-out');
+                }
+            });
+        }
+
+        // 3. Requisition Counter Telemetry Logic
+        function addAssayToActiveRequisition(name, cpt) {
             selectedAssaysInQueue++;
             
-            // Sync Desktop Sidebar counters
-            const desktopCountBadge = document.getElementById('badgeRequisitionCount');
-            desktopCountBadge.innerText = selectedAssaysInQueue;
-            desktopCountBadge.classList.remove('hidden');
+            const dCount = document.getElementById('badgeRequisitionCount');
+            dCount.innerText = selectedAssaysInQueue;
+            dCount.classList.remove('hidden');
 
-            // Sync Mobile Sticky Dock counters
-            const mobileCountBadge = document.getElementById('badgeMobileRequisitionCount');
-            mobileCountBadge.innerText = selectedAssaysInQueue;
-            mobileCountBadge.classList.remove('hidden');
+            const mCount = document.getElementById('badgeMobileRequisitionCount');
+            mCount.innerText = selectedAssaysInQueue;
+            mCount.classList.remove('hidden');
 
-            // Flash temporary positive confirmation telemetry on target click button
             const clickedBtn = event.target;
-            const originalButtonText = clickedBtn.innerText;
+            const originalText = clickedBtn.innerText;
             clickedBtn.innerText = 'Assay Added ✓';
             clickedBtn.classList.replace('bg-[#059669]', 'bg-slate-900');
             
             setTimeout(() => {
-                clickedBtn.innerText = originalButtonText;
+                clickedBtn.innerText = originalText;
                 clickedBtn.classList.replace('bg-slate-900', 'bg-[#059669]');
             }, 1000);
         }
+
+        // Set default state visibility loop on runtime initial load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('defaultDesktopBtn').click();
+        });
     </script>
 </body>
 </html>
