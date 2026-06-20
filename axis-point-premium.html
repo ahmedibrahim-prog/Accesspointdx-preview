@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis Point Premium™ | Private Diagnostic Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#059669] selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- BRAND HEADER                               -->
+    <!-- ========================================== -->
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 px-6 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div>
+                <a href="index.html" class="font-black tracking-wider text-sm uppercase text-slate-900 hover:text-[#059669] transition">
+                    AccessPoint<span class="text-[#059669]">Dx</span>
+                </a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <span class="text-[10px] font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full select-none shadow-sm">
+                    Axis Point Premium<sup>™</sup> Gateway
+                </span>
+                <a href="index.html" class="text-[10px] font-black uppercase tracking-wider text-slate-400 hover:text-slate-900 transition flex items-center space-x-1 border border-slate-200 bg-white px-3 py-1 rounded-lg">
+                    <span>Exit Hub</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- LOW-PROFILE STATUS BAR                     -->
+    <!-- ========================================== -->
+    <section class="bg-white border-b border-slate-100 py-3 px-6 relative z-10">
+        <div class="max-w-xl mx-auto flex items-center justify-center space-x-8 text-center text-[10px] font-black uppercase tracking-widest">
+            <span id="nav-step-1" class="text-[#059669] transition-colors duration-200">01 / Configure</span>
+            <span class="text-slate-300">•</span>
+            <span id="nav-step-2" class="text-slate-400 transition-colors duration-200">02 / Identity</span>
+            <span class="text-slate-300">•</span>
+            <span id="nav-step-3" class="text-slate-400 transition-colors duration-200">03 / Verify</span>
+            <span class="text-slate-300">•</span>
+            <span id="nav-step-4" class="text-slate-400 transition-colors duration-200">04 / Secure Order</span>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CORE CONFIGURATOR CONTAINER                -->
+    <!-- ========================================== -->
+    <section class="py-12 bg-slate-50 min-h-[calc(100vh-120px)] relative z-10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT AREA: WIZARD FLOW CARDS -->
+            <div class="lg:col-span-7">
+                
+                <!-- STAGE 1: SELECTION AND ROUTING -->
+                <div id="stage-1" class="border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                    <div class="space-y-1">
+                        <span class="text-[9px] font-black tracking-[0.2em] text-[#059669] uppercase block">Axis Point Premium™ Matrix</span>
+                        <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Configure Assay Layer & Deployment</h2>
+                    </div>
+                    <hr class="border-slate-100">
+
+                    <!-- Diagnostic Assets -->
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Select Diagnostic Target</label>
+                        
+                        <div onclick="document.getElementById('panel-core').click();" class="block border border-slate-200 bg-white p-4 rounded-xl cursor-pointer hover:border-emerald-500/40 transition relative group select-none shadow-sm">
+                            <input type="radio" id="panel-core" name="panel_select" value="core" checked onclick="event.stopPropagation(); calculateTotals();" class="absolute top-5 right-5 accent-[#059669] w-4 h-4">
+                            <div class="space-y-1 pr-8">
+                                <h3 class="text-xs font-black uppercase text-slate-900">The Core Health Baseline™</h3>
+                                <p class="text-[11px] text-slate-600 leading-normal font-medium">CMP, CBC with Differential, Lipid Baseline, HbA1c, TSH, Vitamin D.</p>
+                                <span class="text-[10px] font-black text-[#059669] block pt-1">Private Rate: $165.00</span>
+                            </div>
+                        </div>
+                        
+                        <div onclick="document.getElementById('panel-longevity').click();" class="block border border-slate-200 bg-white p-4 rounded-xl cursor-pointer hover:border-emerald-500/40 transition relative group select-none shadow-sm">
+                            <input type="radio" id="panel-longevity" name="panel_select" value="longevity" onclick="event.stopPropagation(); calculateTotals();" class="absolute top-5 right-5 accent-[#059669] w-4 h-4">
+                            <div class="space-y-1 pr-8">
+                                <h3 class="text-xs font-black uppercase text-slate-900">Longevity & Performance Protocol™</h3>
+                                <p class="text-[11px] text-slate-600 leading-normal font-medium">Core Baseline + Advanced Lipids (ApoB), hs-CRP Inflammation, Total/Free Testosterone, Adrenal Cortisol Matrix.</p>
+                                <span class="text-[10px] font-black text-[#059669] block pt-1">Private Rate: $349.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Collection Channels -->
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Collection Preference</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button type="button" id="btn-walkin" onclick="setCollection('walkin')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
+                                <span class="text-xs font-black uppercase text-slate-900 block">Clinical Walk-In</span>
+                                <span class="text-[9px] font-extrabold text-slate-400 uppercase">$0.00 Fee</span>
+                            </button>
+                            <button type="button" id="btn-popup" onclick="setCollection('popup')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
+                                <span class="text-xs font-black uppercase text-slate-900 block">Partner Pop-Up</span>
+                                <span class="text-[9px] font-extrabold text-emerald-600 uppercase">Waived Fee</span>
+                            </button>
+                            <button type="button" id="btn-mobile" onclick="setCollection('mobile')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
+                                <span class="text-xs font-black uppercase text-slate-900 block">Private Mobile</span>
+                                <span class="text-[9px] font-extrabold text-[#059669] uppercase">Market Rate</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Mileage Radius Surcharge Drawer -->
+                    <div id="mileage-subpanel" class="hidden p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+                        <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 block">Mobile Logistics Surcharge Matrix</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div onclick="document.getElementById('rad-zone1').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
+                                <input type="radio" id="rad-zone1" name="radius_select" value="zone1" checked onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
+                                <span class="block text-[10px] font-black text-slate-800 uppercase">0 - 15 Miles</span>
+                                <span class="text-[8.5px] font-bold text-slate-400 uppercase">+$65.00 Base</span>
+                            </div>
+                            <div onclick="document.getElementById('rad-zone2').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
+                                <input type="radio" id="rad-zone2" name="radius_select" value="zone2" onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
+                                <span class="block text-[10px] font-black text-slate-800 uppercase">15 - 30 Miles</span>
+                                <span class="text-[8.5px] font-bold text-slate-400 uppercase">+$95.00 Ext</span>
+                            </div>
+                            <div onclick="document.getElementById('rad-zone3').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
+                                <input type="radio" id="rad-zone3" name="radius_select" value="zone3" onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
+                                <span class="block text-[10px] font-black text-slate-800 uppercase">30+ Miles</span>
+                                <span class="text-[8.5px] font-bold text-amber-600 uppercase">Custom Review</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="button" onclick="goToStage(2)" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-sm font-bold tracking-widest cursor-pointer">
+                            Continue to Identity Routing ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE 2: BALANCED SINGLE VECTOR IDENTITY CAPTURE -->
+                <div id="stage-2" class="hidden border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                    <div class="flex justify-between items-end border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block mb-1">Stage 02</span>
+                            <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Secure Identity Mapping</h2>
+                        </div>
+                        <button type="button" onclick="goToStage(1)" class="text-[10px] font-black text-slate-400 hover:text-slate-600 uppercase tracking-wider cursor-pointer">⇠ Back</button>
+                    </div>
+
+                    <div class="space-y-4">
+                        <p class="text-[11px] text-slate-600 font-medium leading-relaxed">
+                            Select your preferred method to verify identity. Axis Point Premium™ decouples organizational links to protect corporate privacy parameters. Provide **only one** channel below.
+                        </p>
+
+                        <!-- Balanced Vector Tab Controls -->
+                        <div class="flex border-b border-slate-200">
+                            <button type="button" id="tab-email" onclick="setIdentityVector('email')" class="border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer">
+                                Corporate Email Vector
+                            </button>
+                            <button type="button" id="tab-phone" onclick="setIdentityVector('phone')" class="border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer">
+                                Secure Mobile Vector
+                            </button>
+                        </div>
+
+                        <!-- Inputs Wrapper -->
+                        <div class="pt-2">
+                            <div id="wrapper-email" class="space-y-1.5">
+                                <label class="text-[10px] font-black uppercase tracking-wider text-slate-500 block">Organizational Email Domain Address</label>
+                                <input type="email" id="input-email" placeholder="executive@yourcompany.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-inner">
+                            </div>
+                            
+                            <div id="wrapper-phone" class="hidden space-y-1.5">
+                                <label class="text-[10px] font-black uppercase tracking-wider text-slate-500 block">Private Mobile Number Secure Destination</label>
+                                <input type="tel" id="input-phone" placeholder="(555) 000-0000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-inner">
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex items-start space-x-3">
+                            <span class="text-emerald-600 text-xs select-none">🛡️</span>
+                            <p class="text-[10px] text-slate-500 font-medium leading-normal" id="compliance-notice">
+                                No credit card transaction requirement is active for your current configuration. Final post-draw billing will route parameters securely through your assigned dashboard account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="button" onclick="executeTokenDispatchSimulation()" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-md font-bold tracking-widest cursor-pointer">
+                            Transmit Access Token Code ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STAGE 3: LIVE OTP CHALLENGE -->
+                <div id="stage-3" class="hidden border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                    <div class="border-b border-slate-100 pb-4 flex justify-between items-end">
+                        <div>
+                            <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block mb-1">Stage 03</span>
+                            <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Verify Identity Coordinates</h2>
+                        </div>
+                        <button type="button" onclick="goToStage(2)" class="text-[10px] font-black text-slate-400 hover:text-slate-600 uppercase tracking-wider cursor-pointer">⇠ Back</button>
+                    </div>
+
+                    <div class="space-y-6 text-center max-w-sm mx-auto">
+                        <div class="space-y-1">
+                            <p class="text-xs text-slate-600 font-medium">
+                                An access code has been generated and dispatched to your security target vector:
+                            </p>
+                            <span id="display-target-vector" class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-md font-mono text-xs font-black text-slate-800">--</span>
+                        </div>
+
+                        <!-- 6-digit input fields -->
+                        <div class="flex items-center justify-center space-x-2 pt-2">
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-2', '')" id="otp-1" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-3', 'otp-1')" id="otp-2" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-4', 'otp-2')" id="otp-3" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                            <span class="text-slate-300 font-bold px-0.5">—</span>
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-5', 'otp-3')" id="otp-4" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-6', 'otp-4')" id="otp-5" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                            <input type="text" maxlength="1" onkeyup="moveFocus(this, '', 'otp-5')" id="otp-6" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
+                        </div>
+
+                        <div class="space-y-1.5 pt-2">
+                            <button type="button" onclick="validateSimulatedOTP()" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-md font-bold tracking-widest cursor-pointer">
+                                Securely Authorize & Finalize Order ➔
+                            </button>
+                            <span class="block text-[10px] font-bold text-slate-400">Sandbox Loop: Type any 6 numbers to approve.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STAGE 4: PRODUCTION DUMMY ORDER RECEIPT CONFIRMATION -->
+                <div id="stage-4" class="hidden border border-slate-200 bg-white rounded-2xl p-8 text-center space-y-6 shadow-sm animate-fadeIn">
+                    <div class="w-14 h-14 bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-full flex items-center justify-center text-xl font-black mx-auto shadow-sm select-none">
+                        ✓
+                    </div>
+                    
+                    <div class="space-y-2 max-w-md mx-auto">
+                        <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block">Requisition Pipeline Complete</span>
+                        <h2 class="text-xl font-black uppercase tracking-tight text-slate-900">Secure Vault Access Route Provisioned</h2>
+                        <p class="text-xs text-slate-600 font-medium leading-relaxed">
+                            Your private laboratory requisition profile has been logged inside our framework database ledger under active HIPAA security standards. 
+                        </p>
+                    </div>
+
+                    <!-- Variable Invoice Receipt Generation -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs space-y-2 max-w-sm mx-auto font-medium shadow-inner">
+                        <div class="flex justify-between text-slate-400 text-[10px] uppercase font-black tracking-wider pb-1 border-b border-slate-200/60"><span>Receipt Elements</span><span id="receipt-id-tag" class="text-slate-600">APDx-#94812</span></div>
+                        <div class="flex justify-between text-slate-500 pt-1"><span>Assay Protocol:</span><span id="receipt-panel" class="text-slate-900 font-bold uppercase tracking-wide">--</span></div>
+                        <div class="flex justify-between text-slate-500"><span>Acquisition Modality:</span><span id="receipt-modality" class="text-slate-900 font-bold uppercase tracking-wide">--</span></div>
+                        <div class="flex justify-between text-slate-500"><span>Verified Vector Anchor:</span><span id="receipt-vector-value" class="text-slate-900 font-mono text-[10px]">--</span></div>
+                        <div class="flex justify-between text-slate-800 border-t border-slate-200 pt-2 font-black"><span>Settlement Terms Due:</span><span id="receipt-net" class="text-[#059669] text-sm">--</span></div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="index.html" class="inline-block bg-slate-900 hover:bg-slate-800 text-white text-xs font-black uppercase tracking-wider px-8 py-3.5 rounded-xl transition shadow-sm">
+                            Return to Corporate Network Hub ➔
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT AREA: FLOATING COMPUTATION SUMMARY -->
+            <div id="sticky-summary-panel" class="lg:col-span-5 border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 lg:sticky lg:top-24 shadow-xl transition-opacity duration-300">
+                <h2 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-100 pb-3">Real-Time Allocation Summary</h2>
+                
+                <div class="space-y-3 font-medium text-xs">
+                    <div class="flex justify-between items-center text-slate-500">
+                        <span>Selected Diagnostic Assay Layer:</span>
+                        <span id="summary-panel-name" class="text-slate-900 font-bold uppercase tracking-wide">The Core Health Baseline</span>
+                    </div>
+                    <div class="flex justify-between items-center text-slate-400 border-b border-slate-100 pb-3">
+                        <span>Quest™ Equivalent Retail Value:</span>
+                        <span id="summary-anchor-price" class="line-through text-slate-400">$220.00</span>
+                    </div>
+
+                    <div class="flex justify-between items-center text-slate-500">
+                        <span>Private Framework Matrix Pricing:</span>
+                        <span id="summary-base-price" class="text-slate-900 font-bold">$165.00</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-slate-500 border-b border-slate-100 pb-3">
+                        <span>Logistics / Mobile Dispatch Fee:</span>
+                        <span id="summary-logistics-fee" class="text-emerald-600 font-bold">$0.00</span>
+                    </div>
+
+                    <div class="flex justify-between items-baseline pt-2">
+                        <span class="font-black uppercase tracking-wider text-slate-700 text-xs">Authorized Net Due:</span>
+                        <div class="text-right">
+                            <span id="summary-total-price" class="text-3xl font-black text-[#059669] tracking-tight">$165.00</span>
+                            <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest pt-0.5">Secure Post-Draw Settlement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-[10px] leading-relaxed">
+                    <div class="font-bold text-slate-700 flex items-center space-x-1">
+                        <span>📋 Asynchronous Medical Clearance</span>
+                    </div>
+                    <p class="text-slate-500 font-medium">
+                        Your configuration parameters incorporate backend clinical requisition routing overseen by <span class="text-slate-700 font-bold">MediNode Telehealth Network™</span> physicians. Real-time verification fires instantly upon dispatch execution.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- COMPLIANCE FOOTER                    -->
+    <!-- ========================================== -->
+    <footer class="border-t border-slate-200 bg-white py-8 px-6 text-center text-slate-400 text-[10px] font-mono uppercase tracking-wider relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span>© 2026 AccessPoint Diagnostics. All Rights Reserved.</span>
+            <span>CLIA & CAP Certified Repository Logistics Hub. Engine Matrix: Premium-v3</span>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- SUBMISSION ENGINE RUNTIME JAVASCRIPT       -->
+    <!-- ========================================== -->
+    <script>
+        // System variables tracking global checkout state
+        let activeCollection = 'walkin';
+        let basePrice = 165;
+        let logisticsFee = 0;
+        let anchorPrice = 220;
+        let currentPanelLabel = "The Core Health Baseline™";
+        let activeIdentityVector = 'email';
+        let customerIdentityAddressString = "";
+
+        // Execute defaults when script evaluates
+        setCollection('walkin');
+
+        // Master wizard routing controller
+        function goToStage(stageNum) {
+            const stages = [1, 2, 3, 4];
+            stages.forEach(s => {
+                const stepUIEl = document.getElementById(`stage-${s}`);
+                if (stepUIEl) stepUIEl.classList.add('hidden');
+                
+                const navHeaderItem = document.getElementById(`nav-step-${s}`);
+                if (navHeaderItem) {
+                    if (s === stageNum) {
+                        navHeaderItem.className = "text-[#059669] font-black";
+                    } else if (s < stageNum) {
+                        navHeaderItem.className = "text-slate-800 font-black";
+                    } else {
+                        navHeaderItem.className = "text-slate-400 font-normal";
+                    }
+                }
+            });
+
+            // Expose requested card block
+            const selectedStage = document.getElementById(`stage-${stageNum}`);
+            if (selectedStage) selectedStage.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Handles selection parameter shifts across modality targets
+        function setCollection(mode) {
+            activeCollection = mode;
+            
+            const buttons = {
+                walkin: document.getElementById('btn-walkin'),
+                popup: document.getElementById('btn-popup'),
+                mobile: document.getElementById('btn-mobile')
+            };
+
+            Object.keys(buttons).forEach(key => {
+                if(buttons[key]) {
+                    buttons[key].className = "border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer";
+                }
+            });
+
+            const targetBtn = buttons[mode];
+            if(targetBtn) {
+                targetBtn.className = "border-2 border-[#059669] bg-emerald-50/40 p-4 rounded-xl text-left focus:outline-none flex flex-col justify-between min-h-[100px] shadow-md cursor-pointer";
+            }
+
+            const mileagePanel = document.getElementById('mileage-subpanel');
+            const notice = document.getElementById('compliance-notice');
+
+            if (mode === 'mobile') {
+                if(mileagePanel) mileagePanel.classList.remove('hidden');
+                if(notice) notice.innerHTML = "<strong>Notice (Private Mobile Dispatch Mode):</strong> Standard market logistics calculations are active. Secure contact verification coordinates will unlock local route availability mappings dynamically.";
+            } else {
+                if(mileagePanel) mileagePanel.classList.add('hidden');
+                if(notice) {
+                    if (mode === 'popup') {
+                        notice.innerHTML = "<strong>Preregistration Parameters Active:</strong> Zero card transaction hooks are required tonight for community partner pop-up configurations. Validate identity coordinates to claim a waived logistics token code.";
+                    } else {
+                        notice.innerHTML = "No credit card requirement is active for your current configuration selection. Accounts, location assignments, and Pop-Up registrations are authorized instantly upon secure token verification.";
+                    }
+                }
+            }
+
+            calculateTotals();
+        }
+
+        // Toggle handling between email box vs phone field
+        function setIdentityVector(vectorType) {
+            activeIdentityVector = vectorType;
+            
+            const tabEmail = document.getElementById('tab-email');
+            const tabPhone = document.getElementById('tab-phone');
+            const wrapperEmail = document.getElementById('wrapper-email');
+            const wrapperPhone = document.getElementById('wrapper-phone');
+
+            if (vectorType === 'email') {
+                if(tabEmail) tabEmail.className = "border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer";
+                if(tabPhone) tabPhone.className = "border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer";
+                if(wrapperEmail) wrapperEmail.classList.remove('hidden');
+                if(wrapperPhone) wrapperPhone.classList.add('hidden');
+            } else {
+                if(tabPhone) tabPhone.className = "border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer";
+                if(tabEmail) tabEmail.className = "border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer";
+                if(wrapperPhone) wrapperPhone.classList.remove('hidden');
+                if(wrapperEmail) wrapperEmail.classList.add('hidden');
+            }
+        }
+
+        // Mathematical calculation total builder loop
+        function calculateTotals() {
+            const checkedRadio = document.querySelector('input[name="panel_select"]:checked');
+            if(!checkedRadio) return;
+            
+            const selectedPanel = checkedRadio.value;
+            
+            if (selectedPanel === 'core') {
+                basePrice = 165;
+                anchorPrice = 220;
+                currentPanelLabel = "Core Health Baseline™";
+            } else if (selectedPanel === 'longevity') {
+                basePrice = 349;
+                anchorPrice = 499;
+                currentPanelLabel = "Longevity Protocol™";
+            }
+
+            if (activeCollection === 'mobile') {
+                const checkedRadius = document.querySelector('input[name="radius_select"]:checked');
+                const selectedRadius = checkedRadius ? checkedRadius.value : 'zone1';
+                if (selectedRadius === 'zone1') {
+                    logisticsFee = 65;
+                } else if (selectedRadius === 'zone2') {
+                    logisticsFee = 95;
+                } else if (selectedRadius === 'zone3') {
+                    logisticsFee = -1;
+                }
+            } else {
+                logisticsFee = 0;
+            }
+
+            // Write safe variables directly to dashboard viewports
+            const sPanel = document.getElementById('summary-panel-name');
+            const sAnchor = document.getElementById('summary-anchor-price');
+            const sBase = document.getElementById('summary-base-price');
+            const sLogistics = document.getElementById('summary-logistics-fee');
+            const sTotal = document.getElementById('summary-total-price');
+
+            if(sPanel) sPanel.innerText = currentPanelLabel;
+            if(sAnchor) sAnchor.innerText = `$${anchorPrice.toFixed(2)}`;
+            if(sBase) sBase.innerText = `$${basePrice.toFixed(2)}`;
+
+            if(sLogistics && sTotal) {
+                if (logisticsFee === -1) {
+                    sLogistics.innerText = "TBD - Review Required";
+                    sLogistics.className = "text-amber-600 font-bold";
+                    sTotal.innerText = `$${basePrice.toFixed(2)}++`;
+                } else {
+                    sLogistics.innerText = `$${logisticsFee.toFixed(2)}`;
+                    sLogistics.className = logisticsFee > 0 ? "text-[#059669] font-bold" : "text-slate-400 font-bold";
+                    const grandTotal = basePrice + logisticsFee;
+                    sTotal.innerText = `$${grandTotal.toFixed(2)}`;
+                }
+            }
+        }
+
+        // Identity submission processing simulation engine
+        function executeTokenDispatchSimulation() {
+            const targetEmailValue = document.getElementById('input-email').value.trim();
+            const targetPhoneValue = document.getElementById('input-phone').value.trim();
+
+            if (activeIdentityVector === 'email' && !targetEmailValue) {
+                alert("Validation Constraint Error:\nPlease fill out your corporate organizational email to dispatch security links.");
+                return;
+            }
+            if (activeIdentityVector === 'phone' && !targetPhoneValue) {
+                alert("Validation Constraint Error:\nPlease input a valid mobile communication address vector to distribute secure text notifications.");
+                return;
+            }
+
+            customerIdentityAddressString = activeIdentityVector === 'email' ? targetEmailValue : targetPhoneValue;
+            
+            const displayVector = document.getElementById('display-target-vector');
+            if(displayVector) displayVector.innerText = customerIdentityAddressString;
+
+            goToStage(3);
+        }
+
+        // Automatic focus jumper script utility for multi-box entry matrices
+        function moveFocus(current, nextId, prevId) {
+            if (current.value.length >= 1 && nextId !== "") {
+                const nextEl = document.getElementById(nextId);
+                if(nextEl) nextEl.focus();
+            } else if (current.value.length === 0 && prevId !== "") {
+                const prevEl = document.getElementById(prevId);
+                if(prevEl) prevEl.focus();
+            }
+        }
+
+        // Evaluates entered tokens and paints receipt layout values properties
+        function validateSimulatedOTP() {
+            let userTokenEntryString = "";
+            for (let i = 1; i <= 6; i++) {
+                const otpEl = document.getElementById(`otp-${i}`);
+                if(otpEl) userTokenEntryString += otpEl.value.trim();
+            }
+
+            if (userTokenEntryString.length < 6) {
+                alert("Verification Link Failure:\nYou must fill in all 6 character code cells before authorizing core clinical panels.");
+                return;
+            }
+
+            const randomizedReceiptId = "APDx-#" + Math.floor(10000 + Math.random() * 90000);
+            
+            const rId = document.getElementById('receipt-id-tag');
+            const rPanel = document.getElementById('receipt-panel');
+            const rModality = document.getElementById('receipt-modality');
+            const rVector = document.getElementById('receipt-vector-value');
+            const rNet = document.getElementById('receipt-net');
+            const sTotalPrice = document.getElementById('summary-total-price');
+            const stickyPanel = document.getElementById('sticky-summary-panel');
+
+            if(rId) rId.innerText = randomizedReceiptId;
+            if(rPanel) rPanel.innerText = currentPanelLabel.replace('™', '');
+            if(rModality) rModality.innerText = activeCollection === 'walkin' ? 'Clinic Partner Hub' : activeCollection === 'popup' ? 'Saturday Pop-Up Event' : 'Private Mobile Dispatch';
+            if(rVector) rVector.innerText = customerIdentityAddressString;
+            if(rNet && sTotalPrice) rNet.innerText = sTotalPrice.innerText;
+
+            if(stickyPanel) stickyPanel.classList.add('lg:opacity-20');
+
+            goToStage(4);
+        }
+    </script>
+
+</body>
+</html>
