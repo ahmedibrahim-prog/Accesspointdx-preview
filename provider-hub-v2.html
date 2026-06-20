@@ -1,16 +1,15 @@
 <!DOCTYPE html>  
 <html lang="en">  
 <head>  
-    <!-- GLOBAL PORTAL PROTECTION SECURITY GUARD SCRIPT -->
     <script>
         (function () {
             const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
             const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
 
-            // Security Shield: If unauthenticated, bounce back to marketing home
+            // Route protection sweep: redirect home if tokens are missing
             if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
                 sessionStorage.clear();
-                window.location.replace('index.html');
+                window.location.replace('index1st.html');
             }
         })();
     </script>
@@ -35,7 +34,7 @@
         .drawer-content { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
     </style>  
 </head>  
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col justify-between">  
+<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col">  
 
 <div class="fixed top-0 left-0 right-0 h-[3px] bg-slate-100 z-[200]">
     <div id="topProgress" class="h-full bg-[#059669] w-0 opacity-100"></div>
@@ -62,8 +61,8 @@
 </div>  
 
 <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
-    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">  
-        <a href="test-directory.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">  
+        <a href="index1st.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
             <svg class="w-10 h-10 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">  
                 <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
                 <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
@@ -76,12 +75,11 @@
             </div>  
         </a>  
 
-        <!-- UNIFIED MOUNTED SYSTEM NAVIGATION PATHWAY LINKS -->
         <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
-            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Test Directory</a>  
-            <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Provider Hub</a>  
-            <a href="resourcesv2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Laboratory Resources</a>  
-            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
+            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Test Directory</a>  
+            <a href="provider-hub-v2.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 transition px-1 py-1">Provider Hub</a>  
+            <a href="resources-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Laboratory Resources</a>  
+            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Connectivity</a>  
         </nav>
 
         <div class="flex items-center space-x-4">
@@ -90,12 +88,11 @@
                 <button id="mobileDrawerTrigger" onclick="toggleMobileDrawer(true)" aria-expanded="false" aria-controls="mobileDrawer" class="p-2 rounded-xl text-[#0A192F] hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/40" aria-label="Open portal menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
-            </div>  
+            </div>
         </div>  
     </div>  
 </header>  
 
-<!-- MOBILE DRAWER PORTAL -->
 <div id="mobileDrawer" class="hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true">
     <div onclick="toggleMobileDrawer(false)" class="drawer-backdrop absolute inset-0 bg-slate-900/60 opacity-0 pointer-events-auto backdrop-blur-sm"></div>
     <nav class="drawer-content absolute top-0 bottom-0 left-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full z-10 overflow-y-auto">
@@ -105,11 +102,12 @@
                 <button onclick="toggleMobileDrawer(false)" class="text-slate-400 hover:text-[#0A192F] font-black text-xs select-none">✕ CLOSE</button>
             </div>
             <div id="mobileDrawerNavLinks" class="flex flex-col space-y-3 font-bold text-xs uppercase tracking-wider text-slate-600">
-                <a href="test-directory.html" class="p-2.5 rounded-xl transition">Test Directory</a>
+                <a href="index1st.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Home</a>
+                <a href="test-directory.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Test Directory</a>
                 <a href="provider-hub-v2.html" class="p-2.5 bg-emerald-50/40 text-[#059669] rounded-xl transition">Provider Hub</a>
-                <a href="resourcesv2.html" class="p-2.5 rounded-xl transition">Laboratory Resources</a>
-                <a href="connectivity.html" class="p-2.5 rounded-xl transition">Connectivity</a>
-                <button onclick="executePortalLogoffWipe();" class="w-full text-left p-2.5 text-red-600 rounded-xl transition">Exit Portal</button>
+                <a href="resources-v2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Laboratory Resources</a>
+                <a href="connectivity.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Connectivity & Integrations</a>
+                <button onclick="executePortalLogoffWipe();" class="w-full text-left p-2.5 text-red-600 rounded-xl transition hover:bg-red-50">Exit Portal</button>
             </div>
         </div>
     </nav>
@@ -223,12 +221,19 @@
                     </details>
                 </div>
             </section>
+            
+            <section id="historicalTelemetryBlock" class="hidden bg-slate-50 border border-slate-200/80 rounded-3xl p-5 space-y-3 text-[11px] font-semibold text-slate-600">
+                <div class="border-b border-slate-200/60 pb-2">
+                    <h3 class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Recently Visited Nodes</h3>
+                </div>
+                <div id="historicalTelemetryContainer" class="flex flex-wrap gap-1.5 pt-1"></div>
+            </section>
         </div>
     </div>
 </main>
 
 <div id="successModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-xl space-y-4 text-center">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-xl space-y-4 text-center animate-pulse">
         <div class="w-12 h-12 bg-emerald-50 border border-emerald-200 text-[#059669] rounded-full flex items-center justify-center text-lg font-bold mx-auto select-none">✓</div>
         <div class="space-y-1">
             <h3 id="modalTitle" class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Transmission Complete</h3>
@@ -242,13 +247,13 @@
 
 <div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs scale-90 md:scale-100" role="toolbar" aria-label="Application Dock">
     <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="test-directory.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
+        <a href="index1st.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
         <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Backward">←</button>
         <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Forward">→</button>
         <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Scroll To Ceiling">↑</button>
     </div>
     <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
-        <a href="test-directory.html" class="text-[#059669] text-xs">🏠</a>
+        <a href="index1st.html" class="text-[#059669] text-xs">🏠</a>
         <button onclick="toggleMobileDockDrawer()" id="dockToggleBtn" class="text-slate-400 font-bold focus:outline-none tracking-tighter text-[11px] bg-slate-100 px-2 py-0.5 rounded-md">•••</button>
     </div>
 </div>
@@ -299,10 +304,39 @@
             }
         });
 
-        // D. WORKSPACE TELEMETRY LOGS
+        // D. WORKSPACE TELEMETRY LOGS (Exact Path Matches)
         localStorage.setItem('apdx_target_retained_page', window.location.pathname);
+        let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
+        const totalPagesMap = {
+            'test-directory.html': 'Test Directory',
+            'provider-hub-v2.html': 'Provider Hub',
+            'resources-v2.html': 'Laboratory Resources',
+            'connectivity.html': 'Connectivity Stream'
+        };
+        const pathFile = window.location.pathname.split('/').pop() || 'index1st.html';
+        
+        if (pathFile !== 'index1st.html' && totalPagesMap[pathFile]) {
+            historyArray = historyArray.filter(i => i.file !== pathFile);
+            historyArray.unshift({ file: pathFile, name: totalPagesMap[pathFile] });
+            if (historyArray.length > 4) historyArray.pop();
+            localStorage.setItem('apdx_history_stream', JSON.stringify(historyArray));
+        }
 
-        // E. FIELD INSTANTIATION CACHE RECALL
+        const historyBlock = document.getElementById('historicalTelemetryBlock');
+        const historyContainer = document.getElementById('historicalTelemetryContainer');
+        if (historyArray.length > 0 && historyContainer) {
+            historyContainer.innerHTML = '';
+            historyArray.forEach(item => {
+                const btn = document.createElement('a');
+                btn.href = item.file;
+                btn.className = "bg-white hover:bg-[#059669] hover:text-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded transition text-[9px] font-bold shadow-sm uppercase tracking-wide";
+                btn.innerText = item.name;
+                historyContainer.appendChild(btn);
+            });
+            if(historyBlock) historyBlock.classList.remove('hidden');
+        }
+
+        // E. FIELD INSTANTIATION CACHE RECALL (FORM FIELD STORAGE PERSISTENCE)
         const persistFields = document.querySelectorAll('.persist-field');
         persistFields.forEach(field => {
             const preservedVal = sessionStorage.getItem(`apdx_cache_${field.id}`);
@@ -323,7 +357,7 @@
 
         // G. KEYBOARD ACCESSIBILITY LISTENERS
         window.addEventListener('keydown', (e) => {
-            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'test-directory.html'; }
+            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'index1st.html'; }
             if (e.key === 'Escape') { if (!document.getElementById('mobileDrawer').classList.contains('hidden')) toggleMobileDrawer(false); }
         });
 
@@ -452,7 +486,10 @@
     }
     function closeSuccessModal() { document.getElementById('successModal').classList.add('hidden'); }
     function scrollToTopAnchor() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function executePortalLogoffWipe() { sessionStorage.clear(); window.location.replace('index.html'); }
+    function executePortalLogoffWipe() {
+        sessionStorage.clear();
+        window.location.replace('index1st.html');
+    }
 </script>
 
 </body>  
