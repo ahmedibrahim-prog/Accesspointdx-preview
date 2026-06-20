@@ -1,17 +1,29 @@
 <!DOCTYPE html>  
 <html lang="en">  
 <head>  
+    <!-- GLOBAL PORTAL PROTECTION SECURITY GUARD SCRIPT -->
+    <script>
+        (function () {
+            const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
+            const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
+
+            // Security Shield: If unauthenticated, bounce back to marketing home
+            if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
+                sessionStorage.clear();
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
     <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Connectivity Console // AccessPoint Dx</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  
+    <title>Connectivity Engine // AccessPoint Dx</title>  
     <script src="https://cdn.tailwindcss.com"></script>  
     <style>  
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
         body { font-family: 'Inter', sans-serif; }  
         .skip-link:focus { transform: translateY(0); }
         
-        /* TRANSITION LAYERS */
-        .page-entry-anim {
+        .page-enter {
             animation: appReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         @keyframes appReveal {
@@ -23,7 +35,7 @@
         .drawer-content { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
     </style>  
 </head>  
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col">  
+<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col justify-between">  
 
 <div class="fixed top-0 left-0 right-0 h-[3px] bg-slate-100 z-[200]">
     <div id="topProgress" class="h-full bg-[#059669] w-0 opacity-100"></div>
@@ -33,6 +45,7 @@
     Skip to main content
 </a>
 
+<!-- v2 REGULATORY STATUS STRIP -->
 <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800" role="complementary" aria-label="Regulatory Profile">  
     <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">  
         <div class="flex items-center space-x-6">  
@@ -49,9 +62,10 @@
     </div>  
 </div>  
 
+<!-- v2 HEADER NAVBAR CONTAINER -->
 <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">  
-        <a href="index1st.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
+    <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">  
+        <a href="test-directory.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
             <svg class="w-10 h-10 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">  
                 <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
                 <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
@@ -64,22 +78,26 @@
             </div>  
         </a>  
 
+        <!-- UNIFIED MOUNTED SYSTEM NAVIGATION PATHWAY LINKS -->
         <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
-            <a href="index1st.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Home</a>
-            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Test Directory</a>  
-            <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Provider Hub</a>  
-            <a href="resources-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Laboratory Resources</a>  
-            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
+            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Test Directory</a>  
+            <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Provider Hub</a>  
+            <a href="resourcesv2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Laboratory Resources</a>  
+            <a href="connectivity.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
         </nav>
 
-        <div class="flex lg:hidden items-center">
-            <button id="mobileDrawerTrigger" onclick="toggleMobileDrawer(true)" aria-expanded="false" aria-controls="mobileDrawer" class="p-2 rounded-xl text-[#0A192F] hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/40" aria-label="Open portal menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
+        <div class="flex items-center space-x-4">
+            <button onclick="executePortalLogoffWipe();" class="hidden lg:flex border border-red-200 text-red-600 bg-red-50/30 hover:bg-red-50 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition items-center focus:outline-none">Exit Portal</button>
+            <div class="flex lg:hidden items-center">
+                <button id="mobileDrawerTrigger" onclick="toggleMobileDrawer(true)" aria-expanded="false" aria-controls="mobileDrawer" class="p-2 rounded-xl text-[#0A192F] hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/40" aria-label="Open portal menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>  
         </div>  
     </div>  
 </header>  
 
+<!-- MOBILE DRAWER PORTAL -->
 <div id="mobileDrawer" class="hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true">
     <div onclick="toggleMobileDrawer(false)" class="drawer-backdrop absolute inset-0 bg-slate-900/60 opacity-0 pointer-events-auto backdrop-blur-sm"></div>
     <nav class="drawer-content absolute top-0 bottom-0 left-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full z-10 overflow-y-auto">
@@ -89,130 +107,127 @@
                 <button onclick="toggleMobileDrawer(false)" class="text-slate-400 hover:text-[#0A192F] font-black text-xs select-none">✕ CLOSE</button>
             </div>
             <div id="mobileDrawerNavLinks" class="flex flex-col space-y-3 font-bold text-xs uppercase tracking-wider text-slate-600">
-                <a href="index1st.html" class="p-2.5 rounded-xl transition">Home</a>
-                <a href="test-directory.html" class="p-2.5 rounded-xl transition">Test Directory</a>
-                <a href="provider-hub-v2.html" class="p-2.5 rounded-xl transition">Provider Hub</a>
-                <a href="resources-v2.html" class="p-2.5 rounded-xl transition">Laboratory Resources</a>
-                <a href="connectivity.html" class="p-2.5 rounded-xl transition">Connectivity & Integrations</a>
+                <a href="test-directory.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Test Directory</a>
+                <a href="provider-hub-v2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Provider Hub</a>
+                <a href="resourcesv2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Laboratory Resources</a>
+                <a href="connectivity.html" class="p-2.5 bg-emerald-50/40 text-[#059669] rounded-xl transition">Connectivity</a>
+                <button onclick="executePortalLogoffWipe();" class="w-full text-left p-2.5 text-red-600 rounded-xl transition hover:bg-red-50">Exit Portal</button>
             </div>
-        </div>
-        <div class="border-t border-slate-100 pt-4 space-y-3">
-            <a href="https://accesspointdx.portal.ligolab.com" target="_blank" rel="noopener noreferrer" class="block bg-[#0A192F] text-white text-[10px] font-black tracking-widest text-center py-3 rounded-xl uppercase">Secure Portal Login ➔</a>
         </div>
     </nav>
 </div>
 
-<main id="main-content" class="page-entry-anim focus:outline-none flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6" tabindex="-1">
-
-    <nav class="pt-5" aria-label="Location Breadcrumb">
-        <div class="bg-white border border-slate-200/60 rounded-xl px-4 py-2 flex flex-col sm:flex-row sm:items-center justify-between text-[10px] font-black tracking-wider uppercase text-slate-400 gap-2">
-            <div class="flex items-center space-x-2">
-                <a href="index1st.html" class="text-[#059669]">Home</a>
-                <span class="text-slate-300">/</span>
-                <span class="text-[#0A192F]">Connectivity Console</span>
-            </div>
-            <div class="text-[9px] text-slate-400 flex items-center space-x-1">
-                <span>Interoperability Node:</span> <span class="text-[#059669]">APDX-CONNECTIVITY-V2-FINAL</span>
-            </div>
+<!-- MAIN COHESIVE v2 CONNECTIVITY ENGINE CONTENT INTERFACE -->
+<main id="main-content" class="page-enter focus:outline-none flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-16" tabindex="-1">
+    
+    <nav class="mb-6 flex flex-wrap items-center justify-between text-[10px] font-black uppercase tracking-wider text-slate-400 gap-2" aria-label="Breadcrumb Trail">
+        <div class="flex items-center space-x-2">
+            <a href="test-directory.html" class="text-[#059669]">Home</a>
+            <span>/</span>
+            <span class="text-[#0A192F]">Connectivity & Integrations</span>
         </div>
+        <button onclick="history.back()" class="text-[#059669] hover:text-[#0A192F] flex items-center space-x-1 transition focus:outline-none">
+            <span>←</span> <span>Back</span>
+        </button>
     </nav>
 
-    <section id="historicalTelemetryBlock" class="hidden pt-3" aria-label="Recently Accessed Links">
-        <div class="bg-slate-100/80 border border-slate-200 rounded-xl px-4 py-2 flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-500">
-            <span class="uppercase tracking-wider text-slate-400 font-black">Recently Visited:</span>
-            <div id="historicalTelemetryContainer" class="flex flex-wrap items-center gap-1.5"></div>
-        </div>
-    </section>
-
-    <section class="pt-6 pb-4 space-y-1.5 text-center sm:text-left">
-        <span class="text-[10px] font-black tracking-widest text-[#059669] uppercase block">EHR & Integration Infrastructure</span>
-        <h1 class="text-[28px] sm:text-[38px] font-black tracking-tight text-[#0A192F] uppercase leading-none">
-            Connectivity Console
-        </h1>
-        <p class="text-xs font-semibold text-slate-400 leading-relaxed max-w-2xl">
-            Deploy programmatic HL7 feeds, configure custom clinical data channels, and review interface telemetry. Bidirectional observations mapping integrates results directly into your workflow.
+    <header class="mb-8 space-y-1.5">  
+        <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Data Interface Monitor</span>  
+        <h1 class="text-[28px] sm:text-[36px] font-black tracking-tight text-[#0A192F] uppercase leading-none">Integration Engine</h1>  
+        <p class="text-xs font-bold text-slate-400 max-w-2xl">
+            Configure continuous health record synchronizations. Monitor outbound discrete results endpoints and verify data stream status values across your operational workflows.
         </p>
-    </section>
+    </header>  
 
-    <div class="py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <section class="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-5">
-            <div class="space-y-4">
-                <div class="border-b border-slate-100 pb-3">
-                    <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Supported EMR / EHR Integrations</h2>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Native Interoperability Loops</p>
+        <!-- CORE LIVE TERMINAL & ENDPOINT STATUS -->
+        <div class="lg:col-span-8 space-y-6">
+            <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-5">
+                <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide border-b border-slate-100 pb-2 flex items-center space-x-2">
+                    <span>💻</span> <span>Live Server Diagnostics</span>
+                </h2>
+                
+                <div class="bg-[#0A192F] text-white rounded-2xl p-5 shadow-inner space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+                        <span class="text-[10px] font-mono tracking-widest text-slate-400 uppercase">System Endpoint Health</span>
+                        <span class="flex items-center space-x-2 text-[10px] font-black uppercase text-emerald-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span>Secure Loop Active</span>
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3 font-mono text-[11px]">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <span class="text-slate-400">HL7 ORU Result Transmission:</span>
+                            <span class="text-emerald-400 font-black">ONLINE // SYNCHRONIZED</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <span class="text-slate-400">FHIR API Bidirectional Sync:</span>
+                            <span class="text-emerald-400 font-black">READY // AWAITING PAYLOAD</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <span class="text-slate-400">Network VPN Tunnel Status:</span>
+                            <span class="text-emerald-400 font-black">ESTABLISHED // LATENCY: 14ms</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-[10px] font-black tracking-wider text-slate-700 uppercase">
-                    <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex items-center justify-center min-h-[56px]">Epic Systems</div>
-                    <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex items-center justify-center min-h-[56px]">Oracle Cerner</div>
-                    <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex items-center justify-center min-h-[56px]">eClinicalWorks</div>
-                    <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex items-center justify-center min-h-[56px]">Athenahealth</div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1 hover:border-[#059669] transition cursor-pointer">
+                        <span class="block text-xl mb-2">🔄</span>
+                        <h3 class="font-black text-xs text-[#0A192F] uppercase tracking-wide">EHR System Mapping</h3>
+                        <p class="text-[10px] text-slate-500 font-semibold leading-relaxed">View discrete variable delivery loops mapping directly into your clinic's EMR.</p>
+                    </div>
+                    <div class="border border-slate-100 p-4 bg-slate-50/50 rounded-xl space-y-1 hover:border-[#059669] transition cursor-pointer">
+                        <span class="block text-xl mb-2">📄</span>
+                        <h3 class="font-black text-xs text-[#0A192F] uppercase tracking-wide">API Documentation</h3>
+                        <p class="text-[10px] text-slate-500 font-semibold leading-relaxed">Access developer resources for configuring custom HL7/FHIR webhooks.</p>
+                    </div>
                 </div>
-            </div>
+            </section>
+        </div>
 
-            <div class="p-4 bg-slate-50 border border-slate-150 rounded-xl space-y-1">
-                <span class="block text-[9px] font-black text-[#059669] uppercase tracking-wider">Interface Capability Mandate</span>
-                <p class="text-[11px] font-medium text-slate-500 leading-relaxed">
-                    Feeds support discrete data result routing (HL7 ORU v2.5.1), diagnostic orders ingestion (HL7 ORM), and direct cross-mapping via clean RESTful JSON webhooks.
-                </p>
-            </div>
-        </section>
-
-        <section class="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
-            <div class="space-y-4">
+        <!-- RIGHT SIDEBAR: SUPPORT & LOGS -->
+        <div class="lg:col-span-4 space-y-6">
+            <section class="bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm space-y-4">
                 <div class="border-b border-slate-100 pb-2">
-                    <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block">Pipeline Setup Request</span>
-                    <h2 class="text-xs font-black uppercase text-[#0A192F]">Initiate EHR Onboarding</h2>
+                    <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">IT Support Node</span>
+                    <h2 class="text-xs font-black uppercase text-[#0A192F]">Interface Onboarding</h2>
                 </div>
-                <form id="onboardingForm" onsubmit="handleOnboardingSubmit(event)" class="space-y-4">
-                    <div>
-                        <label for="providerGroup" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Practice / Facility Group Name</label>
-                        <input type="text" id="providerGroup" required placeholder="e.g. Twin Cities Medical Alliance" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
-                    </div>
-                    <div>
-                        <label for="ehrSystem" class="block text-[9px] font-black uppercase text-slate-400 mb-1">Active EMR Platform Engine</label>
-                        <select id="ehrSystem" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669]">
-                            <option value="Epic Systems">Epic Systems Corporation</option>
-                            <option value="Athenahealth">Athenahealth Platform</option>
-                            <option value="eClinicalWorks">eClinicalWorks Feed</option>
-                            <option value="Custom API Endpoint">Custom Webhook / REST API Setup</option>
-                        </select>
-                    </div>
-                    <button type="submit" id="submitBtn" class="w-full bg-[#0A192F] text-white text-[11px] font-black uppercase tracking-wider py-3.5 rounded-xl transition hover:bg-slate-800 outline-none flex items-center justify-center">
-                        <span id="btnText">Request Integration Setup ➔</span>
-                    </button>
-                </form>
-            </div>
-        </section>
+                <p class="text-[11px] text-slate-500 font-semibold leading-relaxed">
+                    Need assistance connecting your practice management software? Our dedicated technical assistance team maps out custom data mapping worksheets directly with your IT vendor.
+                </p>
+                <button class="w-full bg-[#0A192F] text-white hover:bg-slate-800 text-[10px] font-black uppercase tracking-wider py-3 rounded-xl transition duration-150">
+                    Request IT Integration ➔
+                </button>
+            </section>
+
+            <section id="historicalTelemetryBlock" class="hidden bg-slate-50 border border-slate-200/60 rounded-3xl p-5 space-y-3 text-[11px] font-semibold text-slate-600 leading-normal">
+                <div class="border-b border-slate-200/60 pb-2">
+                    <h3 class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Recently Visited Nodes</h3>
+                </div>
+                <div id="historicalTelemetryContainer" class="flex flex-wrap gap-2 pt-1"></div>
+            </section>
+        </div>
     </div>
 </main>
 
-<div id="successModal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 shadow-xl space-y-4 text-center">
-        <div class="w-12 h-12 bg-emerald-50 border border-emerald-200 text-[#059669] rounded-full flex items-center justify-center text-lg font-bold mx-auto select-none">✓</div>
-        <div class="space-y-1">
-            <h3 id="modalTitle" class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Request Queued</h3>
-            <p id="modalDescription" class="text-[11px] font-semibold text-slate-400 leading-normal"></p>
-        </div>
-        <button onclick="closeSuccessModal()" class="w-full bg-[#0A192F] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition hover:bg-slate-800 outline-none">
-            Acknowledge & Close
-        </button>
-    </div>
-</div>
-
+<!-- MOBILE DOCK BAR -->
 <div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs scale-90 md:scale-100" role="toolbar" aria-label="Application Dock">
     <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="index1st.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
+        <a href="test-directory.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
         <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Backward">←</button>
         <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Forward">→</button>
         <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Scroll To Ceiling">↑</button>
     </div>
     <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
-        <a href="index1st.html" class="text-[#059669] text-xs">🏠</a>
+        <a href="test-directory.html" class="text-[#059669] text-xs">🏠</a>
         <button onclick="toggleMobileDockDrawer()" id="dockToggleBtn" class="text-slate-400 font-bold focus:outline-none tracking-tighter text-[11px] bg-slate-100 px-2 py-0.5 rounded-md">•••</button>
     </div>
 </div>
 
+<!-- V2 FOOTER -->
 <footer class="bg-[#0A192F] text-white pt-12 pb-20 text-[11px] border-t border-slate-800" role="contentinfo">  
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">  
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-center sm:text-left">
@@ -220,15 +235,15 @@
             <span class="hidden sm:inline-block text-slate-700">|</span>
             <span class="text-slate-400 font-medium">Version 5.2 (Updated June 2026)</span>
         </div> 
-        <div class="text-slate-400 font-mono text-[9px]">Build: APDX-5.2</div>  
+        <div class="text-slate-400 font-mono text-[9px]">Build: APDX-IT-SYNC-V2</div>  
     </div>  
 </footer>  
 
-<script>  
+<script>
     let drawerTimeout;
 
     document.addEventListener('DOMContentLoaded', () => {
-        // A. HARDWARE PROGRESS BAR LIFE CYCLES
+        // A. HARDWARE LOADING BAR LIFE CYCLES
         const bar = document.getElementById('topProgress');
         document.onreadystatechange = function() {
             if (document.readyState === 'interactive') { bar.style.width = '65%'; }
@@ -242,7 +257,7 @@
             setTimeout(() => { bar.style.opacity = '0'; }, 300);
         }
 
-        // B. SPA SCROLL STATE TRAFFIC SIMULATION
+        // B. SPA SCROLL STATE SYNC LOOPS
         document.querySelectorAll('a[href]').forEach(link => {
             if (link.hostname === window.location.hostname && !link.hash && !link.hasAttribute('download')) {
                 link.addEventListener('click', () => {
@@ -252,26 +267,18 @@
             }
         });
 
-        // C. SCOPED NAV HEADER HIGHLIGHT ENFORCEMENTS
-        document.querySelectorAll('#desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
-            if (link.href === window.location.href || (window.location.pathname.includes('connectivity') && link.href.includes('connectivity'))) {
-                link.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'bg-emerald-50/10');
-            }
-        });
-
-        // D. TELEMETRY HISTORICAL LOG MANAGERS
+        // C. WORKSPACE TELEMETRY LOGS (Cross-Page Tracking)
         localStorage.setItem('apdx_target_retained_page', window.location.pathname);
-        
         let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
         const totalPagesMap = {
             'test-directory.html': 'Test Directory',
             'provider-hub-v2.html': 'Provider Hub',
-            'resources-v2.html': 'Laboratory Resources',
+            'resourcesv2.html': 'Laboratory Resources',
             'connectivity.html': 'Connectivity Stream'
         };
-        const pathFile = window.location.pathname.split('/').pop() || 'index1st.html';
+        const pathFile = window.location.pathname.split('/').pop() || 'connectivity.html';
         
-        if (pathFile !== 'index1st.html' && totalPagesMap[pathFile]) {
+        if (pathFile !== 'index.html' && totalPagesMap[pathFile]) {
             historyArray = historyArray.filter(i => i.file !== pathFile);
             historyArray.unshift({ file: pathFile, name: totalPagesMap[pathFile] });
             if (historyArray.length > 4) historyArray.pop();
@@ -285,26 +292,26 @@
             historyArray.forEach(item => {
                 const btn = document.createElement('a');
                 btn.href = item.file;
-                btn.className = "bg-white hover:bg-[#059669] hover:text-white border border-slate-200 text-slate-700 px-2 py-0.5 rounded transition text-[9px] font-bold shadow-sm";
+                btn.className = "bg-white hover:bg-[#059669] hover:text-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg transition text-[9px] font-black tracking-wide shadow-sm uppercase";
                 btn.innerText = item.name;
                 historyContainer.appendChild(btn);
             });
             historyBlock.classList.remove('hidden');
         }
 
-        // E. SCROLL MEMORY MANAGEMENT
+        // D. SCROLL MEMORY INDICES
         window.addEventListener('beforeunload', () => {
             sessionStorage.setItem(`scroll-${window.location.pathname}`, window.scrollY);
         });
         const isBackNavigation = window.performance && window.performance.getEntriesByType("navigation")[0]?.type === "back_forward";
         if (isBackNavigation) {
             const preservedScrollY = sessionStorage.getItem(`scroll-${window.location.pathname}`);
-            if (preservedScrollY) { window.scrollTo({ top: parseInt(preservedScrollY, 15), behavior: 'smooth' }); }
+            if (preservedScrollY) { window.scrollTo({ top: parseInt(preservedScrollY, 10), behavior: 'smooth' }); }
         }
 
-        // F. KEYBOARD ACCESSORS
+        // E. KEYBOARD ACCESSIBILITY LISTENERS
         window.addEventListener('keydown', (e) => {
-            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'index1st.html'; }
+            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'test-directory.html'; }
             if (e.key === 'Escape') { if (!document.getElementById('mobileDrawer').classList.contains('hidden')) toggleMobileDrawer(false); }
         });
 
@@ -312,6 +319,7 @@
         window.addEventListener('resize', initResponsiveDockLayout);
     });
 
+    // F. RESPONSIVE NAVIGATION DOCK STATE ENGINE
     function initResponsiveDockLayout() {
         const targetGroup = document.getElementById('dockExpandedGroup');
         const fallbackGroup = document.getElementById('dockMobileFallbackGroup');
@@ -328,6 +336,7 @@
         }
     }
 
+    // G. ACCESSIBLE DRAWER LOGIC CONTROLLER
     function toggleMobileDrawer(open) {
         const drawer = document.getElementById('mobileDrawer');
         const trigger = document.getElementById('mobileDrawerTrigger');
@@ -369,32 +378,9 @@
         }
     }
 
-    // ONBOARDING TRANSMISSION CONTROLLER
-    function handleOnboardingSubmit(e) {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        const txt = document.getElementById('btnText');
-        const practice = document.getElementById('providerGroup').value;
-        const system = document.getElementById('ehrSystem').value;
-        
-        btn.disabled = true;
-        btn.classList.add('opacity-80', 'cursor-not-allowed');
-        txt.innerText = "Transmitting Pipe Parameters... 🧬";
-        
-        setTimeout(() => {
-            btn.disabled = false;
-            btn.classList.remove('opacity-80', 'cursor-not-allowed');
-            txt.innerText = "Request Integration Setup ➔";
-            
-            document.getElementById('modalDescription').innerText = `Onboarding initialized for "${practice || 'Your Practice'}". Integration engineering parameters have been sent to queue up an active ${system} bidirectional data sync pipeline.`;
-            document.getElementById('providerGroup').value = '';
-            
-            document.getElementById('successModal').classList.remove('hidden');
-        }, 1200);
-    }
-
-    function closeSuccessModal() { document.getElementById('successModal').classList.add('hidden'); }
     function scrollToTopAnchor() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function executePortalLogoffWipe() { sessionStorage.clear(); window.location.replace('index.html'); }
 </script>
+
 </body>  
 </html>
