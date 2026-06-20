@@ -1,977 +1,364 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>AccessPoint Dx // Clinical Test Directory Explorer</title>  
-    <script src="https://cdn.tailwindcss.com"></script>  
-    <style>  
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');  
-        body { font-family: 'Inter', sans-serif; }  
-        .skip-link:focus { transform: translateY(0); }
-        
-        /* TRANSITION AND VIEW LIFE CYCLES */
-        .page-entry-anim {
-            animation: appReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes appReveal {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        #topProgress { transition: width 0.3s ease-out, opacity 0.2s ease-in-out; }
-        .drawer-backdrop { transition: opacity 0.2s ease-in-out; }
-        .drawer-content { transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-    </style>  
-</head>  
-<body class="bg-slate-50 text-[#0A192F] antialiased selection:bg-[#059669]/10 overflow-x-hidden min-h-screen flex flex-col">  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        (function () {
+            const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
+            const internalWorkflowGearKey = sessionStorage.getItem('apdx_portal_gear');
 
-<!-- NATIVE HARDWARE LOADING INDICATOR -->
-<div class="fixed top-0 left-0 right-0 h-[3px] bg-slate-100 z-[200]">
-    <div id="topProgress" class="h-full bg-[#059669] w-0 opacity-100"></div>
-</div>
-
-<!-- ACCESSIBILITY CORNERSTONE -->
-<a href="#main-content" class="skip-link absolute top-0 left-0 bg-[#059669] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-br-lg z-[100] transition-transform duration-150 -translate-y-full focus:outline-none">
-    Skip to main content
-</a>
-
-<!-- PERSISTENT UTILITY REGULATORY SHIELD -->
-<div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800" role="complementary" aria-label="Regulatory Profile">  
-    <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">  
-        <div class="flex items-center space-x-6">  
-            <span class="flex items-center space-x-2 text-slate-300">  
-                <span class="w-2 h-2 rounded-full bg-[#059669] animate-pulse"></span>
-                <span>Minnesota Clinical Laboratory Infrastructure Network</span>  
-            </span>  
-        </div>  
-        <div class="hidden md:flex items-center space-x-6 text-slate-400 font-bold uppercase tracking-wider text-[9px]">
-            <span>✓ CLIA #24D2264811</span>
-            <span>✓ HIPAA COMPLIANT FRAMEWORK</span>
-            <span>✓ HL7 INTEGRATED PIPELINES</span>
-        </div>
-    </div>  
-</div>  
-
-<!-- APPLICATION PLATFORM HEADER -->
-<header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">  
-        <a href="index.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
-            <svg class="w-10 h-10 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">  
-                <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
-                <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
-                <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>  
-                <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>  
-            </svg>  
-            <div class="flex flex-col justify-center">  
-                <div class="text-[18px] sm:text-[20px] font-black tracking-tight text-[#0A192F] leading-none">AccessPoint&nbsp;<span class="text-[#059669]">Dx</span></div>  
-                <span class="text-[7.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1">Diagnostics Without Barriers</span>  
-            </div>  
-        </a>  
-
-        <!-- DESKTOP WORKSPACE NAVIGATION -->
-        <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
-            <a href="index.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Home</a>
-            <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Test Directory</a>  
-            <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Provider Hub</a>  
-            <a href="resources-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Laboratory Resources</a>  
-            <a href="connectivity.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
-        </nav>
-
-        <div class="flex lg:hidden items-center">
-            <button id="mobileDrawerTrigger" onclick="toggleMobileDrawer(true)" aria-expanded="false" aria-controls="mobileDrawer" class="p-2 rounded-xl text-[#0A192F] hover:bg-slate-100 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/40" aria-label="Open portal menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-        </div>  
-    </div>  
-</header>  
-
-<!-- MOBILE WORKSPACE NAV DRAWER -->
-<div id="mobileDrawer" class="hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true">
-    <div onclick="toggleMobileDrawer(false)" class="drawer-backdrop absolute inset-0 bg-slate-900/60 opacity-0 pointer-events-auto backdrop-blur-sm"></div>
-    <nav class="drawer-content absolute top-0 bottom-0 left-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full z-10 overflow-y-auto">
-        <div class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                <span class="text-xs font-black uppercase text-[#0A192F] tracking-wider">Navigation Menu</span>
-                <button onclick="toggleMobileDrawer(false)" class="text-slate-400 hover:text-[#0A192F] font-black text-xs select-none">✕ CLOSE</button>
-            </div>
-            <div id="mobileDrawerNavLinks" class="flex flex-col space-y-3 font-bold text-xs uppercase tracking-wider text-slate-600">
-                <a href="index.html" class="p-2.5 rounded-xl transition">Home</a>
-                <a href="test-directory.html" class="p-2.5 rounded-xl transition">Test Directory</a>
-                <a href="provider-hub-v2.html" class="p-2.5 rounded-xl transition">Provider Hub</a>
-                <a href="resources-v2.html" class="p-2.5 rounded-xl transition">Laboratory Resources</a>
-                <a href="connectivity.html" class="p-2.5 rounded-xl transition">Connectivity & Integrations</a>
-            </div>
-        </div>
-        <div class="border-t border-slate-100 pt-4 space-y-3">
-            <a href="https://accesspointdx.portal.ligolab.com" target="_blank" rel="noopener noreferrer" class="block bg-[#0A192F] text-white text-[10px] font-black tracking-widest text-center py-3 rounded-xl uppercase">Secure Portal Login ➔</a>
-        </div>
-    </nav>
-</div>
-
-<!-- MAIN WORKSPACE FRAME -->
-<main id="main-content" class="page-entry-anim focus:outline-none flex-grow" tabindex="-1">
-
-    <!-- BREADCRUMB INDEX -->
-    <nav class="max-w-7xl mx-auto px-6 pt-5" aria-label="Location Breadcrumb">
-        <div class="bg-white border border-slate-200/60 rounded-xl px-4 py-2 flex flex-col sm:flex-row sm:items-center justify-between text-[10px] font-black tracking-wider uppercase text-slate-400 gap-2">
-            <div class="flex items-center space-x-2">
-                <a href="index.html" class="text-[#059669]">Home</a>
-                <span class="text-slate-300">/</span>
-                <span class="text-[#0A192F]">Test Directory Explorer</span>
-            </div>
-            <div class="text-[9px] text-slate-400 flex items-center space-x-1">
-                <span>Active Menu Matrix:</span> <span class="text-[#059669]">High-Complexity Directory Explorer</span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HISTORICAL USER RUNTIME MATRIX -->
-    <section id="historicalTelemetryBlock" class="hidden max-w-7xl mx-auto px-6 pt-3" aria-label="Recently Accessed Workspace Links">
-        <div class="bg-slate-100/80 border border-slate-200 rounded-xl px-4 py-2 flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-500">
-            <span class="uppercase tracking-wider text-slate-400 font-black">Recently Visited:</span>
-            <div id="historicalTelemetryContainer" class="flex flex-wrap items-center gap-1.5"></div>
-        </div>
-    </section>
-
-    <!-- SESSION RETAINED ACTIVE LINK BAR -->
-    <div id="telemetryRecentBar" class="hidden max-w-7xl mx-auto px-6 pt-3">
-        <div class="bg-emerald-50/60 border border-[#059669]/20 rounded-xl px-4 py-2 flex items-center justify-between text-[10px] font-bold text-emerald-800">
-            <div class="flex items-center space-x-2">
-                <span>🔄</span>
-                <span>Continue working where you left off last time:</span>
-            </div>
-            <a id="telemetryRecentLink" href="#" class="underline font-black uppercase tracking-wider text-[#059669] hover:text-[#0A192F] transition">Resume Session ➔</a>
-        </div>
-    </div>
-
-    <!-- MAIN SEARCH INTERFACE AND META HEADERS -->
-    <section class="max-w-7xl mx-auto px-6 pt-6 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-6" aria-labelledby="directory-heading">
-        <div class="max-w-xl space-y-1.5">
-            <span class="text-[9px] font-black tracking-widest text-[#059669] uppercase block">Assay Database & Clinical Compendium</span>
-            <h1 id="directory-heading" class="text-[28px] sm:text-[38px] font-black tracking-tight text-[#0A192F] uppercase leading-[0.95]">
-                Test Directory Explorer
-            </h1>
-            <p class="text-xs font-bold text-slate-400 leading-relaxed">
-                Query medical specialties, internal order codes, or CPT strings. Tap any row shortcut item to instantly pull open deep pre-analytical specimen collection rules.
-            </p>
-        </div>
-        
-        <!-- HIGH-INTELLIGENCE SEARCH CONSOLE -->
-        <div class="w-full max-w-sm relative">  
-            <input type="text" id="platformGlobalSearch" placeholder="Search parameters [Press / or ⌘K]..." class="w-full bg-white border border-slate-200 rounded-2xl pl-4 pr-10 py-3.5 text-xs font-semibold text-[#0A192F] shadow-sm placeholder-slate-400 transition focus:outline-none focus:ring-2 focus:ring-[#059669]/20 focus:border-[#059669]/60" aria-label="Filter clinical test offerings"/>  
-            <span class="absolute right-4 top-4 text-slate-300 font-bold text-xs select-none">🔍</span>  
-        </div>  
-    </section>
-
-    <!-- RELATIONAL CROSS-REFERENCE DESK -->
-    <section class="max-w-7xl mx-auto px-6 py-2" aria-label="Relational Directory Filters">
-        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-[10px] font-black uppercase tracking-wider">
-                <span class="text-slate-400 w-28 shrink-0">By Specialty:</span>
-                <div class="flex flex-wrap gap-1">
-                    <button onclick="injectSearchTerm('Clinical Diagnostics')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Clinical Diagnostics</button>
-                    <button onclick="injectSearchTerm('Molecular')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Infectious Disease & Molecular</button>
-                    <button onclick="injectSearchTerm('Toxicology')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Toxicology & Monitoring</button>
-                    <button onclick="injectSearchTerm('Genetics')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Genetics & Precision</button>
-                    <button onclick="injectSearchTerm('Allergy')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Allergy & Immunology</button>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-[10px] font-black uppercase tracking-wider border-t border-slate-100 pt-3">
-                <span class="text-slate-400 w-28 shrink-0">By Clinical Goal:</span>
-                <div class="flex flex-wrap gap-1">
-                    <button onclick="injectSearchTerm('Metabolic')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Metabolic Health</button>
-                    <button onclick="injectSearchTerm('Hormone')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Hormone Balance</button>
-                    <button onclick="injectSearchTerm('Inflammation')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Inflammatory Biomarkers</button>
-                    <button onclick="injectSearchTerm('Aging')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Healthy Aging</button>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-[10px] font-black uppercase tracking-wider border-t border-slate-100 pt-3">
-                <span class="text-slate-400 w-28 shrink-0">By Population:</span>
-                <div class="flex flex-wrap gap-1">
-                    <button onclick="injectSearchTerm('Women')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Women's Health</button>
-                    <button onclick="injectSearchTerm('Men')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Men's Health</button>
-                    <button onclick="injectSearchTerm('Executive')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Executive Assessment Suite</button>
-                    <button onclick="injectSearchTerm('Occupational')" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-2.5 py-1 rounded-md text-slate-700 transition">Occupational Health</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HIGH-COMPLEXITY ACCORDION CATEGORY PANELS -->
-    <section class="max-w-7xl mx-auto px-6 py-4 space-y-4" id="ecosystemGrid" aria-label="Assay Master Directory">
-        
-        <!-- BLOCK 1: CLINICAL DIAGNOSTICS -->
-        <details data-search="clinical diagnostics chemistry hematology coagulation cbc cmp lipid pt inr aptt routine processing 80053 85025 80061 85610 apdx-101 apdx-102 apdx-103 yellow sst purple edta blue citrate gold top" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20" open>
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🧪</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Core Clinical Laboratory Testing</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Automated Pathology • Chemistry • Hematology • Coagulation</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">148 assays available</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <!-- SUBSPECIALTY GROUP A -->
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Chemistry</div>
-                    <div class="space-y-1">
-                        
-                        <!-- HIGH RESOLUTION TIGHT DIRECTORY ROW -->
-                        <details data-search="comprehensive metabolic panel cmp chemistry yellow sst gold top spectrophotometry 80053 apdx-101" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Serum Separator Tube">🟡</span>
-                                    <span class="truncate">Comprehensive Metabolic Panel (CMP)</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-101</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 80053 ➔</span>
-                            </summary>
-                            <!-- RESTRUCTURED TECHNICAL DRAWER CARD LAYOUT -->
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Automated Spectrophotometry / ISE</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Serum Separator Tube (SST Gold Top)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated: 7 Days // Ambient: 48 Hrs</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('80053', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details data-search="lipid profile matrix chemistry lipid cholesterol hdl ldl triglycerides gold top yellow sst fast 80061 apdx-102" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Serum Separator Tube">🟡</span>
-                                    <span class="truncate">Lipid Profile Matrix</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-102</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 80061 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Enzymatic Colorimetric Assay</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Serum SST // 12-Hour Fasting Required</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated: 7 Days // Frozen: 30 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('80061', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- SUBSPECIALTY GROUP B -->
-                <div class="space-y-1.5 pt-1">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Hematology & Coagulation</div>
-                    <div class="space-y-1">
-                        <details data-search="complete blood count cbc differential hematology lavender edta purple top unspun whole blood profiles cell count 85025 apdx-103" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Whole Blood EDTA">🟣</span>
-                                    <span class="truncate">Complete Blood Count (CBC) with Differential</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-103</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 85025 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Automated Flow Cytometry / Impedance</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Whole Blood (EDTA Lavender) - Do NOT spin</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Ambient: 24 Hours // Refrigerated: 48 Hours</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('85025', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-
-                        <details data-search="prothrombin time pt inr coagulation light blue top sodium citrate ratio spinning plasma factor pathways 85610 apdx-104" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Sodium Citrate Coagulation">🔵</span>
-                                    <span class="truncate">Coagulation Prothrombin Time (PT/INR)</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-104</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 85610 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Mechanical Optical Clot Detection</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Citrate Blue Top // Strict 9:1 fill line</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Unspun Ambient: 24 Hr // Spun Frozen: 14 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('85610', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 2: INFECTIOUS DISEASE & MOLECULAR DIAGNOSTICS -->
-        <details data-search="infectious disease molecular diagnostics respiratory pathogens sti panels gi panels hpv hepatitis pcr assays naat syndromic multiplex viral load swab vtm 87635 apdx-201 42 assays" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🦠</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Infectious Disease & Molecular Diagnostics</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Multiplex PCR Syndromic Targets & Quantitative Amplification Arrays</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-red-50 text-red-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">42 assays available</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Syndromic Panels</div>
-                    <div class="space-y-1">
-                        <details data-search="multiplex respiratory pathogen pcr panel viral loads swabbing vtm transport path code plastic shaft 87635 apdx-201" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Synthetic Transport Swab">🧫</span>
-                                    <span class="truncate">Multiplex Respiratory Pathogen PCR Panel</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-201</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 87635 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Multiplex Real-Time PCR NAAT</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Nasopharyngeal Swab in VTM Media</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated (2-8°C): 72 Hr // Frozen: 30 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('87635', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 3: TOXICOLOGY & MONITORING -->
-        <details data-search="toxicology monitoring medication compliance pain management substance monitoring occupational drug screening urine lc-ms/ms mass spectrometry definitive quantitative screen 80307 apdx-301 cup panel analytes 1200 analytes" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">💊</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Toxicology & Monitoring</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Definitive Quantitative Mass Spectrometry Testing & Adherence Loops</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-amber-50 text-amber-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">1,200 analytes tracked</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Definitive Confirmation</div>
-                    <div class="space-y-1">
-                        <details data-search="medication compliance confirmation panel random urine tracking cup target matrices logs mass spectrometry 80307 apdx-301" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Uine Matrix Cup">💧</span>
-                                    <span class="truncate">Medication Compliance Confirmation Panel</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-301</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 80307 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Quantitative LC-MS/MS System</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Random Urine Cup (Min 5.0 mL)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Ambient: 7 Days // Refrigerated: 14 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 48 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('80307', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 4: GENETICS & PRECISION MEDICINE -->
-        <details data-search="genetics precision medicine pharmacogenomics pgx carrier screening hereditary cancer snp genotyping sequencing ngs next-gen targeted profiles blood lavender top buccal oral swab 81401 apdx-401 25 panels" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🧬</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Genetics & Precision Medicine</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Esoteric Next-Generation DNA/RNA Variant Analysis Panels</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-purple-50 text-purple-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">25 targeted panels</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Pharmacogenomics</div>
-                    <div class="space-y-1">
-                        <details data-search="pharmacogenomic pgx therapy panel genomic variance markers response profiles targeted lavender edta buccal kits 81401 apdx-401" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Whole Blood or Buccal Swab Core">🟣</span>
-                                    <span class="truncate">Pharmacogenomic (PGx) Therapy Panel</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-401</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 81401 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Targeted Next-Gen Sequencing (NGS)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">EDTA Blood OR Sterile Buccal Swab</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Ambient Swab: 8 Days // Refrig Blood: 6 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Esoteric: 5-7 Business Days</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('81401', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 5: ALLERGY & IMMUNOLOGY -->
-        <details data-search="allergy immunology environmental panels food sensitivity evaluation autoimmune screening inflammatory biomarkers ige feia antibody antinuclear ana gold top sst 86003 apdx-501 84 targets" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🌸</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Allergy & Immunology</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Quantitative IgE Allergen Specific Profiles & Serological Cascades</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-pink-50 text-pink-700 px-2.5 py-1 rounded-md uppercase whitespace-nowrap">84 targets profiled</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Immunoassay Profiles</div>
-                    <div class="space-y-1">
-                        <details data-search="regional environmental allergy panel specific ige responses sst gold top spinning 86003 apdx-501" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Serum Separator Tube">🟡</span>
-                                    <span class="truncate">Regional Environmental Allergy Panel</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-501</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 86003 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Enzyme-Linked Fluorescence (FEIA)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Serum Separator Tube (SST Gold Top)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated: 7 Days // Frozen: 30 Days</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 48 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('86003', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 6: METABOLIC & PREVENTIVE HEALTH -->
-        <details data-search="metabolic preventive health profile insulin hba1c nutritional assessment d3 b12 cardiovascular risk biomarkers apob hs-crp healthy aging inflammatory longevity profiles baseline optimization metrics sst gold top lavender edta 83525 apdx-601" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🌿</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Metabolic & Preventive Health</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Provider-Directed Risk Assessments & Functional Longevity Markers</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-emerald-50 text-[#059669] px-2.5 py-1 rounded-md uppercase whitespace-nowrap">Optimization Core</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Longevity Biomarkers</div>
-                    <div class="space-y-1">
-                        <details data-search="metabolic health profile fasting insulin hba1c baseline parameters gold top serum whole blood edta lavender 83525 apdx-601" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Serum and Whole Blood Array Pack">🟡 🟣</span>
-                                    <span class="truncate">Metabolic Health Profile (Fasting Insulin / HbA1c)</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-601</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT 83525 ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Chemiluminescent / Turbidimetric Assay</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Serum SST AND Whole Blood EDTA // Fasting</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated: 5 Days // Ambient: 24 Hours</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('83525', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy CPT Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-        <!-- BLOCK 7: EXECUTIVE HEALTH ASSESSMENT SUITE -->
-        <details data-search="executive health programs assessment suite longitudinal biomarkers baseline evaluation health check physical validation panels profiles custom enterprise concierge multi biomarker evaluation draw box apdx-e01" class="group directory-category-shield border border-slate-200 bg-white rounded-3xl p-2 transition-all duration-200 open:shadow-lg focus-within:ring-2 focus-within:ring-[#059669]/20">
-            <summary class="w-full px-5 py-4 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between select-none list-none [&::-webkit-details-marker]:hidden focus:outline-none">
-                <div class="flex items-center space-x-3">
-                    <span class="text-lg select-none">🏢</span>
-                    <div>
-                        <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide">Executive Health Assessment Suite</h2>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">High-End Multi-Biomarker Groupings Configured for Preventative Physical Evaluation</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3 mt-2 sm:mt-0 self-start sm:self-auto">
-                    <span class="text-[9px] font-black bg-slate-900 text-white px-2.5 py-1 rounded-md uppercase whitespace-nowrap">Enterprise Premium</span>
-                    <span class="text-slate-400 group-open:rotate-90 transition-transform font-bold text-xs">➔</span>
-                </div>
-            </summary>
-            
-            <div class="px-5 pb-4 pt-2 border-t border-slate-100 space-y-4">
-                <div class="space-y-1.5">
-                    <div class="text-[9px] font-black text-[#059669] uppercase tracking-widest mb-1">Subspecialty // Longitudinal Assessment</div>
-                    <div class="space-y-1">
-                        <details data-search="executive baseline assessment suite tier one panels multi instrument draw packaging box matrix logs apdx-e01" class="group border border-slate-100 bg-slate-50/60 rounded-xl overflow-hidden">
-                            <summary class="w-full px-3 py-2.5 text-xs font-bold text-slate-700 cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden focus:outline-none select-none">
-                                <div class="flex items-center space-x-2.5 min-w-0">
-                                    <span class="text-sm shrink-0" title="Multi Tube Procurement Enclave">📦</span>
-                                    <span class="truncate">Executive Baseline Assessment Suite (Tier I)</span>
-                                    <span class="text-[9.5px] font-mono text-slate-400 font-bold uppercase shrink-0">ID: APDX-E01</span>
-                                </div>
-                                <span class="font-mono text-[10px] font-black text-[#0A192F] tracking-wide shrink-0">CPT MULTI ➔</span>
-                            </summary>
-                            <div class="p-4 bg-white border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[10px] font-semibold text-slate-500">
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🔬 Clinical Methodology</span>
-                                    <span class="text-slate-700 font-bold">Multi-Instrument Automated Mapping</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🧫 Specimen / Tube</span>
-                                    <span class="text-slate-700 font-bold">Multi-Tube Vault Box (SST, EDTA, Citrate)</span>
-                                </div>
-                                <div class="space-y-0.5">
-                                    <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">❄️ Matrix Stability</span>
-                                    <span class="text-slate-700 font-bold">Refrigerated Route Protocol Priority 1</span>
-                                </div>
-                                <div class="space-y-0.5 flex flex-col justify-between items-start sm:items-end">
-                                    <div class="sm:text-right">
-                                        <span class="block text-[9px] font-black text-slate-300 uppercase tracking-wider">🕒 Turnaround Time</span>
-                                        <span class="text-[#059669] font-black">Routine: 24-48 Hours</span>
-                                    </div>
-                                    <button onclick="copyToClipboard('APDX-E01', this)" class="text-[#059669] hover:text-[#0A192F] font-black text-[9px] uppercase tracking-wider mt-2 sm:mt-0">📋 Copy Master Code</button>
-                                </div>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </details>
-
-    </section>
-
-    <!-- SYSTEM ALERTS FOR EMPTY RESULTS -->
-    <div id="globalSearchEmptyFrame" class="hidden max-w-7xl mx-auto px-6 py-12 text-center space-y-3">  
-        <span class="text-2xl select-none block">⚠️</span>  
-        <h4 class="text-xs font-black text-[#0A192F] uppercase tracking-wide">No Matched Assays Found</h4>  
-        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Refine parameters. Search terms map directly to subspecialties, codes, or specimen tubes.</p>  
-        <button onclick="clearGlobalWorkspaceSearch()" class="mt-2 bg-slate-900 text-white font-black text-[10px] tracking-wider uppercase px-4 py-2 rounded-xl hover:bg-[#059669] transition focus:outline-none">
-            Reset Search Filter
-        </button>
-    </div>
-
-</main>
-
-<!-- COLLAPSIBLE FLOATING UTILITY NAV DOCK -->
-<div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs" role="toolbar" aria-label="Application Dock">
-    <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="index.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Node [Alt+H]">🏠</a>
-        <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Backward">←</button>
-        <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Forward">→</button>
-        <button onclick="focusGlobalSearchField()" class="text-slate-500 hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Focus Filter Field [/]">🔍</button>
-        <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Scroll To Ceiling">↑</button>
-    </div>
-    <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
-        <a href="index.html" class="text-[#059669] text-xs">🏠</a>
-        <button onclick="toggleMobileDockDrawer()" id="dockToggleBtn" class="text-slate-400 font-bold focus:outline-none tracking-tighter text-[11px] bg-slate-100 px-2 py-0.5 rounded-md">•••</button>
-    </div>
-</div>
-
-<!-- SYSTEM RUNTIME FOOTER -->
-<footer class="bg-[#0A192F] text-white pt-12 pb-20 text-[11px] border-t border-slate-800" role="contentinfo">  
-    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">  
-        <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-center sm:text-left">
-            <span>© 2026 AccessPoint Dx. All Rights Reserved.</span>
-            <span class="hidden sm:inline-block text-slate-700">|</span>
-            <span class="text-slate-400 font-medium">Version 5.2 (Updated June 2026)</span>
-        </div> 
-        <div class="text-slate-400 font-mono text-[9px]">Build: APDX-5.2</div>  
-    </div>  
-</footer>  
-
-<!-- CLIENT WORKSPACE OPERATIONS CONTROLLER ENGINE -->
-<script>  
-    let drawerTimeout;
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // A. LIFECYCLE INDICATOR PROGRESS BAR LOOPS
-        const bar = document.getElementById('topProgress');
-        document.onreadystatechange = function() {
-            if (document.readyState === 'interactive') { bar.style.width = '65%'; }
-            if (document.readyState === 'complete') {
-                bar.style.width = '100%';
-                setTimeout(() => { bar.style.opacity = '0'; }, 300);
+            // Route protection sweep: redirect home if tokens are missing
+            if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
+                sessionStorage.clear();
+                window.location.replace('index.html');
             }
-        };
-        if (document.readyState === 'complete') {
-            bar.style.width = '100%';
-            setTimeout(() => { bar.style.opacity = '0'; }, 300);
-        }
+        })();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AccessPoint Dx // Secure Core Laboratory Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Clean list resetting for consistent operational dropdowns */
+        details summary::-webkit-details-marker { display: none; }
+        details summary { list-style: none; }
 
-        // B. SPA INTERACTION CLICK LOAD SIMULATOR
-        document.querySelectorAll('a[href]').forEach(link => {
-            if (
-                link.hostname === window.location.hostname && 
-                !link.hash && 
-                !link.hasAttribute('download') &&
-                !link.href.includes('mailto:') && 
-                !link.href.includes('tel:')
-            ) {
-                link.addEventListener('click', () => {
-                    bar.style.opacity = '1';
-                    bar.style.width = '75%';
+        .hover-lift { transition: all .2s ease; }
+        .hover-lift:hover { transform: translateY(-1px); }
+
+        /* Dynamic Category Filtering States */
+        .assay-card { display: block; }
+        .filtered-out { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-50 text-[#0A192F] antialiased select-none pb-24 md:pb-0">
+
+    <div class="bg-[#0A192F] text-white text-[10px] font-mono border-b border-slate-800 hidden md:block">
+        <div class="max-w-7xl mx-auto h-10 px-6 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <span class="text-emerald-500 font-bold">● LIVE CONNECTION</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-300">Twin Cities Processing Node Hub: CLIA #24D2284915</span>
+            </div>
+            <div class="text-slate-400">Authenticated Session Token Validated</div>
+        </div>
+    </div>
+
+    <!-- v2 PORTAL HEADER NAVBAR CONTROLS WITH REQUISITE LINKS FIXED -->
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between relative">
+            <div class="flex items-center space-x-3">
+                <svg class="w-9 h-9 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>
+                    <circle cx="26" cy="52" r="4" fill="#0A192F"/>
+                    <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>
+                    <path d="M65 65 Q 85 65 85 45 Q 85 30 70 30" fill="none" stroke="#059669" stroke-width="9" stroke-linecap="round"/>
+                    <line x1="72" y1="30" x2="52" y2="52" stroke="#059669" stroke-width="10" stroke-linecap="round"/>
+                </svg>
+                <div class="flex flex-col justify-center">
+                    <div class="text-[18px] font-black tracking-tight text-[#0A192F] leading-none flex items-center">
+                        AccessPoint&nbsp;<span class="text-[#059669]">Dx</span>
+                    </div>
+                    <span class="text-[7.5px] font-bold tracking-[0.2em] text-[#059669] uppercase mt-1">Diagnostics Without Barriers</span>
+                </div>
+            </div>
+
+            <!-- CHANNELS POINTING DIRECTLY TO HOSTED MULTI-FILE APPLICATION MODULES -->
+            <nav aria-label="Main Site Navigation Links" class="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-[0.08em] text-slate-700">
+                <a href="test-directory.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 transition">Test Directory</a>
+                <a href="provider-hub.html" class="hover:text-[#059669] transition">Provider Hub</a>
+                <a href="resourcesv2.html" class="hover:text-[#059669] transition">Laboratory Resources</a>
+                <a href="connectivity.html" class="hover:text-[#059669] transition">Connectivity</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="executePortalLogoffWipe();" class="flex border border-red-200 text-red-600 bg-red-50/30 hover:bg-red-50 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition items-center space-x-1.5 focus:outline-none">
+                    <span>🚪</span> <span>Exit Portal</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <aside class="hidden lg:block lg:col-span-3 space-y-4">
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm space-y-6">
+                
+                <div class="flex items-center space-x-2.5 px-2">
+                    <div class="font-black text-sm text-[#0A192F] tracking-tight">AccessPoint <span class="text-[#059669]">Dx</span></div>
+                    <span class="text-[8px] font-bold bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded tracking-wide font-mono uppercase">v2.4</span>
+                </div>
+
+                <nav class="space-y-1 font-bold text-xs uppercase tracking-wider text-slate-600">
+                    <button id="defaultDesktopBtn" class="w-full flex items-center space-x-3 p-3 rounded-xl bg-slate-900 text-white transition text-left focus:outline-none">
+                        <span>🧪</span> <span>Test Catalog</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500 group">
+                        <div class="flex items-center space-x-3"><span>📄</span> <span>Requisition Builder</span></div>
+                        <span id="badgeRequisitionCount" class="bg-[#059669] text-white text-[9px] font-black font-mono px-2 py-0.5 rounded-full hidden">0</span>
+                    </button>
+                    <button class="w-full flex items-center space-x-3 p-3 rounded-xl hover:bg-slate-50 transition text-left focus:outline-none text-slate-500">
+                        <span>📦</span> <span>Specimen Tracking</span>
+                    </button>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="col-span-1 lg:col-span-9 space-y-6">
+            
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row gap-4 justify-between sm:items-center">
+                <div class="relative flex-1">
+                    <span class="absolute left-3.5 top-3.5 text-xs text-slate-400" aria-hidden="true">🔍</span>
+                    <input type="text" id="catalogSearchInput" placeholder="Search test catalog by keyword, biomarker, or CPT code..." class="w-full bg-slate-50 border border-slate-200/80 rounded-xl pl-10 pr-4 py-3 text-xs font-semibold text-[#0A192F] focus:outline-none focus:border-[#059669] transition placeholder:text-slate-400">
+                </div>
+                <div class="flex items-center space-x-3 justify-end">
+                    <span class="text-[11px] font-black uppercase text-slate-400 tracking-wider hidden sm:block">Filter Level</span>
+                    <select class="bg-white border border-slate-200/80 rounded-xl px-3 py-3 text-xs font-bold uppercase text-[#0A192F] focus:outline-none outline-none cursor-pointer">
+                        <option>Clinical Diagnostics</option>
+                        <option>Toxicology Tracking</option>
+                        <option>Molecular Genetics</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- RESTORED ALL CATEGORY TRACK FILTER CHIPS WITH NO CLOSURE LABELS DROPPED -->
+            <div id="categoryChipContainer" class="flex flex-row flex-nowrap items-center space-x-2.5 overflow-x-auto no-scrollbar pb-1 px-1">
+                <button data-cat="all" class="chip-btn bg-slate-900 text-white text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap shadow-sm focus:outline-none">All Assays</button>
+                <button data-cat="metabolic" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Metabolic</button>
+                <button data-cat="inflammation" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Inflammation</button>
+                <button data-cat="executive" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Executive Panels</button>
+                <button data-cat="hormones" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Hormones</button>
+                <button data-cat="cardiovascular" class="chip-btn bg-white border border-slate-200 text-slate-600 hover:border-slate-400 text-[11px] font-black uppercase tracking-wider px-4 py-2.5 rounded-xl whitespace-nowrap transition focus:outline-none">Cardiovascular</button>
+            </div>
+
+            <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden">
+                
+                <details class="group" open>
+                    <summary class="flex items-center justify-between p-5 bg-slate-50 border-b border-slate-100 cursor-pointer select-none outline-none">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-xs transition-transform group-open:rotate-90 text-slate-400">▶</span>
+                            <span class="text-xs font-black uppercase tracking-widest text-[#0A192F]">Routine Chemistry Nodes</span>
+                        </div>
+                        <div id="catalogCountDisplay" class="bg-[#059669]/10 text-[#059669] text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider font-mono">
+                            Showing 3 Active Assay Channels
+                        </div>
+                    </summary>
+
+                    <div class="divide-y border-t border-slate-100 divide-slate-100" id="masterAssayList">
+                        
+                        <details class="assay-card group/item outline-none" data-category="metabolic">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Comprehensive Metabolic Panel (CMP)</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 80053</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24–48 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24–48 Hours Expected Workflow</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Separator Tube (SST) • 1 Tube Required</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Bidirectional HL7 Link Available</p></div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="assay-card group/item outline-none" data-category="metabolic">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">Hemoglobin A1c (HbA1c) w/ Glucose</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 83036</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Standard Route</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">EDTA Lavender Top Tube • Whole Blood</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Discrete Variable Delivery Loops</p></div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+
+                        <details class="assay-card group/item outline-none" data-category="inflammation">
+                            <summary class="flex items-center justify-between p-4 sm:p-5 hover:bg-slate-50/50 cursor-pointer transition outline-none select-none">
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                                    <span class="text-xs font-bold text-[#0A192F] tracking-tight">High-Sensitivity C-Reactive Protein (hs-CRP)</span>
+                                    <span class="text-[10px] font-mono bg-slate-100 font-bold text-slate-500 px-2 py-0.5 rounded self-start sm:self-auto">CPT: 86141</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-[11px] font-bold text-[#059669] hidden sm:block">24 HR TAT</span>
+                                    <span class="text-xs text-slate-400 transition-transform group-open/item:rotate-90">➔</span>
+                                </div>
+                            </summary>
+                            <div class="bg-slate-50/70 p-4 sm:p-5 border-t border-b border-slate-100/80 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs font-medium text-slate-600">
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Target Turnaround</span><p class="text-[#0A192F] font-bold">24 Hours Local Pipeline</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">Specimen Parameters</span><p class="text-[#0A192F] font-bold">Serum Tube or SST • Centrifuge immediate</p></div>
+                                <div class="space-y-1"><span class="block text-[10px] font-black text-slate-400 uppercase">EHR Sync Status</span><p class="text-[#059669] font-bold">Integrated Core Data Streams</p></div>
+                                <div class="pt-2 sm:col-span-2 md:col-span-3">
+                                    <button class="add-req-btn w-full sm:w-auto bg-[#059669] text-white text-[11px] font-black uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-emerald-700 transition shadow-sm outline-none">
+                                        Add to requisition +
+                                    </button>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+            </div>
+
+            <div class="bg-slate-900 text-white rounded-2xl p-4 border border-slate-800 shadow-sm space-y-3">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs" aria-hidden="true">🔒</span>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest text-emerald-400">Application Security Notice</h5>
+                </div>
+                <p class="text-[11px] text-slate-400 font-medium leading-relaxed">
+                    This portal operates under a strict Zero-Trust Data Architecture. Unauthorized automated scraping, script-based data indexing, or deep-linking into unauthenticated session states is programmatically blocked.
+                </p>
+                <div class="pt-1 text-[9px] font-mono text-slate-500 border-t border-slate-800 uppercase tracking-wider">
+                    Security Policy Framework: HIPAA / NIST Compliant
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] z-[500] lg:hidden block">
+        <div class="grid grid-cols-4 h-16 text-center text-[9px] font-bold uppercase tracking-wider text-slate-400">
+            <button onclick="executePortalLogoffWipe();" class="flex flex-col items-center justify-center space-y-1 text-slate-400">
+                <span class="text-base">🏠</span><span class="scale-90 transform">Home</span>
+            </button>
+            <button id="mobileCatalogFilterAll" class="flex flex-col items-center justify-center space-y-1 text-[#059669] focus:outline-none">
+                <span class="text-base">🧪</span><span class="scale-90 transform">Catalog</span>
+            </button>
+            <button class="flex flex-col items-center justify-center space-y-1 relative focus:outline-none">
+                <span class="text-base">📄</span><span class="scale-90 transform">Builder</span>
+                <span id="badgeMobileRequisitionCount" class="absolute top-2 right-4 w-3.5 h-3.5 rounded-full bg-[#059669] text-white font-mono font-black text-[7px] flex items-center justify-center hidden">0</span>
+            </button>
+            <button id="exitMobilePortalBtn" class="flex flex-col items-center justify-center space-y-1 text-slate-400 focus:outline-none">
+                <span class="text-base">🚪</span><span class="scale-90 transform">Exit Portal</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let selectedAssaysInQueue = 0;
+            
+            const desktopCountBadge = document.getElementById('badgeRequisitionCount');
+            const mobileCountBadge = document.getElementById('badgeMobileRequisitionCount');
+            const searchInput = document.getElementById('catalogSearchInput');
+            const displayBadge = document.getElementById('catalogCountDisplay');
+            const exitMobilePortalBtn = document.getElementById('exitMobilePortalBtn');
+
+            document.querySelectorAll('#categoryChipContainer button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const category = e.currentTarget.getAttribute('data-cat');
+                    filterCategory(category, e.currentTarget);
+                });
+            });
+
+            if(searchInput) {
+                searchInput.addEventListener('keyup', searchCatalog);
+            }
+
+            document.querySelectorAll('.add-req-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => addAssayToActiveRequisition(e));
+            });
+
+            if(exitMobilePortalBtn) {
+                exitMobilePortalBtn.addEventListener('click', executePortalLogoffWipe);
+            }
+
+            const mobileCatBtn = document.getElementById('mobileCatalogFilterAll');
+            if (mobileCatBtn) {
+                mobileCatBtn.addEventListener('click', () => {
+                    const desktopAllBtn = document.querySelector('[data-cat="all"]');
+                    if(desktopAllBtn) filterCategory('all', desktopAllBtn);
                 });
             }
-        });
 
-        // C. SCOPED NAV HEADER ACTIVE HIGHLIGHT TRACKING
-        document.querySelectorAll('#desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
-            if (link.href === window.location.href || (window.location.pathname.includes('test-directory') && link.href.includes('test-directory'))) {
-                link.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'bg-emerald-50/10');
+            function filterCategory(category, activeBtn) {
+                const cards = document.querySelectorAll('.assay-card');
+                
+                document.querySelectorAll('.chip-btn').forEach(btn => {
+                    btn.classList.remove('bg-slate-900', 'text-white');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+                
+                activeBtn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                activeBtn.classList.add('bg-slate-900', 'text-white');
+
+                let matchingCount = 0;
+                cards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.classList.remove('filtered-out');
+                        matchingCount++;
+                    } else {
+                        card.classList.add('filtered-out');
+                    }
+                });
+                if(displayBadge) displayBadge.textContent = `Showing ${matchingCount} Active Assay Channels`;
+            }
+
+            function searchCatalog() {
+                const searchVal = searchInput.value.toLowerCase().trim();
+                let matchCounter = 0;
+                
+                document.querySelectorAll('.assay-card').forEach(card => {
+                    const contentMatch = card.innerText.toLowerCase().includes(searchVal);
+                    card.classList.toggle('filtered-out', !contentMatch);
+                    if (contentMatch) matchCounter++;
+                });
+                if(displayBadge) displayBadge.textContent = `Showing ${matchCounter} Filtered Assay Channels`;
+            }
+
+            function addAssayToActiveRequisition(e) {
+                selectedAssaysInQueue++;
+                
+                if (desktopCountBadge) {
+                    desktopCountBadge.innerText = selectedAssaysInQueue;
+                    desktopCountBadge.classList.remove('hidden');
+                }
+
+                if (mobileCountBadge) {
+                    mobileCountBadge.innerText = selectedAssaysInQueue;
+                    mobileCountBadge.classList.remove('hidden');
+                }
+
+                const clickedBtn = e.target;
+                const originalButtonText = clickedBtn.innerText;
+                clickedBtn.innerText = 'Assay Added ✓';
+                clickedBtn.classList.remove('bg-[#059669]');
+                clickedBtn.classList.add('bg-slate-900');
+                
+                setTimeout(() => {
+                    clickedBtn.innerText = originalButtonText;
+                    clickedBtn.classList.remove('bg-slate-900');
+                    clickedBtn.classList.add('bg-[#059669]');
+                }, 1000);
             }
         });
 
-        // D. WORKSPACE TELEMETRY ANCHOR WRITER
-        localStorage.setItem('apdx_target_retained_page', window.location.pathname);
-        
-        // E. HISTORY STREAM STORAGE AGGREGATION
-        let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
-        const totalPagesMap = {
-            'test-directory.html': 'Test Directory',
-            'provider-hub-v2.html': 'Provider Hub',
-            'resources-v2.html': 'Laboratory Resources',
-            'connectivity.html': 'Connectivity Stream'
-        };
-        const pathFile = window.location.pathname.split('/').pop() || 'index.html';
-        
-        if (pathFile !== 'index.html' && totalPagesMap[pathFile]) {
-            historyArray = historyArray.filter(i => i.file !== pathFile);
-            historyArray.unshift({ file: pathFile, name: totalPagesMap[pathFile] });
-            if (historyArray.length > 4) historyArray.pop();
-            localStorage.setItem('apdx_history_stream', JSON.stringify(historyArray));
+        function executePortalLogoffWipe() {
+            sessionStorage.clear();
+            window.location.replace('index.html');
         }
-
-        const historyBlock = document.getElementById('historicalTelemetryBlock');
-        const historyContainer = document.getElementById('historicalTelemetryContainer');
-        if (historyArray.length > 0 && historyContainer) {
-            historyContainer.innerHTML = '';
-            historyArray.forEach(item => {
-                const btn = document.createElement('a');
-                btn.href = item.file;
-                btn.className = "bg-white hover:bg-[#059669] hover:text-white border border-slate-200 text-slate-700 px-2 py-0.5 rounded transition text-[9px] font-bold shadow-sm";
-                btn.innerText = item.name;
-                historyContainer.appendChild(btn);
-            });
-            historyBlock.classList.remove('hidden');
-        }
-
-        // F. ROUTE SPECIFIC SESSION STORAGE SCROLL RESTORATION CONTROLS
-        window.addEventListener('beforeunload', () => {
-            sessionStorage.setItem(`scroll-${window.location.pathname}`, window.scrollY);
-        });
-        const isBackNavigation = window.performance && window.performance.getEntriesByType("navigation")[0]?.type === "back_forward";
-        if (isBackNavigation) {
-            const preservedScrollY = sessionStorage.getItem(`scroll-${window.location.pathname}`);
-            if (preservedScrollY) { window.scrollTo({ top: parseInt(preservedScrollY, 10), behavior: 'smooth' }); }
-        }
-
-        // G. FRACTIONAL TOKEN MULTI-TERM SEARCH ALGORITHM (UNPACKS CHILD ELEMENT DIRECTORIES)
-        const searchInput = document.getElementById('platformGlobalSearch');  
-        const searchEmptyFrame = document.getElementById('globalSearchEmptyFrame');  
-        const systemSearchItems = [...document.querySelectorAll('[data-search]')].map(item => {  
-            return { element: item, searchCriteria: item.getAttribute('data-search').toLowerCase() };  
-        });  
-
-        searchInput.addEventListener('input', () => {  
-            const inputQuery = searchInput.value.toLowerCase().trim();  
-            const queryTerms = inputQuery.split(/\s+/).filter(term => term.length > 0);
-            let criteriaMatches = 0;  
-
-            systemSearchItems.forEach(item => {  
-                const isMatch = queryTerms.every(term => item.searchCriteria.includes(term));
-                if (isMatch) {  
-                    item.element.classList.remove('hidden');  
-                    criteriaMatches++;  
-                    // Automatically split child nodes open upon explicit text focus matching
-                    if(inputQuery.length > 0 && item.element.tagName === 'DETAILS') item.element.open = true;  
-                } else {  
-                    item.element.classList.add('hidden');  
-                }  
-            });  
-
-            if (criteriaMatches > 0) { searchEmptyFrame.classList.add('hidden'); } 
-            else { searchEmptyFrame.classList.remove('hidden'); }  
-        });
-
-        // H. GLOBAL KEYBOARD ACCESSIBILITY LISTENERS
-        window.addEventListener('keydown', (e) => {
-            const insideInput = document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA';
-            if (e.key === '/' && !insideInput) { e.preventDefault(); focusGlobalSearchField(); }
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); focusGlobalSearchField(); }
-            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'index.html'; }
-            if (e.key === 'Escape') { if (!document.getElementById('mobileDrawer').classList.contains('hidden')) toggleMobileDrawer(false); }
-        });
-
-        initResponsiveDockLayout();
-        window.addEventListener('resize', initResponsiveDockLayout);
-    });  
-
-    // I. VIEW PORT NAVIGATION DECK RESPONSIBILITY ENGINE
-    function initResponsiveDockLayout() {
-        const targetGroup = document.getElementById('dockExpandedGroup');
-        const fallbackGroup = document.getElementById('dockMobileFallbackGroup');
-        const btn = document.getElementById('dockToggleBtn');
-        if (window.innerWidth >= 768) {
-            targetGroup.classList.remove('hidden');
-            targetGroup.classList.add('flex');
-            fallbackGroup.classList.add('hidden');
-        } else {
-            targetGroup.classList.remove('flex');
-            targetGroup.classList.add('hidden');
-            fallbackGroup.classList.remove('hidden');
-            btn.innerText = "•••";
-        }
-    }
-
-    // J. DRAWER MECHANICAL CORES & OVERFLOW INTERFACES
-    function toggleMobileDrawer(open) {
-        const drawer = document.getElementById('mobileDrawer');
-        const trigger = document.getElementById('mobileDrawerTrigger');
-        const backdrop = drawer.querySelector('.drawer-backdrop');
-        const content = drawer.querySelector('.drawer-content');
-        
-        clearTimeout(drawerTimeout);
-        if (trigger) trigger.setAttribute('aria-expanded', open);
-
-        if (open) {
-            document.body.style.overflow = 'hidden';
-            drawer.classList.remove('hidden');
-            setTimeout(() => {
-                backdrop.classList.remove('opacity-0');
-                backdrop.classList.add('opacity-100');
-                content.classList.remove('-translate-x-full');
-                content.querySelector('a')?.focus();
-            }, 10);
-        } else {
-            document.body.style.overflow = '';
-            backdrop.classList.remove('opacity-100');
-            backdrop.classList.add('opacity-0');
-            content.classList.add('-translate-x-full');
-            drawerTimeout = setTimeout(() => { drawer.classList.add('hidden'); trigger?.focus(); }, 200);
-        }
-    }
-
-    function toggleMobileDockDrawer() {
-        const targetGroup = document.getElementById('dockExpandedGroup');
-        const btn = document.getElementById('dockToggleBtn');
-        if (targetGroup.classList.contains('hidden')) {
-            targetGroup.classList.remove('hidden');
-            targetGroup.classList.add('flex');
-            btn.innerText = "✕";
-        } else {
-            targetGroup.classList.remove('flex');
-            targetGroup.classList.add('hidden');
-            btn.innerText = "•••";
-        }
-    }
-
-    // K. DOCK INTERFACE RELATIONAL INJECTORS
-    function injectSearchTerm(term) {
-        const searchBox = document.getElementById('platformGlobalSearch');
-        searchBox.value = term;
-        searchBox.dispatchEvent(new Event('input'));
-        
-        setTimeout(() => {
-            const shields = document.querySelectorAll('#ecosystemGrid > details:not(.hidden)');
-            shields.forEach(shield => {
-                shield.open = true;
-                shield.querySelectorAll('details').forEach(subAcc => subAcc.open = true);
-            });
-        }, 50);
-        focusGlobalSearchField();
-    }
-
-    function clearGlobalWorkspaceSearch() {
-        const searchBox = document.getElementById('platformGlobalSearch');
-        searchBox.value = '';
-        searchBox.dispatchEvent(new Event('input'));
-        document.querySelectorAll('#ecosystemGrid > details').forEach(shield => {
-            shield.open = true; // Retain master groupings open
-            shield.querySelectorAll('details').forEach(subAcc => subAcc.open = false);
-        });
-        searchBox.focus();
-    }
-
-    function focusGlobalSearchField() {
-        const searchBox = document.getElementById('platformGlobalSearch');
-        searchBox.focus();
-        searchBox.select();
-        searchBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function copyToClipboard(text, btnElement) {
-        navigator.clipboard.writeText(text).then(() => {
-            const originalText = btnElement.innerText;
-            btnElement.innerText = "✓ Copied";
-            btnElement.classList.add('text-emerald-600');
-            setTimeout(() => {
-                btnElement.innerText = originalText;
-                btnElement.classList.remove('text-emerald-600');
-            }, 1800);
-        });
-    }
-
-    function scrollToTopAnchor() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-</script>
-</body>  
+    </script>
+</body>
 </html>
