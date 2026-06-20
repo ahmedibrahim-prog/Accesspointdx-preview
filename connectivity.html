@@ -1,7 +1,6 @@
 <!DOCTYPE html>  
 <html lang="en">  
 <head>  
-    <!-- GLOBAL PORTAL PROTECTION SECURITY GUARD SCRIPT -->
     <script>
         (function () {
             const verifiedActiveSessionToken = sessionStorage.getItem('apdx_active_session_token');
@@ -10,7 +9,7 @@
             // Security Shield: If unauthenticated, bounce back to marketing home
             if (!verifiedActiveSessionToken || internalWorkflowGearKey !== 'gear_2') {
                 sessionStorage.clear();
-                window.location.replace('index.html');
+                window.location.replace('index1st.html');
             }
         })();
     </script>
@@ -45,7 +44,6 @@
     Skip to main content
 </a>
 
-<!-- v2 REGULATORY STATUS STRIP -->
 <div class="bg-[#0A192F] text-white text-[11px] font-medium border-b border-slate-800" role="complementary" aria-label="Regulatory Profile">  
     <div class="max-w-7xl mx-auto h-11 px-6 flex items-center justify-between">  
         <div class="flex items-center space-x-6">  
@@ -62,10 +60,9 @@
     </div>  
 </div>  
 
-<!-- v2 HEADER NAVBAR CONTAINER -->
 <header class="border-b border-slate-100 bg-white/95 backdrop-blur sticky top-0 z-50 shadow-sm" role="banner">  
     <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">  
-        <a href="test-directory.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
+        <a href="index1st.html" class="flex items-center space-x-3 group rounded-xl p-1 focus:ring-2 focus:ring-[#059669]/40 outline-none" aria-label="AccessPoint Dx Platform Home">  
             <svg class="w-10 h-10 shrink-0" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">  
                 <polyline points="45,15 15,15 15,85 45,85" fill="none" stroke="#0A192F" stroke-width="6" stroke-linecap="square"/>  
                 <path d="M45 85 L75 85 Q 85 85 85 75 L85 70 Q 85 65 75 65 L65 65" fill="#059669"/>  
@@ -78,11 +75,10 @@
             </div>  
         </a>  
 
-        <!-- UNIFIED MOUNTED SYSTEM NAVIGATION PATHWAY LINKS -->
         <nav id="desktopMainNavigation" class="hidden lg:flex items-center space-x-6 font-bold text-xs tracking-wide text-slate-600" role="navigation" aria-label="Main Application Navigation">  
             <a href="test-directory.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Test Directory</a>  
             <a href="provider-hub-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Provider Hub</a>  
-            <a href="resourcesv2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Laboratory Resources</a>  
+            <a href="resources-v2.html" class="py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition hover:text-[#059669]">Laboratory Resources</a>  
             <a href="connectivity.html" class="text-[#059669] border-b-2 border-[#059669] pb-1 py-1.5 focus:ring-2 focus:ring-[#059669]/20 outline-none transition">Connectivity</a>  
         </nav>
 
@@ -97,7 +93,6 @@
     </div>  
 </header>  
 
-<!-- MOBILE DRAWER PORTAL -->
 <div id="mobileDrawer" class="hidden fixed inset-0 z-[300]" role="dialog" aria-modal="true">
     <div onclick="toggleMobileDrawer(false)" class="drawer-backdrop absolute inset-0 bg-slate-900/60 opacity-0 pointer-events-auto backdrop-blur-sm"></div>
     <nav class="drawer-content absolute top-0 bottom-0 left-0 w-72 bg-white shadow-2xl p-6 flex flex-col justify-between transform -translate-x-full z-10 overflow-y-auto">
@@ -107,9 +102,10 @@
                 <button onclick="toggleMobileDrawer(false)" class="text-slate-400 hover:text-[#0A192F] font-black text-xs select-none">✕ CLOSE</button>
             </div>
             <div id="mobileDrawerNavLinks" class="flex flex-col space-y-3 font-bold text-xs uppercase tracking-wider text-slate-600">
+                <a href="index1st.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Home</a>
                 <a href="test-directory.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Test Directory</a>
                 <a href="provider-hub-v2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Provider Hub</a>
-                <a href="resourcesv2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Laboratory Resources</a>
+                <a href="resources-v2.html" class="p-2.5 rounded-xl transition hover:bg-slate-50">Laboratory Resources</a>
                 <a href="connectivity.html" class="p-2.5 bg-emerald-50/40 text-[#059669] rounded-xl transition">Connectivity</a>
                 <button onclick="executePortalLogoffWipe();" class="w-full text-left p-2.5 text-red-600 rounded-xl transition hover:bg-red-50">Exit Portal</button>
             </div>
@@ -117,12 +113,11 @@
     </nav>
 </div>
 
-<!-- MAIN COHESIVE v2 CONNECTIVITY ENGINE CONTENT INTERFACE -->
 <main id="main-content" class="page-enter focus:outline-none flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-16" tabindex="-1">
     
     <nav class="mb-6 flex flex-wrap items-center justify-between text-[10px] font-black uppercase tracking-wider text-slate-400 gap-2" aria-label="Breadcrumb Trail">
         <div class="flex items-center space-x-2">
-            <a href="test-directory.html" class="text-[#059669]">Home</a>
+            <a href="index1st.html" class="text-[#059669]">Home</a>
             <span>/</span>
             <span class="text-[#0A192F]">Connectivity & Integrations</span>
         </div>
@@ -141,7 +136,6 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- CORE LIVE TERMINAL & ENDPOINT STATUS -->
         <div class="lg:col-span-8 space-y-6">
             <section class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-5">
                 <h2 class="text-xs font-black uppercase text-[#0A192F] tracking-wide border-b border-slate-100 pb-2 flex items-center space-x-2">
@@ -188,7 +182,6 @@
             </section>
         </div>
 
-        <!-- RIGHT SIDEBAR: SUPPORT & LOGS -->
         <div class="lg:col-span-4 space-y-6">
             <section class="bg-white rounded-3xl p-5 border border-slate-200/60 shadow-sm space-y-4">
                 <div class="border-b border-slate-100 pb-2">
@@ -213,21 +206,19 @@
     </div>
 </main>
 
-<!-- MOBILE DOCK BAR -->
 <div class="fixed bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200/80 p-1.5 rounded-2xl shadow-xl flex items-center z-[250] select-none text-xs scale-90 md:scale-100" role="toolbar" aria-label="Application Dock">
     <div id="dockExpandedGroup" class="hidden items-center space-x-4 px-2">
-        <a href="test-directory.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
+        <a href="index1st.html" class="text-[#059669] text-sm hover:scale-110 transition focus:outline-none" title="Home Space [Alt+H]">🏠</a>
         <button onclick="history.back()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Backward">←</button>
         <button onclick="history.forward()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Navigate Forward">→</button>
         <button onclick="scrollToTopAnchor()" class="text-slate-500 font-black hover:text-[#059669] hover:scale-110 transition focus:outline-none" title="Scroll To Ceiling">↑</button>
     </div>
     <div id="dockMobileFallbackGroup" class="flex items-center space-x-3 px-1.5 py-0.5">
-        <a href="test-directory.html" class="text-[#059669] text-xs">🏠</a>
+        <a href="index1st.html" class="text-[#059669] text-xs">🏠</a>
         <button onclick="toggleMobileDockDrawer()" id="dockToggleBtn" class="text-slate-400 font-bold focus:outline-none tracking-tighter text-[11px] bg-slate-100 px-2 py-0.5 rounded-md">•••</button>
     </div>
 </div>
 
-<!-- V2 FOOTER -->
 <footer class="bg-[#0A192F] text-white pt-12 pb-20 text-[11px] border-t border-slate-800" role="contentinfo">  
     <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-bold uppercase tracking-wider text-slate-500">  
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-center sm:text-left">
@@ -267,18 +258,25 @@
             }
         });
 
-        // C. WORKSPACE TELEMETRY LOGS (Cross-Page Tracking)
+        // C. SCOPED NAV HEADER ACTIVE DESIGNATION HIGHLIGHTS
+        document.querySelectorAll('#desktopMainNavigation a, #mobileDrawerNavLinks a').forEach(link => {
+            if (link.href === window.location.href || (window.location.pathname.includes('connectivity') && link.href.includes('connectivity'))) {
+                link.classList.add('text-[#059669]', 'border-b-2', 'border-[#059669]', 'bg-emerald-50/10');
+            }
+        });
+
+        // D. WORKSPACE TELEMETRY LOGS (Cross-Page Tracking)
         localStorage.setItem('apdx_target_retained_page', window.location.pathname);
         let historyArray = JSON.parse(localStorage.getItem('apdx_history_stream') || '[]');
         const totalPagesMap = {
             'test-directory.html': 'Test Directory',
             'provider-hub-v2.html': 'Provider Hub',
-            'resourcesv2.html': 'Laboratory Resources',
+            'resources-v2.html': 'Laboratory Resources',
             'connectivity.html': 'Connectivity Stream'
         };
         const pathFile = window.location.pathname.split('/').pop() || 'connectivity.html';
         
-        if (pathFile !== 'index.html' && totalPagesMap[pathFile]) {
+        if (pathFile !== 'index1st.html' && totalPagesMap[pathFile]) {
             historyArray = historyArray.filter(i => i.file !== pathFile);
             historyArray.unshift({ file: pathFile, name: totalPagesMap[pathFile] });
             if (historyArray.length > 4) historyArray.pop();
@@ -299,7 +297,7 @@
             historyBlock.classList.remove('hidden');
         }
 
-        // D. SCROLL MEMORY INDICES
+        // E. SCROLL MEMORY INDICES
         window.addEventListener('beforeunload', () => {
             sessionStorage.setItem(`scroll-${window.location.pathname}`, window.scrollY);
         });
@@ -309,9 +307,9 @@
             if (preservedScrollY) { window.scrollTo({ top: parseInt(preservedScrollY, 10), behavior: 'smooth' }); }
         }
 
-        // E. KEYBOARD ACCESSIBILITY LISTENERS
+        // F. KEYBOARD ACCESSIBILITY LISTENERS
         window.addEventListener('keydown', (e) => {
-            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'test-directory.html'; }
+            if (e.altKey && e.key.toLowerCase() === 'h') { e.preventDefault(); window.location.href = 'index1st.html'; }
             if (e.key === 'Escape') { if (!document.getElementById('mobileDrawer').classList.contains('hidden')) toggleMobileDrawer(false); }
         });
 
@@ -319,7 +317,7 @@
         window.addEventListener('resize', initResponsiveDockLayout);
     });
 
-    // F. RESPONSIVE NAVIGATION DOCK STATE ENGINE
+    // G. RESPONSIVE NAVIGATION DOCK STATE ENGINE
     function initResponsiveDockLayout() {
         const targetGroup = document.getElementById('dockExpandedGroup');
         const fallbackGroup = document.getElementById('dockMobileFallbackGroup');
@@ -336,7 +334,7 @@
         }
     }
 
-    // G. ACCESSIBLE DRAWER LOGIC CONTROLLER
+    // H. ACCESSIBLE DRAWER LOGIC CONTROLLER
     function toggleMobileDrawer(open) {
         const drawer = document.getElementById('mobileDrawer');
         const trigger = document.getElementById('mobileDrawerTrigger');
@@ -379,7 +377,10 @@
     }
 
     function scrollToTopAnchor() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function executePortalLogoffWipe() { sessionStorage.clear(); window.location.replace('index.html'); }
+    function executePortalLogoffWipe() {
+        sessionStorage.clear();
+        window.location.replace('index1st.html');
+    }
 </script>
 
 </body>  
