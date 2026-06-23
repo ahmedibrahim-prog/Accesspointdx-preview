@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis Point Premium™ | Private Diagnostic Platform</title>
+    <title>Wellness Front™ | Private Dashboard & Allocation Engine</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        fbBlue: '#1877F2',
+                        msgBlue: '#0084FF',
+                        msgLightBg: '#F0F2F5',
+                        msgCardBg: '#FFFFFF',
+                        msgHoverBlue: '#E7F3FF'
+                    },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     }
@@ -17,540 +24,702 @@
             }
         }
     </script>
+    <style>
+        .smooth-transition { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .zone-rect {
+            cursor: pointer;
+            fill: rgba(240, 242, 245, 0.4);
+            stroke: #D1D5DB;
+            stroke-width: 1.5;
+            transition: all 0.2s ease;
+        }
+        .zone-rect:hover {
+            fill: rgba(24, 119, 242, 0.05);
+            stroke: #1877F2;
+        }
+        .zone-rect-active {
+            fill: rgba(24, 119, 242, 0.1) !important;
+            stroke: #1877F2 !important;
+            stroke-width: 2.5;
+        }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-[#059669] selection:text-white">
+<body class="bg-[#F4F6FA] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between pb-8">
 
     <!-- ========================================== -->
-    <!-- BRAND HEADER                               -->
+    <!-- MAIN ACCOUNT DOOR ONBOARDING GATE          -->
     <!-- ========================================== -->
-    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 px-6 py-4 shadow-sm">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div>
-                <a href="index.html" class="font-black tracking-wider text-sm uppercase text-slate-900 hover:text-[#059669] transition">
-                    AccessPoint<span class="text-[#059669]">Dx</span>
-                </a>
+    <div id="auth-gate" class="fixed inset-0 bg-slate-900/50 backdrop-blur-md z-[100] flex items-center justify-center p-4 smooth-transition">
+        <div class="max-w-md w-full bg-white border border-slate-200 p-6 sm:p-8 rounded-2xl shadow-2xl text-center">
+            <div class="w-12 h-12 bg-fbBlue/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-fbBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             </div>
+            <h1 class="text-base font-black tracking-tight text-slate-900 mb-1">Platform Gateway Ingress</h1>
+            <p class="text-xs text-slate-500 mb-6 font-medium">Secure verification endpoint. Phone authorization mandatory.</p>
             
-            <div class="flex items-center space-x-4">
-                <span class="text-[10px] font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full select-none shadow-sm">
-                    Axis Point Premium<sup>™</sup> Gateway
+            <div class="space-y-4 text-left">
+                <div id="phone-stage">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Verified Phone Destination</label>
+                    <input type="tel" id="auth-phone" placeholder="+1 (555) 000-0000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-fbBlue focus:bg-white text-slate-900 transition shadow-inner">
+                    <button onclick="window.submitPhoneVerification()" class="w-full bg-fbBlue hover:bg-blue-600 text-white font-black text-xs uppercase tracking-wider py-3.5 rounded-xl transition shadow-md mt-4 cursor-pointer">Request Passing Token ➔</button>
+                </div>
+
+                <div id="token-stage" class="hidden">
+                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Enter 6-Digit SMS Token</label>
+                    <input type="text" id="auth-token" placeholder="000000" maxlength="6" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-center text-lg tracking-[0.5em] focus:outline-none focus:border-fbBlue focus:bg-white font-mono text-slate-900 transition shadow-inner">
+                    <button onclick="window.submitTokenVerification()" class="w-full bg-fbBlue hover:bg-blue-600 text-white font-black text-xs uppercase tracking-wider py-3.5 rounded-xl transition shadow-md cursor-pointer">Verify Instance Access</button>
+                </div>
+
+                <div id="profile-stage" class="hidden space-y-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Full Legal Name (ID Verification Anchor)</label>
+                        <input type="text" id="profile-fullname" placeholder="John Doe" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-fbBlue focus:bg-white text-slate-900 transition shadow-inner">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Email Address</label>
+                        <input type="email" id="profile-email" placeholder="john.doe@example.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-fbBlue focus:bg-white text-slate-900 transition shadow-inner">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Year of Biological Birth (Year Only)</label>
+                        <input type="number" id="profile-year" placeholder="1995" min="1900" max="2026" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-fbBlue focus:bg-white text-slate-900 font-mono transition shadow-inner">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Biological Gender Reference Frame</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" onclick="window.setGenderFramework('male')" id="gender-male" class="bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-black uppercase py-3 rounded-xl transition cursor-pointer">Male Ranges</button>
+                            <button type="button" onclick="window.setGenderFramework('female')" id="gender-female" class="bg-slate-50 border border-slate-200 text-slate-600 text-[10px] font-black uppercase py-3 rounded-xl transition cursor-pointer">Female Ranges</button>
+                        </div>
+                    </div>
+                    <div class="border-t border-slate-100 pt-3">
+                        <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Target Profile Intent</label>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" onclick="window.setIntent('Self')" id="intent-self" class="bg-blue-50 border border-fbBlue text-fbBlue text-[10px] font-black uppercase py-2.5 rounded-xl transition cursor-pointer">For Myself</button>
+                            <button type="button" onclick="window.setIntent('Dependent')" id="intent-dep" class="bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black uppercase py-2.5 rounded-xl transition cursor-pointer">For Dependent</button>
+                        </div>
+                    </div>
+                    <button onclick="window.finalizeProfileGate()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black text-xs uppercase tracking-widest py-3.5 rounded-xl transition mt-4 shadow-lg cursor-pointer">Register Core Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MASTER BRAND HEADER                        -->
+    <!-- ========================================== -->
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 px-4 py-2.5 shadow-sm flex-shrink-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-fbBlue shadow-[0_0_8px_rgba(24,119,242,0.6)] animate-pulse"></span>
+                <span class="font-black tracking-wider text-xs uppercase text-slate-900">
+                    Wellness Front<span class="text-fbBlue">™</span>
                 </span>
-                <a href="index.html" class="text-[10px] font-black uppercase tracking-wider text-slate-400 hover:text-slate-900 transition flex items-center space-x-1 border border-slate-200 bg-white px-3 py-1 rounded-lg">
-                    <span>Exit Hub</span>
-                </a>
+            </div>
+            <div class="text-[10px] font-mono font-black text-slate-400 uppercase select-none tracking-wider">
+                Dashboard Node Secure
             </div>
         </div>
     </header>
 
     <!-- ========================================== -->
-    <!-- LOW-PROFILE STATUS BAR                     -->
+    <!-- UNIFIED RESPONSIVE COCKPIT LAYOUT CANVAS   -->
     <!-- ========================================== -->
-    <section class="bg-white border-b border-slate-100 py-3 px-6 relative z-10">
-        <div class="max-w-xl mx-auto flex items-center justify-center space-x-8 text-center text-[10px] font-black uppercase tracking-widest">
-            <span id="nav-step-1" class="text-[#059669] transition-colors duration-200">01 / Configure</span>
-            <span class="text-slate-300">•</span>
-            <span id="nav-step-2" class="text-slate-400 transition-colors duration-200">02 / Identity</span>
-            <span class="text-slate-300">•</span>
-            <span id="nav-step-3" class="text-slate-400 transition-colors duration-200">03 / Verify</span>
-            <span class="text-slate-300">•</span>
-            <span id="nav-step-4" class="text-slate-400 transition-colors duration-200">04 / Secure Order</span>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- CORE CONFIGURATOR CONTAINER                -->
-    <!-- ========================================== -->
-    <section class="py-12 bg-slate-50 min-h-[calc(100vh-120px)] relative z-10">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <main class="max-w-md lg:max-w-7xl mx-auto w-full px-4 pt-4 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-5 items-start relative">
+        
+        <!-- LEFT CONTROL WORKSPACE PANEL (7/12 Width Ratio) -->
+        <div class="lg:col-span-7 space-y-4 relative min-h-[580px]">
             
-            <!-- LEFT AREA: WIZARD FLOW CARDS -->
-            <div class="lg:col-span-7">
+            <!-- MASTER HOMEPAGE COCKPIT VIEWPORT LAYER -->
+            <div id="unified-homepage-cockpit-layer" class="space-y-4 block animate-fadeIn">
                 
-                <!-- STAGE 1: SELECTION AND ROUTING -->
-                <div id="stage-1" class="border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-                    <div class="space-y-1">
-                        <span class="text-[9px] font-black tracking-[0.2em] text-[#059669] uppercase block">Axis Point Premium™ Matrix</span>
-                        <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Configure Assay Layer & Deployment</h2>
-                    </div>
-                    <hr class="border-slate-100">
-
-                    <!-- Diagnostic Assets -->
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Select Diagnostic Target</label>
-                        
-                        <div onclick="document.getElementById('panel-core').click();" class="block border border-slate-200 bg-white p-4 rounded-xl cursor-pointer hover:border-emerald-500/40 transition relative group select-none shadow-sm">
-                            <input type="radio" id="panel-core" name="panel_select" value="core" checked onclick="event.stopPropagation(); calculateTotals();" class="absolute top-5 right-5 accent-[#059669] w-4 h-4">
-                            <div class="space-y-1 pr-8">
-                                <h3 class="text-xs font-black uppercase text-slate-900">The Core Health Baseline™</h3>
-                                <p class="text-[11px] text-slate-600 leading-normal font-medium">CMP, CBC with Differential, Lipid Baseline, HbA1c, TSH, Vitamin D.</p>
-                                <span class="text-[10px] font-black text-[#059669] block pt-1">Private Rate: $165.00</span>
-                            </div>
+                <!-- BALANCED PROFILE HEADER CARD VIEW -->
+                <div class="bg-white border border-slate-200 rounded-3xl shadow-sm p-4 flex items-center justify-between">
+                    
+                    <!-- Left Flex Side: Softer Premium Blue Identity Icon Block -->
+                    <div class="flex items-center space-x-4 overflow-hidden">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#5396F1] via-[#2A7CE6] to-[#0A54AF] rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(42,124,230,0.25)] select-none shrink-0 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10"></div>
+                            <svg class="w-5 h-5 text-white drop-shadow-[0_1.5px_3px_rgba(0,0,0,0.15)]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.67-5-3.33-8-3z"/></svg>
                         </div>
-                        
-                        <div onclick="document.getElementById('panel-longevity').click();" class="block border border-slate-200 bg-white p-4 rounded-xl cursor-pointer hover:border-emerald-500/40 transition relative group select-none shadow-sm">
-                            <input type="radio" id="panel-longevity" name="panel_select" value="longevity" onclick="event.stopPropagation(); calculateTotals();" class="absolute top-5 right-5 accent-[#059669] w-4 h-4">
-                            <div class="space-y-1 pr-8">
-                                <h3 class="text-xs font-black uppercase text-slate-900">Longevity & Performance Protocol™</h3>
-                                <p class="text-[11px] text-slate-600 leading-normal font-medium">Core Baseline + Advanced Lipids (ApoB), hs-CRP Inflammation, Total/Free Testosterone, Adrenal Cortisol Matrix.</p>
-                                <span class="text-[10px] font-black text-[#059669] block pt-1">Private Rate: $349.00</span>
+                        <div class="space-y-0.5 overflow-hidden">
+                            <h2 id="acc-display-name" class="text-xs font-black text-slate-900 uppercase tracking-wide truncate">--</h2>
+                            <div class="flex flex-col text-[9.5px] text-slate-500 font-mono font-medium leading-tight">
+                                <span class="truncate">ID: <span id="acc-display-id" class="text-slate-800 font-bold">--</span></span>
+                                <span id="acc-display-email" class="text-slate-400 truncate">--</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Collection Channels -->
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black uppercase tracking-wider text-slate-400 block">Collection Preference</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <button type="button" id="btn-walkin" onclick="setCollection('walkin')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
-                                <span class="text-xs font-black uppercase text-slate-900 block">Clinical Walk-In</span>
-                                <span class="text-[9px] font-extrabold text-slate-400 uppercase">$0.00 Fee</span>
-                            </button>
-                            <button type="button" id="btn-popup" onclick="setCollection('popup')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
-                                <span class="text-xs font-black uppercase text-slate-900 block">Partner Pop-Up</span>
-                                <span class="text-[9px] font-extrabold text-emerald-600 uppercase">Waived Fee</span>
-                            </button>
-                            <button type="button" id="btn-mobile" onclick="setCollection('mobile')" class="border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer">
-                                <span class="text-xs font-black uppercase text-slate-900 block">Private Mobile</span>
-                                <span class="text-[9px] font-extrabold text-[#059669] uppercase">Market Rate</span>
-                            </button>
+                    <!-- Right Flex Side: Perfectly Balanced Inline Badge Controls Matrix -->
+                    <div class="flex items-center space-x-2 border-l border-slate-100 pl-4 shrink-0">
+                        <!-- Inline Counter Badge Sits Harmoniously on Same Plane -->
+                        <div class="flex items-center space-x-1.5 bg-slate-50 border border-slate-200/80 px-2 py-1.5 rounded-xl shadow-inner" title="Asynchronous Inbox Channels Log">
+                            <svg class="w-3.5 h-3.5 text-fbBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"/></svg>
+                            <span class="bg-fbBlue text-white font-mono text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-sm">0</span>
                         </div>
-                    </div>
 
-                    <!-- Dynamic Mileage Radius Surcharge Drawer -->
-                    <div id="mileage-subpanel" class="hidden p-5 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
-                        <span class="text-[10px] font-black uppercase tracking-wider text-slate-700 block">Mobile Logistics Surcharge Matrix</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <div onclick="document.getElementById('rad-zone1').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
-                                <input type="radio" id="rad-zone1" name="radius_select" value="zone1" checked onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
-                                <span class="block text-[10px] font-black text-slate-800 uppercase">0 - 15 Miles</span>
-                                <span class="text-[8.5px] font-bold text-slate-400 uppercase">+$65.00 Base</span>
-                            </div>
-                            <div onclick="document.getElementById('rad-zone2').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
-                                <input type="radio" id="rad-zone2" name="radius_select" value="zone2" onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
-                                <span class="block text-[10px] font-black text-slate-800 uppercase">15 - 30 Miles</span>
-                                <span class="text-[8.5px] font-bold text-slate-400 uppercase">+$95.00 Ext</span>
-                            </div>
-                            <div onclick="document.getElementById('rad-zone3').click();" class="block border border-slate-200 bg-white p-3 rounded-lg cursor-pointer text-center hover:border-slate-300 select-none shadow-sm">
-                                <input type="radio" id="rad-zone3" name="radius_select" value="zone3" onclick="event.stopPropagation(); calculateTotals();" class="accent-[#059669] mb-1 block mx-auto">
-                                <span class="block text-[10px] font-black text-slate-800 uppercase">30+ Miles</span>
-                                <span class="text-[8.5px] font-bold text-amber-600 uppercase">Custom Review</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <button type="button" onclick="goToStage(2)" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-sm font-bold tracking-widest cursor-pointer">
-                            Continue to Identity Routing ➔
+                        <!-- AMENDED: Locker Icon Upgraded to Premium Inline Blue Background Theme -->
+                        <button onclick="window.toggleAnonymityEngine()" id="anon-toggle-btn" class="flex items-center space-x-1.5 bg-blue-50 border border-fbBlue/30 text-fbBlue px-3 py-1.5 rounded-xl shadow-sm transition hover:bg-fbBlue hover:text-white cursor-pointer" title="Mask Output Target Parameters">
+                            <span id="anon-icon" class="text-[10px] font-bold">🔓</span>
+                            <span class="text-[9px] font-black uppercase tracking-wide">Discreet</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- STAGE 2: BALANCED SINGLE VECTOR IDENTITY CAPTURE -->
-                <div id="stage-2" class="hidden border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-                    <div class="flex justify-between items-end border-b border-slate-100 pb-4">
-                        <div>
-                            <span class="text-[9px] font-black text-[#059669] uppercase tracking-widest block mb-1">Stage 02</span>
-                            <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Secure Identity Mapping</h2>
-                        </div>
-                        <button type="button" onclick="goToStage(1)" class="text-[10px] font-black text-slate-400 hover:text-slate-600 uppercase tracking-wider cursor-pointer">⇠ Back</button>
-                    </div>
+                <!-- PLATFORM QUICK ACCESS SHORTCUT BUTTON GRID -->
+                <div class="grid grid-cols-3 gap-2 text-center text-[9.5px] font-black uppercase tracking-wide">
+                    <button onclick="alert('Environment parameters are running lock patterns.');" class="bg-white border border-slate-200 text-slate-700 py-2.5 rounded-xl shadow-sm hover:bg-slate-50 transition flex flex-col items-center justify-center space-y-1 cursor-pointer"><svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2"/></svg><span>Current Track</span></button>
+                    <button onclick="alert('Secure payload diagnostic files generated.');" class="bg-white border border-slate-200 text-slate-700 py-2.5 rounded-xl shadow-sm hover:bg-slate-50 transition flex flex-col items-center justify-center space-y-1 cursor-pointer"><svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1m-6 10a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2"/></svg><span>Share Results</span></button>
+                    <button onclick="alert('Invitation link string array copied.');" class="bg-white border border-slate-200 text-slate-700 py-2.5 rounded-xl shadow-sm hover:bg-slate-50 transition flex flex-col items-center justify-center space-y-1 cursor-pointer"><svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>Invite Member</span></button>
+                </div>
 
-                    <div class="space-y-4">
-                        <p class="text-[11px] text-slate-600 font-medium leading-relaxed">
-                            Select your preferred method to verify identity. Axis Point Premium™ decouples organizational links to protect corporate privacy parameters. Provide **only one** channel below.
-                        </p>
-
-                        <!-- Balanced Vector Tab Controls -->
-                        <div class="flex border-b border-slate-200">
-                            <button type="button" id="tab-email" onclick="setIdentityVector('email')" class="border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer">
-                                Corporate Email Vector
-                            </button>
-                            <button type="button" id="tab-phone" onclick="setIdentityVector('phone')" class="border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer">
-                                Secure Mobile Vector
-                            </button>
-                        </div>
-
-                        <!-- Inputs Wrapper -->
-                        <div class="pt-2">
-                            <div id="wrapper-email" class="space-y-1.5">
-                                <label class="text-[10px] font-black uppercase tracking-wider text-slate-500 block">Organizational Email Domain Address</label>
-                                <input type="email" id="input-email" placeholder="executive@yourcompany.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-inner">
-                            </div>
-                            
-                            <div id="wrapper-phone" class="hidden space-y-1.5">
-                                <label class="text-[10px] font-black uppercase tracking-wider text-slate-500 block">Private Mobile Number Secure Destination</label>
-                                <input type="tel" id="input-phone" placeholder="(555) 000-0000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-inner">
+                <!-- AMENDED: Typographically Correct Lowercase "i" in iTest Core Matrix Strings -->
+                <div class="space-y-2">
+                    <label class="text-[9px] font-mono font-black uppercase tracking-widest text-slate-400 block px-1">Select Active Service Track</label>
+                    <div class="flex space-x-3 overflow-x-auto pb-2 pt-0.5 px-1 scrollbar-none snap-x snap-mandatory w-full">
+                        <!-- iTest Card option -->
+                        <div onclick="window.launchIsolatedTrack('itest')" class="snap-center shrink-0 w-[135px] bg-gradient-to-br from-white via-slate-50 to-blue-50/40 border border-slate-200 p-3.5 rounded-2xl cursor-pointer hover:border-fbBlue hover:shadow-md smooth-transition shadow-sm flex flex-col justify-between min-h-[175px] text-left group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-blue-500/10 text-fbBlue border-b border-l border-slate-200/60 font-mono text-[6.5px] font-black uppercase px-1.5 py-0.5 rounded-bl-md">Direct</div>
+                            <div class="w-8 h-10 bg-white text-xs rounded-xl flex items-center justify-center border border-slate-200/80 shadow-sm group-hover:scale-105 transition-transform">🧬</div>
+                            <div class="space-y-0.5 mt-2">
+                                <h3 class="text-[10px] font-black tracking-wide text-slate-900 group-hover:text-fbBlue smooth-transition">iTest Market</h3>
+                                <p class="text-[8.5px] text-slate-500 leading-tight font-medium">Diagnostic laboratory orders.</p>
                             </div>
                         </div>
-
-                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl flex items-start space-x-3">
-                            <span class="text-emerald-600 text-xs select-none">🛡️</span>
-                            <p class="text-[10px] text-slate-500 font-medium leading-normal" id="compliance-notice">
-                                No credit card transaction requirement is active for your current configuration. Final post-draw billing will route parameters securely through your assigned dashboard account.
-                            </p>
+                        <!-- MindLink Card option -->
+                        <div onclick="window.launchIsolatedTrack('mindlink')" class="snap-center shrink-0 w-[135px] bg-gradient-to-br from-white via-slate-50 to-purple-50/30 border border-slate-200 p-3.5 rounded-2xl cursor-pointer hover:border-fbBlue hover:shadow-md smooth-transition shadow-sm flex flex-col justify-between min-h-[175px] text-left group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-purple-500/10 text-purple-600 border-b border-l border-slate-200/60 font-mono text-[6.5px] font-black uppercase px-1.5 py-0.5 rounded-bl-md">Private</div>
+                            <div class="w-8 h-10 bg-white text-xs rounded-xl flex items-center justify-center border border-slate-200/80 shadow-sm group-hover:scale-105 transition-transform">🧠</div>
+                            <div class="space-y-0.5 mt-2">
+                                <h3 class="text-[10px] font-black uppercase text-slate-900 tracking-wide group-hover:text-fbBlue smooth-transition">MindLink</h3>
+                                <p class="text-[8.5px] text-slate-500 leading-tight font-medium">Encrypted therapist network sync.</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="pt-2">
-                        <button type="button" onclick="executeTokenDispatchSimulation()" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-md font-bold tracking-widest cursor-pointer">
-                            Transmit Access Token Code ➔
-                        </button>
-                    </div>
-                </div>
-
-                <!-- STAGE 3: LIVE OTP CHALLENGE -->
-                <div id="stage-3" class="hidden border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
-                    <div class="border-b border-slate-100 pb-4 flex justify-between items-end">
-                        <div>
-                            <span class="text-[9px] font-black text-amber-600 uppercase tracking-widest block mb-1">Stage 03</span>
-                            <h2 class="text-base font-black uppercase tracking-tight text-slate-900">Verify Identity Coordinates</h2>
-                        </div>
-                        <button type="button" onclick="goToStage(2)" class="text-[10px] font-black text-slate-400 hover:text-slate-600 uppercase tracking-wider cursor-pointer">⇠ Back</button>
-                    </div>
-
-                    <div class="space-y-6 text-center max-w-sm mx-auto">
-                        <div class="space-y-1">
-                            <p class="text-xs text-slate-600 font-medium">
-                                An access code has been generated and dispatched to your security target vector:
-                            </p>
-                            <span id="display-target-vector" class="inline-block px-3 py-1 bg-slate-100 border border-slate-200 rounded-md font-mono text-xs font-black text-slate-800">--</span>
-                        </div>
-
-                        <!-- 6-digit input fields -->
-                        <div class="flex items-center justify-center space-x-2 pt-2">
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-2', '')" id="otp-1" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-3', 'otp-1')" id="otp-2" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-4', 'otp-2')" id="otp-3" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                            <span class="text-slate-300 font-bold px-0.5">—</span>
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-5', 'otp-3')" id="otp-4" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, 'otp-6', 'otp-4')" id="otp-5" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                            <input type="text" maxlength="1" onkeyup="moveFocus(this, '', 'otp-5')" id="otp-6" class="w-10 h-12 bg-slate-50 border-2 border-slate-200 rounded-xl text-center text-lg font-black text-slate-900 focus:outline-none focus:border-[#059669] focus:bg-white transition shadow-sm">
-                        </div>
-
-                        <div class="space-y-1.5 pt-2">
-                            <button type="button" onclick="validateSimulatedOTP()" class="w-full bg-[#059669] hover:bg-emerald-700 text-white text-xs font-black uppercase tracking-wider py-4 rounded-xl transition shadow-md font-bold tracking-widest cursor-pointer">
-                                Securely Authorize & Finalize Order ➔
-                            </button>
-                            <span class="block text-[10px] font-bold text-slate-400">Sandbox Loop: Type any 6 numbers to approve.</span>
+                        <!-- CareLive Card option -->
+                        <div onclick="window.launchIsolatedTrack('carelive')" class="snap-center shrink-0 w-[135px] bg-gradient-to-br from-white via-slate-50 to-emerald-50/30 border border-slate-200 p-4 rounded-2xl cursor-pointer hover:border-fbBlue hover:shadow-md smooth-transition shadow-sm flex flex-col justify-between min-h-[175px] text-left group relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-emerald-500/10 text-emerald-600 border-b border-l border-slate-200/60 font-mono text-[6.5px] font-black uppercase px-1.5 py-0.5 rounded-bl-md">Sandbox</div>
+                            <div class="w-8 h-10 bg-white text-xs rounded-xl flex items-center justify-center border border-slate-200/80 shadow-sm group-hover:scale-105 transition-transform">📐</div>
+                            <div class="space-y-0.5 mt-2">
+                                <h3 class="text-[10px] font-black uppercase text-slate-900 tracking-wide group-hover:text-fbBlue smooth-transition">CareLive</h3>
+                                <p class="text-[8.5px] text-slate-500 leading-tight font-medium">Virtual visit setup validation.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- STAGE 4: PRODUCTION DUMMY ORDER RECEIPT CONFIRMATION -->
-                <div id="stage-4" class="hidden border border-slate-200 bg-white rounded-2xl p-8 text-center space-y-6 shadow-sm animate-fadeIn">
-                    <div class="w-14 h-14 bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-full flex items-center justify-center text-xl font-black mx-auto shadow-sm select-none">
-                        ✓
-                    </div>
-                    
-                    <div class="space-y-2 max-w-md mx-auto">
-                        <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block">Requisition Pipeline Complete</span>
-                        <h2 class="text-xl font-black uppercase tracking-tight text-slate-900">Secure Vault Access Route Provisioned</h2>
-                        <p class="text-xs text-slate-600 font-medium leading-relaxed">
-                            Your private laboratory requisition profile has been logged inside our framework database ledger under active HIPAA security standards. 
-                        </p>
-                    </div>
-
-                    <!-- Variable Invoice Receipt Generation -->
-                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left text-xs space-y-2 max-w-sm mx-auto font-medium shadow-inner">
-                        <div class="flex justify-between text-slate-400 text-[10px] uppercase font-black tracking-wider pb-1 border-b border-slate-200/60"><span>Receipt Elements</span><span id="receipt-id-tag" class="text-slate-600">APDx-#94812</span></div>
-                        <div class="flex justify-between text-slate-500 pt-1"><span>Assay Protocol:</span><span id="receipt-panel" class="text-slate-900 font-bold uppercase tracking-wide">--</span></div>
-                        <div class="flex justify-between text-slate-500"><span>Acquisition Modality:</span><span id="receipt-modality" class="text-slate-900 font-bold uppercase tracking-wide">--</span></div>
-                        <div class="flex justify-between text-slate-500"><span>Verified Vector Anchor:</span><span id="receipt-vector-value" class="text-slate-900 font-mono text-[10px]">--</span></div>
-                        <div class="flex justify-between text-slate-800 border-t border-slate-200 pt-2 font-black"><span>Settlement Terms Due:</span><span id="receipt-net" class="text-[#059669] text-sm">--</span></div>
-                    </div>
-
-                    <div class="pt-2">
-                        <a href="index.html" class="inline-block bg-slate-900 hover:bg-slate-800 text-white text-xs font-black uppercase tracking-wider px-8 py-3.5 rounded-xl transition shadow-sm">
-                            Return to Corporate Network Hub ➔
-                        </a>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- RIGHT AREA: FLOATING COMPUTATION SUMMARY -->
-            <div id="sticky-summary-panel" class="lg:col-span-5 border border-slate-200 bg-white rounded-2xl p-6 sm:p-8 space-y-6 lg:sticky lg:top-24 shadow-xl transition-opacity duration-300">
-                <h2 class="text-xs font-black uppercase tracking-wider text-slate-400 border-b border-slate-100 pb-3">Real-Time Allocation Summary</h2>
+            <!-- ========================================== -->
+            <!-- DEDICATED SEPARATE FULL WORKFLOW SCREEN    -->
+            <!-- ========================================== -->
+            <!-- FIXED STABILITY: Toggles fully out of cockpit container boundaries to secure layout memory loads -->
+            <div id="workspace-execution-enclosure" class="hidden w-full flex-col space-y-4 animate-fadeIn" style="touch-action: pan-y;">
                 
-                <div class="space-y-3 font-medium text-xs">
-                    <div class="flex justify-between items-center text-slate-500">
-                        <span>Selected Diagnostic Assay Layer:</span>
-                        <span id="summary-panel-name" class="text-slate-900 font-bold uppercase tracking-wide">The Core Health Baseline</span>
-                    </div>
-                    <div class="flex justify-between items-center text-slate-400 border-b border-slate-100 pb-3">
-                        <span>Quest™ Equivalent Retail Value:</span>
-                        <span id="summary-anchor-price" class="line-through text-slate-400">$220.00</span>
-                    </div>
-
-                    <div class="flex justify-between items-center text-slate-500">
-                        <span>Private Framework Matrix Pricing:</span>
-                        <span id="summary-base-price" class="text-slate-900 font-bold">$165.00</span>
-                    </div>
+                <!-- UPGRADED CONNECTED NODES PROGRESS PIPELINE -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm relative overflow-hidden">
+                    <button type="button" onclick="window.returnToSelectionHub()" class="absolute top-3.5 right-4 w-7 h-7 bg-slate-100 hover:bg-red-50 hover:text-red-500 rounded-full flex items-center justify-center font-black text-xs text-slate-400 transition cursor-pointer shadow-sm border border-slate-200/40" title="Close Tracking Frame">✕</button>
                     
-                    <div class="flex justify-between items-center text-slate-500 border-b border-slate-100 pb-3">
-                        <span>Logistics / Mobile Dispatch Fee:</span>
-                        <span id="summary-logistics-fee" class="text-emerald-600 font-bold">$0.00</span>
-                    </div>
-
-                    <div class="flex justify-between items-baseline pt-2">
-                        <span class="font-black uppercase tracking-wider text-slate-700 text-xs">Authorized Net Due:</span>
-                        <div class="text-right">
-                            <span id="summary-total-price" class="text-3xl font-black text-[#059669] tracking-tight">$165.00</span>
-                            <span class="block text-[8px] font-black text-slate-400 uppercase tracking-widest pt-0.5">Secure Post-Draw Settlement</span>
+                    <div class="max-w-xs mx-auto flex items-center justify-between relative pt-3 pb-1">
+                        <div class="absolute top-6 left-2 right-2 h-0.5 bg-slate-100 -z-0">
+                            <div id="premium-track-line-progress" class="h-full bg-fbBlue smooth-transition" style="width: 0%;"></div>
+                        </div>
+                        <div class="flex flex-col items-center space-y-1 relative z-10">
+                            <div id="step-node-1" class="w-6 h-6 rounded-full bg-fbBlue border-2 border-fbBlue flex items-center justify-center text-[10px] font-bold text-white shadow-sm smooth-transition">1</div>
+                            <span id="step-label-1" class="text-[8px] font-mono font-black uppercase tracking-wider text-slate-800">Configure</span>
+                        </div>
+                        <div id="step-wrapper-2" class="flex flex-col items-center space-y-1 relative z-10">
+                            <div id="step-node-2" class="w-6 h-6 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400 smooth-transition">2</div>
+                            <span id="step-label-2" class="text-[8px] font-mono font-black uppercase tracking-wider text-slate-400">Verify</span>
+                        </div>
+                        <div id="step-wrapper-3" class="flex flex-col items-center space-y-1 relative z-10">
+                            <div id="step-node-3" class="w-6 h-6 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400 smooth-transition">3</div>
+                            <span id="step-label-3" class="text-[8px] font-mono font-black uppercase tracking-wider text-slate-400">Complete</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2 text-[10px] leading-relaxed">
-                    <div class="font-bold text-slate-700 flex items-center space-x-1">
-                        <span>📋 Asynchronous Medical Clearance</span>
+                <!-- CONFIGURATOR MASTER WORKFLOW STAGES CONTAINER CHASSIS -->
+                <!-- FIXED ACCESSIBILITY: Elements are natively decoupled to guarantee items never drop hidden hooks -->
+                <div id="stage-1" class="border border-slate-200 bg-white rounded-3xl p-4 sm:p-5 shadow-sm space-y-4">
+                    
+                    <!-- RESTORED FORMS: iTest MENU OPTIONS SELECTION SUB-TAB SHEETS -->
+                    <div id="subpane-itest" class="space-y-4">
+                        <div class="flex space-x-1.5 bg-slate-100 border border-slate-200/60 p-1 rounded-xl">
+                            <button type="button" id="subtab-btn-executive" onclick="window.toggleSubTab('executive')" class="flex-1 bg-white text-slate-900 border border-slate-200/30 text-[10px] font-black uppercase py-1.5 rounded-lg shadow-sm cursor-pointer">Executive</button>
+                            <button type="button" id="subtab-btn-corporate" onclick="window.toggleSubTab('corporate')" class="flex-1 text-slate-400 hover:text-slate-800 text-[10px] font-black uppercase py-1.5 rounded-lg transition cursor-pointer">Corporate</button>
+                        </div>
+                        <div id="market-grid-executive" class="space-y-2">
+                            <div class="border border-slate-100 bg-slate-50/50 p-3 rounded-xl flex items-center justify-between shadow-inner">
+                                <div class="space-y-0.5 max-w-[70%]">
+                                    <h4 class="text-xs font-black text-slate-900 uppercase">The Core Baseline™</h4>
+                                    <p class="text-[10px] text-slate-500 leading-tight font-medium">CMP, CBC, Lipid Panels, HbA1c, Vitamin D, TSH.</p>
+                                </div>
+                                <div class="text-right flex-shrink-0">
+                                    <span class="text-xs font-mono font-black text-fbBlue block mb-1">$165.00</span>
+                                    <button type="button" onclick="window.queueAsset('Core Baseline', 165, 'lab')" class="bg-fbBlue hover:bg-blue-600 text-white text-[9.5px] font-black uppercase px-2.5 py-1.5 rounded-md cursor-pointer">Select</button>
+                                </div>
+                            </div>
+                            <div class="border border-slate-100 bg-slate-50/50 p-3 rounded-xl flex items-center justify-between shadow-inner">
+                                <div class="space-y-0.5 max-w-[70%]">
+                                    <h4 class="text-xs font-black text-slate-900 uppercase">Longevity Protocol™</h4>
+                                    <p class="text-[10px] text-slate-500 leading-tight font-medium">Core Baseline + Advanced ApoB Lipids, hs-CRP, Testosterone Matrix.</p>
+                                </div>
+                                <div class="text-right flex-shrink-0">
+                                    <span class="text-xs font-mono font-black text-fbBlue block mb-1">$349.00</span>
+                                    <button type="button" onclick="window.queueAsset('Longevity Matrix', 349, 'lab')" class="bg-fbBlue hover:bg-blue-600 text-white text-[9.5px] font-black uppercase px-2.5 py-1.5 rounded-md cursor-pointer">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="market-grid-corporate" class="hidden space-y-2">
+                            <div class="border border-slate-200 bg-white p-3 rounded-xl flex items-center justify-between border-l-2 border-msgBlue shadow-sm">
+                                <div class="space-y-0.5 max-w-[70%]">
+                                    <h4 class="text-xs font-black uppercase text-msgBlue">Workplace Screening</h4>
+                                    <p class="text-[10px] text-slate-500 leading-tight font-medium">Rapid compliance drug panels hold token deployment.</p>
+                                </div>
+                                <div class="text-right flex-shrink-0">
+                                    <span class="text-xs font-mono font-black text-msgBlue block mb-1">$85.00</span>
+                                    <button type="button" onclick="window.queueAsset('Workplace Drug Screen', 85, 'lab')" class="bg-slate-900 hover:bg-slate-800 text-white text-[9.5px] font-black uppercase px-2.5 py-1.5 rounded-md cursor-pointer">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[9px] font-mono font-black uppercase tracking-wider text-slate-400 block">Fulfillment Logistics Option</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" id="btn-affiliate" onclick="window.setLogisticsChannel('affiliate')" class="border-2 border-fbBlue bg-blue-50/40 p-3 rounded-xl text-left flex flex-col justify-center min-h-[60px] cursor-pointer">
+                                    <span class="text-xs font-black uppercase text-slate-900 block">Affiliate Hub</span>
+                                    <span class="text-[8px] font-medium text-slate-400 uppercase font-mono mt-0.5">Token hold link</span>
+                                </button>
+                                <button type="button" id="btn-shipping" onclick="window.setLogisticsChannel('shipping')" class="border border-slate-200 bg-slate-50 p-3 rounded-xl text-left flex flex-col justify-center min-h-[60px] cursor-pointer">
+                                    <span class="text-xs font-black uppercase text-slate-900 block">Kit Shipping</span>
+                                    <span class="text-[8px] font-medium text-slate-400 uppercase font-mono mt-0.5">Mail-in box system</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-slate-500 font-medium">
-                        Your configuration parameters incorporate backend clinical requisition routing overseen by <span class="text-slate-700 font-bold">MediNode Telehealth Network™</span> physicians. Real-time verification fires instantly upon dispatch execution.
-                    </p>
+
+                    <!-- RESTORED FORMS: MindLink ENCRYPTED ROUTING INTERFACE -->
+                    <div id="subpane-mindlink" class="text-center py-2 max-w-xs mx-auto space-y-3">
+                        <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-base mx-auto border border-purple-100 animate-pulse">🧠</div>
+                        <p class="text-[10.5px] text-slate-500 leading-relaxed">System parameters sync user sessions straight to credentialed therapists.</p>
+                        <button type="button" onclick="window.queueAsset('MindLink Specialist Assignment', 0, 'simulation')" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-black uppercase py-2.5 rounded-xl cursor-pointer">Confirm Allocation Place</button>
+                    </div>
+
+                    <!-- RESTORED FORMS: CareLive ANATOMICAL BODY ZONING FRAME -->
+                    <div id="subpane-carelive" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                            <div class="sm:col-span-5 bg-slate-50 border border-slate-200 rounded-xl p-2 flex flex-col items-center justify-center shadow-inner">
+                                <svg viewBox="0 0 160 380" class="w-full max-w-[100px] h-[220px]" id="rectangular-mesh">
+                                    <rect id="rect-head" x="10" y="10" width="140" height="75" rx="12" class="zone-rect" onclick="window.triggerPassiveVideoBuffer('rect-head', 'Head & Neck Zone')" />
+                                    <text x="80" y="52" fill="#6B7280" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle" class="pointer-events-none uppercase">Head / Neck</text>
+                                    <rect id="rect-chest" x="10" y="95" width="140" height="85" rx="12" class="zone-rect" onclick="window.triggerPassiveVideoBuffer('rect-chest', 'Anterior Chest')" />
+                                    <text x="80" y="142" fill="#6B7280" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle" class="pointer-events-none uppercase">Chest</text>
+                                    <rect id="rect-abdomen" x="10" y="190" width="140" height="85" rx="12" class="zone-rect" onclick="window.triggerPassiveVideoBuffer('rect-abdomen', 'Abdominal Matrix')" />
+                                    <text x="80" y="237" fill="#6B7280" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle" class="pointer-events-none uppercase">Abdomen</text>
+                                    <rect id="rect-legs" x="10" y="285" width="140" height="85" rx="12" class="zone-rect" onclick="window.triggerPassiveVideoBuffer('rect-legs', 'Lower Extremities')" />
+                                    <text x="80" y="332" fill="#6B7280" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle" class="pointer-events-none uppercase">Legs</text>
+                                </svg>
+                            </div>
+                            <div class="sm:col-span-7 bg-slate-900 border border-slate-950 rounded-xl p-3 flex flex-col justify-center items-center text-center min-h-[150px] relative">
+                                <div id="stream-placeholder" class="text-slate-400 space-y-0.5"><span class="text-xl block">📺</span><p class="text-[9px]">Select target area mesh segment grid context.</p></div>
+                                <div id="stream-active-viewport" class="hidden w-full h-full flex flex-col items-center justify-center animate-fadeIn">
+                                    <span class="text-[9px] font-mono text-fbBlue font-bold mb-1 uppercase" id="stream-label-out">Configured</span>
+                                    <div class="w-full aspect-video bg-black rounded border border-slate-800 flex items-center justify-center"><span class="text-[9px] font-mono text-slate-500 animate-pulse">[ Capture Ready ]</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-1">
+                        <button type="button" id="stage-1-master-btn" onclick="window.handleStage1Submission()" class="w-full bg-fbBlue hover:bg-blue-600 text-white text-[11px] font-black uppercase py-3.5 rounded-xl shadow-md font-mono tracking-widest cursor-pointer">Proceed ➔</button>
+                    </div>
+                </div>
+
+                <!-- STAGE 2 CARD: HARDWARE LAB Preview -->
+                <div id="stage-2" class="hidden border border-slate-200 bg-white rounded-3xl p-4 space-y-4 shadow-sm animate-fadeIn">
+                    <div class="flex justify-between items-end border-b border-slate-100 pb-2">
+                        <h2 class="text-xs font-black uppercase text-slate-900">Environment Verification Preview</h2>
+                        <button type="button" onclick="window.goToStage(1)" class="text-[10px] font-black text-slate-400 hover:text-slate-600 uppercase font-mono">Back</button>
+                    </div>
+                    <div class="space-y-1.5 text-xs font-medium">
+                        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between"><span>Ambient Facetime Lighting Scan</span><span class="text-emerald-600 font-mono text-[9px] bg-emerald-50 px-2 rounded border border-emerald-100">Clear</span></div>
+                        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between"><span>WebRTC Camera Hardware Position</span><span class="text-emerald-600 font-mono text-[9px] bg-emerald-50 px-2 rounded border border-emerald-100">Aligned</span></div>
+                    </div>
+                    <button type="button" onclick="window.goToStage(3)" class="w-full bg-fbBlue hover:bg-blue-600 text-white text-[11px] font-black uppercase py-3.5 rounded-xl font-mono tracking-wider cursor-pointer">Submit ➔</button>
+                </div>
+
+                <!-- STAGE 3 CARD: FINAL INVOICES SHEET -->
+                <div id="stage-3" class="hidden border border-slate-200 bg-white rounded-3xl p-5 text-center space-y-4 shadow-sm animate-fadeIn">
+                    <div class="w-10 h-10 bg-blue-50 text-fbBlue rounded-full flex items-center justify-center text-base font-black mx-auto shadow-inner">✓</div>
+                    <h2 class="text-xs font-black uppercase tracking-tight text-slate-900">Transient Token Hold Dispatched</h2>
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-left text-[10.5px] space-y-2 font-medium shadow-inner">
+                        <div class="flex justify-between text-slate-400 text-[8px] font-mono font-black pb-1 border-b border-slate-200"><span>System Logs</span><span id="receipt-id-tag">--</span></div>
+                        <div class="flex justify-between"><span>Account Profile Holder:</span><span id="receipt-profile-name" class="font-black">--</span></div>
+                        <div class="flex justify-between"><span>Profile Intent Context:</span><span id="receipt-intent-view" class="font-bold text-fbBlue">--</span></div>
+                        <div class="flex justify-between"><span>Active Track Code:</span><span id="receipt-track" class="font-black">--</span></div>
+                        <div class="flex justify-between"><span>Logistics Routing Framework:</span><span id="receipt-logistics" class="font-black">--</span></div>
+                        <div class="flex justify-between text-slate-800 border-t border-slate-200 pt-1.5 font-black"><span>Discreet Hold Terms:</span><span id="receipt-net" class="text-fbBlue font-mono font-black">--</span></div>
+                    </div>
+                    <button type="button" onclick="window.triggerTransientPurgeAnnihilation()" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-[10px] font-black uppercase tracking-wider py-3 rounded-xl font-mono cursor-pointer">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT WORKSPACE COLUMN (5/12 Desktop Ratio Layout) -->
+        <div id="dashboard-right-sidebar-layer" class="lg:col-span-5 space-y-4 block">
+            <div id="sticky-summary-panel" class="border border-slate-200 bg-white rounded-3xl p-5 space-y-4 shadow-sm">
+                <h2 class="text-[9px] font-mono font-black uppercase tracking-wider text-slate-400 border-b border-slate-100 pb-2">Real-Time Allocation Manifest</h2>
+                <div id="manifest-items-list" class="space-y-1.5 max-h-[140px] overflow-y-auto scrollbar-none pr-0.5"></div>
+                <div class="flex justify-between items-baseline border-t border-slate-100 pt-3">
+                    <span class="font-black uppercase text-[8.5px] font-mono text-slate-400">Authorized Hold Price:</span>
+                    <span id="summary-total-price" class="text-xl font-black text-fbBlue font-mono">$0.00</span>
                 </div>
             </div>
 
+            <div class="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100 text-xs font-bold text-slate-700 shadow-sm bg-white">
+                <div class="p-3 bg-white hover:bg-slate-50 flex justify-between items-center cursor-pointer" onclick="alert('Voucher tracking logs synchronized.');">
+                    <div class="flex items-center space-x-3"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span>Transaction Log Registry</span></div>
+                    <span class="text-[9.5px] font-mono text-slate-400">View Logs</span>
+                </div>
+                <div class="p-3 bg-white hover:bg-slate-50 flex justify-between items-center cursor-pointer" onclick="window.print();">
+                    <div class="flex items-center space-x-3"><svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-4H7v4a2 2 0 002 2zM9 9V5a2 2 0 012-2h6a2 2 0 012 2v4H9z"/></svg><span>Print Hardcopy Record</span></div>
+                    <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
 
-    <!-- ========================================== -->
-    <!-- COMPLIANCE FOOTER                    -->
-    <!-- ========================================== -->
-    <footer class="border-t border-slate-200 bg-white py-8 px-6 text-center text-slate-400 text-[10px] font-mono uppercase tracking-wider relative z-10">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span>© 2026 AccessPoint Diagnostics. All Rights Reserved.</span>
-            <span>CLIA & CAP Certified Repository Logistics Hub. Engine Matrix: Premium-v3</span>
-        </div>
+    <!-- Footer Compliances -->
+    <footer class="text-center text-slate-400 text-[8px] font-mono uppercase tracking-widest py-6 flex-shrink-0">
+        <span>© 2026 Wellness Front™ Platforms • Build-Premium-Cockpit-v6.1</span>
     </footer>
 
     <!-- ========================================== -->
-    <!-- SUBMISSION ENGINE RUNTIME JAVASCRIPT       -->
+    <!-- SECURE INTERFACE RUNTIME SYSTEM LOGIC      -->
     <!-- ========================================== -->
     <script>
-        // System variables tracking global checkout state
-        let activeCollection = 'walkin';
-        let basePrice = 165;
-        let logisticsFee = 0;
-        let anchorPrice = 220;
-        let currentPanelLabel = "The Core Health Baseline™";
-        let activeIdentityVector = 'email';
-        let customerIdentityAddressString = "";
+        let activeMainTrack = '';
+        let currentSubTab = 'executive';
+        let activeLogisticsChannel = 'affiliate';
+        let isAnonymityActive = false;
+        
+        let userFullLegalName = "";
+        let userEmailAddress = "";
+        let userBirthYear = null;
+        let userGender = "";
+        let userProfileIntent = "Self";
+        
+        let compiledManifestArray = [];
 
-        // Execute defaults when script evaluates
-        setCollection('walkin');
+        let swipeXTouchStart = 0;
+        let swipeXTouchEnd = 0;
 
-        // Master wizard routing controller
-        function goToStage(stageNum) {
-            const stages = [1, 2, 3, 4];
-            stages.forEach(s => {
-                const stepUIEl = document.getElementById(`stage-${s}`);
-                if (stepUIEl) stepUIEl.classList.add('hidden');
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('wf_user_registered') === 'true') {
+                userFullLegalName = localStorage.getItem('wf_user_fullname');
+                userEmailAddress = localStorage.getItem('wf_user_email') || "not.allocated@endpoint.com";
+                userBirthYear = localStorage.getItem('wf_user_birthyear');
+                userGender = localStorage.getItem('wf_user_gender');
+                userProfileIntent = localStorage.getItem('wf_user_intent') || "Self";
                 
-                const navHeaderItem = document.getElementById(`nav-step-${s}`);
-                if (navHeaderItem) {
-                    if (s === stageNum) {
-                        navHeaderItem.className = "text-[#059669] font-black";
-                    } else if (s < stageNum) {
-                        navHeaderItem.className = "text-slate-800 font-black";
+                document.getElementById('auth-gate').classList.add('hidden', 'opacity-0', 'pointer-events-none');
+                hydrateUserHeadersAndContext();
+                setupHardwareSwipeGestureListeners();
+            }
+        });
+
+        function hydrateUserHeadersAndContext() {
+            document.getElementById('acc-display-name').innerText = userFullLegalName;
+            document.getElementById('acc-display-email').innerText = userEmailAddress;
+            document.getElementById('acc-display-id').innerText = `WF-2026-${Math.floor(11111 + Math.random() * 88888)}`;
+        }
+
+        function setupHardwareSwipeGestureListeners() {
+            const elementEnclosure = document.getElementById('workspace-execution-enclosure');
+            elementEnclosure.addEventListener('touchstart', (e) => {
+                swipeXTouchStart = e.changedTouches[0].screenX;
+            }, { passive: true });
+            elementEnclosure.addEventListener('touchend', (e) => {
+                swipeXTouchEnd = e.changedTouches[0].screenX;
+                evaluateSwipeActionVector();
+            }, { passive: true });
+        }
+
+        function evaluateSwipeActionVector() {
+            if (swipeXTouchEnd - swipeXTouchStart > 100) { 
+                window.returnToSelectionHub();
+            }
+        }
+
+        window.submitPhoneVerification = function() {
+            const num = document.getElementById('auth-phone').value.trim();
+            if(!num || num.length < 8) { alert("Invalid phone format."); return; }
+            document.getElementById('phone-stage').classList.add('hidden');
+            document.getElementById('token-stage').classList.remove('hidden');
+        };
+
+        window.submitTokenVerification = function() {
+            document.getElementById('token-stage').classList.add('hidden');
+            document.getElementById('profile-stage').classList.remove('hidden');
+        };
+
+        window.setGenderFramework = function(genderKey) {
+            userGender = genderKey;
+            document.getElementById('gender-male').className = genderKey === 'male' ? "bg-blue-50 border-2 border-fbBlue text-fbBlue text-[10px] font-black uppercase py-3 rounded-xl shadow-sm cursor-pointer" : "bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black uppercase py-3 rounded-xl cursor-pointer";
+            document.getElementById('gender-female').className = genderKey === 'female' ? "bg-blue-50 border-2 border-fbBlue text-fbBlue text-[10px] font-black uppercase py-3 rounded-xl shadow-sm cursor-pointer" : "bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black uppercase py-3 rounded-xl cursor-pointer";
+        };
+
+        window.setIntent = function(intent) {
+            userProfileIntent = intent;
+            document.getElementById('intent-self').className = intent === 'Self' ? "bg-blue-50 border-2 border-fbBlue text-fbBlue text-[10px] font-black uppercase py-2.5 rounded-xl cursor-pointer" : "bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black uppercase py-2.5 rounded-xl cursor-pointer";
+            document.getElementById('intent-dep').className = intent === 'Dependent' ? "bg-blue-50 border-2 border-fbBlue text-fbBlue text-[10px] font-black uppercase py-2.5 rounded-xl cursor-pointer" : "bg-slate-50 border border-slate-200 text-slate-500 text-[10px] font-black uppercase py-2.5 rounded-xl cursor-pointer";
+        };
+
+        window.finalizeProfileGate = function() {
+            const name = document.getElementById('profile-fullname').value.trim();
+            const email = document.getElementById('profile-email').value.trim();
+            const year = document.getElementById('profile-year').value;
+            if(!name || !email || !year || !userGender) { alert("All initialization variables required."); return; }
+            
+            userFullLegalName = name; userEmailAddress = email; userBirthYear = year;
+            localStorage.setItem('wf_user_registered', 'true');
+            localStorage.setItem('wf_user_fullname', userFullLegalName);
+            localStorage.setItem('wf_user_email', userEmailAddress);
+            localStorage.setItem('wf_user_birthyear', userBirthYear);
+            localStorage.setItem('wf_user_gender', userGender);
+            localStorage.setItem('wf_user_intent', userProfileIntent);
+            
+            document.getElementById('auth-gate').classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => document.getElementById('auth-gate').classList.add('hidden'), 400);
+            
+            hydrateUserHeadersAndContext();
+            setupHardwareSwipeGestureListeners();
+        };
+
+        // --- FIXED SEPARATE WORKSPACE RENDERING INTERFACE ---
+        window.launchIsolatedTrack = function(trackKey) {
+            activeMainTrack = trackKey;
+            
+            document.querySelectorAll("[id^='card-']").forEach(c => c.classList.remove('border-fbBlue', 'ring-2', 'ring-fbBlue/10'));
+            document.getElementById(`card-${trackKey}`).classList.add('border-fbBlue', 'ring-2', 'ring-fbBlue/10');
+            
+            // Swap core home cockpit layouts entirely to lock isolated standing pages
+            document.getElementById('unified-homepage-cockpit-layer').classList.replace('block', 'hidden');
+            document.getElementById('workspace-execution-enclosure').classList.remove('hidden');
+            document.getElementById('system-status-bar').classList.remove('hidden');
+
+            // Force visibility updates down to inner selection panes cleanly
+            document.getElementById('subpane-itest').classList.add('hidden');
+            document.getElementById('subpane-mindlink').classList.add('hidden');
+            document.getElementById('subpane-carelive').classList.add('hidden');
+            
+            const targetPane = document.getElementById(`subpane-${trackKey}`);
+            if (targetPane) targetPane.classList.remove('hidden');
+
+            const masterBtn = document.getElementById('stage-1-master-btn');
+            const label2 = document.getElementById('step-label-2');
+            const label3 = document.getElementById('step-label-3');
+            const wrapper2 = document.getElementById('step-wrapper-2');
+
+            if(trackKey === 'itest') {
+                if(wrapper2) wrapper2.classList.add('hidden');
+                if(label3) label3.innerText = "Checkout";
+                if(masterBtn) masterBtn.innerText = "Proceed to Checkout ➔";
+                window.toggleSubTab('executive'); 
+            } else if(trackKey === 'mindlink') {
+                if(wrapper2) wrapper2.classList.add('hidden');
+                if(label3) label3.innerText = "Done";
+                if(masterBtn) masterBtn.innerText = "Proceed to Checkout ➔";
+            } else if(trackKey === 'carelive') {
+                if(wrapper2) wrapper2.classList.remove('hidden');
+                if(label2) label2.innerText = "Verify";
+                if(label3) label3.innerText = "Submit";
+                if(masterBtn) masterBtn.innerText = "Proceed to Camera Check ➔";
+            }
+            goToStage(1);
+        };
+
+        window.handleStage1Submission = function() {
+            if(activeMainTrack === 'carelive') goToStage(2); 
+            else goToStage(3); 
+        };
+
+        window.returnToSelectionHub = function() {
+            activeMainTrack = '';
+            document.querySelectorAll("[id^='card-']").forEach(c => c.classList.remove('border-fbBlue', 'ring-2', 'ring-fbBlue/10'));
+            
+            document.getElementById('workspace-execution-enclosure').classList.add('hidden');
+            document.getElementById('system-status-bar').classList.add('hidden');
+            
+            // Restore cockpit layers safely
+            document.getElementById('unified-homepage-cockpit-layer').classList.replace('hidden', 'block');
+            
+            compiledManifestArray = [];
+            document.getElementById('stream-active-viewport').classList.replace('hidden', 'flex');
+            document.getElementById('stream-placeholder').classList.remove('hidden');
+            document.querySelectorAll('.zone-rect').forEach(r => r.classList.remove('zone-rect-active'));
+            renderPlatformManifestView();
+        };
+
+        window.toggleSubTab = function(subKey) {
+            currentSubTab = subKey;
+            const btnExec = document.getElementById('subtab-btn-executive');
+            const btnCorp = document.getElementById('subtab-btn-corporate');
+            const gridExec = document.getElementById('market-grid-executive');
+            const gridCorp = document.getElementById('market-grid-corporate');
+
+            if(subKey === 'executive') {
+                if(btnExec) btnExec.className = "flex-1 bg-white text-slate-900 border border-slate-200/30 text-[10px] font-black uppercase py-1.5 rounded-lg shadow-sm cursor-pointer";
+                if(btnCorp) btnCorp.className = "flex-1 text-slate-400 hover:text-slate-800 text-[10px] font-black uppercase py-1.5 rounded-lg transition";
+                if(gridExec) gridExec.classList.remove('hidden');
+                if(gridCorp) gridCorp.classList.add('hidden');
+            } else {
+                if(btnCorp) btnCorp.className = "flex-1 bg-white text-slate-900 border border-slate-200/30 text-[10px] font-black uppercase py-1.5 rounded-lg shadow-sm cursor-pointer";
+                if(btnExec) btnExec.className = "flex-1 text-slate-400 hover:text-slate-800 text-[10px] font-black uppercase py-1.5 rounded-lg transition";
+                if(gridCorp) gridCorp.classList.remove('hidden');
+                if(gridExec) gridExec.classList.add('hidden');
+            }
+        };
+
+        window.setLogisticsChannel = function(mode) {
+            activeLogisticsChannel = mode;
+            const btnAff = document.getElementById('btn-affiliate');
+            const btnShip = document.getElementById('btn-shipping');
+
+            btnAff.className = "border border-slate-200 bg-slate-50 p-3 rounded-xl text-left flex flex-col justify-center min-h-[60px] cursor-pointer";
+            btnShip.className = "border border-slate-200 bg-slate-50 p-3 rounded-xl text-left flex flex-col justify-center min-h-[60px] cursor-pointer";
+
+            const activeBtn = document.getElementById(`btn-${mode}`);
+            if(activeBtn) activeBtn.className = "border-2 border-fbBlue bg-blue-50/40 p-3 rounded-xl text-left focus:outline-none flex flex-col justify-center min-h-[60px] shadow-md cursor-pointer";
+        };
+
+        // FIXED: Locked dynamic padlock state hooks alongside direct blue highlight bindings
+        window.toggleAnonymityEngine = function() {
+            isAnonymityActive = !isAnonymityActive;
+            const txt = document.getElementById('anon-text');
+            const btn = document.getElementById('anon-toggle-btn');
+            const icon = document.getElementById('anon-icon');
+
+            if(isAnonymityActive) {
+                icon.innerText = "🔒";
+                if(btn) btn.className = "flex items-center space-x-1.5 bg-fbBlue border border-fbBlue text-white px-3 py-1.5 rounded-xl shadow-sm cursor-pointer smooth-transition";
+            } else {
+                icon.innerText = "🔓";
+                if(btn) btn.className = "flex items-center space-x-1.5 bg-blue-50 border border-fbBlue/30 text-fbBlue px-3 py-1.5 rounded-xl shadow-sm hover:bg-fbBlue hover:text-white cursor-pointer smooth-transition";
+            }
+            renderPlatformManifestView();
+        };
+
+        window.triggerPassiveVideoBuffer = function(rectId, label) {
+            document.querySelectorAll('.zone-rect').forEach(r => r.classList.remove('zone-rect-active'));
+            const rect = document.getElementById(rectId);
+            if(rect) rect.classList.add('zone-rect-active');
+
+            document.getElementById('stream-placeholder').classList.add('hidden');
+            document.getElementById('stream-active-viewport').classList.replace('hidden', 'flex');
+            document.getElementById('stream-label-out').innerText = `CALIBRATING: ${label}`;
+
+            window.queueAsset(label, 0, 'simulation');
+        };
+
+        window.queueAsset = function(title, price, type) {
+            if (compiledManifestArray.some(item => item.title === title)) return; 
+            compiledManifestArray.push({ id: Date.now(), title: title, price: price, type: type });
+            renderPlatformManifestView();
+        };
+
+        function renderPlatformManifestView() {
+            const box = document.getElementById('manifest-items-list');
+            if(!box) return;
+            box.innerHTML = "";
+
+            let total = 0;
+            compiledManifestArray.forEach(item => {
+                total += item.price;
+                const row = document.createElement('div');
+                row.className = "bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center shadow-inner animate-fadeIn";
+                
+                let visibleLabel = item.title;
+                if (isAnonymityActive && item.type === 'lab') {
+                    visibleLabel = `Cryptographic Mask Token Hold #AP-${Math.floor(21212 + Math.random() * 67676)}`;
+                }
+
+                row.innerHTML = `
+                    <div>
+                        <span class="text-[8px] font-mono font-black uppercase px-2 py-0.5 rounded ${item.type === 'lab' ? 'bg-blue-50 text-fbBlue border border-fbBlue/20' : 'bg-slate-200 text-slate-700'}">iTest BOUND</span>
+                        <p class="text-[10px] font-mono font-bold text-slate-700 mt-1">"${visibleLabel}"</p>
+                    </div>
+                    <button onclick="compiledManifestArray = compiledManifestArray.filter(i => i.id !== ${item.id}); renderPlatformManifestView();" class="text-slate-400 hover:text-red-500 font-bold pl-2 text-xs cursor-pointer">✕</button>
+                `;
+                box.appendChild(row);
+            });
+
+            const displayPrice = document.getElementById('summary-total-price');
+            if(displayPrice) displayPrice.innerText = `$${total.toFixed(2)}`;
+        }
+
+        window.goToStage = function(stageNum) {
+            if (stageNum === 3 && compiledManifestArray.length === 0) {
+                alert("Manifest allocations are empty. Select preference targets.");
+                return;
+            }
+
+            const tracks = [1, 2, 3];
+            let totalStepsCount = activeMainTrack === 'carelive' ? 3 : 2;
+            
+            const progressLineFill = document.getElementById('premium-track-line-progress');
+            if(progressLineFill) {
+                let fillWeight = stageNum === 1 ? 0 : (stageNum === 2 ? 50 : 100);
+                if(totalStepsCount === 2 && stageNum === 3) fillWeight = 100;
+                progressLineFill.style.width = `${fillWeight}%`;
+            }
+
+            tracks.forEach(t => {
+                const innerPanel = document.getElementById(`stage-${t}`);
+                if(innerPanel) innerPanel.classList.add('hidden');
+
+                const nodeCircle = document.getElementById(`step-node-${t}`);
+                if(nodeCircle) {
+                    if (t === stageNum) {
+                        nodeCircle.className = "w-6 h-6 rounded-full bg-fbBlue border-2 border-fbBlue flex items-center justify-center text-[10px] font-bold text-white shadow-sm smooth-transition";
+                        nodeCircle.innerHTML = t;
+                    } else if (t < stageNum) {
+                        nodeCircle.className = "w-6 h-6 rounded-full bg-emerald-500 border-2 border-emerald-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm smooth-transition";
+                        nodeCircle.innerHTML = "✓"; 
                     } else {
-                        navHeaderItem.className = "text-slate-400 font-normal";
+                        nodeCircle.className = "w-6 h-6 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-400 smooth-transition";
+                        nodeCircle.innerHTML = t;
                     }
                 }
             });
 
-            // Expose requested card block
-            const selectedStage = document.getElementById(`stage-${stageNum}`);
-            if (selectedStage) selectedStage.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+            const targetPanel = document.getElementById(`stage-${stageNum}`);
+            if(targetPanel) targetPanel.classList.remove('hidden');
 
-        // Handles selection parameter shifts across modality targets
-        function setCollection(mode) {
-            activeCollection = mode;
+            if (stageNum === 3) {
+                document.getElementById('receipt-id-tag').innerText = `WF-HASH-${Math.floor(10000 + Math.random() * 90000)}`;
+                document.getElementById('receipt-track').innerText = activeMainTrack.toUpperCase();
+                document.getElementById('receipt-logistics').innerText = activeMainTrack === 'itest' ? activeLogisticsChannel.toUpperCase() : 'CLOUD TERMINAL';
+                document.getElementById('receipt-profile-name').innerText = isAnonymityActive ? "ANONYMIZED DISCREET DECOUPLED CODE HOLD" : userFullLegalName.toUpperCase();
+                document.getElementById('receipt-intent-view').innerText = `FOR ${userProfileIntent.toUpperCase()}`;
+                document.getElementById('receipt-net').innerText = document.getElementById('summary-total-price').innerText;
+                
+                const summaryPanel = document.getElementById('sticky-summary-panel');
+                if(summaryPanel) summaryPanel.style.opacity = "0.15";
+            }
+        };
+
+        window.triggerTransientPurgeAnnihilation = function() {
+            alert("TRANSIENT DATA BRIDGE HANDSHAKE: Local temporary session records completely wiped.");
+            compiledManifestArray = [];
+            document.getElementById('stream-active-viewport').classList.replace('hidden', 'flex');
+            document.getElementById('stream-placeholder').classList.remove('hidden');
+            document.querySelectorAll('.zone-rect').forEach(r => r.classList.remove('zone-rect-active'));
             
-            const buttons = {
-                walkin: document.getElementById('btn-walkin'),
-                popup: document.getElementById('btn-popup'),
-                mobile: document.getElementById('btn-mobile')
-            };
-
-            Object.keys(buttons).forEach(key => {
-                if(buttons[key]) {
-                    buttons[key].className = "border border-slate-200 bg-white p-4 rounded-xl text-left hover:border-slate-400 transition flex flex-col justify-between min-h-[100px] shadow-sm cursor-pointer";
-                }
-            });
-
-            const targetBtn = buttons[mode];
-            if(targetBtn) {
-                targetBtn.className = "border-2 border-[#059669] bg-emerald-50/40 p-4 rounded-xl text-left focus:outline-none flex flex-col justify-between min-h-[100px] shadow-md cursor-pointer";
-            }
-
-            const mileagePanel = document.getElementById('mileage-subpanel');
-            const notice = document.getElementById('compliance-notice');
-
-            if (mode === 'mobile') {
-                if(mileagePanel) mileagePanel.classList.remove('hidden');
-                if(notice) notice.innerHTML = "<strong>Notice (Private Mobile Dispatch Mode):</strong> Standard market logistics calculations are active. Secure contact verification coordinates will unlock local route availability mappings dynamically.";
-            } else {
-                if(mileagePanel) mileagePanel.classList.add('hidden');
-                if(notice) {
-                    if (mode === 'popup') {
-                        notice.innerHTML = "<strong>Preregistration Parameters Active:</strong> Zero card transaction hooks are required tonight for community partner pop-up configurations. Validate identity coordinates to claim a waived logistics token code.";
-                    } else {
-                        notice.innerHTML = "No credit card requirement is active for your current configuration selection. Accounts, location assignments, and Pop-Up registrations are authorized instantly upon secure token verification.";
-                    }
-                }
-            }
-
-            calculateTotals();
-        }
-
-        // Toggle handling between email box vs phone field
-        function setIdentityVector(vectorType) {
-            activeIdentityVector = vectorType;
+            const summaryPanel = document.getElementById('sticky-summary-panel');
+            if(summaryPanel) summaryPanel.style.opacity = "1";
+            renderPlatformManifestView();
             
-            const tabEmail = document.getElementById('tab-email');
-            const tabPhone = document.getElementById('tab-phone');
-            const wrapperEmail = document.getElementById('wrapper-email');
-            const wrapperPhone = document.getElementById('wrapper-phone');
-
-            if (vectorType === 'email') {
-                if(tabEmail) tabEmail.className = "border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer";
-                if(tabPhone) tabPhone.className = "border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer";
-                if(wrapperEmail) wrapperEmail.classList.remove('hidden');
-                if(wrapperPhone) wrapperPhone.classList.add('hidden');
-            } else {
-                if(tabPhone) tabPhone.className = "border-b-2 border-[#059669] py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-900 focus:outline-none cursor-pointer";
-                if(tabEmail) tabEmail.className = "border-b-2 border-transparent py-2 px-4 text-xs font-black uppercase tracking-wider text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer";
-                if(wrapperPhone) wrapperPhone.classList.remove('hidden');
-                if(wrapperEmail) wrapperEmail.classList.add('hidden');
-            }
-        }
-
-        // Mathematical calculation total builder loop
-        function calculateTotals() {
-            const checkedRadio = document.querySelector('input[name="panel_select"]:checked');
-            if(!checkedRadio) return;
-            
-            const selectedPanel = checkedRadio.value;
-            
-            if (selectedPanel === 'core') {
-                basePrice = 165;
-                anchorPrice = 220;
-                currentPanelLabel = "Core Health Baseline™";
-            } else if (selectedPanel === 'longevity') {
-                basePrice = 349;
-                anchorPrice = 499;
-                currentPanelLabel = "Longevity Protocol™";
-            }
-
-            if (activeCollection === 'mobile') {
-                const checkedRadius = document.querySelector('input[name="radius_select"]:checked');
-                const selectedRadius = checkedRadius ? checkedRadius.value : 'zone1';
-                if (selectedRadius === 'zone1') {
-                    logisticsFee = 65;
-                } else if (selectedRadius === 'zone2') {
-                    logisticsFee = 95;
-                } else if (selectedRadius === 'zone3') {
-                    logisticsFee = -1;
-                }
-            } else {
-                logisticsFee = 0;
-            }
-
-            // Write safe variables directly to dashboard viewports
-            const sPanel = document.getElementById('summary-panel-name');
-            const sAnchor = document.getElementById('summary-anchor-price');
-            const sBase = document.getElementById('summary-base-price');
-            const sLogistics = document.getElementById('summary-logistics-fee');
-            const sTotal = document.getElementById('summary-total-price');
-
-            if(sPanel) sPanel.innerText = currentPanelLabel;
-            if(sAnchor) sAnchor.innerText = `$${anchorPrice.toFixed(2)}`;
-            if(sBase) sBase.innerText = `$${basePrice.toFixed(2)}`;
-
-            if(sLogistics && sTotal) {
-                if (logisticsFee === -1) {
-                    sLogistics.innerText = "TBD - Review Required";
-                    sLogistics.className = "text-amber-600 font-bold";
-                    sTotal.innerText = `$${basePrice.toFixed(2)}++`;
-                } else {
-                    sLogistics.innerText = `$${logisticsFee.toFixed(2)}`;
-                    sLogistics.className = logisticsFee > 0 ? "text-[#059669] font-bold" : "text-slate-400 font-bold";
-                    const grandTotal = basePrice + logisticsFee;
-                    sTotal.innerText = `$${grandTotal.toFixed(2)}`;
-                }
-            }
-        }
-
-        // Identity submission processing simulation engine
-        function executeTokenDispatchSimulation() {
-            const targetEmailValue = document.getElementById('input-email').value.trim();
-            const targetPhoneValue = document.getElementById('input-phone').value.trim();
-
-            if (activeIdentityVector === 'email' && !targetEmailValue) {
-                alert("Validation Constraint Error:\nPlease fill out your corporate organizational email to dispatch security links.");
-                return;
-            }
-            if (activeIdentityVector === 'phone' && !targetPhoneValue) {
-                alert("Validation Constraint Error:\nPlease input a valid mobile communication address vector to distribute secure text notifications.");
-                return;
-            }
-
-            customerIdentityAddressString = activeIdentityVector === 'email' ? targetEmailValue : targetPhoneValue;
-            
-            const displayVector = document.getElementById('display-target-vector');
-            if(displayVector) displayVector.innerText = customerIdentityAddressString;
-
-            goToStage(3);
-        }
-
-        // Automatic focus jumper script utility for multi-box entry matrices
-        function moveFocus(current, nextId, prevId) {
-            if (current.value.length >= 1 && nextId !== "") {
-                const nextEl = document.getElementById(nextId);
-                if(nextEl) nextEl.focus();
-            } else if (current.value.length === 0 && prevId !== "") {
-                const prevEl = document.getElementById(prevId);
-                if(prevEl) prevEl.focus();
-            }
-        }
-
-        // Evaluates entered tokens and paints receipt layout values properties
-        function validateSimulatedOTP() {
-            let userTokenEntryString = "";
-            for (let i = 1; i <= 6; i++) {
-                const otpEl = document.getElementById(`otp-${i}`);
-                if(otpEl) userTokenEntryString += otpEl.value.trim();
-            }
-
-            if (userTokenEntryString.length < 6) {
-                alert("Verification Link Failure:\nYou must fill in all 6 character code cells before authorizing core clinical panels.");
-                return;
-            }
-
-            const randomizedReceiptId = "APDx-#" + Math.floor(10000 + Math.random() * 90000);
-            
-            const rId = document.getElementById('receipt-id-tag');
-            const rPanel = document.getElementById('receipt-panel');
-            const rModality = document.getElementById('receipt-modality');
-            const rVector = document.getElementById('receipt-vector-value');
-            const rNet = document.getElementById('receipt-net');
-            const sTotalPrice = document.getElementById('summary-total-price');
-            const stickyPanel = document.getElementById('sticky-summary-panel');
-
-            if(rId) rId.innerText = randomizedReceiptId;
-            if(rPanel) rPanel.innerText = currentPanelLabel.replace('™', '');
-            if(rModality) rModality.innerText = activeCollection === 'walkin' ? 'Clinic Partner Hub' : activeCollection === 'popup' ? 'Saturday Pop-Up Event' : 'Private Mobile Dispatch';
-            if(rVector) rVector.innerText = customerIdentityAddressString;
-            if(rNet && sTotalPrice) rNet.innerText = sTotalPrice.innerText;
-
-            if(stickyPanel) stickyPanel.classList.add('lg:opacity-20');
-
-            goToStage(4);
-        }
+            window.returnToSelectionHub();
+        };
     </script>
-
 </body>
 </html>
